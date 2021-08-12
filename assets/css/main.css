@@ -55,9 +55,9 @@ body.show-spinner::after {
 
 
 /* !!-------------- CUSTOM CSS --------------- */
-.auth-card {
+/* .auth-card {
   margin: 0 auto;
-}
+} */
 .helper-text p{
   color: #DA1F26;
 }

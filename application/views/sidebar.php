@@ -2,13 +2,13 @@
     <div class="main-menu">
         <div class="scroll">
             <ul class="list-unstyled">
-                <!-- <li>
+                 <li>
                     <a href="#dashboard">
                         <i class="iconsminds-shop-4"></i>
                         <span>Dashboards</span>
                     </a>
                 </li>
-                <li>
+               <!-- <li>
                     <a href="#layouts">
                         <i class="iconsminds-digital-drawing"></i> Pages
                     </a>

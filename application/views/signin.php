@@ -25,10 +25,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="container">
             <div class="row h-100">
                 <div class="col-12 col-md-10 mx-auto my-auto">
-                    <div class="card auth-card" style="width: 60%">
+                    <div class="card auth-card">
+                    <div class="position-relative image-side">
+
+                        <p class=" text-white h2">MAGIC IS IN THE DETAILS</p>
+
+                        <p class="white mb-0">
+                            Please use your credentials to login.
+                            <br>If you are not a member, please
+                            <a href="#" class="white">register</a>.
+                        </p>
+                        </div>
                         <div class="form-side">
                             <a href="<?php echo base_url(); ?>">
-                                <span class="logo-singlee"><h3><b>Marquee Appraiser Management System</b></h3></span>
+                                <span class="logo-singlee"><h3><b>Marquee Appraisal Management System</b></h3></span>
                             </a>
                             <h6 class="mb-4">Login</h6>
                             <form method="post" action="<?php echo base_url(); ?>signin_submit">
