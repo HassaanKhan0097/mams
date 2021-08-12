@@ -68,7 +68,7 @@ $route['signout'] = 'Mams/signout';
 
 
 // !!------------- Manager Routes (Default)  ----------------------!!
-$route['home'] = 'Index'; //here Index is controller ye wali changes chk kro
+$route['home'] = 'Index'; //here Index is chk from home
 $route['file'] = 'File'; //here File is controller
 $route['file/create'] = 'File/create';
 $route['file/delete/(:num)'] = 'File/delete';
