@@ -12,8 +12,11 @@ class Mams extends CI_Controller {
 	
 	public function index()
 	{
-		// $this->session->unset_userdata('loggedUser');
+//  $this->session->unset_userdata('loggedUser');
 		$loggedUser = $this->session->userdata('loggedUser');
+
+		var_dump($loggedUser);
+
 		if(!$loggedUser) {
 			$this->signin();
 		}
@@ -50,7 +53,7 @@ class Mams extends CI_Controller {
 
             $result = $this->Users_Model->login($data);
 
-			var_dump($result);
+			//var_dump($result);
 
             if(!is_array($result)){
                 $this->session->set_flashdata('message_error', $result);
