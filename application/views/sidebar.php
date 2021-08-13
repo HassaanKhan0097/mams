@@ -8,6 +8,42 @@
                         <span>Dashboards</span>
                     </a>
                 </li>
+                <li>
+                    <a href="Search">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#appraisers">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>Appraisers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#clients">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#file">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>File</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#reports">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Accounting">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>Accounting</span>
+                    </a>
+                </li>
                <!-- <li>
                     <a href="#layouts">
                         <i class="iconsminds-digital-drawing"></i> Pages
@@ -31,6 +67,12 @@
                 <li class="active">
                     <a href="#">
                         <i class="iconsminds-shop-4"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#setup">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>Setup</span>
                     </a>
                 </li>
                 <!-- <li>
@@ -66,6 +108,114 @@
                     </a>
                 </li>
             </ul>
+            <ul class="list-unstyled" data-link="setup">
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Web Users</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="StatusInfo">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Status Info</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="CompanyInfo">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Company Info</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="AssignmentTypes">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Assignment Types</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="MessageofDay">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Messages of the Day</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="CitiesCountries">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Cities / Counties</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="OrderTypes">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Order Types</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="AutoEmail">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Auto E-Mail</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="DownloadAreas">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Download Areas</span>
+                    </a>
+                </li>             
+            </ul>
+            <ul class="list-unstyled" data-link="appraisers">
+                <li>
+                    <a href="appraisers/create">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New Appraiser</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="appraiser/show">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Appraisers</span>
+                    </a>
+                </li>                          
+            </ul>
+            <ul class="list-unstyled" data-link="clients">
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New Client</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Clients</span>
+                    </a>
+                </li>                          
+            </ul>
+            <ul class="list-unstyled" data-link="file">
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New File</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Files</span>
+                    </a>
+                </li>                          
+            </ul>
+            <ul class="list-unstyled" data-link="reports">
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Client Status Reports</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Pipe Line Reports</span>
+                    </a>
+                </li>     
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Service Reports</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="Webusers">
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Legacy Pipline Reports</span>
+                    </a>
+                </li>                      
+            </ul>
+
+
+            
             <ul class="list-unstyled" data-link="layouts" id="layouts">
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#collapseAuthorization" aria-expanded="true"

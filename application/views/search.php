@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Manager | Home</title>
+    <title>Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
@@ -36,25 +36,7 @@
 
     
     <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Home</h1>
-                    <!-- <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-                        <ol class="breadcrumb pt-0">
-                            <li class="breadcrumb-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="#">Library</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Data</li>
-                        </ol>
-                    </nav> -->
-                    <div class="separator mb-5"></div>
-                </div>
-            </div>
-        </div>
+       <h1>Search</h1>
     </main>
 
 	<!-- Footer -->

@@ -15,7 +15,7 @@ class Mams extends CI_Controller {
 //  $this->session->unset_userdata('loggedUser');
 		$loggedUser = $this->session->userdata('loggedUser');
 
-		var_dump($loggedUser);
+		//var_dump($loggedUser);
 
 		if(!$loggedUser) {
 			$this->signin();
