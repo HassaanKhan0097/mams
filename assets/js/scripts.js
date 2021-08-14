@@ -128,7 +128,10 @@ function loadStyle(href, callback) {
   $(".radius-radio[data-radius='" + radius + "']").attr("checked", true);
   $("#switchDark").attr("checked", theme.indexOf("dark") > 0 ? true : false);
 
-  loadStyle("assets/css/" + theme, onStyleComplete);
+  var getUrl = window.location;
+  var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
+  loadStyle(baseUrl+"/assets/css/" + theme, onStyleComplete);
   function onStyleComplete() {
     setTimeout(onStyleCompleteDelayed, 300);
   }

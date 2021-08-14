@@ -2,14 +2,15 @@
     <div class="main-menu">
         <div class="scroll">
             <ul class="list-unstyled">
-                 <li>
-                    <a href="#dashboard">
-                        <i class="iconsminds-shop-4"></i>
-                        <span>Dashboards</span>
+
+                <li class="active">
+                    <a href="#">
+                        <i class="iconsminds-shop-4"></i> Home
                     </a>
                 </li>
+
                 <li>
-                    <a href="Search">
+                    <a href="<?php echo base_url(); ?>search">
                         <i class="iconsminds-shop-4"></i>
                         <span>Search</span>
                     </a>
@@ -64,11 +65,7 @@
                         <i class="iconsminds-three-arrow-fork"></i> Menu
                     </a>
                 </li> -->
-                <li class="active">
-                    <a href="#">
-                        <i class="iconsminds-shop-4"></i> Home
-                    </a>
-                </li>
+
                 <li>
                     <a href="#setup">
                         <i class="iconsminds-shop-4"></i>
@@ -157,12 +154,13 @@
             </ul>
             <ul class="list-unstyled" data-link="appraisers">
                 <li>
-                    <a href="appraisers/create">
+                    <a href="<?php echo base_url(); ?>appraisers/create">
+                    
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New Appraiser</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="appraiser/show">
+                    <a href="<?php echo base_url(); ?>appraisers">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Appraisers</span>
                     </a>
                 </li>                          
