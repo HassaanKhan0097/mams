@@ -62,4 +62,26 @@ body.show-spinner::after {
   color: #DA1F26;
 }
 
+.edit-table{
+  color: #00365a ;
+}
+.edit-table:hover{
+  text-decoration: underline;
+}
+.delete-table{
+  color: #DA1F26;
+}
+.delete-table:hover{
+  text-decoration: underline;
+  color: #DA1F26;
+}
 
+
+.btn-grey{
+  background-color: #d8d8d8;
+  border-color: #d8d8d8;
+}
+.btn-grey:hover{
+  background-color: #afafaf;
+  border-color: #afafaf;
+}

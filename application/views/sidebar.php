@@ -107,47 +107,47 @@
             </ul>
             <ul class="list-unstyled" data-link="setup">
                 <li>
-                    <a href="Webusers">
+                    <a href="<?php echo base_url(); ?>webusers">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Web Users</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="StatusInfo">
+                    <a href="<?php echo base_url(); ?>statusinfo">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Status Info</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="CompanyInfo">
+                    <a href="<?php echo base_url(); ?>companyinfo">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Company Info</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="AssignmentTypes">
+                    <a href="<?php echo base_url(); ?>assignmenttypes">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Assignment Types</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="MessageofDay">
+                    <a href="<?php echo base_url(); ?>messageofday">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Messages of the Day</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="CitiesCountries">
+                    <a href="<?php echo base_url(); ?>citiescountries">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Cities / Counties</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="OrderTypes">
+                    <a href="<?php echo base_url(); ?>ordertypes">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Order Types</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="AutoEmail">
+                    <a href="<?php echo base_url(); ?>autoemail">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Auto E-Mail</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="DownloadAreas">
+                    <a href="<?php echo base_url(); ?>downloadareas">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Download Areas</span>
                     </a>
                 </li>             
@@ -161,7 +161,7 @@
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>appraisers">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Appraisers</span>
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Appraisers List</span>
                     </a>
                 </li>                          
             </ul>

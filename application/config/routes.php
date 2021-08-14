@@ -87,6 +87,23 @@ $route['appraisers/edit/(:num)'] = 'Appraisers/edit';
 $route['search'] = 'Search';
 
 
+$route['webusers'] = 'Webusers';
+
+$route['statusinfo'] = 'StatusInfo';
+
+$route['companyinfo'] = 'CompanyInfo';
+
+$route['assignmenttypes'] = 'AssignmentTypes';
+
+$route['messageofday'] = 'MessageofDay';
+
+$route['citiescountries'] = 'CitiesCountries';
+
+$route['ordertypes'] = 'OrderTypes';
+
+$route['autoemail'] = 'AutoEmail';
+
+$route['downloadareas'] = 'DownloadAreas';
 
 
 // !!------------- Appraiser Routes  ----------------------!!
