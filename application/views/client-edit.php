@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Download Areas</title>
+    <title>Edit Client</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/datatables.responsive.bootstrap4.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.rtl.only.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/component-custom-switch.min.css" />
@@ -43,49 +41,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>Download Areas</h1>
+                    <h1>Edit Client</h1>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12">
-                <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="mb-4">Download Areas </h5>
-                            <div id="accordion">
 
-                                <div class="border">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                        Appraiser Download Area
-                                    </button>
-
-                                    <div id="collapseOne" class="collapse " data-parent="#accordion">
-                                        <div class="p-4">
-                                            Some downloading stuff will be here
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="border">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Client Information Download Area
-                                    </button>
-                                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                        <div class="p-4">
-                                        Some downloading stuff will be here
-                                        </div>
-                                    </div>
-                                </div>
-                                
-
-                            </div>
-                        </div>
-                    </div><!-- card mb-4 End -->
-
-
-                          
+                   
 
 
                 </div>
@@ -93,6 +57,27 @@
             <!--Row end-->
         </div>
     </main>
+
+
+
+    <!-- Modal -->
+
+    <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <p>Are you Sure You want to Delete this item?</p>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
 
 
 
@@ -112,13 +97,18 @@
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/datatables.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
 
-    
+
 </body>
 
 </html>

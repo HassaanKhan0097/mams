@@ -77,12 +77,12 @@ $route['file/edit/(:num)'] = 'File/edit';
 $route['clients'] = 'Clients'; //here Clients is controller
 $route['clients/create'] = 'Clients/create';
 $route['clients/delete/(:num)'] = 'Clients/delete';
-$route['clients/edit/(:num)'] = 'Clients/edit';
+$route['clients/edit/(:num)'] = 'Clients/edit/$1';
 
 $route['appraisers'] = 'Appraisers'; //here Appraisers is controller
 $route['appraisers/create'] = 'Appraisers/create';
 $route['appraisers/delete/(:num)'] = 'Appraisers/delete';
-$route['appraisers/edit/(:num)'] = 'Appraisers/edit';
+$route['appraisers/edit/(:num)'] = 'Appraisers/edit/$1';
 
 $route['search'] = 'Search';
 

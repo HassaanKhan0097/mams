@@ -1,21 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Appraisers extends CI_Controller {
+class Clients extends CI_Controller {
 
     public function index()
     {
-         $this->load->view('appraisers-list');
+         $this->load->view('client-list');
     }
 
     public function create()
     {
-        $this->load->view('appraisers-create');
+        $this->load->view('client-create');
     }
 
     public function edit($id)
     {
-        $this->load->view('appraisers-edit');
+        $this->load->view('client-edit');
     }
 
 }

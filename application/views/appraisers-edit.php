@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>New Appraiser</title>
+    <title>Edit Appraiser</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>New Appraiser</h1>
+                    <h1>Edit Appraiser</h1>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
@@ -50,19 +50,19 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="mb-4">Add New Appraiser</h5>
+                            <h5 class="mb-4">Edit Appraiser</h5>
                             <form action="" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="app_name" placeholder="Enter Appraiser Name">
+                                        <input type="text" class="form-control" name="app_name" value="Appraiser Name">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="app_email" placeholder="Enter Appraiser Email">
+                                        <input type="email" class="form-control" name="app_email" value="email@email.com">
                                     </div>
                                 </div>
 
@@ -82,35 +82,35 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>License Number</label>
-                                        <input type="text" class="form-control" name="app_license" value="Enter License Number" >
+                                        <input type="text" class="form-control" name="app_license" value="123456789" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Cell Phone</label>
-                                        <input type="number" class="form-control" name="app_phone" value="Enter Phone Number" >
+                                        <input type="number" class="form-control" name="app_phone" value="4567894132" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Home Number</label>
-                                        <input type="number" class="form-control" name="app_home" value="Enter Home Number" >
+                                        <input type="number" class="form-control" name="app_home" value="213123123" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Fax Number</label>
-                                        <input type="number" class="form-control" name="app_fax" value="Enter Fax Number" >
+                                        <input type="number" class="form-control" name="app_fax" value="78654123" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Home Number</label>
-                                        <input type="number" class="form-control" name="app_pager" value="Enter Pager" >
+                                        <input type="number" class="form-control" name="app_pager" value="876543234214" >
                                     </div>
                                 </div>
                             </div>
@@ -119,12 +119,12 @@
                                    
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                            name="jQueryCheckbox">
+                                            name="jQueryCheckbox" checked>
                                         <label class="custom-control-label" for="customCheck1">Active</label>
                                     </div>                                  
                                     
                                 </div>
-                                <button type="submit" class="btn btn-primary mb-0">Submit</button>
+                                <button type="submit" class="btn btn-primary mb-0">Edit</button>
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->

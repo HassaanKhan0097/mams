@@ -167,12 +167,12 @@
             </ul>
             <ul class="list-unstyled" data-link="clients">
                 <li>
-                    <a href="Webusers">
+                    <a href="<?php echo base_url(); ?>clients/create">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New Client</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="Webusers">
+                    <a href="<?php echo base_url(); ?>clients">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Clients</span>
                     </a>
                 </li>                          

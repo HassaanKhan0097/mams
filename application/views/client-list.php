@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>List of Appraiser</title>
+    <title>List of Client</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>List of Appraiser</h1>
+                    <h1>List of Client</h1>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
@@ -49,70 +49,7 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="mb-4" style="display: inline;">Appraiser List</h5>
-                            <div class="top-right-button-container">
-                                <div class="btn-group">
-                                    <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        EXPORT
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="dataTablesExcel" href="#">Excel</a>
-                                        <a class="dropdown-item" id="dataTablesCsv" href="#">Csv</a>
-                                        <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <br><br><br><br>
-
-                            <!-- data-table Table_status -->
-                            <table id="Table_appraiser">
-                                <thead>
-                                    <tr>
-                                        <th>Appraiser Id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Title</th>
-                                        <th>License Number</th>
-                                        <th>Cell Phone</th>
-                                        <th>Home Phone</th>
-                                        <th>Fax</th>
-                                        <th>Pager</th>
-                                        <th>App Number</th>
-                                        <th>Active</th>
-                                        <th width="15%">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John</td>
-                                        <td>john@email.com</td>
-                                        <td>Senior Appraiser</td>
-                                        <td>121312321</td>
-                                        <td>1267547897</td>
-                                        <td>5678090213</td>
-                                        <td>4365463456</td>
-                                        <td>211123443</td>
-                                        <td>1234</td>
-                                        <td><label
-                                        class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
-                                        <input type="checkbox" class="custom-control-input" checked>
-                                        <span class="custom-control-label">&nbsp;</span>
-                                    </label></td>                                        
-                                        <td><button type="button" class="btn btn-primary mr-2" onclick="edit_appraiser(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal">Delete</button> </td>
-                                    </tr>
-                                   
-                                   
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!--- Table end -->
+                   
 
 
                 </div>
