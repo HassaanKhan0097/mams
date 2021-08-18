@@ -42,6 +42,7 @@
             <div class="row">
                 <div class="col-12">
                     <h1>List of Clients</h1>
+                    
                     <div class="separator mb-5"></div>
                 </div>
             </div>
@@ -86,12 +87,12 @@
                                         <th>AMC</th>
                                         <th>Email</th>
                                         <th>Instruction</th>
-                                        <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="table-background">1</td>
+                                        <td class="table-background table_id"><a href="<?php echo base_url(); ?>clients/edit/1">1</a></td>
                                         <td>John</td>
                                         <td>2445123542</td>
                                         <td>123 Address</td>
@@ -106,12 +107,12 @@
                                         <td>AMC</td>
                                         <td>john@email.com</td>
                                         <td>Lorem ipsum description</td>
-                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
 
                                     <tr>
-                                        <td class="table-background">2</td>
+                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>clients/edit/1">2</a></td>
                                         <td>Michael</td>
                                         <td>156189152</td>
                                         <td>123 Address</td>
@@ -126,13 +127,13 @@
                                         <td>No AMC</td>
                                         <td>mochael@email.com</td>
                                         <td>Lorem ipsum description</td>
-                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
 
 
                                     <tr>
-                                        <td class="table-background">3</td>
+                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>clients/edit/1">3</a></td>
                                         <td>Kevin</td>
                                         <td>2445123542</td>
                                         <td>123 Address</td>
@@ -147,8 +148,8 @@
                                         <td>AMC</td>
                                         <td>kevin@email.com</td>
                                         <td>Lorem ipsum description</td>
-                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
                                     
                                 </tbody>
@@ -163,23 +164,6 @@
             <!--Row end-->
         </div>
     </main>
-
-
-
-    <!-- Modal -->
-
-    <div id="deleteModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <p>Are you Sure You want to Delete this item?</p>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                    <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -224,8 +208,8 @@
                 { "data": "client_type" },
                 { "data": "amc" },
                 { "data": "email" },
-                { "data": "instruction" },
-                { "data": "action"}
+                { "data": "instruction" }
+          
             ],
             drawCallback: function () {
                 $($(".dataTables_wrapper .pagination li:first-of-type"))
@@ -252,8 +236,8 @@
         // ],
         // fixedColumns: true,
         fixedColumns:   {
-            leftColumns: 1,
-            rightColumns: 1
+            leftColumns: 1
+          
         },
             buttons: [
                 'excel',

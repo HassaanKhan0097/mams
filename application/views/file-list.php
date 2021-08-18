@@ -216,12 +216,13 @@
                                         <th>Appt Time</th>
                                         <th>Due Date</th>
                                         <th>Status ID</th>
-                                        <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="table-background">12345</td>
+                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>file/edit/1">1246</a></td>
+
                                         <td>Easy Mortgage</td>
                                         <td>Bergman, Phyliss & Walter</td>
                                         <td>Martin Praiser</td>
@@ -233,12 +234,12 @@
                                         <td>09:00:00</td>
                                         <td>4/11/2007</td>    
                                         <td>Cancelled</td>                                    
-                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
 
                                     <tr>
-                                        <td class="table-background">23145</td>
+                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>file/edit/1">23456</a></td>
                                         <td>John</td>
                                         <td>Bergman, Phyliss & Walter</td>
                                         <td>Martin Praiser</td>
@@ -250,12 +251,12 @@
                                         <td>09:00:00</td>
                                         <td>4/11/2007</td>    
                                         <td>Cancelled</td>                                    
-                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
 
                                     <tr>
-                                        <td class="table-background">36341</td>
+                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>file/edit/1">364321</a></td>
                                         <td>Michael</td>
                                         <td>Bergman, Phyliss & Walter</td>
                                         <td>Martin Praiser</td>
@@ -267,8 +268,8 @@
                                         <td>09:00:00</td>
                                         <td>4/11/2007</td>    
                                         <td>Cancelled</td>                                    
-                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
                                     
                                 </tbody>
@@ -341,8 +342,8 @@
                 { "data": "file_apptdate" },
                 { "data": "file_appttime" },
                 { "data": "file_duedate" },
-                { "data": "file_status" },                
-                { "data": "action"}
+                { "data": "file_status" }               
+                // { "data": "action"}
             ],
             drawCallback: function () {
                 $($(".dataTables_wrapper .pagination li:first-of-type"))

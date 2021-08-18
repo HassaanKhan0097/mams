@@ -45,6 +45,10 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Edit File</h1>
+                    <div class="text-zero top-right-button-container">
+                            <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
+                                                data-target="#deleteModal">Delete</button>
+                        </div>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
@@ -665,6 +669,18 @@
         </div>
     </div>
 
+    <div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <p>Are you Sure You want to Delete this item?</p>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Modal End -->

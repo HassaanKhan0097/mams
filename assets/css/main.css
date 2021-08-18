@@ -89,6 +89,14 @@ body.show-spinner::after {
   background-color: #fff;
 }
 
+.table_id a{
+  color: #00365a;
+  text-decoration: underline;
+}
+.table_id a:hover{
+  color: #001e31;
+  text-decoration: underline;
+}
 
 
 

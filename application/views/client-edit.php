@@ -44,6 +44,10 @@
             <div class="row">
                 <div class="col-12">
                     <h1>Edit Client</h1>
+                    <div class="text-zero top-right-button-container">
+                            <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
+                                                data-target="#deleteModal">Delete</button>
+                        </div>
                     <div class="separator mb-5"></div>
                 </div>
             </div>

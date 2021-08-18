@@ -82,12 +82,12 @@
                                         <th>Pager</th>
                                         <th>App Number</th>
                                         <th>Active</th>
-                                        <th>Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <!-- <th>Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
+                                        <td class="table_id"><a href="<?php echo base_url(); ?>appraisers/edit/1">1</a></td>
                                         <td>John</td>
                                         <td>john@email.com</td>
                                         <td>Senior Appraiser</td>
@@ -102,9 +102,9 @@
                                         <input type="checkbox" class="custom-control-input" checked>
                                         <span class="custom-control-label">&nbsp;</span>
                                     </label></td>                                        
-                                        <td><button type="button" class="btn btn-primary mr-2" onclick="edit_appraiser(1)">Edit</button>&nbsp;<button type="button"
+                                        <!-- <td><button type="button" class="btn btn-primary mr-2" onclick="edit_appraiser(1)">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal">Delete</button> </td>
+                                                data-target="#deleteModal">Delete</button> </td> -->
                                     </tr>
                                    
                                    
@@ -191,8 +191,8 @@
                 { "data": "app_fax" },
                 { "data": "app_pager" }, 
                 { "data": "app_appt" },
-                { "data": "app_active" },               
-                { "data": "action" }
+                { "data": "app_active" }
+                // { "data": "action" }
             ],
             drawCallback: function () {
                 $($(".dataTables_wrapper .pagination li:first-of-type"))
