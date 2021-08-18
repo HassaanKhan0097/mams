@@ -72,7 +72,7 @@ $route['home'] = 'Index'; //here Index is chk from home
 $route['file'] = 'File'; //here File is controller
 $route['file/create'] = 'File/create';
 $route['file/delete/(:num)'] = 'File/delete';
-$route['file/edit/(:num)'] = 'File/edit';
+$route['file/edit/(:num)'] = 'File/edit/$1';
 
 $route['clients'] = 'Clients'; //here Clients is controller
 $route['clients/create'] = 'Clients/create';

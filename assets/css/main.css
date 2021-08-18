@@ -85,3 +85,6 @@ body.show-spinner::after {
   background-color: #afafaf;
   border-color: #afafaf;
 }
+.table-background{
+  background-color: #fff;
+}

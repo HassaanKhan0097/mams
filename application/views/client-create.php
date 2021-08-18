@@ -277,7 +277,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_officer">
+                            <table id="Table_officer" class="responsive">
                                 <thead>
                                     <tr>
                                         <th>Loan Officer Id</th>

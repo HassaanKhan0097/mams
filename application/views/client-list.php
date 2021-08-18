@@ -41,15 +41,117 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>List of Client</h1>
+                    <h1>List of Clients</h1>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12">
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4" style="display: inline;">Client List</h5>
+                            <div class="top-right-button-container">
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        EXPORT
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" id="dataTablesExcel" href="#">Excel</a>
+                                        <a class="dropdown-item" id="dataTablesCsv" href="#">Csv</a>
+                                        <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br><br><br>
 
-                   
+                            <!-- data-table Table_status -->
+                            <table id="Table_client">
+                                <thead>
+                                    <tr>
+                                        <th id ="cl_id" class="table-background">Client Id</th>
+                                        <th>Client Name</th>
+                                        <th>Contact</th>
+                                        <th>Address</th>
+                                        <th>Address 2</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Zip Code</th>
+                                        <th>Phone</th>
+                                        <th>Fax</th>
+                                        <th>Client Type</th>
+                                        <th>Email</th>
+                                        <th>Instruction</th>
+                                        <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-background">1</td>
+                                        <td>John</td>
+                                        <td>2445123542</td>
+                                        <td>123 Address</td>
+                                        <td>13545 Address 2</td>
+                                        <td>USA</td>
+                                        <td>New York</td>
+                                        <td>State</td>
+                                        <td>4532</td>
+                                        <td>156189152</td>
+                                        <td>21145122</td>
+                                        <td>Broker</td>
+                                        <td>john@email.com</td>
+                                        <td>Lorem ipsum description</td>
+                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="table-background">2</td>
+                                        <td>Michael</td>
+                                        <td>156189152</td>
+                                        <td>123 Address</td>
+                                        <td>13545 Address 2</td>
+                                        <td>USA</td>
+                                        <td>New York</td>
+                                        <td>State</td>
+                                        <td>4532</td>
+                                        <td>2445123542</td>
+                                        <td>21145122</td>
+                                        <td>Property Owner</td>
+                                        <td>mochael@email.com</td>
+                                        <td>Lorem ipsum description</td>
+                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="table-background">3</td>
+                                        <td>Kevin</td>
+                                        <td>2445123542</td>
+                                        <td>123 Address</td>
+                                        <td>13545 Address 2</td>
+                                        <td>USA</td>
+                                        <td>New York</td>
+                                        <td>State</td>
+                                        <td>4532</td>
+                                        <td>156189152</td>
+                                        <td>21145122</td>
+                                        <td>Broker</td>
+                                        <td>kevin@email.com</td>
+                                        <td>Lorem ipsum description</td>
+                                        <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
+                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--- Table end -->
 
 
                 </div>
@@ -77,13 +179,6 @@
 
 
 
-    
-
-
-
-
-
-
     <!-- Modal End -->
 
     <!-- Footer -->
@@ -107,29 +202,25 @@
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
-
-
     <script>
-
-    function edit_appraiser(id){
-      window.location.href= "<?php echo base_url(); ?>appraisers/edit/"+id;
-      
-    }
-        var $Table_appraiser = $("#Table_appraiser").DataTable({
+        var $Table_client = $("#Table_client").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [
-                { "data": "app_id" },
-                { "data": "app_name" },
-                { "data": "app_email" },
-                { "data": "app_title" },
-                { "data": "app_licenseNumber" },
-                { "data": "app_phone" },
-                { "data": "app_home" },
-                { "data": "app_fax" },
-                { "data": "app_pager" }, 
-                { "data": "app_appt" },
-                { "data": "app_active" },               
-                { "data": "action" }
+                { "data": "client_id" },
+                { "data": "client_name" },
+                { "data": "contact" },
+                { "data": "address" },
+                { "data": "address2" },
+                { "data": "country" },
+                { "data": "city" },
+                { "data": "state" },
+                { "data": "zip_code" },
+                { "data": "phone" },
+                { "data": "fax" },
+                { "data": "client_type" },
+                { "data": "email" },
+                { "data": "instruction" },
+                { "data": "action"}
             ],
             drawCallback: function () {
                 $($(".dataTables_wrapper .pagination li:first-of-type"))
@@ -150,6 +241,15 @@
                 searchPlaceholder: "Search...",
                 lengthMenu: "Items Per Page _MENU_"
             },
+            "scrollX": true,
+        //     columnDefs: [
+        //     { width: 200, targets: 0 }
+        // ],
+        // fixedColumns: true,
+        fixedColumns:   {
+            leftColumns: 1,
+            rightColumns: 1
+        },
             buttons: [
                 'excel',
                 'csv',
@@ -158,16 +258,25 @@
         });
         $("#dataTablesExcel").on("click", function (event) {
             event.preventDefault();
-            $Table_appraiser.buttons(0).trigger();
+            $Table_client.buttons(0).trigger();
         });
         $("#dataTablesCsv").on("click", function (event) {
             event.preventDefault();
-            $Table_appraiser.buttons(1).trigger();
+            $Table_client.buttons(1).trigger();
         });
         $("#dataTablesPdf").on("click", function (event) {
             event.preventDefault();
-            $Table_appraiser.buttons(2).trigger();
+            $Table_client.buttons(2).trigger();
         });
+
+        $( document ).ready(function() {
+            setTimeout(function(){ console.log("Readu"); $("#cl_id").click(); $("#cl_id").click(); }, 500);
+        });
+
+
+        function edit_client(id){
+            window.location.href= "<?php echo base_url(); ?>clients/edit/"+id;
+        }
     </script>
 </body>
 

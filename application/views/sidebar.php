@@ -5,43 +5,43 @@
 
                 <li class="active">
                     <a href="#">
-                        <i class="iconsminds-shop-4"></i> Home
+                        <i class="iconsminds-home"></i> Home
                     </a>
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url(); ?>search">
-                        <i class="iconsminds-shop-4"></i>
+                    <a href="<?php echo base_url(); ?>file">
+                        <i class="iconsminds-magnifi-glass"></i>
                         <span>Search</span>
                     </a>
                 </li>
                 <li>
                     <a href="#appraisers">
-                        <i class="iconsminds-shop-4"></i>
+                        <i class="iconsminds-business-man"></i>
                         <span>Appraisers</span>
                     </a>
                 </li>
                 <li>
                     <a href="#clients">
-                        <i class="iconsminds-shop-4"></i>
+                        <i class="iconsminds-management"></i>
                         <span>Clients</span>
                     </a>
                 </li>
                 <li>
                     <a href="#file">
-                        <i class="iconsminds-shop-4"></i>
+                        <i class="iconsminds-files"></i>
                         <span>File</span>
                     </a>
                 </li>
                 <li>
                     <a href="#reports">
-                        <i class="iconsminds-shop-4"></i>
+                        <i class="iconsminds-project"></i>
                         <span>Reports</span>
                     </a>
                 </li>
                 <li>
                     <a href="Accounting">
-                        <i class="iconsminds-shop-4"></i>
+                        <i class="iconsminds-dollar-sign-2"></i>
                         <span>Accounting</span>
                     </a>
                 </li>
@@ -68,7 +68,7 @@
 
                 <li>
                     <a href="#setup">
-                        <i class="iconsminds-shop-4"></i>
+                        <i class="simple-icon-settings"></i>
                         <span>Setup</span>
                     </a>
                 </li>
@@ -108,47 +108,47 @@
             <ul class="list-unstyled" data-link="setup">
                 <li>
                     <a href="<?php echo base_url(); ?>webusers">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Web Users</span>
+                        <i class="simple-icon-people"></i> <span class="d-inline-block">Web Users</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>statusinfo">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Status Info</span>
+                        <i class="simple-icon-info"></i> <span class="d-inline-block">Status Info</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>companyinfo">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Company Info</span>
+                        <i class="iconsminds-empire-state-building"></i> <span class="d-inline-block">Company Info</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>assignmenttypes">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Assignment Types</span>
+                        <i class="iconsminds-paper"></i> <span class="d-inline-block">Assignment Types</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>messageofday">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Messages of the Day</span>
+                        <i class="iconsminds-mail-open"></i> <span class="d-inline-block">Messages of the Day</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>citiescountries">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Cities / Counties</span>
+                        <i class="iconsminds-city-hall"></i> <span class="d-inline-block">Cities / Counties</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>ordertypes">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Order Types</span>
+                        <i class="iconsminds-shopping-basket"></i> <span class="d-inline-block">Order Types</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>autoemail">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Auto E-Mail</span>
+                        <i class="iconsminds-at-sign"></i> <span class="d-inline-block">Auto E-Mail</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>downloadareas">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Download Areas</span>
+                        <i class="iconsminds-download-1"></i> <span class="d-inline-block">Download Areas</span>
                     </a>
                 </li>             
             </ul>
@@ -156,36 +156,36 @@
                 <li>
                     <a href="<?php echo base_url(); ?>appraisers/create">
                     
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New Appraiser</span>
+                        <i class="iconsminds-add-user"></i> <span class="d-inline-block">Add New Appraiser</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>appraisers">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Appraisers List</span>
+                        <i class="simple-icon-list"></i> <span class="d-inline-block">Appraisers List</span>
                     </a>
                 </li>                          
             </ul>
             <ul class="list-unstyled" data-link="clients">
                 <li>
                     <a href="<?php echo base_url(); ?>clients/create">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New Client</span>
+                        <i class="iconsminds-add-user"></i> <span class="d-inline-block">Add New Client</span>
                     </a>
                 </li> 
                 <li>
                     <a href="<?php echo base_url(); ?>clients">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Clients</span>
+                        <i class="simple-icon-list"></i> <span class="d-inline-block">List of Clients</span>
                     </a>
                 </li>                          
             </ul>
             <ul class="list-unstyled" data-link="file">
                 <li>
-                    <a href="Webusers">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Add New File</span>
+                    <a href="<?php echo base_url(); ?>file/create">
+                        <i class="iconsminds-add-file"></i> <span class="d-inline-block">Add New File</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="Webusers">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">List of Files</span>
+                    <a href="<?php echo base_url(); ?>file">
+                        <i class="simple-icon-magnifier"></i> <span class="d-inline-block">Search Files</span>
                     </a>
                 </li>                          
             </ul>
