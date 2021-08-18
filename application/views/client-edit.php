@@ -50,14 +50,14 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                             <button class="btn btn-primary mb-1 mr-2" type="button" onclick="edit_client_collapse();">
                                 Edit Client
                             </button>
                             <button class="btn btn-primary mb-1" type="button" onclick="edit_loan_collapse();">
                                 Edit Loan Officers/Processors for this Client
                             </button>
-                    </div>
+                    </div> -->
                 
 
                     <div class="card mb-4" id="edit_client">
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Select Client Type</label>
                                         <select class="form-control select2-single" data-width="100%">
@@ -157,7 +157,19 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Select AMC</label>
+                                        <select class="form-control select2-single" data-width="100%">
+                                            <option value=""></option>
+                                            <option value="1" selected>AMC</option>
+                                            <option value="2">No AMC</option>                                            
+                                        </select>                                    
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" class="form-control" name="cl_email" value="john@email.com" >

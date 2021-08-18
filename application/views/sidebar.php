@@ -4,7 +4,7 @@
             <ul class="list-unstyled">
 
                 <li class="active">
-                    <a href="#">
+                    <a href="<?php echo base_url(); ?>home">
                         <i class="iconsminds-home"></i> Home
                     </a>
                 </li>

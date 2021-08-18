@@ -369,8 +369,8 @@
         // ],
         // fixedColumns: true,
         fixedColumns:   {
-            leftColumns: 1,
-            rightColumns: 1
+            leftColumns: 1
+            // rightColumns: 1
         },
             buttons: [
                 'excel',

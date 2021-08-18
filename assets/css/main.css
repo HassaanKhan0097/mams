@@ -88,3 +88,17 @@ body.show-spinner::after {
 .table-background{
   background-color: #fff;
 }
+
+
+
+
+
+  /* 18th August 2021 By Hassaan Khan */
+
+  .logo-side {
+    margin: auto;
+    text-align: center;
+  }
+  .mt-30 {
+    margin-top: 30px;
+  }

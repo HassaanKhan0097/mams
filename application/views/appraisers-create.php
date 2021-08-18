@@ -109,7 +109,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Home Number</label>
+                                        <label>Pager</label>
                                         <input type="number" class="form-control" name="app_pager" value="Enter Pager" >
                                     </div>
                                 </div>

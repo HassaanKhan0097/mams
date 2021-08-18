@@ -2081,14 +2081,14 @@ $.dore = function (element, options) {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                label: "Cakes",
+                label: "Completed",
                 borderColor: themeColor1,
                 backgroundColor: themeColor1_10,
                 data: [456, 479, 324, 569, 702, 600],
                 borderWidth: 2
               },
               {
-                label: "Desserts",
+                label: "Cancelled",
                 borderColor: themeColor2,
                 backgroundColor: themeColor2_10,
                 data: [364, 504, 605, 400, 345, 320],
@@ -2153,14 +2153,14 @@ $.dore = function (element, options) {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                label: "Cakes",
+                label: "AMC",
                 borderColor: themeColor1,
                 backgroundColor: themeColor1_10,
                 data: [456, 479, 324, 569, 702, 600],
                 borderWidth: 2
               },
               {
-                label: "Desserts",
+                label: "No AMC",
                 borderColor: themeColor2,
                 backgroundColor: themeColor2_10,
                 data: [364, 504, 605, 400, 345, 320],

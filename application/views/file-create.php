@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap-datepicker3.min.css" />
-
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/dropzone.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.rtl.only.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/component-custom-switch.min.css" />
@@ -76,14 +76,9 @@
                             <form action="" method="post">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div class="form-group">
+                                <div class="form-group">
                                         <label>File Number*</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">FL5648</option>
-                                            <option value="2">FL8941</option>
-                                            <option value="3">FL1234</option>
-                                        </select>                                    
+                                        <input type="text" class="form-control" name="file_address" placeholder="Enter File Numbers" >
                                     </div>
                                 </div>
 
@@ -218,7 +213,7 @@
 
                                 <!-- Col 12 end 4-->
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Loan Officer	</label>
                                         <select class="form-control select2-single" data-width="100%">
@@ -228,7 +223,7 @@
                                             <option value="3">Option 3</option>
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -257,7 +252,7 @@
                                 <!-- Col 12 end 5-->
 
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Processor</label>
                                         <select class="form-control select2-single" data-width="100%">
@@ -267,7 +262,7 @@
                                             <option value="3">Option 3</option>
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -346,9 +341,11 @@
                                         <label>Appointment Time</label>
                                         <select class="form-control select2-single" data-width="100%">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                            <option value="1">11:00</option>
+                                            <option value="2">11:15</option>
+                                            <option value="3">11:30</option>
+                                            <option value="4">11:45</option>
+                                            <option value="5">12:00</option>
                                         </select>                                    
                                     </div>
                                 </div>
@@ -438,12 +435,12 @@
                                 </div>
 
 
-                                <div class="col-sm-4"></div>
-
-
-                                <!-- Col 12 end 11		-->
-
-
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="text" class="form-control" name="file_phone2" placeholder="Enter Website" >
+                                    </div>
+                                </div>
 
                                 <div class="col-12">
                                     <div class="form-group">
@@ -451,6 +448,25 @@
                                         <textarea  class="form-control" name="file_ins" placeholder="Enter Special Instruction" rows="2" cols="50"></textarea>                                    
                                     </div>
                                 </div>
+
+                                <div class="col-sm-12 mb-4">
+                                    
+                                        <!-- <div class="card-body"> -->
+                                            <h5 class="mb-4">Attach File</h5>
+                                            <form action="#">
+                                                <div class="dropzone">
+                                                </div>
+                                            </form>
+                                        <!-- </div> -->
+                                    
+                                </div>
+
+
+                                <!-- Col 12 end 11		-->
+
+
+
+                               
 
                                 <!-- Col 12 end 12		-->
 
@@ -494,6 +510,7 @@
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap-datepicker.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/dropzone.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 

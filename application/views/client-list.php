@@ -83,6 +83,7 @@
                                         <th>Phone</th>
                                         <th>Fax</th>
                                         <th>Client Type</th>
+                                        <th>AMC</th>
                                         <th>Email</th>
                                         <th>Instruction</th>
                                         <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -102,6 +103,7 @@
                                         <td>156189152</td>
                                         <td>21145122</td>
                                         <td>Broker</td>
+                                        <td>AMC</td>
                                         <td>john@email.com</td>
                                         <td>Lorem ipsum description</td>
                                         <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
@@ -121,6 +123,7 @@
                                         <td>2445123542</td>
                                         <td>21145122</td>
                                         <td>Property Owner</td>
+                                        <td>No AMC</td>
                                         <td>mochael@email.com</td>
                                         <td>Lorem ipsum description</td>
                                         <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
@@ -141,6 +144,7 @@
                                         <td>156189152</td>
                                         <td>21145122</td>
                                         <td>Broker</td>
+                                        <td>AMC</td>
                                         <td>kevin@email.com</td>
                                         <td>Lorem ipsum description</td>
                                         <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
@@ -218,6 +222,7 @@
                 { "data": "phone" },
                 { "data": "fax" },
                 { "data": "client_type" },
+                { "data": "amc" },
                 { "data": "email" },
                 { "data": "instruction" },
                 { "data": "action"}
