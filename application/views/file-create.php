@@ -336,7 +336,7 @@
                                 </div>
                                 
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Appointment Time</label>
                                         <select class="form-control select2-single" data-width="100%">
@@ -348,6 +348,37 @@
                                             <option value="5">12:00</option>
                                         </select>                                    
                                     </div>
+                                </div> -->
+
+                                <div class="col-sm-4">
+                                <div class="form-group has-float-label">
+                                <label>Appointment Time</label>
+                                    <div id="select-container">
+                                        <select class="form-control select2-single"  id="select-test" data-width="100%">
+                                        <optgroup label="11am-1pm">
+                                            <option value="1">11:00 am</option>
+                                            <option value="2">11:15 am</option>
+                                            <option value="3">11:30 am</option>
+                                            <option value="3">11:45 am</option>
+                                            <option value="3">12:00 am</option>
+                                            <option value="3">12:15 am</option>
+                                            <option value="3">12:30 am</option>
+                                            <option value="3">12:45 am</option>
+                                        </optgroup>
+                                        <optgroup label="1pm-3pm">
+                                            <option value="1">1:00 pm</option>
+                                            <option value="2">1:15 pm</option>
+                                            <option value="3">1:30 pm</option>
+                                            <option value="3">1:45 pm</option>
+                                            <option value="3">2:00 pm</option>
+                                            <option value="3">2:15 pm</option>
+                                            <option value="3">2:30 pm</option>
+                                            <option value="3">2:45 pm</option>
+                                        </optgroup>
+                                       
+                                        </select>
+                                    </div>
+                                </div>
                                 </div>
 
 
@@ -515,6 +546,33 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
     <script>
+
+$("#select-test").select2();
+
+let optgroupState = {};
+
+$("body").on('click', '.select2-container--open .select2-results__group', function() {
+  $(this).siblings().toggle();
+  let id = $(this).closest('.select2-results__options').attr('id');
+  let index = $('.select2-results__group').index(this);
+  optgroupState[id][index] = !optgroupState[id][index];
+})
+
+$('#select-test').on('select2:open', function() {
+  $('.select2-dropdown--below').css('opacity', 0);
+  setTimeout(() => {
+    let groups = $('.select2-container--open .select2-results__group');
+    let id = $('.select2-results__options').attr('id');
+    if (!optgroupState[id]) {
+      optgroupState[id] = {};
+    }
+    $.each(groups, (index, v) => {
+      optgroupState[id][index] = optgroupState[id][index] || false;
+      optgroupState[id][index] ? $(v).siblings().show() : $(v).siblings().hide();
+    })
+    $('.select2-dropdown--below').css('opacity', 1);
+  }, 0);
+})
        
     </script>
 </body>
