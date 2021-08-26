@@ -2053,8 +2053,8 @@ $.dore = function (element, options) {
                   ticks: {
                     beginAtZero: true,
                     stepSize: 100,
-                    min: 300,
-                    max: 800,
+                    min: 0,
+                    max: 100,
                     padding: 20
                   }
                 }
@@ -2084,14 +2084,14 @@ $.dore = function (element, options) {
                 label: "Completed",
                 borderColor: themeColor1,
                 backgroundColor: themeColor1_10,
-                data: [456, 479, 324, 569, 702, 600],
+                data: [45, 47, 32, 56, 70, 60],
                 borderWidth: 2
               },
               {
                 label: "Cancelled",
                 borderColor: themeColor2,
                 backgroundColor: themeColor2_10,
-                data: [364, 504, 605, 400, 345, 320],
+                data: [36, 50, 60, 40, 34, 30],
                 borderWidth: 2
               }
             ]
@@ -2125,8 +2125,8 @@ $.dore = function (element, options) {
                   ticks: {
                     beginAtZero: true,
                     stepSize: 100,
-                    min: 300,
-                    max: 800,
+                    min: 0,
+                    max: 100,
                     padding: 20
                   }
                 }
@@ -2156,14 +2156,14 @@ $.dore = function (element, options) {
                 label: "AMC",
                 borderColor: themeColor1,
                 backgroundColor: themeColor1_10,
-                data: [456, 479, 324, 569, 702, 600],
+                data: [45, 47, 32, 56, 70, 60],
                 borderWidth: 2
               },
               {
                 label: "No AMC",
                 borderColor: themeColor2,
                 backgroundColor: themeColor2_10,
-                data: [364, 504, 605, 400, 345, 320],
+                data: [36, 50, 60, 40, 34, 32],
                 borderWidth: 2
               }
             ]
