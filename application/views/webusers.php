@@ -43,6 +43,33 @@
                 <div class="col-12">
                     <h1>Web Users</h1>
                     <div class="separator mb-5"></div>
+
+                    <?php
+                    if( $this->session->flashdata('update_message_error') ) { ?>
+
+                        <div class="col-12 mt-4">
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $this->session->flashdata('update_message_error'); ?>
+                            </div>
+                        </div>
+                        
+                    <?php }
+                    ?>
+
+
+                    <?php
+                    if( $this->session->flashdata('delete_message_error') ) { ?>
+
+                        <div class="col-12 mt-4">
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $this->session->flashdata('delete_message_error'); ?>
+                            </div>
+                        </div>
+                        
+                    <?php }
+                    ?>
+
+
                 </div>
             </div>
 
@@ -51,28 +78,59 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">Add New Web User</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>AssignmentTypes/create" method="post">
                                 <div class="form-group">
                                     <label>Username</label>
                                     <input type="text" class="form-control" name="web_username" placeholder="Enter Username">
+                                    <span class="helper-text"><?php echo form_error('web_username'); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Login</label>
                                     <input type="text" class="form-control" name="web_login" placeholder="Enter Login">
+                                    <span class="helper-text"><?php echo form_error('web_login'); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input type="text" class="form-control" name="web_password" placeholder="Enter Password">
+                                    <span class="helper-text"><?php echo form_error('web_password'); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Sec Level</label>
                                     <input type="number" class="form-control" name="web_seclevel" placeholder="Enter Sec Level">
+                                    <span class="helper-text"><?php echo form_error('web_seclevel'); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea  class="form-control" name="web_desc" placeholder="Enter Description" rows="2" cols="50"></textarea>                                    
+                                    <textarea  class="form-control" name="web_desc" placeholder="Enter Description" rows="2" cols="50"></textarea>  
+                                    <span class="helper-text"><?php echo form_error('web_desc'); ?></span>                                  
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
+
+                                <?php
+                                if( $this->session->flashdata('message_success') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('message_success'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                <?php
+                                if( $this->session->flashdata('message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->
@@ -113,7 +171,103 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+
+                                <?php
+                                    foreach ($web_list as $web) { ?>           
+
+                                        <tr>
+                                            <td><?php echo $web->web_id; ?></td>
+                                            <td><?php echo $web->web_username; ?></td>
+                                            <td><?php echo $web->web_login; ?></td>
+                                            <td><?php echo $web->web_password; ?></td>
+                                            <td><?php echo $web->web_seclevel; ?></td>
+                                            <td><?php echo $web->web_description; ?></td>
+                                            <td><?php echo $web->web_lastloginip; ?></td>
+                                            <td><?php echo $web->web_lastlogindate; ?></td>
+                                            <td><label
+                                        class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
+                                        <input type="checkbox" class="custom-control-input" <?php echo $web->web_active; ?>>
+                                        <span class="custom-control-label">&nbsp;</span></label></td> 
+                                            <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $web->web_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $web->web_id; ?>">Delete</button> </td>
+                                        </tr>
+
+
+                                        <div id="deleteModal<?php echo $web->web_id; ?>" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                    <form method="post" action="<?php echo base_url(); ?>AssignmentTypes/delete/<?php echo $web->web_id; ?>">
+                                                            <p>Are you Sure You want to Delete this item?</p>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div id="editModal<?php echo $web->web_id; ?>" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Assignment Types</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        
+                                                        <form action="<?php echo base_url(); ?>AssignmentTypes/update/<?php echo $web->web_id; ?>" method="post">
+                                                <div class="form-group">
+                                                                <label>Username</label>
+                                                                <input type="text" class="form-control" name="upd_web_username" placeholder="Enter Username" value="<?php echo $web->web_username; ?>">
+                                                                <span class="helper-text"><?php echo form_error('upd_web_username'); ?></span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Login</label>
+                                                                <input type="text" class="form-control" name="upd_web_login" placeholder="Enter Login" value="<?php echo $web->web_login; ?>">
+                                                                <span class="helper-text"><?php echo form_error('upd_web_login'); ?></span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Password</label>
+                                                                <input type="text" class="form-control" name="upd_web_password" placeholder="Enter Password" value="<?php echo $web->web_password; ?>">
+                                                                <span class="helper-text"><?php echo form_error('upd_web_password'); ?></span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Sec Level</label>
+                                                                <input type="number" class="form-control" name="upd_web_seclevel" placeholder="Enter Sec Level" value="<?php echo $web->web_seclevel; ?>">
+                                                                <span class="helper-text"><?php echo form_error('upd_web_seclevel'); ?></span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Description</label>
+                                                                <textarea  class="form-control" name="upd_web_desc" placeholder="Enter Description" rows="2" cols="50" value="<?php echo $web->web_description; ?>"></textarea>      
+                                                                <span class="helper-text"><?php echo form_error('upd_web_desc'); ?></span>                              
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                            <label
+                                                                class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
+                                                                <input type="checkbox" name="web_active" class="custom-control-input" <?php echo $web->web_active; ?>>
+                                                                <span class="custom-control-label">&nbsp;</span></label>
+                                                            </div>
+                                                    <button type="submit" class="btn btn-primary mb-0">Edit</button>
+                                                    <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                                                </form>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <?php }
+                                    ?>
+
+
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td>marty</td>
                                         <td>martylogin</td>
@@ -169,7 +323,7 @@
                                                 data-target="#editModal">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteModal">Delete</button> </td>
-                                    </tr>
+                                    </tr> -->
                                    
                                 </tbody>
                             </table>
@@ -188,9 +342,9 @@
 
     <!-- Modal -->
 
-    <div id="deleteModal" class="modal fade" role="dialog">
+    <!-- <div id="deleteModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
+        
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <p>Are you Sure You want to Delete this item?</p>
@@ -206,7 +360,7 @@
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+            
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Web Users</h4>
@@ -242,7 +396,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
 
 

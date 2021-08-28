@@ -43,6 +43,33 @@
                 <div class="col-12">
                     <h1>Assignment Types</h1>
                     <div class="separator mb-5"></div>
+
+
+                    <?php
+                    if( $this->session->flashdata('update_message_error') ) { ?>
+
+                        <div class="col-12 mt-4">
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $this->session->flashdata('update_message_error'); ?>
+                            </div>
+                        </div>
+                        
+                    <?php }
+                    ?>
+
+
+                    <?php
+                    if( $this->session->flashdata('delete_message_error') ) { ?>
+
+                        <div class="col-12 mt-4">
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $this->session->flashdata('delete_message_error'); ?>
+                            </div>
+                        </div>
+                        
+                    <?php }
+                    ?>
+
                 </div>
             </div>
 
@@ -51,13 +78,42 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">Add New Assignment Types</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>AssignmentTypes/create" method="post">
                                 <div class="form-group">
                                     <label>Types</label>
-                                    <input type="text" class="form-control" name="ass_types"
+                                    <input type="text" class="form-control" name="at_name"
                                         placeholder="Enter Types">
+                                    <span class="helper-text"><?php echo form_error('at_name'); ?></span>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
+
+
+
+                                <?php
+                                if( $this->session->flashdata('message_success') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('message_success'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                <?php
+                                if( $this->session->flashdata('message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->
@@ -91,7 +147,63 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+
+                                <?php
+                                    foreach ($ass_types_list as $at) { ?>           
+
+                                        <tr>
+                                            <td><?php echo $at->at_id; ?></td>
+                                            <td><?php echo $at->at_name; ?></td>
+                                            <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $at->at_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $at->at_id; ?>">Delete</button> </td>
+                                        </tr>
+
+
+                                        <div id="deleteModal<?php echo $at->at_id; ?>" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                    <form method="post" action="<?php echo base_url(); ?>AssignmentTypes/delete/<?php echo $at->at_id; ?>">
+                                                            <p>Are you Sure You want to Delete this item?</p>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div id="editModal<?php echo $at->at_id; ?>" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Assignment Types</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="<?php echo base_url(); ?>AssignmentTypes/update/<?php echo $at->at_id; ?>" method="post">
+                                                            <div class="form-group">
+                                                                <label>Assignment Types</label>
+                                                                <input type="text" class="form-control" name="update_assignment_name" placeholder="Enter Types" value="<?php echo $at->at_name; ?>">
+                                                                <span class="helper-text"><?php echo form_error('update_assignment_name'); ?></span>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary mb-0">Edit</button>
+                                                            <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <?php }
+                                    ?>
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td>Purchase </td>
                                         <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
@@ -250,7 +362,7 @@
                                                 data-target="#editModal">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteModal">Delete</button> </td>
-                                    </tr>
+                                    </tr> -->
 
                                 </tbody>
                             </table>
@@ -269,45 +381,7 @@
 
     <!-- Modal -->
 
-    <div id="deleteModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <p>Are you Sure You want to Delete this item?</p>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                    <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div id="editModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Assignment Types</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label>Assignment Types</label>
-                            <input type="text" class="form-control" name="ass_types" placeholder="Enter Types">
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-0">Edit</button>
-                        <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
+   
 
 
 

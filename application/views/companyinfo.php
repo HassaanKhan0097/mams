@@ -43,6 +43,21 @@
                 <div class="col-12">
                     <h1>Company Info</h1>
                     <div class="separator mb-5"></div>
+
+
+                    <?php
+                    if( $this->session->flashdata('update_message_error') ) { ?>
+
+                        <div class="col-12 mt-4">
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $this->session->flashdata('update_message_error'); ?>
+                            </div>
+                        </div>
+                        
+                    <?php }
+                    ?>
+
+
                 </div>
             </div>
 
@@ -71,20 +86,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Company Name</td>
-                                        <td>Address</td>
-                                        <td>City</td>
-                                        <td>State</td>
-                                        <td>4521</td>
-                                        <td>1234567890</td>
-                                        <td>1234567890</td>                                       
-                                        <td>email@email.com</td>
-                                        <td>www.website.com</td>
-                                        <td>Statement</td>
-
-                                    </tr>
-                                    
+                               
+                                <tr>
+                                    <td><?php echo $company_list->company_name; ?></td>
+                                    <td><?php echo $company_list->company_address; ?></td>
+                                    <td><?php echo $company_list->company_city; ?></td>
+                                    <td><?php echo $company_list->company_state; ?></td>
+                                    <td><?php echo $company_list->company_zip; ?></td>
+                                    <td><?php echo $company_list->company_phone; ?></td>
+                                    <td><?php echo $company_list->company_fax; ?></td>
+                                    <td><?php echo $company_list->company_email; ?></td>
+                                    <td><?php echo $company_list->company_web; ?></td>
+                                    <td><?php echo $company_list->company_statement; ?></td>
+                                </tr>
 
                                 </tbody>
                             </table>
@@ -97,48 +111,73 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">Edit Company Information</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>CompanyInfo/update" method="post">
                                 <div class="form-group">
                                     <label>Company Name</label>
-                                    <input type="text" class="form-control" name="com_name" value="Company Name">
+                                    <input type="text" class="form-control" name="company_name" value="<?php echo $company_list->company_name; ?>">
+                                    <span class="helper-text"><?php echo form_error('company_name'); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" class="form-control" name="com_address" value="Address">
+                                    <input type="text" class="form-control" name="company_address" value="<?php echo $company_list->company_address; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>City</label>
-                                    <input type="text" class="form-control" name="com_city" value="City">
+                                    <input type="text" class="form-control" name="company_city" value="<?php echo $company_list->company_city; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>State</label>
-                                    <input type="text" class="form-control" name="com_state" value="State">
+                                    <input type="text" class="form-control" name="company_state" value="<?php echo $company_list->company_state; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Zip Code</label>
-                                    <input type="number" class="form-control" name="com_zip" value="4521">
+                                    <input type="text" class="form-control" name="company_zip" value="<?php echo $company_list->company_zip; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="number" class="form-control" name="com_phone" value="1234567890">
+                                    <input type="text" class="form-control" name="company_phone" value="<?php echo $company_list->company_phone; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Fax number</label>
-                                    <input type="number" class="form-control" name="com_fax" value="1234567890">
+                                    <input type="text" class="form-control" name="company_fax" value="<?php echo $company_list->company_fax; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input type="email" class="form-control" name="com_email" value="email@email.com">
+                                    <input type="email" class="form-control" name="company_email" value="<?php echo $company_list->company_email; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Web Address</label>
-                                    <input type="text" class="form-control" name="com_web" value="www.website.com">
+                                    <input type="text" class="form-control" name="company_web" value="<?php echo $company_list->company_web; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Statement</label>
-                                    <input type="text" class="form-control" name="com_statement" value="Statement">
+                                    <input type="text" class="form-control" name="company_statement" value="<?php echo $company_list->company_statement; ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-0">Edit</button>
+
+                                <?php
+                                if( $this->session->flashdata('message_success') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('message_success'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                <?php
+                                if( $this->session->flashdata('message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->
