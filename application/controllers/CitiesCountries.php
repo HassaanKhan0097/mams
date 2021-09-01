@@ -136,14 +136,15 @@ class CitiesCountries extends CI_Controller {
 
     public function updateCity()
     {
-        $this->form_validation->set_rules('upd_country_name','upd_country_name','required');
+        $this->form_validation->set_rules('upd_city_name','upd_city_name','required');
 
         if ($this->form_validation->run() == TRUE) {
 
-            $data['country_id'] = $this->uri->segment(3);
-            $data['country_name'] = $this->input->post('upd_country_name');
+            $data['city_id'] = $this->uri->segment(3);
+            $data['city_country_id'] = $this->input->post('upd_city_country_id');
+            $data['city_name'] = $this->input->post('upd_city_name');
 
-            $result = $this->CitiesCountries_Model->updateCountry($data);
+            $result = $this->CitiesCountries_Model->updateCity($data);
 
             if($result > 0) {
 
@@ -156,7 +157,10 @@ class CitiesCountries extends CI_Controller {
                 $this->index();
             }
             
-        } 
+        } else{
+            $this->session->set_flashdata('update_message_error', 'Failed!');
+                $this->index();
+        }
 
     }
 

@@ -57,9 +57,9 @@ class CitiesCountries_Model extends CI_Model {
 
     public function updateCity($data)
     {
-        $id = $data['country_id'];
-        $this->db->where('country_id', $id);
-        $this->db->update('country', $data);
+        $id = $data['city_id'];
+        $this->db->where('city_id', $id);
+        $this->db->update('city', $data);
         $result = $this->db->affected_rows();
         return $result;
     }

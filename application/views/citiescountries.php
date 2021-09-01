@@ -377,16 +377,16 @@
                                     <label>Country</label>
                                     <select class="form-control select2-single" data-width="100%" name="upd_city_country_id">
                                     <?php
-                                // foreach ($city_list as $city) { ?> 
-                                
+                                 foreach ($country_list as $country) { ?> 
+                                 <option value="<?php echo $country->country_id ; ?>" <?php echo ( $city->city_country_id ==  $country->country_id) ?  'Selected' :  ''; ?>><?php echo $country->country_name ; ?></option>
                                 <!-- <option value="<?php //echo $city->city_id; ?>"><?php //echo $city->country_name; ?></option> -->
-
-                                <!-- <?php //}?> -->
-                                   
-                                        <option value=""></option>
-                                        <option value="1">USA</option>
+                                <!--  -->
+                                <?php }?>
+                                   <!-- foreach () -->
+                                 
+                                        <!-- <option value="1">USA</option>
                                         <option value="2">Canada</option>
-                                        <option value="3">Mexico</option>
+                                        <option value="3">Mexico</option> -->
                                     </select>                                    
                                 </div>
                                 <div class="form-group">

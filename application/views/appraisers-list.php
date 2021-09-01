@@ -86,26 +86,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="table_id"><a href="<?php echo base_url(); ?>appraisers/edit/1">1</a></td>
-                                        <td>John</td>
-                                        <td>john@email.com</td>
-                                        <td>Senior Appraiser</td>
-                                        <td>121312321</td>
-                                        <td>1267547897</td>
-                                        <td>5678090213</td>
-                                        <td>4365463456</td>
-                                        <td>211123443</td>
-                                        <td>1234</td>
-                                        <td><label
+                                    
+
+                                    <?php
+                                        foreach($appraiser_list as $a){?>
+                                        <tr>
+
+                                            <td class="table_id"><a href="<?php echo base_url(); ?>appraisers/update/<?php echo $a->app_id; ?>"><?php echo $a->app_id; ?></a></td>
+                                            <td><?php echo $a->app_name; ?></td>
+                                            <td><?php echo $a->app_email; ?></td>
+                                            <td><?php echo $a->app_title; ?></td>
+                                            <td><?php echo $a->app_license; ?></td>
+                                            <td><?php echo $a->app_phone; ?></td>
+                                            <td><?php echo $a->app_home; ?></td>
+                                            <td><?php echo $a->app_fax; ?></td>
+                                            <td><?php echo $a->app_pager; ?></td>
+                                            <td><?php echo $a->app_number; ?></td>
+                                           
+                                            <td><label
                                         class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
-                                        <input type="checkbox" class="custom-control-input" checked>
+                                        <input type="checkbox" class="custom-control-input" <?php echo $a->app_active; ?>>
                                         <span class="custom-control-label">&nbsp;</span>
-                                    </label></td>                                        
+                                        </label></td>
+                                        </tr>
+                                       <?php }?>
+
+
+                                        
+                                                                            
                                         <!-- <td><button type="button" class="btn btn-primary mr-2" onclick="edit_appraiser(1)">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteModal">Delete</button> </td> -->
-                                    </tr>
+                                   
                                    
                                    
                                 </tbody>

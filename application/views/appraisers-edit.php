@@ -55,18 +55,20 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">Edit Appraiser</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>Appraisers/update_appraiser/<?php echo $appraiser_single->app_id; ?>" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="app_name" value="Appraiser Name">
+                                        <input type="text" class="form-control" name="upd_app_name" value="<?php echo $appraiser_single->app_name?>">
+                                        <span class="helper-text"><?php echo form_error('upd_app_name'); ?></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="app_email" value="email@email.com">
+                                        <input type="email" class="form-control" name="upd_app_email" value="<?php echo $appraiser_single->app_email?>">
+                                        <span class="helper-text"><?php echo form_error('upd_app_email'); ?></span>
                                     </div>
                                 </div>
 
@@ -74,47 +76,51 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_app_title">
                                             <option value=""></option>
-                                            <option value="1">Appraiser</option>
-                                            <option value="2">Senior Appraiser</option>
-                                            <option value="3">CREA</option>
-                                        </select>                                    
+                                            <option value="Appraiser" <?php echo ( $appraiser_single->app_title == 'Appraiser') ?  'Selected' :  ''; ?>>Appraiser</option>
+                                            <option value="Senior Appraiser" <?php echo ( $appraiser_single->app_title == 'Senior Appraiser') ?  'Selected' :  ''; ?>>Senior Appraiser</option>
+                                            <option value="CREA" <?php echo ( $appraiser_single->app_title == 'CREA') ?  'Selected' :  ''; ?>>CREA</option>
+                                        </select>     
+
+                                        <span class="helper-text"><?php echo form_error('upd_app_title'); ?></span>                               
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>License Number</label>
-                                        <input type="text" class="form-control" name="app_license" value="123456789" >
+                                        <input type="number" class="form-control" name="upd_app_license" value="<?php echo $appraiser_single->app_license?>" >
                                     </div>
+                                    <span class="helper-text"><?php echo form_error('upd_app_license'); ?></span>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Cell Phone</label>
-                                        <input type="number" class="form-control" name="app_phone" value="4567894132" >
+                                        <input type="number" class="form-control" name="upd_app_phone" value="<?php echo $appraiser_single->app_phone?>" >
+                                        <span class="helper-text"><?php echo form_error('upd_app_phone'); ?></span>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Home Number</label>
-                                        <input type="number" class="form-control" name="app_home" value="213123123" >
+                                        <input type="number" class="form-control" name="upd_app_home" value="<?php echo $appraiser_single->app_home?>" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Fax Number</label>
-                                        <input type="number" class="form-control" name="app_fax" value="78654123" >
+                                        <input type="number" class="form-control" name="upd_app_fax" value="<?php echo $appraiser_single->app_fax?>" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Pager</label>
-                                        <input type="number" class="form-control" name="app_pager" value="876543234214" >
+                                        <input type="number" class="form-control" name="upd_app_pager" value="<?php echo $appraiser_single->app_pager?>" >
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +129,7 @@
                                    
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                            name="jQueryCheckbox" checked>
+                                            name="jQueryCheckbox" <?php echo $appraiser_single->app_active?>>
                                         <label class="custom-control-label" for="customCheck1">Active</label>
                                     </div>                                  
                                     
@@ -152,9 +158,11 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-body text-center">
+                <form method="post" action="<?php echo base_url(); ?>Appraisers/delete/<?php echo $appraiser_single->app_id; ?>">
                     <p>Are you Sure You want to Delete this item?</p>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                     <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                </form>
                 </div>
             </div>
         </div>

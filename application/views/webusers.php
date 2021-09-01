@@ -78,7 +78,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">Add New Web User</h5>
-                            <form action="<?php echo base_url(); ?>AssignmentTypes/create" method="post">
+                            <form action="<?php echo base_url(); ?>Webusers/create" method="post">
                                 <div class="form-group">
                                     <label>Username</label>
                                     <input type="text" class="form-control" name="web_username" placeholder="Enter Username">
@@ -102,7 +102,7 @@
                                 <div class="form-group">
                                     <label>Description</label>
                                     <textarea  class="form-control" name="web_desc" placeholder="Enter Description" rows="2" cols="50"></textarea>  
-                                    <span class="helper-text"><?php echo form_error('web_desc'); ?></span>                                  
+                                                                    
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
 
@@ -173,7 +173,7 @@
                                 <tbody>
 
                                 <?php
-                                    foreach ($web_list as $web) { ?>           
+                                    foreach ($webuser_list as $web) { ?>           
 
                                         <tr>
                                             <td><?php echo $web->web_id; ?></td>
@@ -197,7 +197,7 @@
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
-                                                    <form method="post" action="<?php echo base_url(); ?>AssignmentTypes/delete/<?php echo $web->web_id; ?>">
+                                                    <form method="post" action="<?php echo base_url(); ?>Webusers/delete/<?php echo $web->web_id; ?>">
                                                             <p>Are you Sure You want to Delete this item?</p>
                                                             <button type="submit" class="btn btn-danger">Delete</button>
                                                             <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
@@ -215,12 +215,12 @@
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Edit Assignment Types</h4>
+                                                        <h4 class="modal-title">Edit Web Users</h4>
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
                                                         
-                                                        <form action="<?php echo base_url(); ?>AssignmentTypes/update/<?php echo $web->web_id; ?>" method="post">
+                                                        <form action="<?php echo base_url(); ?>Webusers/update/<?php echo $web->web_id; ?>" method="post">
                                                 <div class="form-group">
                                                                 <label>Username</label>
                                                                 <input type="text" class="form-control" name="upd_web_username" placeholder="Enter Username" value="<?php echo $web->web_username; ?>">
@@ -243,14 +243,14 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Description</label>
-                                                                <textarea  class="form-control" name="upd_web_desc" placeholder="Enter Description" rows="2" cols="50" value="<?php echo $web->web_description; ?>"></textarea>      
-                                                                <span class="helper-text"><?php echo form_error('upd_web_desc'); ?></span>                              
+                                                                <textarea  class="form-control" name="upd_web_desc" placeholder="Enter Description" rows="2" cols="50" ><?php echo $web->web_description; ?></textarea>      
+                                                                               
                                                             </div>
 
                                                             <div class="form-group">
                                                             <label
                                                                 class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
-                                                                <input type="checkbox" name="web_active" class="custom-control-input" <?php echo $web->web_active; ?>>
+                                                                <input type="checkbox" name="upd_web_active" class="custom-control-input" <?php echo $web->web_active; ?>>
                                                                 <span class="custom-control-label">&nbsp;</span></label>
                                                             </div>
                                                     <button type="submit" class="btn btn-primary mb-0">Edit</button>

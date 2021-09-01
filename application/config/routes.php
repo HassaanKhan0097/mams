@@ -82,7 +82,7 @@ $route['clients/edit/(:num)'] = 'Clients/edit/$1';
 $route['appraisers'] = 'Appraisers'; //here Appraisers is controller
 $route['appraisers/create'] = 'Appraisers/create';
 $route['appraisers/delete/(:num)'] = 'Appraisers/delete';
-$route['appraisers/edit/(:num)'] = 'Appraisers/edit/$1';
+$route['appraisers/update/(:num)'] = 'Appraisers/update/$1';
 
 $route['search'] = 'Search';
 
