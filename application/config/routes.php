@@ -69,15 +69,15 @@ $route['signout'] = 'Mams/signout';
 
 // !!------------- Manager Routes (Default)  ----------------------!!
 $route['home'] = 'Index'; //here Index is chk from home
-$route['file'] = 'File'; //here File is controller
-$route['file/create'] = 'File/create';
-$route['file/delete/(:num)'] = 'File/delete';
-$route['file/edit/(:num)'] = 'File/edit/$1';
+$route['order'] = 'Order'; //here Order is controller
+$route['order/create'] = 'Order/create';
+$route['order/delete/(:num)'] = 'Order/delete';
+$route['order/edit/(:num)'] = 'Order/edit/$1';
 
 $route['clients'] = 'Clients'; //here Clients is controller
 $route['clients/create'] = 'Clients/create';
 $route['clients/delete/(:num)'] = 'Clients/delete';
-$route['clients/edit/(:num)'] = 'Clients/edit/$1';
+$route['clients/update/(:num)'] = 'Clients/update/$1';
 
 $route['appraisers'] = 'Appraisers'; //here Appraisers is controller
 $route['appraisers/create'] = 'Appraisers/create';

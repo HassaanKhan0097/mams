@@ -66,6 +66,8 @@ class Appraisers extends CI_Controller {
     public function update($id)
     {
         $data['appraiser_single'] = $this->Appraiser_Model->getById($id);
+        // echo "<pre>";
+        // print_r($data['appraiser_single']);
         $this->load->view('appraisers-edit', $data);
     }
     public function update_appraiser()

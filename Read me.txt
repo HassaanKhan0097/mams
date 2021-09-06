@@ -1,0 +1,80 @@
+client module
+- add attachment 
+- add active checkbox 
+- 2 emails for appraiser
+
+
+File/Order
+
+-- After assignment types, there need to have 2 sub-assignment type
+-- remove country
+-- AMC will added
+-- co-borrower field added
+-  website need to populate
+
+
+
+.slider_video2 {
+    max-height: 500px;
+}
+.slider_video2 iframe {
+    max-height: 500px;
+}
+
+section_custom
+
+@media (min-width: 768px)
+{
+.column_custom {
+    margin-left: 190px;
+}
+}
+
+caradmin
+Carlikeme786!
+
+element.style {
+    width: 1708px;
+    /* left: -398.75px; */
+    left: -400px;
+}
+
+
+.logo_wrap img {
+    width: 220px;
+}
+@media only screen and (max-width: 600px) {
+	.logo_wrap{
+		float: left !important;
+	}
+.logo_wrap img {
+    width: 60px !important;
+	float: left !important;
+}
+	.resp_mid_nav_wrap, .cmsmasters_dynamic_cart_wrap{
+		float: right !important;
+	}
+}
+
+
+
+.footer_in_inner img {
+    width: 120px;
+}
+
+.header_mid{
+height: 125px !important;
+}
+
+
+order_number
+order_address
+order_type_id
+order_assignment_id
+order_state
+order_status_id
+order_client_id
+order_zipcode
+order_date
+order_appraiser_id
+order_paymentmethod

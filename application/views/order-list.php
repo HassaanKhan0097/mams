@@ -204,74 +204,93 @@
                             <table id="Table_files">
                                 <thead>
                                     <tr>
-                                        <th id ="file_id" class="table-background">File Number</th>
-                                        <th>Client Name</th>
-                                        <th>Borrower</th>
-                                        <th>Appraiser Name</th>
+                                        <th>Order Number</th>
                                         <th>Property Address</th>
-                                        <th>City ID</th>
-                                        <th>State</th>                                        
-                                        <th>Zip Code</th>
-                                        <th>Appt Date</th>
-                                        <th>Appt Time</th>
+                                        <th>Order Types</th>
+                                        <th>Loan Number</th>
+                                        <th>City</th>
+                                        <th>Assignment Type</th>
+                                        <th>Sub Assignment Type 1</th>                                        
+                                        <th>Sub Assignment Type 2</th>
+                                        <th>FHA/VA Case #</th>
+                                        <th>State</th>
+                                        <th>Order Status</th>
+                                        <th>Client Name</th>
+                                        <th>Website</th>
+                                        <th>Sub Client Name</th>
+                                        <th>AMC</th>
+                                        <th>Zipcode</th>
+                                        <th>Action</th>
+                                        <th>Order Date</th>
+                                        <th>Borrower</th>
+                                        <th>Co Borrower</th>
                                         <th>Due Date</th>
-                                        <th>Status ID</th>
+                                        <th>Entry Contact</th>
+                                        <th>Appointment Date</th>
+                                        <th>Appraiser Name</th>
+                                        <th>Sub Appraiser Name</th>
+                                        <th>Appraiser Email</th>
+                                        <th>Appraiser Email 2</th>
+                                        <th>Phone</th>
+                                        <th>Phone 2</th>
+                                        <th>Phone 3</th>
+                                        <th>Appointment Time</th>
+                                        <th>Complete Date</th>
+                                        <th>Payment Method</th>
+                                        <th>Purchase Price</th>
+                                        <th>Revenue</th>
+                                        <th>Expense</th>
+                                        <th>Special Instruction</th>
+                                        <th>Attach File</th>
+                                        
                                         <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                    foreach($order_list as $ol ){ ?>
                                     <tr>
-                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>file/edit/1">1246</a></td>
-
-                                        <td>Easy Mortgage</td>
-                                        <td>Bergman, Phyliss & Walter</td>
-                                        <td>Martin Praiser</td>
-                                        <td>1008 Wyndham Drive</td>
-                                        <td>Baldwin Hills</td>
-                                        <td>Virginia</td>
-                                        <td>22579</td>
-                                        <td>3/28/2007</td>
-                                        <td>09:00:00</td>
-                                        <td>4/11/2007</td>    
-                                        <td>Cancelled</td>                                    
-                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
-                                    </tr>
-
-                                    <tr>
-                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>file/edit/1">23456</a></td>
-                                        <td>John</td>
-                                        <td>Bergman, Phyliss & Walter</td>
-                                        <td>Martin Praiser</td>
-                                        <td>1008 Wyndham Drive</td>
-                                        <td>Baldwin Hills</td>
-                                        <td>Virginia</td>
-                                        <td>22579</td>
-                                        <td>3/28/2007</td>
-                                        <td>09:00:00</td>
-                                        <td>4/11/2007</td>    
-                                        <td>Cancelled</td>                                    
-                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
-                                    </tr>
-
-                                    <tr>
-                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>file/edit/1">364321</a></td>
-                                        <td>Michael</td>
-                                        <td>Bergman, Phyliss & Walter</td>
-                                        <td>Martin Praiser</td>
-                                        <td>1008 Wyndham Drive</td>
-                                        <td>Baldwin Hills</td>
-                                        <td>Virginia</td>
-                                        <td>22579</td>
-                                        <td>3/28/2007</td>
-                                        <td>09:00:00</td>
-                                        <td>4/11/2007</td>    
-                                        <td>Cancelled</td>                                    
-                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_file(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
-                                    </tr>
+                                    <td class="table_id"><a href="<?php echo base_url(); ?>order/update/<?php echo $ol->order_number; ?>"><?php echo $ol->order_number; ?></a></td>
+                                    <td><?php echo $ol->order_address; ?></td>
+                                    <td><?php echo $ol->order_name; ?></td>
+                                    <td><?php echo $ol->order_loan_number; ?></td>
+                                    <td><?php echo $ol->city_name; ?></td>
+                                    <td><?php echo $ol->at_name; ?></td>
+                                    <td><?php echo $ol->at_name; ?></td>
+                                    <td><?php echo $ol->at_name; ?></td>
+                                    <td><?php echo $ol->order_case_number; ?></td>
+                                    <td><?php echo $ol->order_state; ?></td>
+                                    <td><?php echo $ol->st_name; ?></td>
+                                    <td><?php echo $ol->cl_name; ?></td>
+                                    <td><?php echo $ol->order_website; ?></td>
+                                    <td><?php echo $ol->cl_name; ?></td>
+                                    <td><?php echo $ol->order_amc; ?></td>
+                                    <td><?php echo $ol->order_zipcode; ?></td>
+                                    <td><?php echo $ol->order_action; ?></td>
+                                    <td><?php echo $ol->order_date; ?></td>
+                                    <td><?php echo $ol->order_borrower; ?></td>
+                                    <td><?php echo $ol->order_co_borrower; ?></td>
+                                    <td><?php echo $ol->order_duedate; ?></td>
+                                    <td><?php echo $ol->order_entry; ?></td>
+                                    <td><?php echo $ol->order_appointmentdate; ?></td>
+                                    <td><?php echo $ol->app_name; ?></td>
+                                    <td><?php echo $ol->app_name; ?></td>
+                                    <td><?php echo $ol->order_appraiser_email; ?></td>
+                                    <td><?php echo $ol->order_appraiser_email2; ?></td>
+                                    <td><?php echo $ol->order_phone; ?></td>
+                                    <td><?php echo $ol->order_phone2; ?></td>
+                                    <td><?php echo $ol->order_phone3; ?></td>
+                                    <td><?php echo $ol->order_appointment_time; ?></td>
+                                    <td><?php echo $ol->order_completedate; ?></td>
+                                    <td><?php echo $ol->order_paymentmethod; ?></td>
+                                    <td><?php echo $ol->order_purchase; ?></td>
+                                    <td><?php echo $ol->order_revenue; ?></td>
+                                    <td><?php echo $ol->order_expense; ?></td>
+                                    <td><?php echo $ol->order_instruction; ?></td>
+                                    <td><?php echo $ol->order_file; ?></td>
                                     
+                                    </tr>
+                                    <?php }?>
                                 </tbody>
                             </table>
                         </div>
@@ -331,18 +350,45 @@
         var $Table_files = $("#Table_files").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [
-                { "data": "file_number" },
-                { "data": "file_name" },
-                { "data": "file_borrower" },
-                { "data": "file_appraiser" },
-                { "data": "file_property" },
-                { "data": "file_city" },
-                { "data": "file_state" },
-                { "data": "file_zip" },
-                { "data": "file_apptdate" },
-                { "data": "file_appttime" },
-                { "data": "file_duedate" },
-                { "data": "file_status" }               
+                { "data": "order_number" },
+                { "data": "order_address" },
+                { "data": "order_type_id" },
+                { "data": "order_loan_number" },
+                { "data": "order_city_id" },
+                { "data": "order_assignment_id" },
+                { "data": "order_assignment_id2" },
+                { "data": "order_assignment_id3" },
+                { "data": "order_case_number" },
+                { "data": "order_state" },
+                { "data": "order_status_id" },
+                { "data": "order_client_id" },
+                { "data": "order_website" },
+                { "data": "order_client_id2" },
+                { "data": "order_amc" },
+                { "data": "order_zipcode" },
+                { "data": "order_action" },
+                { "data": "order_date" },
+                { "data": "order_borrower" },
+                { "data": "order_co_borrower" },
+                { "data": "order_duedate" },
+                { "data": "order_entry" },
+                { "data": "order_appointmentdate" },
+                { "data": "order_appraiser_id" },
+                { "data": "order_appraiser_id2" },
+                { "data": "order_appraiser_email" },
+                { "data": "order_appraiser_email2" },
+                { "data": "order_phone" },
+                { "data": "order_phone2" },
+                { "data": "order_phone3" },
+                { "data": "order_appointment_time" },
+                { "data": "order_completedate" },
+                { "data": "order_paymentmethod" },
+                { "data": "order_purchase" },
+                { "data": "order_revenue" },
+                { "data": "order_expense" },
+                { "data": "order_instruction" },
+                { "data": "order_file" }
+                  
                 // { "data": "action"}
             ],
             drawCallback: function () {
@@ -369,10 +415,10 @@
         //     { width: 200, targets: 0 }
         // ],
         // fixedColumns: true,
-        fixedColumns:   {
-            leftColumns: 1
-            // rightColumns: 1
-        },
+        // fixedColumns:   {
+        //     leftColumns: 1
+        //     // rightColumns: 1
+        // },
             buttons: [
                 'excel',
                 'csv',
@@ -393,7 +439,7 @@
         });
 
         $( document ).ready(function() {
-            setTimeout(function(){ console.log("Ready"); $("#file_id").click(); $("#file_id").click(); }, 500);
+            setTimeout(function(){ console.log("Ready"); $("#order_number").click(); $("#order_number").click(); }, 3000);
         });
 
 

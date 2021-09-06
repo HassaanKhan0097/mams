@@ -72,7 +72,7 @@
                             <table id="Table_client">
                                 <thead>
                                     <tr>
-                                        <th id ="cl_id" class="table-background">Client Id</th>
+                                        <th>Client Id</th>
                                         <th>Client Name</th>
                                         <th>Contact</th>
                                         <th>Address</th>
@@ -85,72 +85,47 @@
                                         <th>Fax</th>
                                         <th>Client Type</th>
                                         <th>AMC</th>
+                                        <th>Website</th>
                                         <th>Email</th>
+                                        <th>Email 2</th>
                                         <th>Instruction</th>
+                                        <th>Active</th>
                                         <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="table-background table_id"><a href="<?php echo base_url(); ?>clients/edit/1">1</a></td>
-                                        <td>John</td>
-                                        <td>2445123542</td>
-                                        <td>123 Address</td>
-                                        <td>13545 Address 2</td>
-                                        <td>USA</td>
-                                        <td>New York</td>
-                                        <td>State</td>
-                                        <td>4532</td>
-                                        <td>156189152</td>
-                                        <td>21145122</td>
-                                        <td>Broker</td>
-                                        <td>AMC</td>
-                                        <td>john@email.com</td>
-                                        <td>Lorem ipsum description</td>
-                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
-                                    </tr>
+                                    <?php
+                                    foreach($client_list as $cl ){ ?>
 
-                                    <tr>
-                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>clients/edit/1">2</a></td>
-                                        <td>Michael</td>
-                                        <td>156189152</td>
-                                        <td>123 Address</td>
-                                        <td>13545 Address 2</td>
-                                        <td>USA</td>
-                                        <td>New York</td>
-                                        <td>State</td>
-                                        <td>4532</td>
-                                        <td>2445123542</td>
-                                        <td>21145122</td>
-                                        <td>Property Owner</td>
-                                        <td>No AMC</td>
-                                        <td>mochael@email.com</td>
-                                        <td>Lorem ipsum description</td>
-                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
+                                    <tr>   
+                                    <td class="table_id"><a href="<?php echo base_url(); ?>clients/update/<?php echo $cl->cl_id; ?>"><?php echo $cl->cl_id; ?></a></td>
+ 
+                                        <td><?php echo $cl->cl_name; ?></td>
+                                        <td><?php echo $cl->cl_contact; ?></td>
+                                        <td><?php echo $cl->cl_address; ?></td>
+                                        <td><?php echo $cl->cl_address2; ?></td>
+                                        <td><?php echo $cl->country_name; ?></td>
+                                        <td><?php echo $cl->city_name; ?></td>
+                                        <td><?php echo $cl->cl_state; ?></td>
+                                        <td><?php echo $cl->cl_zipcode; ?></td>
+                                        <td><?php echo $cl->cl_phone; ?></td>
+                                        <td><?php echo $cl->cl_fax; ?></td>
+                                        <td><?php echo $cl->cl_type; ?></td>
+                                        <td><?php echo $cl->cl_amc; ?></td>
+                                        <td><?php echo $cl->cl_website; ?></td>
+                                        <td><?php echo $cl->cl_email; ?></td>
+                                        <td><?php echo $cl->cl_email2; ?></td>
+                                        <td><?php echo $cl->cl_ins; ?></td>
+                                        <td><label
+                                        class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
+                                        <input type="checkbox" class="custom-control-input" <?php echo $cl->cl_active; ?>>
+                                        <span class="custom-control-label">&nbsp;</span>
+                                        </label></td>
                                     </tr>
 
 
-                                    <tr>
-                                    <td class="table-background table_id"><a href="<?php echo base_url(); ?>clients/edit/1">3</a></td>
-                                        <td>Kevin</td>
-                                        <td>2445123542</td>
-                                        <td>123 Address</td>
-                                        <td>13545 Address 2</td>
-                                        <td>USA</td>
-                                        <td>New York</td>
-                                        <td>State</td>
-                                        <td>4532</td>
-                                        <td>156189152</td>
-                                        <td>21145122</td>
-                                        <td>Broker</td>
-                                        <td>AMC</td>
-                                        <td>kevin@email.com</td>
-                                        <td>Lorem ipsum description</td>
-                                        <!-- <td class="table-background"><button type="button" class="btn btn-primary mr-2" onclick="edit_client(1)">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button> </td> -->
-                                    </tr>
+                                    <?php }?>
+                                    
                                     
                                 </tbody>
                             </table>
@@ -180,6 +155,8 @@
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
@@ -189,7 +166,6 @@
     <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
-
     <script>
         var $Table_client = $("#Table_client").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
@@ -207,8 +183,11 @@
                 { "data": "fax" },
                 { "data": "client_type" },
                 { "data": "amc" },
+                { "data": "Website" },
                 { "data": "email" },
-                { "data": "instruction" }
+                { "data": "email2" },
+                { "data": "instruction" },
+                { "data": "active" }
           
             ],
             drawCallback: function () {
@@ -221,6 +200,7 @@
 
                 $(".dataTables_wrapper .pagination").addClass("pagination-sm");
             },
+            "scrollX": true,
             language: {
                 paginate: {
                     previous: "<i class='simple-icon-arrow-left'></i>",
@@ -235,10 +215,10 @@
         //     { width: 200, targets: 0 }
         // ],
         // fixedColumns: true,
-        fixedColumns:   {
-            leftColumns: 1
+        // fixedColumns:   {
+        //     leftColumns: 1
           
-        },
+        // },
             buttons: [
                 'excel',
                 'csv',
@@ -259,7 +239,7 @@
         });
 
         $( document ).ready(function() {
-            setTimeout(function(){ console.log("Readu"); $("#cl_id").click(); $("#cl_id").click(); }, 500);
+            setTimeout(function(){ console.log("Readu"); $("#cl_id").click(); $("#cl_id").click(); }, 1000);
         });
 
 

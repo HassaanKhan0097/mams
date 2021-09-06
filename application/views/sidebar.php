@@ -28,9 +28,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#file">
+                    <a href="#order">
                         <i class="iconsminds-files"></i>
-                        <span>File</span>
+                        <span>Order</span>
                     </a>
                 </li>
                 <li>
@@ -177,15 +177,15 @@
                     </a>
                 </li>                          
             </ul>
-            <ul class="list-unstyled" data-link="file">
+            <ul class="list-unstyled" data-link="order">
                 <li>
-                    <a href="<?php echo base_url(); ?>file/create">
-                        <i class="iconsminds-add-file"></i> <span class="d-inline-block">Add New File</span>
+                    <a href="<?php echo base_url(); ?>order/create">
+                        <i class="iconsminds-add-file"></i> <span class="d-inline-block">Add New Order</span>
                     </a>
                 </li> 
                 <li>
-                    <a href="<?php echo base_url(); ?>file">
-                        <i class="simple-icon-magnifier"></i> <span class="d-inline-block">Search Files</span>
+                    <a href="<?php echo base_url(); ?>order">
+                        <i class="simple-icon-magnifier"></i> <span class="d-inline-block">Search Order</span>
                     </a>
                 </li>                          
             </ul>

@@ -13,6 +13,10 @@
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" />
+
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/dropzone.min.css" />
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.rtl.only.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/component-custom-switch.min.css" />
@@ -63,18 +67,20 @@
                     <div class="card mb-4" id="new_client">
                         <div class="card-body">
                             <h5 class="mb-4">Add New Client</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>clients/create_client" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Client Name</label>
                                         <input type="text" class="form-control" name="cl_name" placeholder="Enter Client Name">
+                                        <span class="helper-text"><?php echo form_error('cl_name'); ?></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Contact</label>
                                         <input type="number" class="form-control" name="cl_contact" placeholder="Enter Contact">
+                                        <span class="helper-text"><?php echo form_error('cl_contact'); ?></span>
                                     </div>
                                 </div>
 
@@ -82,24 +88,29 @@
                                     <div class="form-group">
                                         <label>Address</label>
                                         <input type="text" class="form-control" name="cl_address" placeholder="Enter Address" >
+
+                                        <span class="helper-text"><?php echo form_error('cl_address'); ?></span>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Address 2</label>
-                                        <input type="text" class="form-control" name="cl_address2" value="Enter Address 2" >
+                                        <input type="text" class="form-control" name="cl_address2" placeholder="Enter Address 2" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select Country</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">USA</option>
-                                            <option value="2">Mexico</option>
-                                            <option value="3">Canada</option>
+                                        <select class="form-control select2-single" data-width="100%" name="cl_country" id="cl_country">
+                                        <option value=""></option>
+                                            <?php
+                                            foreach ($country_list as $country) { ?> 
+                                            
+                                            <option value="<?php echo $country->country_id; ?>"><?php echo $country->country_name; ?></option>
+                                        <?php } ?>
+                                           
                                         </select>                                    
                                     </div>
                                 </div>
@@ -107,11 +118,17 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select City</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
+                                        <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
+                                        <option value=""></option>
+                                        <?php
+                                            foreach ($city_list as $city) { ?> 
+                                            
+                                            <option value="<?php echo $city->city_id; ?>"><?php echo $city->city_name; ?></option>
+                                        <?php } ?>
+                                            <!-- <option value=""></option>
                                             <option value="1">Chicago</option>
                                             <option value="2">New York</option>
-                                            <option value="3">Los Angeles</option>
+                                            <option value="3">Los Angeles</option> -->
                                         </select>                                    
                                     </div>
                                 </div>
@@ -119,40 +136,41 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>State</label>
-                                        <input type="text" class="form-control" name="cl_state" value="Enter State" >
+                                        <input type="text" class="form-control" name="cl_state" placeholder="Enter State" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Zip Code</label>
-                                        <input type="number" class="form-control" name="cl_zipcode" value="Enter Zip Code" >
+                                        <input type="number" class="form-control" name="cl_zipcode" placeholder="Enter Zip Code" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Phone Number</label>
-                                        <input type="number" class="form-control" name="cl_phone" value="Enter Phone Number" >
+                                        <input type="number" class="form-control" name="cl_phone" placeholder="Enter Phone Number" >
+                                        <span class="helper-text"><?php echo form_error('cl_phone'); ?></span>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Fax Number</label>
-                                        <input type="number" class="form-control" name="cl_fax" value="Enter Fax Number" >
+                                        <input type="number" class="form-control" name="cl_fax" placeholder="Enter Fax Number" >
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Select Client Type</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="cl_type">
                                             <option value=""></option>
-                                            <option value="1">Bank</option>
-                                            <option value="2">Broker</option>
-                                            <option value="3">Attorney</option>
-                                            <option value="4">Property Owner</option>
+                                            <option value="Bank">Bank</option>
+                                            <option value="Broker">Broker</option>
+                                            <option value="Attorney">Attorney</option>
+                                            <option value="Property Owner">Property Owner</option>
                                         </select>                                    
                                     </div>
                                 </div>
@@ -160,10 +178,10 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Select AMC</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="cl_amc">
                                             <option value=""></option>
-                                            <option value="1">AMC</option>
-                                            <option value="2">No AMC</option>                                            
+                                            <option value="AMC">AMC</option>
+                                            <option value="No AMC">No AMC</option>                                            
                                         </select>                                    
                                     </div>
                                 </div>
@@ -171,7 +189,21 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="cl_email" value="Enter Email" >
+                                        <input type="email" class="form-control" name="cl_email" placeholder="Enter Email" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email 2</label>
+                                        <input type="email" class="form-control" name="cl_email2" placeholder="Enter Email 2" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="type" class="form-control" name="cl_website" placeholder="Enter Website" >
                                     </div>
                                 </div>
 
@@ -182,10 +214,59 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12 mb-4">
+                                    
+                                    <!-- <div class="card-body"> -->
+                                        <h5 class="mb-4">Attach File</h5>
+                                        <!-- <form action="#"> -->
+                                            <div class="dropzone">
+                                            </div>
+                                        <!-- </form> -->
+                                    <!-- </div> -->
+                                
+                                </div>
+
+                                <div class="col-sm-12 mb-4">
+                                    <div class="form-group">
+                                    
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="cl_active" checked>
+                                            <label class="custom-control-label" for="customCheck1">Active</label>
+                                        </div>                                  
+                                        
+                                    </div>
+                                </div>
+
+
+
                             </div>
 
                                 
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
+
+                                <?php
+                                if( $this->session->flashdata('message_success') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('message_success'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                <?php
+                                if( $this->session->flashdata('message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->
@@ -259,12 +340,16 @@
 
                                 
 
+                                
+
                             </div>
                                
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
+                               
                             </form>
                         </div>
-                    </div><!-- card mb-4 End -->
+                    </div>
+                    <!-- card mb-4 End -->
 
 
 
@@ -370,6 +455,8 @@
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/datatables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap-datepicker.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/dropzone.min.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
@@ -454,6 +541,27 @@
             $("#new_officer").show();
             $("#officer_table").show();
         }
+
+        // $('#cl_country').on('change', function() {
+        //     console.log( this.value );
+        //     selectCity(this.value);
+        // });
+        //selectCity();
+//         function selectCity($id){
+
+//             var arr = [,];
+
+
+//             <?php foreach ($city_list as $city): ?>
+//             arr.push(<?php $city->city_id; ?>,<?php $city->city_name; ?>);
+// <?php endforeach; ?>
+
+
+
+          
+//             console.log($id);
+//             console.log(arr);
+//         }
 
     </script>
     
