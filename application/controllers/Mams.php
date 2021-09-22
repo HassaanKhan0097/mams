@@ -16,21 +16,24 @@ class Mams extends CI_Controller {
 		$loggedUser = $this->session->userdata('loggedUser');
 
 		//var_dump($loggedUser);
-
+        
 		if(!$loggedUser) {
 			$this->signin();
-		}
-		$role = $loggedUser['user_role'];
-
-		if($role == 'manager') {
-			redirect("home");
 		} 
-		else if($role == 'appraiser') {
-			redirect("appraiserpages");
+		else {
+    		$role = $loggedUser['user_role'];
+    
+    		if($role == 'manager') {
+    			redirect("home");
+    		} 
+    		else if($role == 'appraiser') {
+    			redirect("appraiserpages");
+    		}
+    		else if($role == 'owner') {
+    			redirect("ownerpages");
+    		}
 		}
-		else if($role == 'owner') {
-			redirect("ownerpages");
-		}
+
 
 	}
 
