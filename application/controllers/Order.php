@@ -5,7 +5,18 @@ class Order extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+
         $this->load->model('Order_Model');
+        $this->load->model('CitiesCountries_Model');
+        $this->load->model('Appraiser_Model');
+        $this->load->model('Client_Model');
+        $this->load->model('OrderTypes_Model');
+        $this->load->model('StatusInfo_Model');
+        $this->load->model('AssTypes_Model');
+        
+
+        
+
     }
 
     public function index()
@@ -22,13 +33,15 @@ class Order extends CI_Controller {
 
     public function create()
     {
-        $data['city_list'] = $this->Order_Model->getCity(); 
-        $data['country_list'] = $this->Order_Model->getCountry(); 
-        $data['appraiser_list'] = $this->Order_Model->getAppraiser(); 
-        $data['client_list'] = $this->Order_Model->getClient(); 
-        $data['order_types_list'] = $this->Order_Model->getOrderTypes(); 
-        $data['status_info_list'] = $this->Order_Model->getStatusInfo(); 
-        $data['assignment_types_list'] = $this->Order_Model->getAssignmentTypes();
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
+        $data['appraiser_list'] = $this->Appraiser_Model->get(); 
+        $data['client_list'] = $this->Client_Model->get(); 
+        $data['order_types_list'] = $this->OrderTypes_Model->get(); 
+        $data['status_info_list'] = $this->StatusInfo_Model->get(); 
+        $data['assignment_types_list'] = $this->AssTypes_Model->get();
+        $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
+
         
         $this->load->view('order-create', $data);
     }
@@ -88,29 +101,45 @@ class Order extends CI_Controller {
             $data['order_revenue'] = $this->input->post('order_revenue');
             $data['order_expense'] = $this->input->post('order_expense');
             $data['order_instruction'] = $this->input->post('order_instruction');
-           // $data['order_file'] = $this->input->post('order_file');
-            $data['order_file'] = '';
 
 
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = '*';
+            $config['max_size']             = 10024; // 10mb you can set the value you want
+            $config['max_width']            = 6000; // 6000px you can set the value you want
+            $config['max_height']           = 6000; // 6000px
 
-            // $data['cl_active'] = $this->input->post('cl_active');
-            // if( $data['cl_active'] == 'on'){
-            //     $data['cl_active'] = 'checked';
-            // }else{
-            //     $data['cl_active'] = '';
-            // }
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('order_file'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    $this->session->set_flashdata('message_error', 'Attachment Upload Failed!');
+                    redirect("order/create");
+            }
+            else
+            {
+                    $uploadedData = array('upload_data' => $this->upload->data());
+                    $data['order_file'] = $uploadedData['upload_data']['file_name'];
+                    // echo "<pre>";
+                    // print_r($uploadedData['upload_data']['file_name']);
+
+                    $result = $this->Order_Model->create($data);
+
+                    if($result > 0) {
+
+                        $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
+                        redirect("order/create");
+                    } 
+                    else {                
+                        $this->session->set_flashdata('message_error', 'Failed!');
+                        redirect("order/create");
+                    }
+
+            }
             
-            $result = $this->Order_Model->create($data);
-
-            if($result > 0) {
-
-                $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
-                redirect("order/create");
-            } 
-            else {                
-                $this->session->set_flashdata('message_error', 'Failed!');
-                redirect("order/create");
-            }            
+                
         } 
         else {
             $this->create();

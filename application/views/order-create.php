@@ -60,9 +60,14 @@
                                     Order Number
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">98765</a>
-                                    <a class="dropdown-item" href="#">12345</a>
-                                    <a class="dropdown-item" href="#">45678</a>
+
+                                <?php
+                                        foreach($previous_order_numbers as $pon) { ?>
+
+                                            <a class="dropdown-item" href="#"><?php echo $pon->order_number; ?></a>
+
+                                        <?php } ?>
+
                                 </div>
                             </div>
 
@@ -73,7 +78,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">New Order</h5>
-                            <form action="<?php echo base_url(); ?>order/create_order" method="post">
+                            <form action="<?php echo base_url(); ?>order/create_order" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-4">
                                 <div class="form-group">
@@ -652,9 +657,17 @@
                                     
                                         <!-- <div class="card-body"> -->
                                             <h5 class="mb-4">Attach File</h5>
-                                           
-                                                <div class="dropzone">
-                                                </div>
+
+                                                <!-- <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Upload</span>
+                                                    </div> -->
+                                                    <!-- <div class="custom-file"> -->
+                                                        <input type="file" name="order_file" id="inputGroupFile01">
+                                                        <!-- <label class="custom-file-label" for="inputGroupFile01">Choose file</label> -->
+                                                    <!-- </div> -->
+                                                <!-- </div> -->
+
                                             
                                         <!-- </div> -->
                                     

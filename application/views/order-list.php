@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>Search Files</h1>
+                    <h1>Search Orders</h1>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="mb-4">Search File</h5>
+                            <h5 class="mb-4">Search Order</h5>
                             <form action="" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -184,7 +184,7 @@
                     
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="mb-4" style="display: inline;">File List</h5>
+                            <h5 class="mb-4" style="display: inline;">Order List</h5>
                             <div class="top-right-button-container">
                                 <div class="btn-group">
                                     <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button"
@@ -256,14 +256,14 @@
                                     <td><?php echo $ol->order_loan_number; ?></td>
                                     <td><?php echo $ol->city_name; ?></td>
                                     <td><?php echo $ol->at_name; ?></td>
-                                    <td><?php echo $ol->at_name; ?></td>
-                                    <td><?php echo $ol->at_name; ?></td>
+                                    <td><?php echo $ol->at2_name; ?></td>
+                                    <td><?php echo $ol->at3_name; ?></td>
                                     <td><?php echo $ol->order_case_number; ?></td>
                                     <td><?php echo $ol->order_state; ?></td>
                                     <td><?php echo $ol->st_name; ?></td>
                                     <td><?php echo $ol->cl_name; ?></td>
                                     <td><?php echo $ol->order_website; ?></td>
-                                    <td><?php echo $ol->cl_name; ?></td>
+                                    <td><?php echo $ol->cl2_name; ?></td>
                                     <td><?php echo $ol->order_amc; ?></td>
                                     <td><?php echo $ol->order_zipcode; ?></td>
                                     <td><?php echo $ol->order_action; ?></td>
@@ -287,7 +287,7 @@
                                     <td><?php echo $ol->order_revenue; ?></td>
                                     <td><?php echo $ol->order_expense; ?></td>
                                     <td><?php echo $ol->order_instruction; ?></td>
-                                    <td><?php echo $ol->order_file; ?></td>
+                                    <td class="table_id"> <a href="<?php echo $this->config->item('upload_dir').$ol->order_file; ?>">File</a> </td>
                                     
                                     </tr>
                                     <?php }?>

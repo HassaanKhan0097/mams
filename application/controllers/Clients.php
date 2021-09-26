@@ -6,6 +6,7 @@ class Clients extends CI_Controller {
         parent::__construct();
 
         $this->load->model('Client_Model');
+        $this->load->model('CitiesCountries_Model');
 
     }
 
@@ -17,8 +18,9 @@ class Clients extends CI_Controller {
 
     public function create()
     {
-        $data['city_list'] = $this->Client_Model->getCity(); 
-        $data['country_list'] = $this->Client_Model->getCountry(); 
+
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
        
         $this->load->view('client-create', $data);
     }

@@ -23,14 +23,6 @@ class Client_Model extends CI_Model {
         $query = $this->db->get();
         return $query->result();  
     }
-    public function getCountry(){
-        $query = $this->db->get('country');
-        return $query->result();
-    }
-    public function getCity(){
-        $query = $this->db->get('city');
-        return $query->result();
-    }
 
     public function create($data)
     {
