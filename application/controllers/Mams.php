@@ -74,9 +74,8 @@ class Mams extends CI_Controller {
 
     }
 
-	public function signout()
-	{
-		$this->session->unset_userdata('loggedUser');
-		redirect('');
-	}
+	public function signout(){
+        $this->session->unset_userdata('loggedUser');
+        redirect('');
+    }
 }

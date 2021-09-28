@@ -109,6 +109,18 @@ $route['downloadareas'] = 'DownloadAreas';
 // !!------------- Appraiser Routes  ----------------------!!
 $route['appraiserpages'] = 'appraiserpages/Index'; //here appraiserpages is folder -> Index is controller
 $route['appraiserpages/file'] = 'appraiserpages/File';
+$route['appraiserpages/logout'] = 'appraiserpages/Index/logout';
+
+$route['appraiser/workinprogress'] = 'appraiserpages/WorkInProgress';
+
+$route['appraiser/setup'] = 'appraiserpages/Setup';
+
+$route['appraiser/log'] = 'appraiserpages/Log';
+
+
+
+
+// workinprogress
 
 
 

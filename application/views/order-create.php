@@ -718,13 +718,13 @@
 
     <script src="<?php echo base_url(); ?>assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap-datepicker.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/dropzone.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
 
     <script>
 

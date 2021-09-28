@@ -11,5 +11,10 @@ class Index extends CI_Controller {
 	public function index()
 	{
         $this->load->view('appraiser/index');
-	}
+    }
+    
+    public function logout(){
+        $this->session->unset_userdata('loggedUser');
+        redirect('');
+    }
 }

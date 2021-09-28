@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://localhost/MAMS/';
 // $config['base_url'] = 'http://marqueeappraisal.com/mams/';
 
-$config['upload_dir']= './uploads/';
+$config['upload_dir']= $config['base_url']."/uploads/";
 
 /*
 |--------------------------------------------------------------------------
