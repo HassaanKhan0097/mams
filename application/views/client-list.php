@@ -74,7 +74,7 @@
                                     <tr>
                                         <th>Client Id</th>
                                         <th>Client Name</th>
-                                        <th>Contact</th>
+                                        <!-- <th>Contact</th>
                                         <th>Address</th>
                                         <th>Address 2</th>
                                         <th>Country</th>
@@ -85,11 +85,14 @@
                                         <th>Fax</th>
                                         <th>Client Type</th>
                                         <th>AMC</th>
+                                        <th>AMC Name</th>
+                                        <th>AMC Website</th>
                                         <th>Website</th>
                                         <th>Email</th>
                                         <th>Email 2</th>
-                                        <th>Instruction</th>
-                                        <th>Active</th>
+                                        <th>Instruction</th> -->
+                                        <!-- <th>Attach File</th> -->
+                                        <!-- <th>Active</th> -->
                                         <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
                                 </thead>
@@ -101,7 +104,7 @@
                                     <td class="table_id"><a href="<?php echo base_url(); ?>clients/update/<?php echo $cl->cl_id; ?>"><?php echo $cl->cl_id; ?></a></td>
  
                                         <td><?php echo $cl->cl_name; ?></td>
-                                        <td><?php echo $cl->cl_contact; ?></td>
+                                        <!-- <td><?php echo $cl->cl_contact; ?></td>
                                         <td><?php echo $cl->cl_address; ?></td>
                                         <td><?php echo $cl->cl_address2; ?></td>
                                         <td><?php echo $cl->country_name; ?></td>
@@ -112,15 +115,18 @@
                                         <td><?php echo $cl->cl_fax; ?></td>
                                         <td><?php echo $cl->cl_type; ?></td>
                                         <td><?php echo $cl->cl_amc; ?></td>
+                                        <td><?php echo $cl->cl_amc_name; ?></td>
+                                        <td><?php echo $cl->cl_amc_website; ?></td>
                                         <td><?php echo $cl->cl_website; ?></td>
                                         <td><?php echo $cl->cl_email; ?></td>
                                         <td><?php echo $cl->cl_email2; ?></td>
-                                        <td><?php echo $cl->cl_ins; ?></td>
-                                        <td><label
+                                        <td><?php echo $cl->cl_ins; ?></td> -->
+                                        <!-- <td class="table_id"> <a href="<?php echo $this->config->item('upload_dir').$cl->cl_file; ?>">File</a> </td> -->
+                                        <!-- <td><label
                                         class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
                                         <input type="checkbox" class="custom-control-input" <?php echo $cl->cl_active; ?>>
                                         <span class="custom-control-label">&nbsp;</span>
-                                        </label></td>
+                                        </label></td> -->
                                     </tr>
 
 
@@ -171,23 +177,25 @@
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [
                 { "data": "client_id" },
-                { "data": "client_name" },
-                { "data": "contact" },
-                { "data": "address" },
-                { "data": "address2" },
-                { "data": "country" },
-                { "data": "city" },
-                { "data": "state" },
-                { "data": "zip_code" },
-                { "data": "phone" },
-                { "data": "fax" },
-                { "data": "client_type" },
-                { "data": "amc" },
-                { "data": "Website" },
-                { "data": "email" },
-                { "data": "email2" },
-                { "data": "instruction" },
-                { "data": "active" }
+                { "data": "client_name" }
+                // { "data": "contact" },
+                // { "data": "address" },
+                // { "data": "address2" },
+                // { "data": "country" },
+                // { "data": "city" },
+                // { "data": "state" },
+                // { "data": "zip_code" },
+                // { "data": "phone" },
+                // { "data": "fax" },
+                // { "data": "client_type" },
+                // { "data": "amc" },
+                // { "data": "amc_name" },
+                // { "data": "amc_website" },
+                // { "data": "Website" },
+                // { "data": "email" },
+                // { "data": "email2" },
+                // { "data": "instruction" },
+                // { "data": "active" }
           
             ],
             drawCallback: function () {

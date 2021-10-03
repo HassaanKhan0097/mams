@@ -98,7 +98,7 @@ $db['default'] = array(
 
 // $db['default'] = array(
 // 	'dsn'	=> '',
-// 	'hostname' => 'localhost',
+// 	'hostname' => 'mysqlcluster12',
 // 	'username' => 'user_mams',
 // 	'password' => 'KimLau96',
 // 	'database' => 'db_mams',

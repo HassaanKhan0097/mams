@@ -68,24 +68,21 @@
                     <div class="card mb-4" id="edit_file">
                         <div class="card-body">
                             <h5 class="mb-4">Complete File Record</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>Order/update_order/<?php echo $order_single->order_number; ?>" method="post">
                             <div class="row">
+
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>File Number*</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">FL5648</option>
-                                            <option value="2">FL8941</option>
-                                            <option value="3">FL1234</option>
-                                        </select>                                    
+                                        <label>Order Number*</label>
+                                        <input readonly type="text" class="form-control" name="upd_order_number" placeholder="Enter Property Address" value="<?php echo $order_single->order_number ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Property Address*</label>
-                                        <input type="text" class="form-control" name="file_address" placeholder="Enter Property Address" >
+                                        <input type="text" class="form-control" name="upd_order_address" placeholder="Enter Property Address" value="<?php echo $order_single->order_address ?>">
+                                        <span class="helper-text"><?php echo form_error('upd_order_address'); ?></span>
                                     </div>
                                 </div>
 
@@ -93,12 +90,14 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Type*</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_type_id">
                                             <option value=""></option>
-                                            <option value="1">Type 1</option>
-                                            <option value="2">Type 2</option>
-                                            <option value="3">Type 3</option>
-                                        </select>                                    
+                                            <?php
+                                            foreach ($order_types_list as $ol) { ?>                                             
+                                                <option value="<?php echo $ol->order_id; ?>" <?php echo ( $order_single->order_type_id ==  $ol->order_id) ?  'Selected' :  ''; ?>><?php echo $ol->order_name; ?></option>
+                                            <?php } ?>
+                                        </select>   
+                                        <span class="helper-text"><?php echo form_error('upd_order_type_id'); ?></span>                                 
                                     </div>
                                 </div>
 
@@ -107,19 +106,14 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Loan Number</label>
-                                        <input type="number" class="form-control" name="file_Loan" placeholder="Enter Loan Number" >
+                                        <input type="number" class="form-control" name="upd_order_loan_number" placeholder="Enter Loan Number" value="<?php echo $order_single->order_loan_number ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">Chicago</option>
-                                            <option value="2">New York</option>
-                                            <option value="3">Los Angeles</option>
-                                        </select>                                    
+                                        <input type="text" class="form-control" name="upd_order_city" placeholder="Enter City" value="<?php echo $order_single->order_city ?>">
                                     </div>
                                 </div>
 
@@ -127,11 +121,39 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Assignment Type*</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id">
                                             <option value=""></option>
-                                            <option value="1">Desk Review</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                            <?php
+                                            foreach ($assignment_types_list as $at) { ?>                                             
+                                                <option value="<?php echo $at->at_id; ?>" <?php echo ( $order_single->order_assignment_id ==  $at->at_id) ?  'Selected' :  ''; ?>><?php echo $at->at_name; ?></option>
+                                            <?php } ?>
+                                        </select> 
+                                        <span class="helper-text"><?php echo form_error('upd_order_assignment_id'); ?></span>                                     
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Sub Assignment Type</label>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id2">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($assignment_types_list as $at) { ?>                                             
+                                                <option value="<?php echo $at->at_id; ?>" <?php echo ( $order_single->order_assignment_id2 ==  $at->at_id) ?  'Selected' :  ''; ?>><?php echo $at->at_name; ?></option>
+                                            <?php } ?>
+                                        </select>                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Sub Assignment Type 2</label>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id3">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($assignment_types_list as $at) { ?>                                             
+                                                <option value="<?php echo $at->at_id; ?>" <?php echo ( $order_single->order_assignment_id3 ==  $at->at_id) ?  'Selected' :  ''; ?>><?php echo $at->at_name; ?></option>
+                                            <?php } ?>
                                         </select>                                    
                                     </div>
                                 </div>
@@ -142,19 +164,22 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>FHA/VA Case #</label>
-                                        <input type="number" class="form-control" name="file_fha" placeholder="Enter FHA VA Case" >
+                                        <input type="number" class="form-control" name="upd_order_case_number" placeholder="Enter FHA VA Case" value="<?php echo $order_single->order_case_number ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>State*</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_state">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
+                                            <option value="Virginia" <?php echo ( $order_single->order_state == 'Virginia') ?  'Selected' :  ''; ?>>Virginia</option>
+                                            <option value="Maryland" <?php echo ( $order_single->order_state == 'Maryland') ?  'Selected' :  ''; ?>>Maryland</option>                                            
+                                            <option value="District of Columbia" <?php echo ( $order_single->order_state == 'District of Columbia') ?  'Selected' :  ''; ?>>District of Columbia</option>
+                                            <option value="West Virginia" <?php echo ( $order_single->order_state == 'West Virginia') ?  'Selected' :  ''; ?>>West Virginia</option>
+                                            <option value="Michigan" <?php echo ( $order_single->order_state == 'Michigan') ?  'Selected' :  ''; ?>>Michigan</option>
+                                        </select>  
+                                        <span class="helper-text"><?php echo form_error('upd_order_state'); ?></span>                                     
                                     </div>
                                 </div>
 
@@ -162,12 +187,14 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Status*</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_status_id">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
+                                            <?php
+                                            foreach ($status_info_list as $status) { ?>                                             
+                                                <option value="<?php echo $status->st_id; ?>" <?php echo ( $order_single->order_status_id ==  $status->st_id) ?  'Selected' :  ''; ?>><?php echo $status->st_name; ?></option>
+                                            <?php } ?>
+                                        </select>     
+                                        <span class="helper-text"><?php echo form_error('upd_order_status_id'); ?></span>                                 
                                     </div>
                                 </div>
                                 
@@ -177,19 +204,53 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Client Name*</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_client_id">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                            <?php
+                                            foreach ($client_list as $cl) { ?>                                             
+                                                <option value="<?php echo $cl->cl_id; ?>" <?php echo ( $order_single->order_client_id ==  $cl->cl_id) ?  'Selected' :  ''; ?>><?php echo $cl->cl_name; ?></option>
+                                            <?php } ?>
+                                        </select>  
+                                        <span class="helper-text"><?php echo form_error('upd_order_client_id'); ?></span>                                   
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Sub Client Name*</label>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_client_id2">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($client_list as $cl) { ?>                                             
+                                                <option value="<?php echo $cl->cl_id; ?>" <?php echo ( $order_single->order_client_id2 ==  $cl->cl_id) ?  'Selected' :  ''; ?>><?php echo $cl->cl_name; ?></option>
+                                            <?php } ?>
                                         </select>                                    
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
+                                        <label>AMC</label>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_amc">
+                                            <option value=""></option>
+                                            <option value="AMC" <?php echo ( $order_single->order_amc == 'AMC') ?  'Selected' :  ''; ?>>AMC</option>
+                                            <option value="No AMC" <?php echo ( $order_single->order_amc == 'No AMC') ?  'Selected' :  ''; ?>>No AMC</option>                                            
+                                        </select>                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="text" class="form-control" name="upd_order_website" placeholder="Enter Website" value="<?php echo $order_single->order_website ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
                                         <label>Zip Code*</label>
-                                        <input type="number" class="form-control" name="file_zipcode" placeholder="Enter Zip Code" >
+                                        <input type="number" class="form-control" name="upd_order_zipcode" placeholder="Enter Zip Code" value="<?php echo $order_single->order_zipcode ?>">
+                                        <span class="helper-text"><?php echo form_error('upd_order_zipcode'); ?></span>   
                                     </div>
                                 </div>
 
@@ -197,13 +258,13 @@
                                     <div class="form-group">
                                         <label>Action Required</label>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio1" name="customRadio"
-                                                class="custom-control-input" required>
+                                            <input type="radio" id="customRadio1" name="upd_order_action"
+                                                class="custom-control-input" value="No">
                                             <label class="custom-control-label" for="customRadio1">No</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio2" name="customRadio"
-                                                class="custom-control-input" required>
+                                            <input checked type="radio" id="customRadio2" name="upd_order_action"
+                                                class="custom-control-input" value="Yes">
                                             <label class="custom-control-label" for="customRadio2">Yes</label>
                                         </div>
                                         
@@ -213,38 +274,16 @@
 
                                 <!-- Col 12 end 4-->
 
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Loan Officer	</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Country</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
-                                    </div>
-                                </div>
-
+                                
                                 <div class="col-sm-4">
                                     <div class="form-group mb-1">
                                         <label>Order Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="<?php echo $order_single->order_date ?>" name="upd_order_date">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
+                                            <span class="helper-text"><?php echo form_error('upd_order_date'); ?></span> 
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +291,7 @@
                                 <!-- Col 12 end 5-->
 
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Processor</label>
                                         <select class="form-control select2-single" data-width="100%">
@@ -262,12 +301,20 @@
                                             <option value="3">Option 3</option>
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Borrower*</label>
-                                        <input type="text" class="form-control" name="file_borrower" placeholder="Enter Borrower" >
+                                        <input type="text" class="form-control" name="upd_order_borrower" placeholder="Enter Borrower" value="<?php echo $order_single->order_borrower ?>">
+                                        <span class="helper-text"><?php echo form_error('upd_order_borrower'); ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Co Borrower</label>
+                                        <input type="text" class="form-control" name="upd_order_co_borrower" placeholder="Enter Co Borrower" value="<?php echo $order_single->order_co_borrower ?>">
                                     </div>
                                 </div>
 
@@ -275,7 +322,7 @@
                                     <div class="form-group mb-1">
                                         <label>Due Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="<?php echo $order_single->order_duedate ?>" name="upd_order_duedate">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -287,17 +334,12 @@
 
                                 <!-- Col 12 end 6-->
 
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Client Name</label>
-                                        <input type="text" class="form-control" name="file_sub_clientname" placeholder="Enter Sub Client Name" >
-                                    </div>
-                                </div>
+                                
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Entry Contact*</label>
-                                        <input type="text" class="form-control" name="file_entry" placeholder="Enter Entry Contact" >
+                                        <input type="text" class="form-control" name="upd_order_entry" placeholder="Enter Entry Contact" value="<?php echo $order_single->order_entry ?>">
                                     </div>
                                 </div>
 
@@ -305,7 +347,7 @@
                                     <div class="form-group mb-1">
                                         <label>Appointment Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="<?php echo $order_single->order_appointmentdate ?>" name="upd_order_appointmentdate">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -318,12 +360,42 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_appraiser_id">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
+                                            <?php
+                                            foreach ($appraiser_list as $app) { ?>                                             
+                                                <option value="<?php echo $app->app_id; ?>" <?php echo ( $order_single->order_appraiser_id ==  $app->app_id) ?  'Selected' :  ''; ?>><?php echo $app->app_name; ?></option>
+                                            <?php } ?>
+                                        </select> 
+                                        <span class="helper-text"><?php echo form_error('upd_order_appraiser_id'); ?></span>                                   
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Sub Appraiser Name*</label>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_appraiser_id2">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($appraiser_list as $app) { ?>                                             
+                                                <option value="<?php echo $app->app_id; ?>" <?php echo ( $order_single->order_appraiser_id2 ==  $app->app_id) ?  'Selected' :  ''; ?>><?php echo $app->app_name; ?></option>
+                                            <?php } ?>
+                                        </select>   
+                                        <span class="helper-text"><?php echo form_error('upd_order_appraiser_id2'); ?></span>                                 
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Appraiser Email</label>
+                                        <input type="text" class="form-control" name="upd_order_appraiser_email" placeholder="Enter Email" value="<?php echo $order_single->order_appraiser_email ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Appraiser Email 2</label>
+                                        <input type="text" class="form-control" name="upd_order_appraiser_email2" placeholder="Enter Email 2" value="<?php echo $order_single->order_appraiser_email2 ?>">
                                     </div>
                                 </div>
 
@@ -331,21 +403,85 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input type="text" class="form-control" name="file_phone1" placeholder="Enter Phone 1" >
+                                        <input type="text" class="form-control" name="upd_order_phone" placeholder="Enter Phone 1" value="<?php echo $order_single->order_phone ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Phone 2</label>
+                                        <input type="text" class="form-control" name="upd_order_phone2" placeholder="Enter Phone" value="<?php echo $order_single->order_phone2 ?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Phone 3</label>
+                                        <input type="text" class="form-control" name="upd_order_phone3" placeholder="Enter Phone" value="<?php echo $order_single->order_phone3 ?>">
                                     </div>
                                 </div>
                                 
 
                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Appointment Time</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
+                                <div class="form-group ">
+                                <label>Appointment Time</label>
+                                    <div id="select-container">
+                                        <select class="form-control select2-single"  id="select-test" data-width="100%" name="upd_order_appointment_time">
+                                        <optgroup label="9am-11pm">
+                                        <option value="9:00am" <?php echo (  $order_single->order_appointment_time  == '9:00am') ?  'selected' :  ''; ?>>9:00 am</option>
+                                            <option value="9:15am" <?php echo (  $order_single->order_appointment_time  == '9:15am') ?  'selected' :  ''; ?>>9:15 am</option>
+                                            <option value="9:30am" <?php echo (  $order_single->order_appointment_time  == '9:30am') ?  'selected' :  ''; ?>>9:30 am</option>
+                                            <option value="9:45am" <?php echo (  $order_single->order_appointment_time  == '9:45am') ?  'selected' :  ''; ?>>9:45 am</option>
+                                            <option value="10:00am" <?php echo (  $order_single->order_appointment_time  == '10:00am') ?  'selected' :  ''; ?>>10:00 am</option>
+                                            <option value="10:15am" <?php echo (  $order_single->order_appointment_time  == '10:15am') ?  'selected' :  ''; ?>>10:15 am</option>
+                                            <option value="10:30am" <?php echo (  $order_single->order_appointment_time  == '10:30am') ?  'selected' :  ''; ?>>10:30 am</option>
+                                            <option value="10:45am" <?php echo (  $order_single->order_appointment_time  == '10:45am') ?  'selected' :  ''; ?>>10:45 am</option>
+                                        </optgroup>
+                                        <optgroup label="11am-1pm">
+                                            <option value="11:00am" <?php echo (  $order_single->order_appointment_time  == '11:00am') ?  'selected' :  ''; ?>>11:00 am</option>
+                                            <option value="11:15am" <?php echo (  $order_single->order_appointment_time  == '11:15am') ?  'selected' :  ''; ?>>11:15 am</option>
+                                            <option value="11:30am" <?php echo (  $order_single->order_appointment_time  == '11:30am') ?  'selected' :  ''; ?>>11:30 am</option>
+                                            <option value="11:45am" <?php echo (  $order_single->order_appointment_time  == '11:45am') ?  'selected' :  ''; ?>>11:45 am</option>
+                                            <option value="12:00am" <?php echo (  $order_single->order_appointment_time  == '12:00am') ?  'selected' :  ''; ?>>12:00 am</option>
+                                            <option value="12:15am" <?php echo (  $order_single->order_appointment_time  == '12:15am') ?  'selected' :  ''; ?>>12:15 am</option>
+                                            <option value="12:30am" <?php echo (  $order_single->order_appointment_time  == '12:30am') ?  'selected' :  ''; ?>>12:30 am</option>
+                                            <option value="12:45am" <?php echo (  $order_single->order_appointment_time  == '12:45am') ?  'selected' :  ''; ?>>12:45 am</option>
+                                        </optgroup>
+                                        <optgroup label="1pm-3pm">
+                                            <option value="1:00pm" <?php echo (  $order_single->order_appointment_time  == '1:00pm') ?  'selected' :  ''; ?>>1:00 pm</option>
+                                            <option value="1:15pm" <?php echo (  $order_single->order_appointment_time  == '1:15pm') ?  'selected' :  ''; ?>>1:15 pm</option>
+                                            <option value="1:30pm" <?php echo (  $order_single->order_appointment_time  == '1:30pm') ?  'selected' :  ''; ?>>1:30 pm</option>
+                                            <option value="1:45pm" <?php echo (  $order_single->order_appointment_time  == '1:45pm') ?  'selected' :  ''; ?>>1:45 pm</option>
+                                            <option value="2:00pm" <?php echo (  $order_single->order_appointment_time  == '2:00pm') ?  'selected' :  ''; ?>>2:00 pm</option>
+                                            <option value="2:15pm" <?php echo (  $order_single->order_appointment_time  == '2:15pm') ?  'selected' :  ''; ?>>2:15 pm</option>
+                                            <option value="2:30pm" <?php echo (  $order_single->order_appointment_time  == '2:30pm') ?  'selected' :  ''; ?>>2:30 pm</option>
+                                            <option value="2:45pm" <?php echo (  $order_single->order_appointment_time  == '2:45pm') ?  'selected' :  ''; ?>>2:45 pm</option>
+                                        </optgroup>
+                                        <optgroup label="3pm-5pm">
+                                            <option value="3:00pm" <?php echo (  $order_single->order_appointment_time  == '3:00pm') ?  'selected' :  ''; ?>>3:00 pm</option>
+                                            <option value="3:15pm" <?php echo (  $order_single->order_appointment_time  == '3:15pm') ?  'selected' :  ''; ?>>3:15 pm</option>
+                                            <option value="3:30pm" <?php echo (  $order_single->order_appointment_time  == '3:30pm') ?  'selected' :  ''; ?>>3:30 pm</option>
+                                            <option value="3:45pm" <?php echo (  $order_single->order_appointment_time  == '3:45pm') ?  'selected' :  ''; ?>>3:45 pm</option>
+                                            <option value="4:00pm" <?php echo (  $order_single->order_appointment_time  == '4:00pm') ?  'selected' :  ''; ?>>4:00 pm</option>
+                                            <option value="4:15pm" <?php echo (  $order_single->order_appointment_time  == '4:15pm') ?  'selected' :  ''; ?>>4:15 pm</option>
+                                            <option value="4:30pm" <?php echo (  $order_single->order_appointment_time  == '4:30pm') ?  'selected' :  ''; ?>>4:30 pm</option>
+                                            <option value="4:45pm" <?php echo (  $order_single->order_appointment_time  == '4:45pm') ?  'selected' :  ''; ?>>4:45 pm</option>
+                                        </optgroup>
+                                        <optgroup label="5pm-7pm">
+                                            <option value="5:00pm" <?php echo (  $order_single->order_appointment_time  == '5:00pm') ?  'selected' :  ''; ?>>5:00 pm</option>
+                                            <option value="5:15pm" <?php echo (  $order_single->order_appointment_time  == '5:15pm') ?  'selected' :  ''; ?>>5:15 pm</option>
+                                            <option value="5:30pm" <?php echo (  $order_single->order_appointment_time  == '5:30pm') ?  'selected' :  ''; ?>>5:30 pm</option>
+                                            <option value="5:45pm" <?php echo (  $order_single->order_appointment_time  == '5:45pm') ?  'selected' :  ''; ?>>5:45 pm</option>
+                                            <option value="6:00pm" <?php echo (  $order_single->order_appointment_time  == '6:00pm') ?  'selected' :  ''; ?>>6:00 pm</option>
+                                            <option value="6:15pm" <?php echo (  $order_single->order_appointment_time  == '6:15pm') ?  'selected' :  ''; ?>>6:15 pm</option>
+                                            <option value="6:30pm" <?php echo (  $order_single->order_appointment_time  == '6:30pm') ?  'selected' :  ''; ?>>6:30 pm</option>
+                                            <option value="6:45pm" <?php echo (  $order_single->order_appointment_time  == '6:45pm') ?  'selected' :  ''; ?>>6:45 pm</option>
+                                            <option value="7:00pm" <?php echo (  $order_single->order_appointment_time  == '7:00pm') ?  'selected' :  ''; ?>>7:00 pm</option>
+                                        </optgroup>
+                                       
+                                        </select>
                                     </div>
+                                </div>
                                 </div>
 
 
@@ -353,30 +489,14 @@
 
 
                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sup Appraiser Name*</label>
-                                        <select class="form-control select2-single" data-width="100%">
-                                            <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" class="form-control" name="file_phone2" placeholder="Enter Phone" >
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
+                                    <div class="form-group mb-1">
                                         <label>Complete Date</label>
-                                        <input type="text" class="form-control" name="file_completeDate" placeholder="Enter Complete Date" >
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" name="upd_order_completedate" value="<?php echo $order_single->order_completedate ?>">
+                                            <span class="input-group-text input-group-append input-group-addon">
+                                                <i class="simple-icon-calendar"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -389,28 +509,22 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Payment Method*</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_paymentmethod">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                        </select>                                    
+                                            <option value="Bill Client" <?php echo ( $order_single->order_paymentmethod == 'Bill Client') ?  'Selected' :  ''; ?>>Bill Client</option>
+                                            <option value="Credit Card" <?php echo ( $order_single->order_paymentmethod == 'Credit Card') ?  'Selected' :  ''; ?>>Credit Card</option>
+                                            <option value="COD" <?php echo ( $order_single->order_paymentmethod == 'COD') ?  'Selected' :  ''; ?>>COD</option>
+                                        </select>     
+                                        <span class="helper-text"><?php echo form_error('upd_order_paymentmethod'); ?></span>                                
                                     </div>
                                 </div>
 
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" class="form-control" name="file_phone3" placeholder="Enter Phone" >
-                                    </div>
-                                </div>
 
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Purchase Price</label>
-                                        <input type="text" class="form-control" name="file_purchase_price" placeholder="Enter Purchase Price" >
+                                        <input type="text" class="form-control" name="upd_order_purchase" placeholder="Enter Purchase Price" value="<?php echo $order_single->order_purchase ?>">
                                     </div>
                                 </div>
 
@@ -420,7 +534,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Revenue*</label>
-                                        <input type="text" class="form-control" name="file_revenue" placeholder="Enter Revenue" >
+                                        <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>">
                                     </div>
                                 </div>
 
@@ -428,7 +542,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Expense*</label>
-                                        <input type="text" class="form-control" name="file_expense" placeholder="Enter Expense" >
+                                        <input type="text" class="form-control" name="upd_order_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_expense ?>">
                                     </div>
                                 </div>
 
@@ -443,11 +557,24 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Special instructions</label>
-                                        <textarea  class="form-control" name="file_ins" placeholder="Enter Special Instruction" rows="2" cols="50"></textarea>                                    
+                                        <textarea  class="form-control" name="upd_order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50" ><?php echo $order_single->order_instruction ?></textarea>                                    
                                     </div>
                                 </div>
 
                                 <!-- Col 12 end 12		-->
+
+                                <div class="col-sm-12 mb-4">
+                                    <h5 class="mb-4">Attach File</h5>
+                                    <?php 
+                                        if($order_single->order_file != '') {
+                                            $filesArray = unserialize($order_single->order_file);
+                                            foreach ($filesArray as $file)
+                                            { ?>
+                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$file; ?>">Attached File</a></u><br/><br/>
+                                            <?php }
+                                        } else { ?> No file(s) attached. <?php }
+                                    ?>
+                                </div>
 
 
 

@@ -121,7 +121,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_city_id">
@@ -132,6 +132,13 @@
                                             <option value="<?php echo $city->city_id ?>"><?php echo $city->city_name ?></option>
                                             <?php } ?>
                                         </select>                                    
+                                    </div>
+                                </div> -->
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" name="order_city" placeholder="Enter City" >
                                     </div>
                                 </div>
 
@@ -195,56 +202,11 @@
                                         <label>State*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_state" required>
                                             <option value=""></option>
-                                            <option value="California">California</option>
-                                            <option value="Alaska">Alaska</option>
-                                            <option value="Florida">Florida</option>
-                                            <option value="Texas">Texas</option>
-                                            <option value="New Mexico">New Mexico</option>
-                                            <option value="Pennsylvania">Pennsylvania</option>
-                                            <option value="Wyoming">Wyoming</option>
-                                            <option value="Hawaii">Hawaii</option>
-                                            <option value="Oregon">Oregon</option>
-                                            <option value="Colorado">Colorado</option>
-                                            <option value="Delaware">Delaware</option>
-                                            <option value="Maryland">Maryland</option>
-                                            <option value="Massachusetts">Massachusetts</option>
-                                            <option value="Connecticut">Connecticut</option>
-                                            <option value="Louisiana">Louisiana</option>
-                                            <option value="Illinois">Illinois</option>
-                                            <option value="Vermont">Vermont</option>
-                                            <option value="New Hampshire">New Hampshire</option>
-                                            <option value="South Dakota">South Dakota</option>
-                                            <option value="Maine">Maine</option>
-                                            <option value="Nevada">Nevada</option>
-                                            <option value="Montana">Montana</option>
-                                            <option value="Wisconsin">Wisconsin</option>
-                                            <option value="Kentucky">Kentucky</option>
-                                            <option value="Rhode Island">Rhode Island</option>
-                                            <option value="Minnesota">Minnesota</option>
-                                            <option value="New Jersey">New Jersey</option>
-                                            <option value="Nebraska">Nebraska</option>
-                                            <option value="Arizona">Arizona</option>
-                                            <option value="Arkansas">Arkansas</option>
-                                            <option value="Kansas">Kansas</option>
-                                            <option value="South Carolina">South Carolina</option>
-                                            <option value="Idaho">Idaho</option>
-                                            <option value="Utah">Utah</option>
-                                            <option value="Tennessee">Tennessee</option>
-                                            <option value="Michigan">Michigan</option>
-                                            <option value="North Carolina">North Carolina</option>
-                                            <option value="North Dakota">North Dakota</option>
                                             <option value="Virginia">Virginia</option>
+                                            <option value="Maryland">Maryland</option>
+                                            <option value="District of Columbia">District of Columbia</option>
                                             <option value="West Virginia">West Virginia</option>
-                                            <option value="Oklahoma">Oklahoma</option>
-                                            <option value="Alabama">Alabama</option>
-                                            <option value="Iowa">Iowa</option>
-                                            <option value="Indiana">Indiana</option>
-                                            <option value="Ohio">Ohio</option>
-                                            <option value="Georgia">Georgia</option>
-                                            <option value="Washington">Washington</option>
-                                            <option value="New York">New York </option>
-                                            <option value="Missouri">Missouri</option>
-                                            <option value="Mississippi">Mississippi</option>
+                                            <option value="Michigan">Michigan</option>
                                         </select>   
                                         <span class="helper-text"><?php echo form_error('order_state'); ?></span>                                 
                                     </div>
@@ -583,16 +545,17 @@
                                 <!-- Col 12 end 8 Appraiser Name 	-->
 
 
-                                
-
-
-                             
-
+        
 
                                 <div class="col-sm-4">
-                                    <div class="form-group">
+                                    <div class="form-group mb-1">
                                         <label>Complete Date</label>
-                                        <input type="text" class="form-control" name="order_completedate" placeholder="Enter Complete Date" >
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" name="order_completedate">
+                                            <span class="input-group-text input-group-append input-group-addon">
+                                                <i class="simple-icon-calendar"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -663,7 +626,7 @@
                                                         <span class="input-group-text">Upload</span>
                                                     </div> -->
                                                     <!-- <div class="custom-file"> -->
-                                                        <input type="file" name="order_file" id="inputGroupFile01">
+                                                        <input type="file" name="order_file[]" id="inputGroupFile01" multiple>
                                                         <!-- <label class="custom-file-label" for="inputGroupFile01">Choose file</label> -->
                                                     <!-- </div> -->
                                                 <!-- </div> -->
@@ -691,6 +654,31 @@
 
                             </div><!-- Row end-->
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
+
+                                <?php
+                                if( $this->session->flashdata('message_success') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('message_success'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                <?php
+                                if( $this->session->flashdata('message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->

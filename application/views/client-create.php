@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css" />
+
 </head>
 
 <body id="app-container" class="menu-default show-spinner">
@@ -67,7 +68,7 @@
                     <div class="card mb-4" id="new_client">
                         <div class="card-body">
                             <h5 class="mb-4">Add New Client</h5>
-                            <form action="<?php echo base_url(); ?>clients/create_client" method="post">
+                            <form action="<?php echo base_url(); ?>clients/create_client" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -79,7 +80,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Contact</label>
-                                        <input type="number" class="form-control" name="cl_contact" placeholder="Enter Contact">
+                                        <input type="text" class="form-control" name="cl_contact" placeholder="Enter Contact">
                                         <span class="helper-text"><?php echo form_error('cl_contact'); ?></span>
                                     </div>
                                 </div>
@@ -100,7 +101,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select Country</label>
                                         <select class="form-control select2-single" data-width="100%" name="cl_country" id="cl_country">
@@ -113,9 +114,9 @@
                                            
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-6">
+                                 <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select City</label>
                                         <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
@@ -125,11 +126,14 @@
                                             
                                             <option value="<?php echo $city->city_id; ?>"><?php echo $city->city_name; ?></option>
                                         <?php } ?>
-                                            <!-- <option value=""></option>
-                                            <option value="1">Chicago</option>
-                                            <option value="2">New York</option>
-                                            <option value="3">Los Angeles</option> -->
                                         </select>                                    
+                                    </div>
+                                </div>  -->
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" name="cl_city" placeholder="Enter City" >
                                     </div>
                                 </div>
 
@@ -162,7 +166,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select Client Type</label>
                                         <select class="form-control select2-single" data-width="100%" name="cl_type">
@@ -173,9 +177,9 @@
                                             <option value="Property Owner">Property Owner</option>
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select AMC</label>
                                         <select class="form-control select2-single" data-width="100%" name="cl_amc">
@@ -186,6 +190,22 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>AMC Name</label>
+                                        <input type="type" class="form-control" name="cl_amc_name" placeholder="Enter AMC Name" >
+                                        <span class="helper-text"><?php echo form_error('cl_amc_name'); ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>AMC Website</label>
+                                        <input type="type" class="form-control" name="cl_amc_website" placeholder="Enter AMC Website" >
+                                        <span class="helper-text"><?php echo form_error('cl_amc_website'); ?></span>
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Email</label>
@@ -193,14 +213,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Email 2</label>
                                         <input type="email" class="form-control" name="cl_email2" placeholder="Enter Email 2" >
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Website</label>
                                         <input type="type" class="form-control" name="cl_website" placeholder="Enter Website" >
@@ -214,17 +234,20 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 mb-4">
-                                    
-                                    <!-- <div class="card-body"> -->
+                                <!-- <div class="col-sm-12 mb-4">
                                         <h5 class="mb-4">Attach File</h5>
-                                        <!-- <form action="#"> -->
-                                            <div class="dropzone">
+                                        <form action="<?php echo base_url(); ?>clients/dragDropUpload">
+                                            <div class="dropzone" id="dropzone-client-create">
                                             </div>
-                                        <!-- </form> -->
-                                    <!-- </div> -->
-                                
+                                        </form>
+                                </div> -->
+
+                                <div class="col-sm-12 mb-4">
+                                    <h5 class="mb-4">Attach File</h5>
+                                    <input type="file" name="cl_file[]" id="inputGroupFile01" multiple>                            
                                 </div>
+
+                                
 
                                 <div class="col-sm-12 mb-4">
                                     <div class="form-group">
@@ -564,6 +587,20 @@
 //         }
 
     </script>
+
+    <script>
+        $("#dropzone-client-create").dropzone({
+        url: "http://localhost/MAMS/clients/fileUploadAsync",
+        init: function () {
+          this.on("success", function (file, responseText) {
+            console.log(responseText);
+          });
+        },
+        thumbnailWidth: 160,
+        previewTemplate: '<div class="dz-preview dz-file-preview mb-3"><div class="d-flex flex-row "><div class="p-0 w-30 position-relative"><div class="dz-error-mark"><span><i></i></span></div><div class="dz-success-mark"><span><i></i></span></div><div class="preview-container"><img data-dz-thumbnail class="img-thumbnail border-0" /><i class="simple-icon-doc preview-icon" ></i></div></div><div class="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative"><div><span data-dz-name></span></div><div class="text-primary text-extra-small" data-dz-size /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div><a href="#/" class="remove" data-dz-remove><i class="glyph-icon simple-icon-trash"></i></a></div>'
+      });
+    </script>
+
     
 </body>
 

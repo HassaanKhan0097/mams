@@ -24,7 +24,7 @@ class WorkInProgress extends CI_Controller {
     //     print_r($data['order_list']);
        $this->load->view('appraiser/workinprogress', $data);
     }
-    public function workView($order_number){
+    public function view($order_number){
 
         //  echo "<pre>";
         // print_r($order_number);
@@ -46,20 +46,22 @@ class WorkInProgress extends CI_Controller {
         // print_r($data['cl_single']);
         // print_r($data['city_list']);
         // print_r($data['country_list']);
+
+
         $this->load->view('appraiser/workinprogress-view', $data);
 
     }
 
-    public function workupdate($order_number){
+    public function update($order_number){
         // echo "Reached";
         //  echo "<pre>";
         // print_r($order_number);
         $data['order_number'] =  $order_number;
         $data['order_status_id'] = $this->input->post('order_status_id');
         $data['order_action'] = $this->input->post('order_action');
-        $data['order_date'] = $this->input->post('order_date');
-        $data['order_duedate'] = $this->input->post('order_duedate');
-        $data['order_appointmentdate'] = $this->input->post('order_appointmentdate');
+        $data['order_date'] = date( "Y/m/d", strtotime($this->input->post('order_date')) );
+        $data['order_duedate'] = date( "Y/m/d", strtotime($this->input->post('order_duedate')) );
+        $data['order_appointmentdate'] = date( "Y/m/d", strtotime($this->input->post('order_appointmentdate')) );
         $data['order_appointment_time'] = $this->input->post('order_appointment_time');
         $data['order_purchase'] = $this->input->post('order_purchase');
         $data['order_expense'] = $this->input->post('order_expense');

@@ -1,7 +1,20 @@
-
-
 RewriteEngine on
 RewriteCond $1 !^(index\.php|resources|robots\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+
+
+
+
+
+#Options +FollowSymLinks
+#Options -Indexes
+#DirectoryIndex index.php
+
+#RewriteEngine on
+#RewriteRule ^$ /mams/index.php [L] 
+#RewriteCond $1 !^(index\.php|resources|images|css|js|robots\.txt|favicon\.ico)
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ /mams/index.php?/$1 [L,QSA]

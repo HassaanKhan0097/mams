@@ -102,80 +102,179 @@
 
 
             <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="card mb-4 progress-banner">
-                                <div class="card-body justify-content-between d-flex flex-row align-items-center">
-                                    <div>
-                                        <i class="iconsminds-file mr-2 text-white align-text-bottom d-inline-block"></i>
-                                        <div>
-                                            <p class="lead text-white">5 Total Files</p>
-                                            <p class="text-small text-white">Waiting for Appt</p>
-                                        </div>
-                                    </div>
+                <div class="col-xl-6 col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">By Appraiser</h5>
+                            <table class="data-table data-table-standard responsive nowrap"
+                                data-order="[[ 1, &quot;desc&quot; ]]">
+                                <thead>
+                                    <tr>
+                                        <th>WIP By Appraiser</th>
+                                        <th>Total Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                    <div>
-                                        <div role="progressbar"
-                                            class="progress-bar-circle progress-bar-banner position-relative"
-                                            data-color="white" data-trail-color="rgba(255,255,255,0.2)"
-                                            aria-valuenow="5" aria-valuemax="12" data-show-percent="false">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="card mb-4 progress-banner">
-                                <div class="card-body justify-content-between d-flex flex-row align-items-center">
-                                    <div>
-                                        <i class="iconsminds-business-man mr-2 text-white align-text-bottom d-inline-block"></i>
-                                        <div>
-                                            <p class="lead text-white">4 Appraisers</p>
-                                            <p class="text-small text-white">Total Registered</p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div role="progressbar"
-                                            class="progress-bar-circle progress-bar-banner position-relative"
-                                            data-color="white" data-trail-color="rgba(255,255,255,0.2)"
-                                            aria-valuenow="4" aria-valuemax="6" data-show-percent="false">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <div class="card mb-4 progress-banner">
-                                <a href="#"
-                                    class="card-body justify-content-between d-flex flex-row align-items-center">
-                                    <div>
-                                        <i class="iconsminds-management mr-2 text-white align-text-bottom d-inline-block"></i>
-                                        <div>
-                                            <p class="lead text-white">8 Clients</p>
-                                            <p class="text-small text-white">Total Companies</p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div role="progressbar"
-                                            class="progress-bar-circle progress-bar-banner position-relative"
-                                            data-color="white" data-trail-color="rgba(255,255,255,0.2)"
-                                            aria-valuenow="8" aria-valuemax="10" data-show-percent="false">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                <?php
+                                    foreach($by_appraiser as $ba){?>
+                                        <tr>
+                                            <td>
+                                                <p class="list-item-heading"> <a href="<?php echo base_url(); ?>order/byappraiser/<?php echo $ba->app_id; ?>"> <u><?php echo $ba->app_name; ?></u> </a> </p>
+                                            </td>
+                                            <td>
+                                                <p class="text-muted"><?php echo $ba->files; ?></p>
+                                            </td>
+                                        </tr>
+                                <?php }?>
+                                       
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-6 col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">By Client</h5>
+                            <table class="data-table data-table-standard responsive nowrap"
+                                data-order="[[ 1, &quot;desc&quot; ]]">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Total Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    foreach($by_client as $bc){?>
+                                        <tr>
+                                            <td>
+                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/byclient/<?php echo $bc->cl_id; ?>"> <u><?php echo $bc->cl_name; ?></u> </a></p>
+                                                
+                                            </td>
+                                            <td>
+                                                <p class="text-muted"><?php echo $bc->files; ?></p>
+                                            </td>
+                                        </tr>
+                                <?php }?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">By Status</h5>
+                            <table class="data-table data-table-standard responsive nowrap"
+                                data-order="[[ 1, &quot;desc&quot; ]]">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Total Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                <?php
+                                    foreach($by_status as $bs){?>
+                                        <tr>
+                                            <td>
+                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/bystatus/<?php echo $bs->st_id; ?>"> <u><?php echo $bs->st_name; ?></u> </a></p>
+                                            </td>
+                                            <td>
+                                                <p class="text-muted"><?php echo $bs->files; ?></p>
+                                            </td>
+                                        </tr>
+                                <?php }?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">By Due Date</h5>
+                            <table class="data-table data-table-standard responsive nowrap"
+                                data-order="[[ 1, &quot;desc&quot; ]]">
+                                <thead>
+                                    <tr>
+                                        <th>Date Due</th>
+                                        <th>Total Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                
+
+                                <?php
+                                    foreach($by_due_date as $bdd){?>
+                                        <tr>
+                                            <td>
+                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/byduedate/<?php echo strtotime($bdd->order_duedate); ?>"> <u><?php echo $bdd->order_duedate; ?></u> </a></p>
+                                                
+                                            </td>
+                                            <td>
+                                                <p class="text-muted"><?php echo $bdd->files; ?></p>
+                                            </td>
+                                        </tr>
+                                <?php }?>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">By Action Required</h5>
+                            <table class="data-table data-table-standard responsive nowrap"
+                                data-order="[[ 1, &quot;desc&quot; ]]">
+                                <thead>
+                                    <tr>
+                                        <th>Action Required</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                <?php
+                                    foreach($by_action_required as $bar){?>
+                                        <tr>
+                                            <td>
+                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/update/<?php echo $bar->order_number; ?>"> <u><?php echo $bar->order_number; ?></u> </a></p>
+                                                
+                                            </td>
+                                            <td>
+                                                <p class="text-muted">View</p>
+                                            </td>
+                                        </tr>
+                                <?php }?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
 
 
             <!-- <div class="container-fluid"> -->
-            <div class="row">    
-            <div class="col-md-12 col-lg-12 col-xl-12"> 
+            <!-- <div class="row">    
+                <div class="col-md-12 col-lg-12 col-xl-12"> 
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="mb-4">Files</h5>
@@ -196,7 +295,7 @@
                     </div>
                 </div>
              </div>
-            </div>
+            </div> -->
 
 
 
@@ -212,6 +311,7 @@
 
     <script src="<?php echo base_url(); ?>assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/datatables.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>

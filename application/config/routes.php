@@ -72,7 +72,7 @@ $route['home'] = 'Index'; //here Index is chk from home
 $route['order'] = 'Order'; //here Order is controller
 $route['order/create'] = 'Order/create';
 $route['order/delete/(:num)'] = 'Order/delete';
-$route['order/edit/(:num)'] = 'Order/edit/$1';
+$route['order/update/(:num)'] = 'Order/update/$1';
 
 $route['clients'] = 'Clients'; //here Clients is controller
 $route['clients/create'] = 'Clients/create';

@@ -72,7 +72,7 @@
                     <div class="card mb-4" id="order_record">
                         <div class="card-body">
                             <h5 class="mb-4">Order Record</h5>
-                            <form action="<?php echo base_url(); ?>appraiserpages/WorkInProgress/workupdate/<?php echo $order_single->order_number; ?>" method="post">
+                            <form action="<?php echo base_url(); ?>appraiserpages/WorkInProgress/update/<?php echo $order_single->order_number; ?>" method="post">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -163,7 +163,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <h4><?php echo $order_single->city_name;?></h4>
+                                        <h4><?php echo $order_single->order_city;?></h4>
                                     </div>
                                 </div>
 
@@ -561,7 +561,7 @@
                                 
 
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>File</label>
                                         <br>
@@ -582,10 +582,8 @@
 
 
                                     </div>
-                                </div>
-                                
-
-                        
+                                </div> -->
+                                      
 
 
                                 <!-- Col 12 end 11		-->
@@ -597,6 +595,19 @@
                                         <label>Special instructions</label>
                                         <textarea  class="form-control" name="order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50"><?php echo $order_single->order_instruction;?></textarea>                                    
                                     </div>
+                                </div>
+
+                                <div class="col-sm-12 mb-4">
+                                    <h5 class="mb-4">Attach File</h5>
+                                    <?php 
+                                        if($order_single->order_file != '') {
+                                            $filesArray = unserialize($order_single->order_file);
+                                            foreach ($filesArray as $file)
+                                            { ?>
+                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$file; ?>">Attached File</a></u><br/><br/>
+                                            <?php }
+                                        } else { ?> No file(s) attached. <?php }
+                                    ?>
                                 </div>
 
 

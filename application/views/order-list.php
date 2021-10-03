@@ -49,7 +49,13 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div class="card mb-4">
+                    <?php 
+                        $display = "block";
+                        $total = count($this->uri->segment_array());
+                        if($total > 1) { $display = "none"; }
+                    ?>
+                    
+                    <div class="card mb-4" style="display: <?php echo $display; ?>;">
                         <div class="card-body">
                             <h5 class="mb-4">Search Order</h5>
                             <form action="" method="post">
@@ -241,7 +247,7 @@
                                         <th>Revenue</th>
                                         <th>Expense</th>
                                         <th>Special Instruction</th>
-                                        <th>Attach File</th>
+                                        <!-- <th>Attach File</th> -->
                                         
                                         <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
                                     </tr>
@@ -251,10 +257,11 @@
                                     foreach($order_list as $ol ){ ?>
                                     <tr>
                                     <td class="table_id"><a href="<?php echo base_url(); ?>order/update/<?php echo $ol->order_number; ?>"><?php echo $ol->order_number; ?></a></td>
+                                    <!-- <td class="table_id"><a><?php echo $ol->order_number; ?></a></td> -->
                                     <td><?php echo $ol->order_address; ?></td>
                                     <td><?php echo $ol->order_name; ?></td>
                                     <td><?php echo $ol->order_loan_number; ?></td>
-                                    <td><?php echo $ol->city_name; ?></td>
+                                    <td><?php echo $ol->order_city; ?></td>
                                     <td><?php echo $ol->at_name; ?></td>
                                     <td><?php echo $ol->at2_name; ?></td>
                                     <td><?php echo $ol->at3_name; ?></td>
@@ -287,7 +294,7 @@
                                     <td><?php echo $ol->order_revenue; ?></td>
                                     <td><?php echo $ol->order_expense; ?></td>
                                     <td><?php echo $ol->order_instruction; ?></td>
-                                    <td class="table_id"> <a href="<?php echo $this->config->item('upload_dir').$ol->order_file; ?>">File</a> </td>
+                                    <!-- <td class="table_id"> <a href="<?php echo $this->config->item('upload_dir').$ol->order_file; ?>">File</a> </td> -->
                                     
                                     </tr>
                                     <?php }?>
@@ -386,8 +393,8 @@
                 { "data": "order_purchase" },
                 { "data": "order_revenue" },
                 { "data": "order_expense" },
-                { "data": "order_instruction" },
-                { "data": "order_file" }
+                { "data": "order_instruction" }
+                // { "data": "order_file" }
                   
                 // { "data": "action"}
             ],

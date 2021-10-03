@@ -89,13 +89,13 @@
                                 <?php
                                     foreach($order_list as $ol ){ ?>
                                     <tr>
-                                    <td class="table_id"><a href="<?php echo base_url(); ?>appraiserpages/WorkInProgress/workView/<?php echo $ol->order_number; ?>"><?php echo $ol->order_number; ?></a></td>
+                                    <td class="table_id"><a href="<?php echo base_url(); ?>appraiserpages/WorkInProgress/view/<?php echo $ol->order_number; ?>"><?php echo $ol->order_number; ?></a></td>
                                     <td><?php echo $ol->order_appointmentdate; ?></td>
                                     <td><?php echo $ol->order_appointment_time; ?></td>
                                     <td><?php echo $ol->cl_name; ?></td>
                                     <td><?php echo $ol->order_expense; ?></td>
                                     <td><?php echo $ol->order_address; ?></td>
-                                    <td><?php echo $ol->city_name; ?></td>
+                                    <td><?php echo $ol->order_city; ?></td>
                                     <td><?php echo $ol->order_borrower; ?></td>
                                     <td><?php echo $ol->st_name; ?></td>
                                     <td><?php echo $ol->order_duedate; ?></td> 

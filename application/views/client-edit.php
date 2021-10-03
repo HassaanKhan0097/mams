@@ -79,7 +79,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Contact</label>
-                                        <input type="number" class="form-control" name="upd_cl_contact" value="<?php echo $client_single->cl_contact ?>">
+                                        <input type="text" class="form-control" name="upd_cl_contact" value="<?php echo $client_single->cl_contact ?>">
                                         <span class="helper-text"><?php echo form_error('upd_cl_contact'); ?></span>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select Country</label>
                                         <select class="form-control select2-single" data-width="100%" name="upd_cl_country">
@@ -111,9 +111,9 @@
                                            
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select City</label>
                                         <select class="form-control select2-single" data-width="100%" name="upd_cl_city">
@@ -123,6 +123,13 @@
                                             <option value="<?php echo $city->city_id; ?>" <?php echo ( $client_single->cl_city_id ==  $city->city_id) ?  'Selected' :  ''; ?>><?php echo $city->city_name; ?></option>
                                         <?php } ?>
                                         </select>                                    
+                                    </div>
+                                </div> -->
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" name="upd_cl_city" value="<?php echo $client_single->cl_city;?>" >
                                     </div>
                                 </div>
 
@@ -155,7 +162,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select Client Type</label>
                                         <select class="form-control select2-single" data-width="100%" name="upd_type">
@@ -166,9 +173,9 @@
                                             <option value="Property Owner" <?php echo ( $client_single->cl_type == 'Property Owner') ?  'Selected' :  ''; ?>>Property Owner</option>
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select AMC</label>
                                         <select class="form-control select2-single" data-width="100%" name="upd_cl_amc">
@@ -176,6 +183,22 @@
                                             <option value="AMC" <?php echo ( $client_single->cl_amc == 'AMC') ?  'Selected' :  ''; ?>>AMC</option>
                                             <option value="No AMC" <?php echo ( $client_single->cl_amc == 'No AMC') ?  'Selected' :  ''; ?>>No AMC</option>                                            
                                         </select>                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>AMC Name</label>
+                                        <input type="type" class="form-control" name="upd_cl_amc_name" placeholder="Enter AMC Name" value="<?php echo $client_single->cl_amc_name;?>">
+                                        <span class="helper-text"><?php echo form_error('upd_cl_amc_name'); ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>AMC Website</label>
+                                        <input type="type" class="form-control" name="upd_cl_amc_website" placeholder="Enter AMC Website" value="<?php echo $client_single->cl_amc_website;?>">
+                                        <span class="helper-text"><?php echo form_error('upd_cl_amc_website'); ?></span>
                                     </div>
                                 </div>
 
@@ -187,13 +210,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Email 2</label>
                                         <input type="email" class="form-control" name="upd_cl_email2" value="<?php echo $client_single->cl_email2;?>" >
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Website</label>
                                         <input type="text" class="form-control" name="upd_cl_website" value="<?php echo $client_single->cl_website;?>" >
@@ -207,16 +230,30 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12 mb-4">
+                                    <h5 class="mb-4">Attach File</h5>
+                                    <?php 
+                                        if($client_single->cl_file != '') {
+                                            $filesArray = unserialize($client_single->cl_file);
+                                            foreach ($filesArray as $file)
+                                            { ?>
+                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."clients/".$file; ?>">Attached File</a></u><br/><br/>
+                                            <?php }
+                                        } else { ?> No file(s) attached. <?php }
+                                    ?>
+                                </div>
 
-                                <div class="form-group">
-                                   
-                                   <div class="custom-control custom-checkbox">
-                                       <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                           name="upd_cl_active" <?php echo $client_single->cl_active?>>
-                                       <label class="custom-control-label" for="customCheck1">Active</label>
-                                   </div>                                  
-                                   
-                               </div>
+                                <div class="col-sm-12 mb-4">
+                                    <div class="form-group">
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                                name="upd_cl_active" <?php echo $client_single->cl_active ?>>
+                                            <label class="custom-control-label" for="customCheck1">Active</label>
+                                        </div>                                  
+                                        
+                                    </div>
+                                </div>
 
                             </div>
 

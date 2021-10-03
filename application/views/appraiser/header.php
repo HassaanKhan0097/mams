@@ -36,7 +36,7 @@
     <a class="navbar-logo" href="#">
         <!-- <span class="logo d-none d-xs-block"></span>
         <span class="logo-mobile d-block d-xs-none"></span> -->
-        <span> <b> Marquee Appraisal Management System </b> </span>
+        <span> <b> MAMS - APPRAISER Login </b> </span>
     </a>
 
     <div class="navbar-right">

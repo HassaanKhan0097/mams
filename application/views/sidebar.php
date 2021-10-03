@@ -10,7 +10,7 @@
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url(); ?>file">
+                    <a href="<?php echo base_url(); ?>order">
                         <i class="iconsminds-magnifi-glass"></i>
                         <span>Search</span>
                     </a>
@@ -72,12 +72,12 @@
                         <span>Setup</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="<?php echo base_url(); ?>signout">
                         <i class="simple-icon-settings"></i>
                         <span>Logout</span>
                     </a>
-                </li>
+                </li> -->
                 <!-- <li>
                     <a href="https://dore-jquery-docs.coloredstrategies.com" target="_blank">
                         <i class="iconsminds-library"></i> Docs
