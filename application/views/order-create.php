@@ -78,12 +78,38 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">New Order</h5>
+
+                            <?php
+                                if( $this->session->flashdata('message_success') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('message_success'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                <?php
+                                if( $this->session->flashdata('message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
+                                
                             <form action="<?php echo base_url(); ?>order/create_order" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-4">
                                 <div class="form-group">
                                         <label>Order Number*</label>
-                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers" required>
+                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers" >
                                         <span class="helper-text"><?php echo form_error('order_number'); ?></span>
                                     </div>
                                 </div>
@@ -91,7 +117,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Property Address*</label>
-                                        <input type="text" class="form-control" name="order_address" placeholder="Enter Property Address" required>
+                                        <input type="text" class="form-control" name="order_address" placeholder="Enter Property Address" >
                                         <span class="helper-text"><?php echo form_error('order_address'); ?></span>
                                     </div>
                                 </div>
@@ -100,7 +126,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_type_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_type_id" >
                                             <option value=""></option>
                                             <?php
                                             foreach($order_types_list as $ol){
@@ -146,7 +172,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Assignment Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id" >
                                             <option value=""></option>
                                             <?php
                                             foreach($assignment_types_list as $at){
@@ -200,7 +226,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>State*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_state" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_state" >
                                             <option value=""></option>
                                             <option value="Virginia">Virginia</option>
                                             <option value="Maryland">Maryland</option>
@@ -216,7 +242,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Status*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_status_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_status_id" >
                                             <option value=""></option>
                                             <?php
                                             foreach($status_info_list as $status){
@@ -234,7 +260,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Client Name*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_client_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_client_id" >
                                             <option value=""></option>
                                             <?php
                                             foreach($client_list as $cl){
@@ -280,22 +306,22 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Zip Code*</label>
-                                        <input type="number" class="form-control" name="order_zipcode" placeholder="Enter Zip Code" required >
+                                        <input type="number" class="form-control" name="order_zipcode" placeholder="Enter Zip Code"  >
                                         <span class="helper-text"><?php echo form_error('order_zipcode'); ?></span>    
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Action Required</label>
+                                        <label>Action </label>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio1" name="order_action"
-                                                class="custom-control-input" value="No" required>
+                                                class="custom-control-input" value="No" >
                                             <label class="custom-control-label" for="customRadio1">No</label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio2" name="order_action"
-                                                class="custom-control-input" value="Yes" required>
+                                                class="custom-control-input" value="Yes" >
                                             <label class="custom-control-label" for="customRadio2">Yes</label>
                                         </div>
                                         
@@ -321,7 +347,7 @@
                                     <div class="form-group mb-1">
                                         <label>Order Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_date" required>
+                                            <input type="text" class="form-control" name="order_date" >
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -401,7 +427,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id" >
                                             <option value=""></option>
                                             <?php
                                             foreach($appraiser_list as $app){
@@ -568,7 +594,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Payment Method*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_paymentmethod" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_paymentmethod" >
                                             <option value=""></option>
                                             <option value="Bill Client">Bill Client</option>
                                             <option value="Credit Card">Credit Card</option>
@@ -655,29 +681,7 @@
                             </div><!-- Row end-->
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
 
-                                <?php
-                                if( $this->session->flashdata('message_success') ) { ?>
-
-                                    <div class="col-12 mt-4">
-                                        <div class="alert alert-success" role="alert">
-                                            <?php echo $this->session->flashdata('message_success'); ?>
-                                        </div>
-                                    </div>
-                                    
-                                <?php }
-                                ?>
-
-                                <?php
-                                if( $this->session->flashdata('message_error') ) { ?>
-
-                                    <div class="col-12 mt-4">
-                                        <div class="alert alert-danger" role="alert">
-                                            <?php echo $this->session->flashdata('message_error'); ?>
-                                        </div>
-                                    </div>
-                                    
-                                <?php }
-                                ?>
+                                
 
                             </form>
                         </div>

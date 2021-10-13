@@ -43,8 +43,12 @@ class Order_Model extends CI_Model {
 
     public function create($data)
     {
+        // echo "<pre>";
+        // echo "Create";
+        // print_r($data);
+
        $this->db->insert("order", $data);
-    //    $result = $this->db->insert_id();
+       $result = $this->db->insert_id();
 
         //This working is because primary key is our own, not auto incremented
         $result = $this->db->affected_rows() > 0;

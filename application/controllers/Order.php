@@ -49,18 +49,18 @@ class Order extends CI_Controller {
     {
         echo "Reached";
         $this->form_validation->set_rules('order_number','order_number','required');
-        $this->form_validation->set_rules('order_address','order_address','required');
-        $this->form_validation->set_rules('order_type_id','order_type_id','required');
-        $this->form_validation->set_rules('order_assignment_id','order_assignment_id','required');
-        $this->form_validation->set_rules('order_state','order_state','required');
-        $this->form_validation->set_rules('order_status_id','order_status_id','required');
-        $this->form_validation->set_rules('order_client_id','order_client_id','required');
-        $this->form_validation->set_rules('order_zipcode','order_zipcode','required');
-        $this->form_validation->set_rules('order_date','order_date','required');
-        $this->form_validation->set_rules('order_borrower','Borrower','required');
-        $this->form_validation->set_rules('order_appraiser_id','order_appraiser_id','required');
-        $this->form_validation->set_rules('upd_order_appraiser_id2','Sub Appraiser Name','required');
-        $this->form_validation->set_rules('order_paymentmethod','order_paymentmethod','required');
+        // $this->form_validation->set_rules('order_address','order_address','required');
+        // $this->form_validation->set_rules('order_type_id','order_type_id','required');
+        // $this->form_validation->set_rules('order_assignment_id','order_assignment_id','required');
+        // $this->form_validation->set_rules('order_state','order_state','required');
+        // $this->form_validation->set_rules('order_status_id','order_status_id','required');
+        // $this->form_validation->set_rules('order_client_id','order_client_id','required');
+        // $this->form_validation->set_rules('order_zipcode','order_zipcode','required');
+        // $this->form_validation->set_rules('order_date','order_date','required');
+        // $this->form_validation->set_rules('order_borrower','Borrower','required');
+        // $this->form_validation->set_rules('order_appraiser_id','order_appraiser_id','required');
+        // $this->form_validation->set_rules('upd_order_appraiser_id2','Sub Appraiser Name','required');
+        // $this->form_validation->set_rules('order_paymentmethod','order_paymentmethod','required');
    
 
         if ($this->form_validation->run() == TRUE) {
@@ -104,6 +104,10 @@ class Order extends CI_Controller {
             $data['order_expense'] = $this->input->post('order_expense');
             $data['order_instruction'] = $this->input->post('order_instruction');
 
+
+        //     echo "<pre>";
+        // echo "Create Controller";
+        // print_r($data);
 
             $filenames = [];
 
@@ -158,7 +162,10 @@ class Order extends CI_Controller {
             }
 
 
-
+        //     echo "<pre>";
+        // echo "Create Controller after for";
+        // print_r($data);
+            
 
             $data['order_file']  = serialize($filenames);
  
@@ -179,7 +186,9 @@ class Order extends CI_Controller {
                 
         } 
         else {
-            $this->create();
+            redirect("order/create");
+            // echo "Else Form Validation";
+           // $this->create();
         }       
     }
 
