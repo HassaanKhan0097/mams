@@ -179,7 +179,7 @@
                                     </div>
                                 </div> -->
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select AMC</label>
                                         <select class="form-control select2-single" data-width="100%" name="cl_amc">
@@ -188,13 +188,21 @@
                                             <option value="No AMC">No AMC</option>                                            
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>AMC Name</label>
-                                        <input type="type" class="form-control" name="cl_amc_name" placeholder="Enter AMC Name" >
-                                        <span class="helper-text"><?php echo form_error('cl_amc_name'); ?></span>
+                                        <select class="form-control select2-single" data-width="100%" name="cl_amc_name" >
+                                        <option value=""></option>
+                                            <option value="Guaranteed Rate">Guaranteed Rate</option>
+                                            <option value="Cardinal Financial">Cardinal Financial</option>
+                                            <option value="LoanDepot">LoanDepot</option>
+                                                                                       
+                                        </select>  
+
+                                        <!-- <input type="type" class="form-control" name="cl_amc_name" placeholder="Enter AMC Name" >
+                                        <span class="helper-text"><?php echo form_error('cl_amc_name'); ?></span> -->
                                     </div>
                                 </div>
 
@@ -206,21 +214,21 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" class="form-control" name="cl_email" placeholder="Enter Email" >
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email 2</label>
                                         <input type="email" class="form-control" name="cl_email2" placeholder="Enter Email 2" >
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Website</label>
                                         <input type="type" class="form-control" name="cl_website" placeholder="Enter Website" >

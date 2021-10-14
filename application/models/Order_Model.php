@@ -80,7 +80,7 @@ class Order_Model extends CI_Model {
     public function getOrderNumbers()
     {
         $this->db->select('order_number');
-        $this->db->from('order'); 
+        $this->db->from('order')->limit(5)->order_by('order_number',"DESC"); 
         $query = $this->db->get();
         return $query->result();  
     }
