@@ -101,6 +101,8 @@ $route['citiescountries'] = 'CitiesCountries';
 
 $route['ordertypes'] = 'OrderTypes';
 
+$route['loantype'] = 'LoanType';
+
 $route['autoemail'] = 'AutoEmail';
 
 $route['downloadareas'] = 'DownloadAreas';

@@ -106,7 +106,7 @@
                                                                    
                                     </div>
                                     
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Web Portal</label>
                                         <input type="text" class="form-control" name="order_website" placeholder="Enter Website" value="<?php echo $order_single->cl_website ?>" readonly >
                                     </div>
@@ -124,7 +124,7 @@
                                     <div class="form-group">
                                         <label>Lender Phone 3</label>
                                         <input type="text" class="form-control" name="order_phone3" placeholder="Enter Phone" value="<?php echo $order_single->order_phone3 ?>">
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="form-group">
@@ -146,14 +146,37 @@
                                         <span class="helper-text"><?php echo form_error('order_appraiser_id'); ?></span>                                
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Appraiser Email</label>
                                         <input type="text" class="form-control" name="order_appraiser_email" placeholder="Enter Email" value="<?php echo $order_single->app_email ?>" readonly >
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group">
                                         <label>Expense</label>
                                         <input type="text" class="form-control" name="order_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_expense ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Sub Appraiser Name</label>
+                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id2">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($appraiser_list as $app){
+                                            ?>                                            
+                                            <option value="<?php echo $app->app_id ?>" <?php echo ( $order_single->order_appraiser_id2 ==  $app->app_id ) ?  'Selected' :  ''; ?>><?php echo $app->app_name ?></option>
+                                            <?php } ?>
+                                        </select>                                    
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Sub Appraiser Expense</label>
+                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Revenue*</label>
+                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
+                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
                                     </div>
 
 
@@ -231,28 +254,19 @@
                                         <input type="text" class="form-control" name="order_borrower_email" placeholder="Enter Email" value="<?php echo $order_single->order_borrower_email ?>">
                                     </div>
 
+
                                     <div class="form-group">
-                                        <label>Sub Appraiser Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id2">
+                                    <label>Payment Method*</label>
+                                    <select class="form-control select2-single" data-width="100%" name="upd_order_paymentmethod">
                                             <option value=""></option>
-                                            <?php
-                                            foreach($appraiser_list as $app){
-                                            ?>                                            
-                                            <option value="<?php echo $app->app_id ?>" <?php echo ( $order_single->order_appraiser_id2 ==  $app->app_id ) ?  'Selected' :  ''; ?>><?php echo $app->app_name ?></option>
-                                            <?php } ?>
-                                        </select>                                    
-                                    </div>
+                                            <option value="Bill Client" <?php echo ( $order_single->order_paymentmethod == 'Bill Client') ?  'Selected' :  ''; ?>>Bill Client</option>
+                                            <option value="Credit Card" <?php echo ( $order_single->order_paymentmethod == 'Credit Card') ?  'Selected' :  ''; ?>>Credit Card</option>
+                                            <option value="COD" <?php echo ( $order_single->order_paymentmethod == 'COD') ?  'Selected' :  ''; ?>>COD</option>
+                                        </select>                           
+                                    <span class="helper-text"><?php echo form_error('upd_order_paymentmethod'); ?></span>       
+                                </div>
 
-                                    <div class="form-group">
-                                        <label>Sub Appraiser Expense</label>
-                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Revenue*</label>
-                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
-                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
-                                    </div>
+                                    
                                
 
                                     
@@ -286,12 +300,16 @@
                                         <label>Loan Type*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_loan_type" required>
                                             <option value=""></option>
+
                                             <?php
-                                            $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
-                                            foreach($loanType as $lt){
+                                            // $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
+                                            foreach($loan_types_list as $lt){
                                             ?>                                            
-                                            <option value="<?php echo $lt ?>" <?php echo ( $order_single->order_loan_type ==  $lt ) ?  'Selected' :  ''; ?>><?php echo $lt ?></option>
+                                            <option data-desc="<?php echo $lt->loan_desc ?>" value="<?php echo $lt->loan_id . "|" . $lt->loan_name . "|" . $lt->loan_desc ?> " <?php echo ( $order_single->order_loan_type == $lt->loan_id ) ?  'Selected' :  ''; ?>><?php echo $lt->loan_name ?></option>
                                             <?php } ?>
+
+
+                                          
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
                                     </div>
@@ -453,16 +471,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Payment Method*</label>
-                                    <select class="form-control select2-single" data-width="100%" name="upd_order_paymentmethod">
-                                            <option value=""></option>
-                                            <option value="Bill Client" <?php echo ( $order_single->order_paymentmethod == 'Bill Client') ?  'Selected' :  ''; ?>>Bill Client</option>
-                                            <option value="Credit Card" <?php echo ( $order_single->order_paymentmethod == 'Credit Card') ?  'Selected' :  ''; ?>>Credit Card</option>
-                                            <option value="COD" <?php echo ( $order_single->order_paymentmethod == 'COD') ?  'Selected' :  ''; ?>>COD</option>
-                                        </select>                           
-                                    <span class="helper-text"><?php echo form_error('upd_order_paymentmethod'); ?></span>       
-                                </div>
+                               
 
                                     
 
@@ -609,38 +618,40 @@
                     <div class="card mb-4" id="new_notes">
                         <div class="card-body">
                             <h5 class="mb-4">Add/Edit Notes</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>Notes/create/<?php echo $order_single->order_number; ?>" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <p>Name:</p>
-                                        <label>08/18/2021  3:58:30 AM</label>
+                                        <label><?php echo date("Y/m/d") . " ".date("h:i:sa");?></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <p>Author:</p>
-                                        <label>office_user</label>
+                                        <label><?php echo $loggedUser['user_username']?></label>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Subject</label>
-                                        <input type="text" class="form-control" name="notes_subject" placeholder="Enter Notes Subject" >
+                                        <input type="text" class="form-control" name="notes_subject" placeholder="Enter Notes Subject" required>
+                                        <span class="helper-text"><?php echo form_error('notes_subject'); ?></span>
                                     </div>
                                 </div>
+                                <!-- jQueryCheckbox -->
                                 <div class="col-12">
                                     <div class="form-group position-relative">
                                         <label>Visibility</label>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                                name="jQueryCheckbox" required>
+                                                name="notes_hide_cl" >
                                             <label class="custom-control-label" for="customCheck1">Hidden from client</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2"
-                                                name="jQueryCheckbox" required>
+                                                name="notes_hide_app" >
                                             <label class="custom-control-label" for="customCheck2">Hidden from appraiser</label>
                                         </div>                                    
                                     </div>
@@ -649,7 +660,8 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Notes</label>
-                                        <textarea  class="form-control" name="notes_txt" placeholder="Enter Notes" rows="2" cols="50"></textarea>                                    
+                                        <textarea  class="form-control" name="notes_txt" placeholder="Enter Notes" rows="2" cols="50" required></textarea>                                    
+                                        <span class="helper-text"><?php echo form_error('notes_txt'); ?></span>
                                     </div>
                                 </div>
 
@@ -695,22 +707,112 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>08/08/2003 | 4:23:29 AM</td>
-                                        <td>OfficeStaff</td>
-                                        <td>Original Order Notes</td>
-                                        <td>Instructions To Appraiser</td>                                                                               
+                                    
+                                    <?php 
+                                    foreach ($notes as $n) {
+                                        
+                                        ?>
+                                        <tr>
+                                        <td><?php echo $n->notes_id; ?></td>
+                                        <td><?php echo $n->date; ?></td>
+                                        <td><?php echo $n->user_username; ?></td>
+                                        <td><?php echo $n->subject; ?></td>
+                                        <td><?php echo $n->notes; ?></td>                                                                               
                                         <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
-                                                data-target="#editModal">Edit</button>&nbsp;<button type="button"
+                                                data-target="#editModalNotes<?php echo $n->notes_id; ?>">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal">Delete</button> </td>
-                                    </tr>                                    
+                                                data-target="#deleteModalNotes<?php echo $n->notes_id; ?>">Delete</button> </td>
+                                    </tr> 
+
+
+                                    <div id="editModalNotes<?php echo $n->notes_id; ?>" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Edit Notes</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="<?php echo base_url(); ?>Notes/update/<?php echo $n->notes_id; ?>" method="post">
+                                                    <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <p>Name:</p>
+                                                                        <label><?php echo $n->date; ?></label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <p>Author:</p>
+                                                                        <label><?php echo $n->user_username; ?></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Subject</label>
+                                                                        <input type="text" class="form-control" name="upd_notes_subject" value="<?php echo $n->subject; ?>" placeholder="Enter Notes Subject" >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group position-relative">
+                                                                        <label>Visibility</label>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="customCheck3"
+                                                                                name="upd_notes_hide_cl"  <?php echo ( $n->hide_client == 'on' ) ?  'Checked' :  ''; ?>>
+                                                                            <label class="custom-control-label" for="customCheck3">Hidden from client</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="customCheck4"
+                                                                                name="upd_notes_hide_app" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
+                                                                            <label class="custom-control-label" for="customCheck4">Hidden from appraiser</label>
+                                                                        </div>                                    
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Notes</label>
+                                                                        <textarea class="form-control" name="upd_notes_txt" placeholder="Enter Notes" rows="2" cols="50"><?php echo $n->notes; ?></textarea>                                    
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            
+                                                        <button type="submit" class="btn btn-primary mb-0">Edit</button>
+                                                        <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                     </div>
+
+                                        <div id="deleteModalNotes<?php echo $n->notes_id; ?>" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                    <form method="post" action="<?php echo base_url(); ?>Notes/delete/<?php echo $n->notes_id; ?>">
+                                                            <p>Are you Sure You want to Delete this item?</p>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php } ?>                                   
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <!--- Table end -->
+
 
 
 
@@ -733,94 +835,18 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-body text-center">
+
+                <form method="post" action="<?php echo base_url(); ?>Order/delete/<?php echo $order_single->order_number; ?>">
                     <p>Are you Sure You want to Delete this item?</p>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                     <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
+                </form>
+                    
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <div id="editModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Status</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                    <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <p>Name:</p>
-                                        <label>08/18/2021  3:58:30 AM</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <p>Author:</p>
-                                        <label>office_user</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" class="form-control" name="notes_subject" placeholder="Enter Notes Subject" >
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group position-relative">
-                                        <label>Visibility</label>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3"
-                                                name="jQueryCheckbox" required>
-                                            <label class="custom-control-label" for="customCheck3">Hidden from client</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4"
-                                                name="jQueryCheckbox" required>
-                                            <label class="custom-control-label" for="customCheck4">Hidden from appraiser</label>
-                                        </div>                                    
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Notes</label>
-                                        <textarea  class="form-control" name="notes_txt" placeholder="Enter Notes" rows="2" cols="50"></textarea>                                    
-                                    </div>
-                                </div>
-
-                            </div>
-                            
-                        <button type="submit" class="btn btn-primary mb-0">Edit</button>
-                        <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div id="deleteModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <p>Are you Sure You want to Delete this item?</p>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                    <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- Modal End -->

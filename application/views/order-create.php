@@ -66,7 +66,7 @@
                                 $i = 0; $lastOrder="";$lastOrder2="12";
                                         foreach($previous_order_numbers as $pon) { ?>
 
-                                            <a class="dropdown-item" href="#">MRQ-<?php echo $pon->order_number; ?></a>
+                                            <a class="dropdown-item" href="#"><?php echo $pon->order_number; ?></a>
                                             
                                             <?php
 
@@ -119,7 +119,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Number*</label>
-                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers"  readonly required> 
+                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers"  required> 
                                         <span class="helper-text"><?php echo form_error('order_number'); ?></span>
                                     </div>
 
@@ -152,10 +152,10 @@
                                                                    
                                     </div>
                                     
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Web Portal</label>
                                         <input type="text" class="form-control" name="order_website" placeholder="Enter Website" readonly >
-                                    </div>
+                                    </div> 
                   
                                     <div class="form-group">
                                         <label>Lender Phone 1</label>
@@ -170,7 +170,7 @@
                                     <div class="form-group">
                                         <label>Lender Phone 3</label>
                                         <input type="text" class="form-control" name="order_phone3" placeholder="Enter Phone" >
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="form-group">
@@ -192,18 +192,38 @@
                                         <span class="helper-text"><?php echo form_error('order_appraiser_id'); ?></span>                                
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Appraiser Email</label>
                                         <input type="text" class="form-control" name="order_appraiser_email" placeholder="Enter Email" readonly >
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group">
                                         <label>Expense</label>
                                         <input type="text" class="form-control" name="order_expense" placeholder="Enter Expense" >
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Sub Appraiser Name</label>
+                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id2">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($appraiser_list as $app){
+                                            ?>                                            
+                                            <option value="<?php echo $app->app_id ?>"><?php echo $app->app_name ?></option>
+                                            <?php } ?>
+                                        </select>                                    
+                                    </div>
 
-                                    
+                                    <div class="form-group">
+                                        <label>Sub Appraiser Expense</label>
+                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Revenue*</label>
+                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" required>
+                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
+                                    </div>
 
                                                 
                                     
@@ -278,27 +298,19 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Sub Appraiser Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id2">
-                                            <option value=""></option>
-                                            <?php
-                                            foreach($appraiser_list as $app){
-                                            ?>                                            
-                                            <option value="<?php echo $app->app_id ?>"><?php echo $app->app_name ?></option>
-                                            <?php } ?>
-                                        </select>                                    
-                                    </div>
+                                    <label>Payment Method*</label>
+                                    <select class="form-control select2-single" data-width="100%" name="order_paymentmethod" required>
+                                        <option value=""></option>
+                                        <option value="Bill Client">Bill Client</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="COD">COD</option>
+                                    </select>                       
+                                    <span class="helper-text"><?php echo form_error('order_paymentmethod'); ?></span>       
+                                </div>
 
-                                    <div class="form-group">
-                                        <label>Sub Appraiser Expense</label>
-                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" >
-                                    </div>
+                                    
 
-                                    <div class="form-group">
-                                        <label>Revenue*</label>
-                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" required>
-                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
-                                    </div>
+                                    
                                
 
                                     
@@ -330,13 +342,13 @@
 
                                     <div class="form-group">
                                         <label>Loan Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_loan_type" required>
+                                        <select class="form-control select2-single" data-width="100%" onchange="loantypeChange()" name="order_loan_type" required>
                                             <option value=""></option>
                                             <?php
-                                            $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
-                                            foreach($loanType as $lt){
+                                            // $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
+                                            foreach($loan_types_list as $lt){
                                             ?>                                            
-                                            <option value="<?php echo $lt ?>"><?php echo $lt ?></option>
+                                            <option data-desc="<?php echo $lt->loan_desc ?>" value="<?php echo $lt->loan_id . "|" . $lt->loan_name . "|" . $lt->loan_desc ?> "><?php echo $lt->loan_name ?></option>
                                             <?php } ?>
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
@@ -374,12 +386,12 @@
                                         <label>Action </label>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio1" name="order_action"
-                                                class="custom-control-input" value="No" >
+                                                class="custom-control-input" value="No" checked>
                                             <label class="custom-control-label" for="customRadio1">No</label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio2" name="order_action"
-                                                class="custom-control-input" value="Yes" checked>
+                                                class="custom-control-input" value="Yes" >
                                             <label class="custom-control-label" for="customRadio2">Yes</label>
                                         </div>                                        
                                     </div>
@@ -499,16 +511,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Payment Method*</label>
-                                    <select class="form-control select2-single" data-width="100%" name="order_paymentmethod" required>
-                                        <option value=""></option>
-                                        <option value="Bill Client">Bill Client</option>
-                                        <option value="Credit Card">Credit Card</option>
-                                        <option value="COD">COD</option>
-                                    </select>                       
-                                    <span class="helper-text"><?php echo form_error('order_paymentmethod'); ?></span>       
-                                </div>
+                                
 
                                     
 
@@ -659,7 +662,16 @@
                     </div><!-- card mb-4 End -->
 
 
-                   
+                    <div id="loantypeModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                   <div id="loanTypeDesc"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
                 </div>
@@ -708,6 +720,15 @@ $("input[name=order_website]").val(website);
 $("input[name=order_phone]").val(phone);
 $("input[name=order_cl_email]").val(email);
 
+}
+
+function loantypeChange(){
+    desc = $("select[name=order_loan_type]").find(':selected').data('desc');
+    console.log(desc);
+    $("#loantypeModal").modal();
+    $("#loanTypeDesc").html(desc);
+    
+    // $("input[name=order_appraiser_email]").val(email);
 }
 
 

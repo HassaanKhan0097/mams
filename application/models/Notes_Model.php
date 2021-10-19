@@ -45,6 +45,14 @@ class Notes_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+
+    public function loanCreate($data)
+    {
+       $this->db->insert("notes", $data);
+       $result = $this->db->insert_id();
+       return $result;
+    }
+
     
 
 }

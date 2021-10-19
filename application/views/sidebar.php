@@ -148,6 +148,11 @@
                     </a>
                 </li> 
                 <li>
+                    <a href="<?php echo base_url(); ?>loantype">
+                        <i class="iconsminds-management"></i> <span class="d-inline-block">Loan Types</span>
+                    </a>
+                </li> 
+                <li>
                     <a href="<?php echo base_url(); ?>autoemail">
                         <i class="iconsminds-at-sign"></i> <span class="d-inline-block">Auto E-Mail</span>
                     </a>

@@ -13,6 +13,8 @@ class Order extends CI_Controller {
         $this->load->model('OrderTypes_Model');
         $this->load->model('StatusInfo_Model');
         $this->load->model('AssTypes_Model');
+        $this->load->model('LoanTypes_Model');
+        $this->load->model('Notes_Model');
         
 
         
@@ -41,6 +43,7 @@ class Order extends CI_Controller {
         $data['status_info_list'] = $this->StatusInfo_Model->get(); 
         $data['assignment_types_list'] = $this->AssTypes_Model->get();
         $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
+        $data['loan_types_list'] = $this->LoanTypes_Model->get();
         
         // echo "Start";
         // echo "<pre>";
@@ -52,6 +55,11 @@ class Order extends CI_Controller {
     public function create_order()
     {
         // echo "Reached";
+
+
+
+
+    
         $this->form_validation->set_rules('order_number','order_number','required');
         $this->form_validation->set_rules('order_client_id','order_client_id','required');
         $this->form_validation->set_rules('order_appraiser_id','order_appraiser_id','required');
@@ -69,23 +77,11 @@ class Order extends CI_Controller {
         $this->form_validation->set_rules('order_date','order_date','required');
         $this->form_validation->set_rules('order_duedate','order_duedate','required');
         
-        // $this->form_validation->set_rules('order_address','order_address','required');
-        // $this->form_validation->set_rules('order_type_id','order_type_id','required');
-        // $this->form_validation->set_rules('order_assignment_id','order_assignment_id','required');
-        // $this->form_validation->set_rules('order_state','order_state','required');
-        // $this->form_validation->set_rules('order_status_id','order_status_id','required');
-        // $this->form_validation->set_rules('order_client_id','order_client_id','required');
-        // $this->form_validation->set_rules('order_zipcode','order_zipcode','required');
-        // $this->form_validation->set_rules('order_date','order_date','required');
-        // $this->form_validation->set_rules('order_borrower','Borrower','required');
-        // $this->form_validation->set_rules('order_appraiser_id','order_appraiser_id','required');
-        // $this->form_validation->set_rules('upd_order_appraiser_id2','Sub Appraiser Name','required');
-        // $this->form_validation->set_rules('order_paymentmethod','order_paymentmethod','required');
-   
+       
 
         if ($this->form_validation->run() == TRUE) {
             // $order_number = substr($this->input->post('order_number'),4);
-            $data['order_number'] = substr($this->input->post('order_number'),4);
+            $data['order_number'] = $this->input->post('order_number');
             $data['order_address'] = $this->input->post('order_address');
             $data['order_type_id'] = $this->input->post('order_type_id');
             $data['order_loan_number'] = $this->input->post('order_loan_number');
@@ -122,7 +118,9 @@ class Order extends CI_Controller {
             $data['order_purchase'] = $this->input->post('order_purchase');
             $data['order_revenue'] = $this->input->post('order_revenue');
             $data['order_expense'] = $this->input->post('order_expense');
-            $data['order_loan_type'] = $this->input->post('order_loan_type');
+            $lt = $this->input->post('order_loan_type');
+            
+            $data['order_loan_type'] =substr($lt,0,strpos($lt,"|"));
             $data['order_assignment_addon'] = $this->input->post('order_assignment_addon');
             $data['order_borrower_phone1'] = $this->input->post('order_borrower_phone1');
             $data['order_borrower_phone2'] = $this->input->post('order_borrower_phone2');
@@ -196,7 +194,32 @@ class Order extends CI_Controller {
             
 
             $data['order_file']  = serialize($filenames);
- 
+            
+
+            $loggedUser = $this->session->userdata('loggedUser');
+
+            $dataNote['order_id'] = $this->input->post('order_number');
+            $dataNote['user_id'] = $loggedUser['user_id'];        
+            
+
+            $start = strpos($lt, "|");
+            $end = strrpos($lt, "|");
+    
+            $lenSubject = $end - $start;
+            $subject = substr($lt, $start+1, $lenSubject-1);
+    
+            $desc = substr($lt, $end+1);
+
+            $dataNote['subject'] = $subject;
+            $dataNote['notes'] = $desc;
+            $dataNote['date'] = date("Y/m/d") . " ".date("h:i:sa");
+            $dataNote['hide_client'] ="off";
+            $dataNote['hide_appraiser'] = "off";
+
+
+            
+            
+            $this->Notes_Model->loanCreate($dataNote);
             $result = $this->Order_Model->create($data);
 
             if($result > 0) {
@@ -227,10 +250,21 @@ class Order extends CI_Controller {
         $data['status_info_list'] = $this->StatusInfo_Model->get();
         $data['client_list'] = $this->Client_Model->get();
         $data['appraiser_list'] = $this->Appraiser_Model->get();
+        $data['loan_types_list'] = $this->LoanTypes_Model->get();
 
 
         $data['ord_single'] = $this->Order_Model->getById($id);
         $data['order_single'] = $data['ord_single'][0];
+
+
+
+        // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
+ 
+        $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
+        $data['notes'] = $this->Notes_Model->getById($id);
+        $data['loggedUser'] = $this->session->userdata('loggedUser');
+
 
         // echo "<pre>";
         // print_r( $data['order_single'] );
