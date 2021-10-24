@@ -137,64 +137,74 @@ class Order extends CI_Controller {
 
             $filenames = [];
 
-            // Count total files
-            $countfiles = count($_FILES['order_file']['name']);
- 
-            // Looping all files
-            for($i=0;$i<$countfiles;$i++) {
+            $fn = array ();
+            mkdir('uploads/orders/' . $data['order_number']);
+            
+            
 
-                // Define new $_FILES array - $_FILES['file']
-                $_FILES['file']['name'] = $_FILES['order_file']['name'][$i];
-                $_FILES['file']['type'] = $_FILES['order_file']['type'][$i];
-                $_FILES['file']['tmp_name'] = $_FILES['order_file']['tmp_name'][$i];
-                $_FILES['file']['error'] = $_FILES['order_file']['error'][$i];
-                $_FILES['file']['size'] = $_FILES['order_file']['size'][$i];
+            $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
 
 
-                $config['upload_path']          = './uploads/orders/';
-                $config['allowed_types']        = '*';
-                $config['max_size']             = 10024; // 10mb you can set the value you want
-                $config['max_width']            = 6000; // 6000px you can set the value you want
-                $config['max_height']           = 6000; // 6000px
-                $new_name = $data['order_number'].$i;
-                $config['file_name'] = $new_name;
+            $orderfile_input = ["of_contract","of_option","of_comparable","of_plat","of_plan","of_condo","of_adu","of_photo","of_client"];
+  
 
-                $this->load->library('upload', $config);
+             // ForEach Start
+            foreach($orderfile_input as $of_input)
+            {          
+            
+               
+                // Count total files
+                // $countfiles = count($_FILES[$of_input]['name']);
+                $countfiles = count(array_filter($_FILES[$of_input]['name']));
+               
+                // Looping all files 
+                for($i=0;$i<$countfiles;$i++) {
 
-                if ( ! $this->upload->do_upload('file'))
-                {
-                        $error = array('error' => $this->upload->display_errors());
+                    // Define new $_FILES array - $_FILES['file']
+                    $_FILES['file']['name'] = $_FILES[$of_input]['name'][$i];
+                    $_FILES['file']['type'] = $_FILES[$of_input]['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES[$of_input]['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES[$of_input]['error'][$i];
+                    $_FILES['file']['size'] = $_FILES[$of_input]['size'][$i];
 
-                        echo "<pre>";
-                        print_r($error);
+                    $config['upload_path']          = './uploads/orders/' . $data['order_number'] . '/';
+                    $config['allowed_types']        = '*';
+                    $config['max_size']             = 10024; // 10mb you can set the value you want
+                    $config['max_width']            = 6000; // 6000px you can set the value you want
+                    $config['max_height']           = 6000; // 6000px                
+                    $new_name = $_FILES[$of_input]['name'][$i] ;
 
-                        // $this->session->set_flashdata('message_error', 'Attachment Upload Failed!');
-                        // redirect("clients/create");
+                    $config['file_name'] = $new_name;
+                    array_push($fn,array($of_input , $_FILES[$of_input]['name'][$i]  ) );
+
+                    $this->load->library('upload', $config);
+
+                    if ( ! $this->upload->do_upload('file'))
+                    {
+                            $error = array('error' => $this->upload->display_errors());                            
+                    }
+                    else
+                    {
+                            $uploadedData = array('upload_data' => $this->upload->data());                           
+                    }
+                    unset($this->upload);
                 }
-                else
-                {
-                        $uploadedData = array('upload_data' => $this->upload->data());
-
-                        // Initialize array and save every entry to attachment db
-                        $filenames[] = $uploadedData['upload_data']['file_name'];
-
-                        echo "<pre>";
-                        print_r($filenames);
-
-                }
-
-                unset($this->upload);
-
+                
             }
+            // ForEach End
+        
 
 
-        //     echo "<pre>";
-        // echo "Create Controller after for";
-        // print_r($data);
-            
+            $tmpArr = array();
+   
+            foreach ($fn as $sub) {
+            $tmpArr[] = implode(',',$sub);
+            }
+            $result = implode('|',$tmpArr);
 
-            $data['order_file']  = serialize($filenames);
-            
+
+           
+            $data['order_file']  = $result;
 
             $loggedUser = $this->session->userdata('loggedUser');
 

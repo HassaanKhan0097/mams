@@ -575,18 +575,64 @@
 
 
                                 
-
+                                <!-- Contract,pexels-fauxels-3182749.jpg|Contract,pexels-fauxels-3184434.jpg -->
                                 <div class="col-sm-12 mb-4">
-                                    <h5 class="mb-4">Attach File</h5>
+                                    <h5 class="mb-4">Attach Files</h5>
                                     <?php 
                                         if($order_single->order_file != '') {
-                                            $filesArray = unserialize($order_single->order_file);
-                                            foreach ($filesArray as $file)
-                                            { ?>
-                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$file; ?>">Attached File</a></u><br/><br/>
-                                            <?php }
+                                            $str = $order_single->order_file;
+                                            $tmpArr = explode("|",$str); 
+                                            $fn = array ();
+                                            foreach ($tmpArr as $sub) {
+                                            array_push($fn,explode(",",$sub));
+                                            }
+                                            $orderfile_input = ["of_contract","of_option","of_comparable","of_plat","of_plan","of_condo","of_adu","of_photo","of_client"];
+                                            $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
+
+                                           
+                                            $of_count = 0;$past_f= "";
+                                            foreach($fn as $f){
+                                                $tmp = $orderfile_input[$of_count];
+                                                $tmp_head= $arr[$of_count];
+
+                                                do {
+                                                    if($f[0] == $tmp)
+                                                    {
+                                                        
+                                                         ?>
+                                                        <?php 
+                                                        if($past_f != $f[0])
+                                                        {
+                                                        echo "<h6><b>" .$tmp_head . "</b></h6>"; echo "<br>"; 
+                                                        }
+                                                        $past_f = $f[0];
+                                                        ?>
+                                                            <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$order_single->order_number. "/".$f[1]; ?>"><?php echo $f[1] ?></a></u><br/><br/>
+                                                        <?php 
+                                                        $continue   = false;
+                                                    }else{
+                                                        $of_count++;
+                                                        $tmp = $orderfile_input[$of_count];
+                                                        $tmp_head= $arr[$of_count];
+
+                                                        $continue = true;
+                                                    }
+                                                    
+                                                } while ($continue == true);
+
+                                                
+                                                
+                                            }
+                                            // $filesArray = unserialize($order_single->order_file);
+                                            // echo "<pre>";
+                                            // print_r($fn);
+                                           
                                         } else { ?> No file(s) attached. <?php }
                                     ?>
+
+
+                                       
+                                    
                                 </div>
 
 

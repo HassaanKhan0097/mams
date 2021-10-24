@@ -618,21 +618,36 @@
 
                                 <div class="col-sm-12 mb-4">
                                     
-                                        <!-- <div class="card-body"> -->
-                                            <h5 class="mb-4">Attach File</h5>
+                                <h5 class="mb-4">Attach File</h5>
 
-                                                <!-- <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">Upload</span>
-                                                    </div> -->
-                                                    <!-- <div class="custom-file"> -->
-                                                        <input type="file" name="order_file[]" id="inputGroupFile01" multiple>
-                                                        <!-- <label class="custom-file-label" for="inputGroupFile01">Choose file</label> -->
-                                                    <!-- </div> -->
-                                                <!-- </div> -->
+
+<div class="col-sm-4">
+    <div class="form-group">
+    Select Category                                                     
+        <select class="form-control select2-single" data-width="100%" name="file_cat" onchange="file_change()" >
+            <option value=""></option>
+            <?php
+
+            $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
+       
+            foreach($arr as $a){
+            ?>                                            
+            <option value="<?php echo $a; ?>"><?php echo $a; ?></option>
+            <?php } ?>
+        </select>                                             </div>
+</div>
+               
+          <div id="f_contract" style="display:none;"> Contract:  <input type="file" name="of_contract[]"  multiple ></div>
+          <div id="f_option" style="display:none;">  Option Sheets: <input type="file" name="of_option[]"  multiple  ></div>
+          <div id="f_comparable" style="display:none;">  Comparable Info: <input type="file" name="of_comparable[]" multiple ></div>
+          <div  id="f_plat" style="display:none;">  Plat: <input type="file" name="of_plat[]" multiple ></div>
+          <div id="f_plan" style="display:none;">  Plans/Specs: <input type="file" name="of_plan[]" multiple ></div>
+          <div id="f_condo" style="display:none;">  Condo Questionnaire: <input type="file" name="of_condo[]"  multiple ></div>
+          <div id="f_adu" style="display:none;"> ADU  Letter: <input type="file" name="of_adu[]" multiple ></div>
+          <div id="f_photo" style="display:none;">  Photo: <input type="file" name="of_photo[]"  multiple ></div>
+          <div id="f_client" style="display:none;">  Client Instructions: <input type="file" name="of_client[]"  multiple ></div>
 
                                             
-                                        <!-- </div> -->
                                     
                                 </div>
 
@@ -660,6 +675,12 @@
                             </form>
                         </div>
                     </div><!-- card mb-4 End -->
+
+
+
+
+
+                    <!-- card mb-4 End -->
 
 
                     <div id="loantypeModal" class="modal fade" role="dialog">
@@ -708,6 +729,42 @@
     currentOrder = parseInt(lastOrder.substr(4)) + 1 ;
     $("input[name=order_number]").val("MRQ-"+ currentOrder);
 $("#select-test").select2();
+
+function file_change(){
+    // <input type="file" name="of_contract[]" id="f_contract" multiple style="display:none;">
+    // <input type="file" name="of_option[]" id="f_option" multiple  style="display:none;">
+    // <input type="file" name="of_comparable[]" id="f_comparable" multiple style="display:none;">
+    // <input type="file" name="of_plat[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_plan[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_condo[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_adu[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_photo[]" id="f_photo" multiple style="display:none;">
+    // <input type="file" name="of_client[]" id="f_client" multiple style="display:none;">
+    // "","","","",""
+
+    $("#f_contract").hide();
+    $("#f_option").hide();
+    $("#f_comparable").hide();
+    $("#f_plat").hide();
+    $("#f_plan").hide();
+    $("#f_condo").hide();
+    $("#f_adu").hide();
+    $("#f_photo").hide();
+    $("#f_client").hide();
+
+    f = $("select[name=file_cat]").find(':selected').val();
+
+    if( f == "Contract"){$("#f_contract").show();}
+    else if(f == "Option Sheets"){$("#f_option").show();}
+    else if(f == "Comparable Info"){$("#f_comparable").show();}
+    else if(f == "Plat"){$("#f_plat").show();}
+    else if(f == "Plans/Specs"){$("#f_plan").show();}
+    else if(f == "Condo Questionnaire"){$("#f_condo").show();}
+    else if(f == "ADU Letter"){$("#f_adu").show();}
+    else if(f == "Photo"){$("#f_photo").show();}
+    else if(f == "Client Instructions"){$("#f_client").show();}
+
+}
 
 function lenderChange(){
     amc = $("select[name=order_client_id]").find(':selected').data('amc');
