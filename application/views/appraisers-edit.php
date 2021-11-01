@@ -43,6 +43,8 @@
                 <div class="col-12">
                     <h1>Edit Appraiser</h1>
                     <div class="text-zero top-right-button-container">
+                    <a href="<?php echo base_url(); ?>PdfReport/appraiserReport/<?php echo $appraiser_single->app_id; ?>" class="btn btn-primary btn-lg top-right-button mr-1" >Get PDF</a>
+
                             <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
                                                 data-target="#deleteModal">Delete</button>
                         </div>

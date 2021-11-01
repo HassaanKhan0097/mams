@@ -23,7 +23,28 @@ class Order_Model extends CI_Model {
 
     public function getById($id)
     {
-        $this->db->select("*, DATE_FORMAT(order_duedate,'%m/%d/%Y') as order_duedate, DATE_FORMAT(order_date,'%m/%d/%Y') as order_date, DATE_FORMAT(order_appointmentdate,'%m/%d/%Y') as order_appointmentdate, DATE_FORMAT(order_completedate,'%m/%d/%Y') as order_completedate, at.at_id as at_id, at.at_name AS at_name, at2.at_id as at2_id, at2.at_name AS at2_name, at3.at_id AS at3_id, at3.at_name AS at3_name, cl.cl_id AS cl_id, cl.cl_name AS cl_name, cl2.cl_id AS cl2_id, cl2.cl_name AS cl2_name");
+        $this->db->select("*, DATE_FORMAT(order_duedate,'%m/%d/%Y') as order_duedate, 
+        DATE_FORMAT(order_date,'%m/%d/%Y') as order_date, 
+        DATE_FORMAT(order_appointmentdate,'%m/%d/%Y') as order_appointmentdate, 
+        DATE_FORMAT(order_completedate,'%m/%d/%Y') as order_completedate, 
+        at.at_id as at_id, 
+        at.at_name AS at_name, 
+        at2.at_id as at2_id, 
+        at2.at_name AS at2_name, 
+        at3.at_id AS at3_id, 
+        at3.at_name AS at3_name, 
+        cl.cl_id AS cl_id, 
+        cl.cl_name AS cl_name,        
+        cl.cl_email AS cl_email, 
+        cl.cl_email2 AS cl_email2,
+        cl.cl_contact AS cl_contact, 
+        cl.cl_address AS cl_address, 
+        cl.cl_website AS cl_website, 
+        cl.cl_amc_name AS cl_amc_name, 
+        cl2.cl_id AS cl2_id, 
+        cl2.cl_name AS cl2_name");
+
+
         $this->db->from('order');
         $this->db->join('appraiser','appraiser.app_id = order.order_appraiser_id', 'left');
         $this->db->join('assignment_types as at','at.at_id = order.order_assignment_id', 'left'); 
@@ -70,6 +91,15 @@ class Order_Model extends CI_Model {
         $this->db->where('cl_id', $id);
         $this->db->delete('client'); 
         return $this->db->affected_rows();
+    }
+
+    public function getNotesById($id)
+    {
+        $this->db->where('order_id', $id);
+        $this->db->from('notes');
+        $this->db->join('users','users.user_id = notes.user_id');
+        $query = $this->db->get();
+        return $query->result();
     }
 
 

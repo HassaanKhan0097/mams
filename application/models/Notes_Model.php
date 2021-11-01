@@ -17,8 +17,6 @@ class Notes_Model extends CI_Model {
         $this->db->join('users','users.user_id = notes.user_id');
         $query = $this->db->get();
         return $query->result();
-        // $query = $this->db->where("notes_id",$id)->get("notes");
-        // return $query->result();
     }
 
     public function create($data)
@@ -52,9 +50,6 @@ class Notes_Model extends CI_Model {
        $result = $this->db->insert_id();
        return $result;
     }
-
-    
-
 }
 
 ?>

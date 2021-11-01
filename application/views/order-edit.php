@@ -46,6 +46,8 @@
                 <div class="col-12">
                     <h1>Edit File</h1>
                     <div class="text-zero top-right-button-container">
+                    <a href="<?php echo base_url(); ?>PdfReport/orderReport/<?php echo $order_single->order_number; ?>" class="btn btn-primary btn-lg top-right-button mr-1" >Get PDF</a>
+
                             <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
                                                 data-target="#deleteModal">Delete</button>
                         </div>
@@ -763,7 +765,8 @@
                                         <td><?php echo $n->date; ?></td>
                                         <td><?php echo $n->user_username; ?></td>
                                         <td><?php echo $n->subject; ?></td>
-                                        <td><?php echo $n->notes; ?></td>                                                                               
+                                        <td><?php echo $n->notes; ?></td>  
+                                                                                                                     
                                         <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
                                                 data-target="#editModalNotes<?php echo $n->notes_id; ?>">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
