@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Mams'; //Application started with from this controller
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['Mams'] = 'Mams'; 
 
 
 

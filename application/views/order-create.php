@@ -140,10 +140,16 @@
                                             <?php
                                             foreach($client_list as $cl){
                                             ?>                                            
-                                            <option data-amc="<?php echo $cl->cl_amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
+                                            <option data-amc="<?php echo $cl->cl_amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" data-ins="<?php echo $cl->cl_ins ?>" value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
                                             <?php } ?>
                                         </select>       
                                         <span class="helper-text"><?php echo form_error('order_client_id'); ?></span>                                   
+                                    </div>
+                                    
+                                    <div class="form-group" style="display:none;">
+                                        
+                                        <input type="text" class="form-control" name="order_cl_ins" >
+                                                                   
                                     </div>
 
                                     <div class="form-group">
@@ -771,11 +777,19 @@ function lenderChange(){
     website = $("select[name=order_client_id]").find(':selected').data('website');
     phone = $("select[name=order_client_id]").find(':selected').data('phone');
     email = $("select[name=order_client_id]").find(':selected').data('email');
+    ins = $("select[name=order_client_id]").find(':selected').data('ins');
+    
+    
+    $("input[name=order_cl_ins]").val(ins);
+
+    
 
 $("input[name=order_amc]").val(amc);
 $("input[name=order_website]").val(website);
 $("input[name=order_phone]").val(phone);
 $("input[name=order_cl_email]").val(email);
+
+
 
 }
 

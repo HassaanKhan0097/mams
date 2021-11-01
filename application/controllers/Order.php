@@ -6,6 +6,12 @@ class Order extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
+
+        
+        if(!$this->session->userdata('loggedUser')){
+            redirect('Mams');
+        }
+
         $this->load->model('Order_Model');
         $this->load->model('CitiesCountries_Model');
         $this->load->model('Appraiser_Model');
@@ -93,6 +99,9 @@ class Order extends CI_Controller {
             $data['order_state'] = $this->input->post('order_state');
             $data['order_status_id'] = $this->input->post('order_status_id');
             $data['order_client_id'] = $this->input->post('order_client_id');
+
+            $cl_ins = $this->input->post('order_cl_ins');
+
             $data['order_client_id2'] = $this->input->post('order_client_id2');
             $data['order_amc'] = $this->input->post('order_amc');
             $data['order_website'] = $this->input->post('order_website');
@@ -138,10 +147,11 @@ class Order extends CI_Controller {
             $filenames = [];
 
             $fn = array ();
-            mkdir('uploads/orders/' . $data['order_number']);
+            
+              
+            // mkdir('uploads/orders/' . $data['order_number']);
             
             
-
             $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
 
 
@@ -159,6 +169,11 @@ class Order extends CI_Controller {
                
                 // Looping all files 
                 for($i=0;$i<$countfiles;$i++) {
+
+                    $path = 'uploads/orders/' . $data['order_number'];
+                    if(!is_dir($path)){
+                        mkdir($path);
+                    }
 
                     // Define new $_FILES array - $_FILES['file']
                     $_FILES['file']['name'] = $_FILES[$of_input]['name'][$i];
@@ -206,6 +221,8 @@ class Order extends CI_Controller {
            
             $data['order_file']  = $result;
 
+            // Create Notes Added
+
             $loggedUser = $this->session->userdata('loggedUser');
 
             $dataNote['order_id'] = $this->input->post('order_number');
@@ -230,7 +247,22 @@ class Order extends CI_Controller {
             
             
             $this->Notes_Model->loanCreate($dataNote);
+            // Loan Type Added in Notes Model
+
+            $dataNote2['order_id'] = $dataNote['order_id'];
+            $dataNote2['user_id'] = $dataNote['user_id']; 
+            $dataNote2['subject'] = "Client Special Instruction";
+            $dataNote2['notes'] = $cl_ins;
+            $dataNote2['date'] = $dataNote['date'];
+            $dataNote2['hide_client'] ="off";
+            $dataNote2['hide_appraiser'] = "off";
+
+            $this->Notes_Model->loanCreate($dataNote2);
+            // Client Instruction Added
+
+
             $result = $this->Order_Model->create($data);
+            // Order Added
 
             if($result > 0) {
 

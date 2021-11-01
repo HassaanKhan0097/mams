@@ -472,7 +472,7 @@
 
                   $notes = '
                   <span style="font-size: 11px; font-weight:bold; ">Notes</span> <br>
-                        <table border="1" style="font-size:9px;">
+                        <table border="1" style="font-size:9px;" cellpadding="3px">
                               <tr>
                                     <th width="20%">Date Time</th>
                                     <th width="10%">Author</th>
