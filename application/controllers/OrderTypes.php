@@ -9,6 +9,10 @@ class OrderTypes extends CI_Controller {
 
         $this->load->model('OrderTypes_Model');
 
+        if(!$this->session->userdata('loggedUser')){
+            redirect('Mams');
+        }
+
     }
 
     public function index()

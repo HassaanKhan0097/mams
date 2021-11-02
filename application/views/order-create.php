@@ -293,13 +293,13 @@
                                     </div>
                             
                                     <div class="form-group">
-                                        <label>Borrower Phone 3</label>
+                                        <label>Contact Phone</label>
                                         <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Enter Phone 3" >
                                     </div>
 
 
                                     <div class="form-group">
-                                        <label>Borrower Email</label>
+                                        <label>Contact Email</label>
                                         <input type="text" class="form-control" name="order_borrower_email" placeholder="Enter Email" >
                                     </div>
 

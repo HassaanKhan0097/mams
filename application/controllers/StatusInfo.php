@@ -8,6 +8,11 @@ class StatusInfo extends CI_Controller {
 
         $this->load->model('StatusInfo_Model');
 
+        if(!$this->session->userdata('loggedUser')){
+            redirect('Mams');
+        }
+        
+
     }
 
     public function index()
