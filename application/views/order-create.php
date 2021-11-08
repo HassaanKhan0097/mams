@@ -348,10 +348,10 @@
 
                                     <div class="form-group">
                                         <label>Loan Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" onchange="loantypeChange()" name="order_loan_type" required>
+                                        <select class="form-control select2-single" data-width="100%" name="order_loan_type" required>
                                             <option value=""></option>
                                             <?php
-                                            // $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
+                                            // onchange="loantypeChange()"  $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
                                             foreach($loan_types_list as $lt){
                                             ?>                                            
                                             <option data-desc="<?php echo $lt->loan_desc ?>" value="<?php echo $lt->loan_id . "|" . $lt->loan_name . "|" . $lt->loan_desc ?> "><?php echo $lt->loan_name ?></option>
