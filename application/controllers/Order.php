@@ -246,7 +246,7 @@ class Order extends CI_Controller {
 
             
             
-            $this->Notes_Model->loanCreate($dataNote);
+            // $this->Notes_Model->loanCreate($dataNote);
             // Loan Type Added in Notes Model
 
             $dataNote2['order_id'] = $dataNote['order_id'];

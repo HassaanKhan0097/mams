@@ -346,6 +346,28 @@
                               </tr>
                         </table>
                   ';
+
+                  // <tr>
+                  //                   <td class="leftTd">Client Email: </td>
+                  //                   <td class="rightTd">'.$data->cl_email.'</td>
+                  //             </tr>
+                  //             <tr>
+                  //                   <td class="leftTd">Client Email 2: </td>
+                  //                   <td class="rightTd">'.$data->cl_email2.'</td>
+                  //             </tr>
+                  // <tr>
+                  //                   <td class="leftTd">Complete Date: </td>
+                  //                   <td class="rightTd">'.$data->order_completedate.'</td>
+                  //             </tr>
+                  //             <tr>
+                  //                   <td class="leftTd">Appointment Date: </td>
+                  //                   <td class="rightTd">'.$data->order_appointmentdate.'</td>
+                  //             </tr>
+                  //             <tr>
+                  //                   <td class="leftTd">Appointment Time: </td>
+                  //                   <td class="rightTd">'.$data->order_appointment_time.'</td>
+                  //             </tr>
+
                   $leftCol = '
                         <style>
                               .leftTd { width: 30%; }
@@ -363,30 +385,22 @@
                                <tr>
                                     <td class="leftTd">Entry Contact: </td>
                                     <td class="rightTd">'.$data->order_entry.'</td>
-                              </tr>
-                              <tr>
-                                    <td class="leftTd">Borrower: </td>
-                                    <td class="rightTd">'.$data->order_borrower.'</td>
-                              </tr>
-                               <tr>
-                                    <td class="leftTd">Co Borrower: </td>
-                                    <td class="rightTd">'.$data->order_co_borrower.'</td>
-                              </tr>
+                              </tr>                              
                                <tr>
                                     <td class="leftTd">Client: </td>
                                     <td class="rightTd">'.$data->cl_name.'</td>
-                              </tr>
-                               <tr>
-                                    <td class="leftTd">Client Email: </td>
-                                    <td class="rightTd">'.$data->cl_email.'</td>
-                              </tr>
-                              <tr>
-                                    <td class="leftTd">Client Email 2: </td>
-                                    <td class="rightTd">'.$data->cl_email2.'</td>
-                              </tr>
+                              </tr>                               
                                <tr>
                                     <td class="leftTd">Client Address: </td>
                                     <td class="rightTd">'.$data->cl_address.'</td>
+                              </tr>
+                               <tr>
+                                    <td class="leftTd">Client City, State: </td>
+                                    <td class="rightTd">'.$data->cl_city. ' , '.$data->cl_state.'</td>
+                              </tr>
+                               <tr>
+                                    <td class="leftTd">Client Zip Code: </td>
+                                    <td class="rightTd">'.$data->cl_zipcode.'</td>
                               </tr>
                                <tr>
                                     <td class="leftTd">AMC Name: </td>
@@ -413,6 +427,14 @@
                                     <td class="leftTd">FHA/VA Case No: </td>
                                     <td class="rightTd">'.$data->order_case_number.'</td>
                               </tr>
+                              <tr>
+                                    <td class="leftTd">Borrower: </td>
+                                    <td class="rightTd">'.$data->order_borrower.'</td>
+                              </tr>
+                               <tr>
+                                    <td class="leftTd">Co Borrower: </td>
+                                    <td class="rightTd">'.$data->order_co_borrower.'</td>
+                              </tr>
                                <tr>
                                     <td class="leftTd">Assignment Type: </td>
                                     <td class="rightTd">'.$data->at_name.'</td>
@@ -432,15 +454,7 @@
                               <tr>
                                     <td class="leftTd">Payment Amount: </td>
                                     <td class="rightTd">'.$data->order_revenue.'</td>
-                              </tr>
-                              <tr>
-                                    <td class="leftTd">Appointment Date: </td>
-                                    <td class="rightTd">'.$data->order_appointmentdate.'</td>
-                              </tr>
-                              <tr>
-                                    <td class="leftTd">Appointment Time: </td>
-                                    <td class="rightTd">'.$data->order_appointment_time.'</td>
-                              </tr>
+                              </tr>                              
                               <tr>
                                     <td class="leftTd">Orde Date: </td>
                                     <td class="rightTd">'.$data->order_date.'</td>
@@ -449,10 +463,7 @@
                                     <td class="leftTd">Due Date: </td>
                                     <td class="rightTd">'.$data->order_duedate.'</td>
                               </tr>
-                              <tr>
-                                    <td class="leftTd">Complete Date: </td>
-                                    <td class="rightTd">'.$data->order_completedate.'</td>
-                              </tr>
+                              
 
                               
                               
