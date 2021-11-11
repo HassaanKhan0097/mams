@@ -7,12 +7,14 @@ class Clients extends CI_Controller {
 
         $this->load->model('Client_Model');
         $this->load->model('CitiesCountries_Model');
+        $this->load->model('Amc_Model');
 
     }
 
     public function index()
     {
         $data['client_list'] = $this->Client_Model->get(); 
+       
         $this->load->view('client-list', $data);
     }
 
@@ -21,7 +23,7 @@ class Clients extends CI_Controller {
 
         $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
         $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
-       
+        $data['amc_list'] = $this->Amc_Model->get(); 
         $this->load->view('client-create', $data);
     }
 
@@ -44,8 +46,8 @@ class Clients extends CI_Controller {
             $data['cl_state'] = $this->input->post('cl_state');
             $data['cl_zipcode'] = $this->input->post('cl_zipcode');
             $data['cl_phone'] = $this->input->post('cl_phone');
-            $data['cl_amc'] = $this->input->post('cl_amc');
-            $data['cl_amc_name'] = $this->input->post('cl_amc_name');
+            // $data['cl_amc'] = $this->input->post('cl_amc');
+            $data['cl_amc_id'] = $this->input->post('cl_amc_id');
             $data['cl_amc_website'] = $this->input->post('cl_amc_website');   
             $data['cl_fax'] = $this->input->post('cl_fax');
             $data['cl_type'] = $this->input->post('cl_type');
@@ -162,11 +164,14 @@ class Clients extends CI_Controller {
         // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
 
         $data['client_single'] = $data['cl_single'][0];    
-        
+        $data['amc_list'] = $this->Amc_Model->get();
         // echo "<pre>";
-        // print_r( unserialize($data['client_single']->cl_file));
+        // print_r( $data['client_single']);
 
-        $this->load->view('client-edit', $data);
+        // echo "<aaaaaaaaaaaaaaaaaaaaaaaaaa<pre>";
+        // print_r( $data['amc_list']);
+
+       $this->load->view('client-edit', $data);
     }
 
     public function update_client(){
@@ -187,8 +192,8 @@ class Clients extends CI_Controller {
             $data['cl_state'] = $this->input->post('upd_cl_state');
             $data['cl_zipcode'] = $this->input->post('upd_cl_zipcode');
             $data['cl_phone'] = $this->input->post('upd_cl_phone');
-            $data['cl_amc'] = $this->input->post('upd_cl_amc');
-            $data['cl_amc_name'] = $this->input->post('upd_cl_amc_name');
+            // $data['cl_amc'] = $this->input->post('upd_cl_amc');
+            $data['cl_amc_id'] = $this->input->post('upd_cl_amc_id');
             $data['cl_amc_website'] = $this->input->post('upd_cl_amc_website');
             $data['cl_fax'] = $this->input->post('upd_cl_fax');
             $data['cl_type'] = $this->input->post('upd_cl_type');

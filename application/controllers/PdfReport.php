@@ -404,7 +404,7 @@
                               </tr>
                                <tr>
                                     <td class="leftTd">AMC Name: </td>
-                                    <td class="rightTd">'.$data->cl_amc_name.'</td>
+                                    <td class="rightTd">'.$data->amc_name.'</td>
                               </tr>
                                <tr>
                                     <td class="leftTd">Purchase Price: </td>

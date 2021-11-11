@@ -177,22 +177,38 @@
                                     </div>
                                 </div> -->
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select AMC</label>
                                         <select class="form-control select2-single" data-width="100%" name="upd_cl_amc">
                                             <option value=""></option>
                                             <option value="AMC" <?php echo ( $client_single->cl_amc == 'AMC') ?  'Selected' :  ''; ?>>AMC</option>
                                             <option value="No AMC" <?php echo ( $client_single->cl_amc == 'No AMC') ?  'Selected' :  ''; ?>>No AMC</option>                                            
-                                        </select>                                    
+                                        </select>    
+
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>AMC Name</label>
-                                        <input type="type" class="form-control" name="upd_cl_amc_name" placeholder="Enter AMC Name" value="<?php echo $client_single->cl_amc_name;?>">
-                                        <span class="helper-text"><?php echo form_error('upd_cl_amc_name'); ?></span>
+
+
+                                        <select class="form-control select2-single" data-width="100%" name="upd_cl_amc_id" >
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($amc_list as $amc){
+                                            ?>                                            
+                                            <option  value="<?php echo $amc->amc_id; ?>" <?php echo ($amc->amc_id  ==  $client_single->cl_amc_id) ?  'Selected' :  ''; ?>><?php echo $amc->amc_name ?></option>
+                                           
+                                            
+                                        <?php } ?>
+                                        <!-- <option value="<?php echo  $client_single->cl_amc_id ;?>"><?php echo  $client_single->cl_amc_id ;?></option> -->
+                                       
+                                        </select>  
+
+
+                                                <span class="helper-text"><?php echo form_error('upd_cl_amc_id'); ?></span>
                                     </div>
                                 </div>
 
@@ -205,20 +221,20 @@
                                 </div>
 
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" class="form-control" name="upd_cl_email" value="<?php echo $client_single->cl_email;?>" >
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email 2</label>
                                         <input type="email" class="form-control" name="upd_cl_email2" value="<?php echo $client_single->cl_email2;?>" >
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Website</label>
                                         <input type="text" class="form-control" name="upd_cl_website" value="<?php echo $client_single->cl_website;?>" >

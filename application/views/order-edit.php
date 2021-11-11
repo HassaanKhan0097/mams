@@ -70,33 +70,33 @@
                     <div class="card mb-4" id="edit_file">
                         <div class="card-body">
                             <h5 class="mb-4">Complete File Record</h5>
-                            <form action="<?php echo base_url(); ?>Order/update_order/<?php echo $order_single->order_number; ?>" method="post">
+                            <form action="<?php echo base_url(); ?>Order/update_order/<?php echo $order_single->order_number; ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Number*</label>
-                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers" value="<?php echo $order_single->order_number ?>" readonly required> 
+                                        <input type="text" class="form-control" name="upd_order_number" placeholder="Enter Order Numbers" value="<?php echo $order_single->order_number ?>" readonly required> 
                                         <span class="helper-text"><?php echo form_error('order_number'); ?></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Loan Number</label>
-                                        <input type="number" class="form-control" name="order_loan_number" placeholder="Enter Loan Number" value="<?php echo $order_single->order_loan_number ?>">
+                                        <input type="number" class="form-control" name="upd_order_loan_number" placeholder="Enter Loan Number" value="<?php echo $order_single->order_loan_number ?>">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>FHA/VA Case #</label>
-                                        <input type="text" class="form-control" name="order_case_number" placeholder="Enter FHA VA Case" value="<?php echo $order_single->order_case_number ?>">
+                                        <input type="text" class="form-control" name="upd_order_case_number" placeholder="Enter FHA VA Case" value="<?php echo $order_single->order_case_number ?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Lender Name*</label>
-                                        <select class="form-control select2-single" onchange="lenderChange()" data-width="100%" name="order_client_id" required>
+                                        <select class="form-control select2-single" onchange="lenderChange()" data-width="100%" name="upd_order_client_id" required>
                                             <option value=""></option>
                                             <?php
                                             foreach($client_list as $cl){
                                             ?>                                            
-                                            <option data-amc="<?php echo $cl->cl_amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" value="<?php echo $cl->cl_id ?>"  <?php echo ( $order_single->order_client_id ==  $cl->cl_id ) ?  'Selected' :  ''; ?> ><?php echo $cl->cl_name ?></option>
+                                            <option  data-amc-id="<?php echo $cl->cl_amc_id ?>" data-amc-name="<?php echo $cl->amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" value="<?php echo $cl->cl_id ?>"  <?php echo ( $order_single->order_client_id ==  $cl->cl_id ) ?  'Selected' :  ''; ?> ><?php echo $cl->cl_name ?></option>
                                             <?php } ?>
                                         </select>       
                                         <span class="helper-text"><?php echo form_error('order_client_id'); ?></span>                                   
@@ -104,39 +104,39 @@
 
                                     <div class="form-group">
                                         <label>AMC</label>
-                                        <input type="text" class="form-control" name="order_amc" placeholder="Enter AMC" value="<?php echo $order_single->cl_amc_name ?>" readonly >
+                                        <input type="text" class="form-control" name="upd_order_amc" placeholder="Enter AMC" value="<?php echo $order_single->amc_name ?>" readonly >
                                                                    
                                     </div>
                                     
                                     <!-- <div class="form-group">
                                         <label>Web Portal</label>
-                                        <input type="text" class="form-control" name="order_website" placeholder="Enter Website" value="<?php echo $order_single->cl_website ?>" readonly >
+                                        <input type="text" class="form-control" name="upd_order_website" placeholder="Enter Website" value="<?php echo $order_single->cl_website ?>" readonly >
                                     </div>
                   
                                     <div class="form-group">
                                         <label>Lender Phone 1</label>
-                                        <input type="text" class="form-control" name="order_phone" placeholder="Enter Phone 1" value="<?php echo $order_single->cl_phone ?>" readonly>
+                                        <input type="text" class="form-control" name="upd_order_phone" placeholder="Enter Phone 1" value="<?php echo $order_single->cl_phone ?>" readonly>
                                     </div>
                              
                                     <div class="form-group">
                                         <label>Lender Phone 2</label>
-                                        <input type="text" class="form-control" name="order_phone2" placeholder="Enter Phone" value="<?php echo $order_single->order_phone2 ?>">
+                                        <input type="text" class="form-control" name="upd_order_phone2" placeholder="Enter Phone" value="<?php echo $order_single->order_phone2 ?>">
                                     </div>
                             
                                     <div class="form-group">
                                         <label>Lender Phone 3</label>
-                                        <input type="text" class="form-control" name="order_phone3" placeholder="Enter Phone" value="<?php echo $order_single->order_phone3 ?>">
+                                        <input type="text" class="form-control" name="upd_order_phone3" placeholder="Enter Phone" value="<?php echo $order_single->order_phone3 ?>">
                                     </div> -->
 
 
                                     <div class="form-group">
                                         <label>Lender Email</label>
-                                        <input type="text" class="form-control" name="order_cl_email" placeholder="Enter Email" value="<?php echo $order_single->cl_email ?>" readonly >
+                                        <input type="text" class="form-control" name="upd_order_cl_email" placeholder="Enter Email" value="<?php echo $order_single->cl_email ?>" readonly >
                                     </div>
                                
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
-                                        <select class="form-control select2-single" data-width="100%" onchange="appraiserChange()" name="order_appraiser_id" required>
+                                        <select class="form-control select2-single" data-width="100%" onchange="appraiserChange()" name="upd_order_appraiser_id" required>
                                             <option value=""></option>
                                             <?php
                                             foreach($appraiser_list as $app){
@@ -150,17 +150,17 @@
 
                                     <!-- <div class="form-group">
                                         <label>Appraiser Email</label>
-                                        <input type="text" class="form-control" name="order_appraiser_email" placeholder="Enter Email" value="<?php echo $order_single->app_email ?>" readonly >
+                                        <input type="text" class="form-control" name="upd_order_appraiser_email" placeholder="Enter Email" value="<?php echo $order_single->app_email ?>" readonly >
                                     </div> -->
 
                                     <div class="form-group">
                                         <label>Expense</label>
-                                        <input type="text" class="form-control" name="order_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_expense ?>">
+                                        <input type="text" class="form-control" name="upd_order_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_expense ?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Sub Appraiser Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser_id2">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_appraiser_id2">
                                             <option value=""></option>
                                             <?php
                                             foreach($appraiser_list as $app){
@@ -172,19 +172,19 @@
 
                                     <div class="form-group">
                                         <label>Sub Appraiser Expense</label>
-                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>">
+                                        <input type="text" class="form-control" name="upd_order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Revenue*</label>
-                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
+                                        <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
                                         <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
                                     </div>
 
-
-                                    
-
-                                                
+                                    <div class="form-group">
+                                        <label>Purchase Price</label>
+                                        <input type="text" class="form-control" name="upd_order_purchase" placeholder="Enter Purchase Price" value="<?php echo $order_single->order_purchase ?>">
+                                    </div>                                                
                                     
                                 </div>
                                 <!-- 1st Column ...... col-sm-4 -->
@@ -193,13 +193,13 @@
 
                                     <div class="form-group">
                                         <label>Property Address*</label>
-                                        <input type="text" class="form-control" name="order_address" placeholder="Enter Property Address" value="<?php echo $order_single->order_address ?>" required >
+                                        <input type="text" class="form-control" name="upd_order_address" placeholder="Enter Property Address" value="<?php echo $order_single->order_address ?>" required >
                                         <span class="helper-text"><?php echo form_error('order_address'); ?></span> 
                                     </div>
 
                                     <div class="form-group">
                                         <label>City, State*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_city" required>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_city" required>
                                                 <option value=""></option>
                                                 <?php
                                                 $cityNames = ["New York City, NY", "Los Angeles, CA", "Chicago, IL"];
@@ -213,47 +213,47 @@
 
                                     <div class="form-group">
                                         <label>Zip Code*</label>
-                                        <input type="number" class="form-control" name="order_zipcode" placeholder="Enter Zip Code" value="<?php echo $order_single->order_zipcode ?>" required >
+                                        <input type="number" class="form-control" name="upd_order_zipcode" placeholder="Enter Zip Code" value="<?php echo $order_single->order_zipcode ?>" required >
                                         <span class="helper-text"><?php echo form_error('order_zipcode'); ?></span>    
                                     </div>
                                 
                                     <div class="form-group">
                                         <label>Borrower*</label>
-                                        <input type="text" class="form-control" name="order_borrower" placeholder="Enter Borrower" value="<?php echo $order_single->order_borrower ?>" required>
+                                        <input type="text" class="form-control" name="upd_order_borrower" placeholder="Enter Borrower" value="<?php echo $order_single->order_borrower ?>" required>
                                         <span class="helper-text"><?php echo form_error('order_borrower'); ?></span> 
                                     </div>
                                 
                                     <div class="form-group">
                                         <label>Co Borrower</label>
-                                        <input type="text" class="form-control" name="order_co_borrower" placeholder="Enter Co Borrower" value="<?php echo $order_single->order_co_borrower ?>">
+                                        <input type="text" class="form-control" name="upd_order_co_borrower" placeholder="Enter Co Borrower" value="<?php echo $order_single->order_co_borrower ?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Entry Contact*</label>
-                                        <input type="text" class="form-control" name="order_entry" placeholder="Enter Entry Contact" value="<?php echo $order_single->order_entry ?>" required>
+                                        <input type="text" class="form-control" name="upd_order_entry" placeholder="Enter Entry Contact" value="<?php echo $order_single->order_entry ?>" required>
                                         <span class="helper-text"><?php echo form_error('order_entry'); ?></span>
                                     </div>
 
 
                                     <div class="form-group">
                                         <label>Borrower Phone 1</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone1" placeholder="Enter Phone 1" value="<?php echo $order_single->order_borrower_phone1 ?>">
+                                        <input type="text" class="form-control" name="upd_order_borrower_phone1" placeholder="Enter Phone 1" value="<?php echo $order_single->order_borrower_phone1 ?>">
                                     </div>
                              
                                     <div class="form-group">
                                         <label>Borrower Phone 2</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone2" placeholder="Enter Phone 2" value="<?php echo $order_single->order_borrower_phone2 ?>">
+                                        <input type="text" class="form-control" name="upd_order_borrower_phone2" placeholder="Enter Phone 2" value="<?php echo $order_single->order_borrower_phone2 ?>">
                                     </div>
                             
                                     <div class="form-group">
                                         <label>Contact Phone</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Enter Phone 3" value="<?php echo $order_single->order_borrower_phone3 ?>">
+                                        <input type="text" class="form-control" name="upd_order_borrower_phone3" placeholder="Enter Phone 3" value="<?php echo $order_single->order_borrower_phone3 ?>">
                                     </div>
 
 
                                     <div class="form-group">
                                         <label>Contact Email</label>
-                                        <input type="text" class="form-control" name="order_borrower_email" placeholder="Enter Email" value="<?php echo $order_single->order_borrower_email ?>">
+                                        <input type="text" class="form-control" name="upd_order_borrower_email" placeholder="Enter Email" value="<?php echo $order_single->order_borrower_email ?>">
                                     </div>
 
 
@@ -286,7 +286,7 @@
 
                                     <div class="form-group">
                                         <label>Order Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_type_id"  required>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_type_id"  required>
                                             <option value=""></option>
                                             <?php
                                             foreach($order_types_list as $ol){
@@ -300,7 +300,7 @@
 
                                     <div class="form-group">
                                         <label>Loan Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_loan_type" required>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_loan_type" required>
                                             <option value=""></option>
 
                                             <?php
@@ -318,7 +318,7 @@
                                    
                                     <div class="form-group">
                                         <label>Assignment Type*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id" required>
                                             <option value=""></option>
                                             <?php
                                             foreach($assignment_types_list as $at){
@@ -332,7 +332,7 @@
 
                                     <div class="form-group">
                                         <label>Assignment Add-Ons</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_addon" >
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_addon" >
                                             <option value=""></option>
                                             <?php
                                             $assAdd = ["Rent Comparable Schedule", "Operating Income Statement", "REO Addendum", "ADU"];
@@ -347,12 +347,12 @@
                                     <div class="form-group action_input">
                                         <label>Action </label>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio1" name="order_action"
+                                            <input type="radio" id="customRadio1" name="upd_order_action"
                                                 class="custom-control-input" value="No" <?php echo ( $order_single->order_action == "No" ) ?  'Checked' :  ''; ?>>
                                             <label class="custom-control-label" for="customRadio1" >No</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio2" name="order_action"
+                                            <input type="radio" id="customRadio2" name="upd_order_action"
                                                 class="custom-control-input" value="Yes"  <?php echo ( $order_single->order_action == "Yes" ) ?  'Checked' :  ''; ?>>
                                             <label class="custom-control-label" for="customRadio2">Yes</label>
                                         </div>                                        
@@ -360,7 +360,7 @@
 
                                     <div class="form-group">
                                         <label>Order Status*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_status_id" required>
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_status_id" required>
                                             <option value=""></option>
                                             <?php
                                             foreach($status_info_list as $status){
@@ -374,7 +374,7 @@
                                     <div class="form-group">
                                         <label>Order Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_date"  value="<?php echo date( "m/d/Y"); ?>" value="<?php echo $order_single->order_date ?>" required>
+                                            <input type="text" class="form-control" name="upd_order_date" value="<?php echo $order_single->order_date ?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -385,7 +385,7 @@
                                     <div class="form-group">
                                         <label>Due Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_duedate" value="<?php echo $order_single->order_duedate ?>" required>
+                                            <input type="text" class="form-control" name="upd_order_duedate" value="<?php echo $order_single->order_duedate ?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -396,7 +396,7 @@
                                     <div class="form-group">
                                         <label>Appointment Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_appointmentdate" value="<?php echo $order_single->order_appointmentdate ?>">
+                                            <input type="text" class="form-control" name="upd_order_appointmentdate" value="<?php echo $order_single->order_appointmentdate ?>">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -466,7 +466,7 @@
                                 <div class="form-group">
                                     <label>Complete Date</label>
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" name="order_completedate" value="<?php echo $order_single->order_completedate ?>">
+                                        <input type="text" class="form-control" name="upd_order_completedate" value="<?php echo $order_single->order_completedate ?>">
                                         <span class="input-group-text input-group-append input-group-addon">
                                             <i class="simple-icon-calendar"></i>
                                         </span>
@@ -485,7 +485,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Special instructions</label>
-                                        <textarea  class="form-control" name="order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50"></textarea>                                    
+                                        <textarea  class="form-control" name="upd_order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50"><?php echo $order_single->order_instruction ?></textarea>                                    
                                     </div>
                                 </div>
                                 
@@ -498,7 +498,7 @@
                                 <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Sub Assignment Type</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id2">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id2">
                                             <option value=""></option>
                                             <?php
                                             foreach($assignment_types_list as $at){
@@ -512,7 +512,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Sub Assignment Type 2</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id3">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id3">
                                             <option value=""></option>
                                             <?php
                                             foreach($assignment_types_list as $at){
@@ -527,7 +527,7 @@
                                 <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>State</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_state" >
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_state" >
                                             <option value=""></option>
                                             <option value="Virginia">Virginia</option>
                                             <option value="Maryland">Maryland</option>
@@ -544,7 +544,7 @@
                                 <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Sub Client Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_client_id2">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_client_id2">
                                             <option value=""></option>
                                             <?php
                                             foreach($client_list as $cl){
@@ -563,7 +563,7 @@
                                 <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Appraiser Email 2</label>
-                                        <input type="text" class="form-control" name="order_appraiser_email2" placeholder="Enter Email 2" >
+                                        <input type="text" class="form-control" name="upd_order_appraiser_email2" placeholder="Enter Email 2" >
                                     </div>
                                 </div> -->
 
@@ -571,11 +571,14 @@
                                 <!-- <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Purchase Price</label>
-                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" >
+                                        <input type="text" class="form-control" name="upd_order_purchase" placeholder="Enter Purchase Price" >
                                     </div>
                                 </div> -->
 
-
+                                <div class="form-group" style="display:none">
+                                        <!-- <label>Purchase Price</label> -->
+                                        <input type="text" class="form-control" name="upd_old_file" value="<?php echo $order_single->order_file; ?>">
+                                </div>
                                 
                                 <!-- Contract,pexels-fauxels-3182749.jpg|Contract,pexels-fauxels-3184434.jpg -->
                                 <div class="col-sm-12 mb-4">
@@ -592,7 +595,7 @@
                                             $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
 
                                            
-                                            $of_count = 0;$past_f= "";
+                                            $of_count = 0;$past_f= "";$attachCount = 0;
                                             foreach($fn as $f){
                                                 $tmp = $orderfile_input[$of_count];
                                                 $tmp_head= $arr[$of_count];
@@ -609,7 +612,8 @@
                                                         }
                                                         $past_f = $f[0];
                                                         ?>
-                                                            <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$order_single->order_number. "/".$f[1]; ?>"><?php echo $f[1] ?></a></u><br/><br/>
+                                                        
+                                                            <div id="attach<?php $attachCount++; echo $attachCount; ?>"><u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$order_single->order_number. "/".$f[1]; ?>"><?php echo $f[1] ?></a></u> &nbsp;&nbsp;&nbsp;&nbsp; <span onclick="hitFile('<?php echo $tmp . ',' . $f[1] ?>','attach<?php echo $attachCount ?>')" style="cursor: pointer;">x</span><br/><br/></div> 
                                                         <?php 
                                                         $continue   = false;
                                                     }else{
@@ -619,6 +623,7 @@
 
                                                         $continue = true;
                                                     }
+                                                    
                                                     
                                                 } while ($continue == true);
 
@@ -630,12 +635,47 @@
                                             // print_r($fn);
                                            
                                         } else { ?> No file(s) attached. <?php }
+
                                     ?>
+
+<div class="col-sm-4">
+    <div class="form-group">
+    Select Category                                                     
+        <select class="form-control select2-single" data-width="100%" name="file_cat" onchange="file_change()" >
+            <option value=""></option>
+            <?php
+
+            $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
+       
+            foreach($arr as $a){
+            ?>                                            
+            <option value="<?php echo $a; ?>"><?php echo $a; ?></option>
+            <?php } ?>
+        </select>                                             
+    </div>
+</div>
+<!-- of_contract -->
+
+<div id="f_contract" style="display:none;"> Contract:  <input type="file" name="of_contract[]"  multiple ></div>
+          <div id="f_option" style="display:none;">  Option Sheets: <input type="file" name="of_option[]"  multiple  ></div>
+          <div id="f_comparable" style="display:none;">  Comparable Info: <input type="file" name="of_comparable[]" multiple ></div>
+          <div  id="f_plat" style="display:none;">  Plat: <input type="file" name="of_plat[]" multiple ></div>
+          <div id="f_plan" style="display:none;">  Plans/Specs: <input type="file" name="of_plan[]" multiple ></div>
+          <div id="f_condo" style="display:none;">  Condo Questionnaire: <input type="file" name="of_condo[]"  multiple ></div>
+          <div id="f_adu" style="display:none;"> ADU  Letter: <input type="file" name="of_adu[]" multiple ></div>
+          <div id="f_photo" style="display:none;">  Photo: <input type="file" name="of_photo[]"  multiple ></div>
+          <div id="f_client" style="display:none;">  Client Instructions: <input type="file" name="of_client[]"  multiple ></div>
 
 
                                        
                                     
                                 </div>
+
+
+
+
+
+
 
 
                                 <!-- Col 12 end 11		-->
@@ -926,6 +966,108 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
     <script>
+
+
+function hitFile(para,para2){
+    // console.log("File Hitted -> ", para);
+    $("#"+ para2).hide();
+    str = $("input[name=upd_old_file]").val();
+
+    // console.log("Before -> ", str);
+
+    if(str.indexOf(para+"|") != -1){
+        str = str.replace(para+"|", '');
+    }else{
+        str = str.replace(para, '');
+    }
+
+
+    if(str.charAt(str.length-1) == '|')
+    {
+        str=str.substring(0, str.length - 1)
+    }
+
+    // console.log("After -> ", str);
+
+    $("input[name=upd_old_file]").val(str);
+    
+    
+
+//     var string = 'F0123456'; 
+// string.replace(/^F0+/i, ''); '123456'
+}
+function file_change(){
+    // <input type="file" name="of_contract[]" id="f_contract" multiple style="display:none;">
+    // <input type="file" name="of_option[]" id="f_option" multiple  style="display:none;">
+    // <input type="file" name="of_comparable[]" id="f_comparable" multiple style="display:none;">
+    // <input type="file" name="of_plat[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_plan[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_condo[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_adu[]" id="" multiple style="display:none;">
+    // <input type="file" name="of_photo[]" id="f_photo" multiple style="display:none;">
+    // <input type="file" name="of_client[]" id="f_client" multiple style="display:none;">
+    // "","","","",""
+
+    $("#f_contract").hide();
+    $("#f_option").hide();
+    $("#f_comparable").hide();
+    $("#f_plat").hide();
+    $("#f_plan").hide();
+    $("#f_condo").hide();
+    $("#f_adu").hide();
+    $("#f_photo").hide();
+    $("#f_client").hide();
+
+    f = $("select[name=file_cat]").find(':selected').val();
+
+    if( f == "Contract"){$("#f_contract").show();}
+    else if(f == "Option Sheets"){$("#f_option").show();}
+    else if(f == "Comparable Info"){$("#f_comparable").show();}
+    else if(f == "Plat"){$("#f_plat").show();}
+    else if(f == "Plans/Specs"){$("#f_plan").show();}
+    else if(f == "Condo Questionnaire"){$("#f_condo").show();}
+    else if(f == "ADU Letter"){$("#f_adu").show();}
+    else if(f == "Photo"){$("#f_photo").show();}
+    else if(f == "Client Instructions"){$("#f_client").show();}
+
+}
+ 
+function lenderChange(){
+    amc_id = $("select[name=upd_order_client_id]").find(':selected').data('amc-id');
+    amc_name = $("select[name=upd_order_client_id]").find(':selected').data('amc-name');
+    website = $("select[name=upd_order_client_id]").find(':selected').data('website');
+    phone = $("select[name=upd_order_client_id]").find(':selected').data('phone');
+    email = $("select[name=upd_order_client_id]").find(':selected').data('email');
+    ins = $("select[name=upd_order_client_id]").find(':selected').data('ins');
+    
+    
+    // $("input[name=upd_order_cl_ins]").val(ins);
+
+    
+
+$("input[name=upd_order_amc]").val(amc_name);
+$("input[name=upd_order_website]").val(website);
+$("input[name=upd_order_phone]").val(phone);
+$("input[name=upd_order_cl_email]").val(email);
+
+
+}
+
+
+function loantypeChange(){
+    desc = $("select[name=upd_order_loan_type]").find(':selected').data('desc');
+    console.log(desc);
+    $("#loantypeModal").modal();
+    $("#loanTypeDesc").html(desc);
+    
+    // $("input[name=upd_order_appraiser_email]").val(email);
+}
+
+function appraiserChange(){
+    email = $("select[name=upd_order_appraiser_id]").find(':selected').data('email');
+    $("input[name=upd_order_appraiser_email]").val(email);
+}
+
         var $Table_notes = $("#Table_notes").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [

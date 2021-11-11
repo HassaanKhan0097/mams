@@ -140,7 +140,7 @@
                                             <?php
                                             foreach($client_list as $cl){
                                             ?>                                            
-                                            <option data-amc="<?php echo $cl->cl_amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" data-ins="<?php echo $cl->cl_ins ?>" value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
+                                            <option data-amc-id="<?php echo $cl->cl_amc_id ?>" data-amc-name="<?php echo $cl->amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" data-ins="<?php echo $cl->cl_ins ?>" value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
                                             <?php } ?>
                                         </select>       
                                         <span class="helper-text"><?php echo form_error('order_client_id'); ?></span>                                   
@@ -230,6 +230,13 @@
                                         <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" required>
                                         <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
                                     </div>
+
+                                    
+                                    <div class="form-group">
+                                        <label>Purchase Price</label>
+                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" >
+                                    </div>
+                              
 
                                                 
                                     
@@ -607,12 +614,7 @@
                                 </div> -->
 
 
-                                <!-- <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Purchase Price</label>
-                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" >
-                                    </div>
-                                </div> -->
+                                
 
 
                                 <div class="col-12">
@@ -773,7 +775,8 @@ function file_change(){
 }
 
 function lenderChange(){
-    amc = $("select[name=order_client_id]").find(':selected').data('amc');
+    amc_id = $("select[name=order_client_id]").find(':selected').data('amc-id');
+    amc_name = $("select[name=order_client_id]").find(':selected').data('amc-name');
     website = $("select[name=order_client_id]").find(':selected').data('website');
     phone = $("select[name=order_client_id]").find(':selected').data('phone');
     email = $("select[name=order_client_id]").find(':selected').data('email');
@@ -784,11 +787,10 @@ function lenderChange(){
 
     
 
-$("input[name=order_amc]").val(amc);
+$("input[name=order_amc]").val(amc_name);
 $("input[name=order_website]").val(website);
 $("input[name=order_phone]").val(phone);
 $("input[name=order_cl_email]").val(email);
-
 
 
 }

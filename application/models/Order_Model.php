@@ -13,6 +13,7 @@ class Order_Model extends CI_Model {
         $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');        
         // $this->db->join('city','city.city_id = order.order_city_id');
         $this->db->join('client as cl','cl.cl_id = order.order_client_id', 'left');
+        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id');
         $this->db->join('client as cl2','cl2.cl_id = order.order_client_id2', 'left');
         $this->db->join('order_types','order_types.order_id = order.order_type_id');
         $this->db->join('status_info','status_info.st_id = order.order_status_id');
@@ -43,18 +44,20 @@ class Order_Model extends CI_Model {
         cl.cl_state AS cl_state, 
         cl.cl_zipcode AS cl_zipcode, 
         cl.cl_website AS cl_website, 
-        cl.cl_amc_name AS cl_amc_name, 
+        a.amc_name AS amc_name,
         cl2.cl_id AS cl2_id, 
         cl2.cl_name AS cl2_name");
 
-
+        // cl.cl_amc_id AS cl_amc_id, 
         $this->db->from('order');
         $this->db->join('appraiser','appraiser.app_id = order.order_appraiser_id', 'left');
         $this->db->join('assignment_types as at','at.at_id = order.order_assignment_id', 'left'); 
         $this->db->join('assignment_types as at2','at2.at_id = order.order_assignment_id2', 'left'); 
-        $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');        
+        $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');  
+             
         // $this->db->join('city','city.city_id = order.order_city_id');
         $this->db->join('client as cl','cl.cl_id = order.order_client_id', 'left');
+        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id') ;
         $this->db->join('client as cl2','cl2.cl_id = order.order_client_id2', 'left');
         $this->db->join('order_types','order_types.order_id = order.order_type_id');
         $this->db->join('status_info','status_info.st_id = order.order_status_id');
@@ -65,6 +68,14 @@ class Order_Model extends CI_Model {
     }
 
 
+    public function checkId($id)
+    {
+        $query = $this->db->where("order_number =",$id)->get("order");
+        // return $query->row();
+        return $query->num_rows();
+        //   ->count_all_results()
+
+    }
     public function create($data)
     {
         // echo "<pre>";

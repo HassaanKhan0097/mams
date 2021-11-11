@@ -193,16 +193,24 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>AMC Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="cl_amc_name" >
+                                        <select class="form-control select2-single" data-width="100%" name="cl_amc_id" >
                                         <option value=""></option>
-                                            <option value="Guaranteed Rate">Guaranteed Rate</option>
+                                        <?php
+                                            foreach($amc_list as $amc){
+                                            ?>                                            
+                                            <option  value="<?php echo $amc->amc_id; ?> "><?php echo $amc->amc_name ?></option>
+                                           
+                                            
+                                        <?php } ?>
+
+                                            <!-- <option value="Guaranteed Rate">Guaranteed Rate</option>
                                             <option value="Cardinal Financial">Cardinal Financial</option>
-                                            <option value="LoanDepot">LoanDepot</option>
+                                            <option value="LoanDepot">LoanDepot</option> -->
                                                                                        
                                         </select>  
 
-                                        <!-- <input type="type" class="form-control" name="cl_amc_name" placeholder="Enter AMC Name" >
-                                        <span class="helper-text"><?php echo form_error('cl_amc_name'); ?></span> -->
+                                        <!-- <input type="type" class="form-control" name="cl_amc_id" placeholder="Enter AMC Name" >
+                                        <span class="helper-text"><?php echo form_error('cl_amc_id'); ?></span> -->
                                     </div>
                                 </div>
 
