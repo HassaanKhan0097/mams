@@ -73,7 +73,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Client Name</label>
-                                        <input type="text" class="form-control" name="cl_name" placeholder="Enter Client Name">
+                                        <input type="text" class="form-control" name="cl_name" placeholder="Enter Client Name" required>
                                         <span class="helper-text"><?php echo form_error('cl_name'); ?></span>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input type="text" class="form-control" name="cl_address" placeholder="Enter Address" >
+                                        <input type="text" class="form-control" name="cl_address" placeholder="Enter Address" required>
 
                                         <span class="helper-text"><?php echo form_error('cl_address'); ?></span>
                                     </div>
@@ -189,6 +189,26 @@
                                         </select>                                    
                                     </div>
                                 </div> -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" name="cl_email" placeholder="Enter Email" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email 2</label>
+                                        <input type="email" class="form-control" name="cl_email2" placeholder="Enter Email 2" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="type" class="form-control" name="cl_website" placeholder="Enter Website" >
+                                    </div>
+                                </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -222,26 +242,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" name="cl_email" placeholder="Enter Email" >
-                                    </div>
-                                </div>
+                                
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email 2</label>
-                                        <input type="email" class="form-control" name="cl_email2" placeholder="Enter Email 2" >
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Website</label>
-                                        <input type="type" class="form-control" name="cl_website" placeholder="Enter Website" >
-                                    </div>
-                                </div>
+                                
 
                                 <div class="col-12">
                                     <div class="form-group">

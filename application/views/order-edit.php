@@ -108,12 +108,12 @@
                                                                    
                                     </div>
                                     
-                                    <!-- <div class="form-group">
+                                     <div class="form-group">
                                         <label>Web Portal</label>
                                         <input type="text" class="form-control" name="upd_order_website" placeholder="Enter Website" value="<?php echo $order_single->cl_website ?>" readonly >
                                     </div>
                   
-                                    <div class="form-group">
+                                   <!-- <div class="form-group">
                                         <label>Lender Phone 1</label>
                                         <input type="text" class="form-control" name="upd_order_phone" placeholder="Enter Phone 1" value="<?php echo $order_single->cl_phone ?>" readonly>
                                     </div>
@@ -789,7 +789,8 @@
                                         <th>Date Time</th>
                                         <th>Author</th>
                                         <th>Subject</th>
-                                        <th>Notes</th>                                        
+                                        <th>Notes</th> 
+                                        <th>Hide From Appraiser</th>                                       
                                         <th>Action</th>
 
                                     </tr>
@@ -806,7 +807,12 @@
                                         <td><?php echo $n->user_username; ?></td>
                                         <td><?php echo $n->subject; ?></td>
                                         <td><?php echo $n->notes; ?></td>  
-                                                                                                                     
+                                        <td><?php echo $n->hide_appraiser; ?></td>  
+                                        <!--<td><div class="form-group position-relative"><div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="chkbox<?php echo $n->notes_id; ?>" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
+                                        </div></div>
+                                        </td>-->
+                                                                                      
                                         <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
                                                 data-target="#editModalNotes<?php echo $n->notes_id; ?>">Edit</button>&nbsp;<button type="button"
                                                 class="btn btn-danger" data-toggle="modal"
@@ -1075,7 +1081,8 @@ function appraiserChange(){
                 { "data": "date_time" },
                 { "data": "author" },
                 { "data": "subject" },
-                { "data": "notes" },                
+                { "data": "notes" },  
+                { "data": "hide_appraiser" },                 
                 { "data": "action" }
             ],
             drawCallback: function () {

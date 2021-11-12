@@ -191,6 +191,27 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" name="upd_cl_email" value="<?php echo $client_single->cl_email;?>" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email 2</label>
+                                        <input type="email" class="form-control" name="upd_cl_email2" value="<?php echo $client_single->cl_email2;?>" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="text" class="form-control" name="upd_cl_website" value="<?php echo $client_single->cl_website;?>" >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
                                         <label>AMC Name</label>
 
 
@@ -221,25 +242,8 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" name="upd_cl_email" value="<?php echo $client_single->cl_email;?>" >
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email 2</label>
-                                        <input type="email" class="form-control" name="upd_cl_email2" value="<?php echo $client_single->cl_email2;?>" >
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Website</label>
-                                        <input type="text" class="form-control" name="upd_cl_website" value="<?php echo $client_single->cl_website;?>" >
-                                    </div>
-                                </div>
+                                
+                                
 
                                 <div class="col-12">
                                     <div class="form-group">
@@ -255,7 +259,7 @@
                                             $filesArray = unserialize($client_single->cl_file);
                                             foreach ($filesArray as $file)
                                             { ?>
-                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."clients/".$file; ?>">Attached File</a></u><br/><br/>
+                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."clients/".$client_single->cl_name. "/".$file; ?>"><?php echo $file?></a></u><br/><br/>
                                             <?php }
                                         } else { ?> No file(s) attached. <?php }
                                     ?>

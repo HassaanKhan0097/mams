@@ -158,12 +158,12 @@
                                                                    
                                     </div>
                                     
-                                    <!-- <div class="form-group">
+                                    <div class="form-group">
                                         <label>Web Portal</label>
                                         <input type="text" class="form-control" name="order_website" placeholder="Enter Website" readonly >
                                     </div> 
                   
-                                    <div class="form-group">
+                                   <!--  <div class="form-group">
                                         <label>Lender Phone 1</label>
                                         <input type="text" class="form-control" name="order_phone" placeholder="Enter Phone 1" readonly>
                                     </div>

@@ -66,7 +66,11 @@ class Clients extends CI_Controller {
 
             // Count total files
             $countfiles = count($_FILES['cl_file']['name']);
- 
+            
+            $path = './uploads/clients/' . $data['cl_name'];
+            if(!is_dir($path)){
+                mkdir($path);
+            }
             // Looping all files
             for($i=0;$i<$countfiles;$i++) {
 
@@ -78,12 +82,13 @@ class Clients extends CI_Controller {
                 $_FILES['file']['size'] = $_FILES['cl_file']['size'][$i];
 
 
-                $config['upload_path']          = './uploads/clients/';
+                $config['upload_path']          = $path ;
                 $config['allowed_types']        = '*';
                 $config['max_size']             = 10024; // 10mb you can set the value you want
                 $config['max_width']            = 6000; // 6000px you can set the value you want
                 $config['max_height']           = 6000; // 6000px
-                $new_name = $data['cl_name'].$i;
+                // $new_name = $data['cl_name'].$i;
+                $new_name = $_FILES['cl_file']['name'][$i];
                 $config['file_name'] = $new_name;
 
                 $this->load->library('upload', $config);
