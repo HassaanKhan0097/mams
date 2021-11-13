@@ -191,7 +191,7 @@
                                             <?php
                                             foreach($appraiser_list as $app){
                                             ?>                                            
-                                            <option data-email="<?php echo $app->app_email ?>" value="<?php echo $app->app_id ?>"><?php echo $app->app_name ?></option>
+                                            <option data-email="<?php echo $app->app_email ?>" value="<?php echo $app->app_id ?>"  <?php echo ( $app->app_name  == 'Unassigned') ?  'Selected' :  ''; ?>><?php echo $app->app_name ?></option>
                                             <?php } ?>
                                             
                                         </select>        
@@ -232,10 +232,7 @@
                                     </div>
 
                                     
-                                    <div class="form-group">
-                                        <label>Purchase Price</label>
-                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" >
-                                    </div>
+                                    
                               
 
                                                 
@@ -290,17 +287,17 @@
 
 
                                     <div class="form-group">
-                                        <label>Borrower Phone 1</label>
+                                        <label>Borrower Phone</label>
                                         <input type="text" class="form-control" name="order_borrower_phone1" placeholder="Enter Phone 1" >
                                     </div>
                              
                                     <div class="form-group">
-                                        <label>Borrower Phone 2</label>
+                                        <label>Contact Phone 1</label>
                                         <input type="text" class="form-control" name="order_borrower_phone2" placeholder="Enter Phone 2" >
                                     </div>
                             
                                     <div class="form-group">
-                                        <label>Contact Phone</label>
+                                        <label>Contact Phone 2</label>
                                         <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Enter Phone 3" >
                                     </div>
 
@@ -320,6 +317,10 @@
                                     </select>                       
                                     <span class="helper-text"><?php echo form_error('order_paymentmethod'); ?></span>       
                                 </div>
+                                <div class="form-group">
+                                        <label>Purchase Price</label>
+                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" >
+                                    </div>
 
                                     
 

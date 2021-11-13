@@ -215,12 +215,12 @@
                                         <label>AMC Name</label>
 
 
-                                        <select class="form-control select2-single" data-width="100%" name="upd_cl_amc_id" >
+                                        <select class="form-control select2-single" data-width="100%" name="upd_cl_amc_id" onchange="amcChange()">
                                             <option value=""></option>
                                             <?php
                                             foreach($amc_list as $amc){
                                             ?>                                            
-                                            <option  value="<?php echo $amc->amc_id; ?>" <?php echo ($amc->amc_id  ==  $client_single->cl_amc_id) ?  'Selected' :  ''; ?>><?php echo $amc->amc_name ?></option>
+                                            <option  data-web="<?php echo $amc->amc_website; ?>" value="<?php echo $amc->amc_id; ?>" <?php echo ($amc->amc_id  ==  $client_single->cl_amc_id) ?  'Selected' :  ''; ?>><?php echo $amc->amc_name ?></option>
                                            
                                             
                                         <?php } ?>
@@ -232,11 +232,11 @@
                                                 <span class="helper-text"><?php echo form_error('upd_cl_amc_id'); ?></span>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>AMC Website</label>
-                                        <input type="type" class="form-control" name="upd_cl_amc_website" placeholder="Enter AMC Website" value="<?php echo $client_single->cl_amc_website;?>">
+                                        <input type="type" class="form-control" name="upd_cl_amc_website" placeholder="Enter AMC Website" readonly >
                                         <span class="helper-text"><?php echo form_error('upd_cl_amc_website'); ?></span>
                                     </div>
                                 </div>
@@ -571,6 +571,11 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
     <script>
+amcChange()
+function amcChange(){        
+        amc_web = $("select[name=upd_cl_amc_id]").find(':selected').data('web');       
+        $("input[name=upd_cl_amc_website]").val(amc_web);
+    }
         var $Table_officer = $("#Table_officer").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [

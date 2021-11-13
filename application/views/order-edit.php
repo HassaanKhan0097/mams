@@ -181,10 +181,7 @@
                                         <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Purchase Price</label>
-                                        <input type="text" class="form-control" name="upd_order_purchase" placeholder="Enter Purchase Price" value="<?php echo $order_single->order_purchase ?>">
-                                    </div>                                                
+                                                                                 
                                     
                                 </div>
                                 <!-- 1st Column ...... col-sm-4 -->
@@ -236,17 +233,17 @@
 
 
                                     <div class="form-group">
-                                        <label>Borrower Phone 1</label>
+                                        <label>Borrower Phone</label>
                                         <input type="text" class="form-control" name="upd_order_borrower_phone1" placeholder="Enter Phone 1" value="<?php echo $order_single->order_borrower_phone1 ?>">
                                     </div>
                              
                                     <div class="form-group">
-                                        <label>Borrower Phone 2</label>
+                                        <label>Contact Phone 1</label>
                                         <input type="text" class="form-control" name="upd_order_borrower_phone2" placeholder="Enter Phone 2" value="<?php echo $order_single->order_borrower_phone2 ?>">
                                     </div>
                             
                                     <div class="form-group">
-                                        <label>Contact Phone</label>
+                                        <label>Contact Phone 2</label>
                                         <input type="text" class="form-control" name="upd_order_borrower_phone3" placeholder="Enter Phone 3" value="<?php echo $order_single->order_borrower_phone3 ?>">
                                     </div>
 
@@ -267,6 +264,11 @@
                                         </select>                           
                                     <span class="helper-text"><?php echo form_error('upd_order_paymentmethod'); ?></span>       
                                 </div>
+
+                                <div class="form-group">
+                                        <label>Purchase Price</label>
+                                        <input type="text" class="form-control" name="upd_order_purchase" placeholder="Enter Purchase Price" value="<?php echo $order_single->order_purchase ?>">
+                                    </div>   
 
                                     
                                

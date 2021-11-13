@@ -82,8 +82,15 @@
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" class="form-control" name="amc_name"
-                                        placeholder="Enter Amc">
+                                        placeholder="Enter Amc" required>
                                     <span class="helper-text"><?php echo form_error('amc_name'); ?></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Website</label>
+                                    <input type="text" class="form-control" name="amc_website"
+                                        placeholder="Enter Amc Website" required>
+                                    <span class="helper-text"><?php echo form_error('amc_website'); ?></span>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
 
@@ -142,6 +149,7 @@
                                     <tr>
                                         <th>AMC Id</th>
                                         <th>AMC Name</th>
+                                        <th>AMC Website</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -154,6 +162,7 @@
                                         <tr>
                                             <td><?php echo $amc->amc_id; ?></td>
                                             <td><?php echo $amc->amc_name; ?></td>
+                                            <td><?php echo $amc->amc_website; ?></td>
                                             <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $amc->amc_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $amc->amc_id; ?>">Delete</button> </td>
                                         </tr>
 
@@ -190,6 +199,11 @@
                                                                 <label>AMC Name</label>
                                                                 <input type="text" class="form-control" name="update_amc_name" placeholder="Enter Types" value="<?php echo $amc->amc_name; ?>">
                                                                 <span class="helper-text"><?php echo form_error('update_amc_name'); ?></span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>AMC Website</label>
+                                                                <input type="text" class="form-control" name="update_amc_website" placeholder="Enter Types" value="<?php echo $amc->amc_website; ?>">
+                                                                <span class="helper-text"><?php echo form_error('update_amc_website'); ?></span>
                                                             </div>
                                                             <button type="submit" class="btn btn-primary mb-0">Edit</button>
                                                             <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
@@ -254,6 +268,7 @@
             "columns": [
                 { "data": "amc_id" },
                 { "data": "amc_name" },
+                { "data": "amc_website" },
                 { "data": "action" }
             ],
             drawCallback: function () {

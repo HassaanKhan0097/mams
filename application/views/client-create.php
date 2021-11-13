@@ -213,12 +213,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>AMC Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="cl_amc_id" >
+                                        <select class="form-control select2-single" data-width="100%" name="cl_amc_id" onchange="amcChange()">
                                         <option value=""></option>
                                         <?php
                                             foreach($amc_list as $amc){
                                             ?>                                            
-                                            <option  value="<?php echo $amc->amc_id; ?> "><?php echo $amc->amc_name ?></option>
+                                            <option data-web="<?php echo $amc->amc_website;?>" value="<?php echo $amc->amc_id; ?> "><?php echo $amc->amc_name ?></option>
                                            
                                             
                                         <?php } ?>
@@ -237,7 +237,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>AMC Website</label>
-                                        <input type="type" class="form-control" name="cl_amc_website" placeholder="Enter AMC Website" >
+                                        <input type="type" class="form-control" name="cl_amc_website" readonly >
                                         <span class="helper-text"><?php echo form_error('cl_amc_website'); ?></span>
                                     </div>
                                 </div>
@@ -512,6 +512,11 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
     <script>
+
+    function amcChange(){        
+        amc_web = $("select[name=cl_amc_id]").find(':selected').data('web');       
+        $("input[name=cl_amc_website]").val(amc_web);
+    }
         var $Table_officer = $("#Table_officer").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [

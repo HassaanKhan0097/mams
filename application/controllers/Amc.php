@@ -30,6 +30,7 @@ class Amc extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
 
             $data['amc_name'] = $this->input->post('amc_name');
+            $data['amc_website'] = $this->input->post('amc_website');
 
             $result = $this->Amc_Model->create($data);
 
@@ -61,6 +62,7 @@ class Amc extends CI_Controller {
 
             $data['amc_id'] = $this->uri->segment(3);
             $data['amc_name'] = $this->input->post('update_amc_name');
+            $data['amc_website'] = $this->input->post('update_amc_website');
 
             $result = $this->Amc_Model->update($data);
 

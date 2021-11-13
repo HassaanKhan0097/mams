@@ -48,7 +48,7 @@ class Clients extends CI_Controller {
             $data['cl_phone'] = $this->input->post('cl_phone');
             // $data['cl_amc'] = $this->input->post('cl_amc');
             $data['cl_amc_id'] = $this->input->post('cl_amc_id');
-            $data['cl_amc_website'] = $this->input->post('cl_amc_website');   
+            // $data['cl_amc_website'] = $this->input->post('cl_amc_website');   
             $data['cl_fax'] = $this->input->post('cl_fax');
             $data['cl_type'] = $this->input->post('cl_type');
             $data['cl_email'] = $this->input->post('cl_email');
@@ -199,7 +199,7 @@ class Clients extends CI_Controller {
             $data['cl_phone'] = $this->input->post('upd_cl_phone');
             // $data['cl_amc'] = $this->input->post('upd_cl_amc');
             $data['cl_amc_id'] = $this->input->post('upd_cl_amc_id');
-            $data['cl_amc_website'] = $this->input->post('upd_cl_amc_website');
+            // $data['cl_amc_website'] = $this->input->post('upd_cl_amc_website');
             $data['cl_fax'] = $this->input->post('upd_cl_fax');
             $data['cl_type'] = $this->input->post('upd_cl_type');
             $data['cl_email'] = $this->input->post('upd_cl_email');
