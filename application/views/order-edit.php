@@ -46,7 +46,7 @@
                 <div class="col-12">
                     <h1>Edit File</h1>
                     <div class="text-zero top-right-button-container">
-                    <a href="<?php echo base_url(); ?>PdfReport/orderReport/<?php echo $order_single->order_number; ?>" class="btn btn-primary btn-lg top-right-button mr-1" >Get PDF</a>
+                    <a href="<?php echo base_url(); ?>PdfReport/orderReport/<?php echo $order_single->order_number; ?>" class="btn btn-primary btn-lg top-right-button mr-1" target="_blank">Get PDF</a>
 
                             <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
                                                 data-target="#deleteModal">Delete</button>
@@ -96,13 +96,31 @@
                                             <?php
                                             foreach($client_list as $cl){
                                             ?>                                            
-                                            <option  data-amc-id="<?php echo $cl->cl_amc_id ?>" data-amc-name="<?php echo $cl->amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" value="<?php echo $cl->cl_id ?>"  <?php echo ( $order_single->order_client_id ==  $cl->cl_id ) ?  'Selected' :  ''; ?> ><?php echo $cl->cl_name ?></option>
+                                            <option  
+                                            data-amc-id="<?php echo $cl->cl_amc_id ?>" 
+                                            data-amc-name="<?php echo $cl->amc_name ?>" 
+                                            data-folder-name="<?php echo $cl->cl_folder_name ?>"
+                                            data-website="<?php echo $cl->cl_website ?>" 
+                                            data-phone="<?php echo $cl->cl_phone ?>" 
+                                            data-email="<?php echo $cl->cl_email ?>" 
+                                            data-file="<?php echo $cl->cl_file ?>" 
+                                            data-ins="<?php echo $cl->cl_ins ?>" 
+                                            value="<?php echo $cl->cl_id ?>"  <?php echo ( $order_single->order_client_id ==  $cl->cl_id ) ?  'Selected' :  ''; ?> ><?php echo $cl->cl_name ?></option>
                                             <?php } ?>
                                         </select>       
                                         <span class="helper-text"><?php echo form_error('order_client_id'); ?></span>                                   
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group" id="lenderInfo">
+
+                                    <p><b>AMC Name</b>: -- </p>
+                                    <p><b>Website</b>: -- </p>
+                                    <p><b>Email</b>: --</p>
+                                    <p><b>Special Ins</b>: -- </p>       
+                                    <p><b>Files</b>: --</p><br>                             
+                                    </div>
+
+                                    <!-- <div class="form-group">
                                         <label>AMC</label>
                                         <input type="text" class="form-control" name="upd_order_amc" placeholder="Enter AMC" value="<?php echo $order_single->amc_name ?>" readonly >
                                                                    
@@ -111,7 +129,7 @@
                                      <div class="form-group">
                                         <label>Web Portal</label>
                                         <input type="text" class="form-control" name="upd_order_website" placeholder="Enter Website" value="<?php echo $order_single->cl_website ?>" readonly >
-                                    </div>
+                                    </div> -->
                   
                                    <!-- <div class="form-group">
                                         <label>Lender Phone 1</label>
@@ -129,10 +147,10 @@
                                     </div> -->
 
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Lender Email</label>
                                         <input type="text" class="form-control" name="upd_order_cl_email" placeholder="Enter Email" value="<?php echo $order_single->cl_email ?>" readonly >
-                                    </div>
+                                    </div> -->
                                
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
@@ -196,7 +214,18 @@
 
                                     <div class="form-group">
                                         <label>City, State*</label>
-                                        <select class="form-control select2-single" data-width="100%" name="upd_order_city" required>
+
+
+                                        <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
+                                        <option value=""></option>
+                                        <?php
+                                            foreach ($city_list as $city) { ?> 
+                                            <option value="<?php echo $city->city_id; ?>" <?php echo ( $order_single->order_city ==  $city->city_id ) ?  'Selected' :  ''; ?>><?php echo $city->city_name; ?></option>
+                                        <?php } ?>
+                                        </select>   
+
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_city" required>
                                                 <option value=""></option>
                                                 <?php
                                                 $cityNames = ["New York City, NY", "Los Angeles, CA", "Chicago, IL"];
@@ -204,7 +233,7 @@
                                                 ?>                                            
                                                 <option value="<?php echo $cl ?>" <?php echo ( $order_single->order_city ==  $cl ) ?  'Selected' :  ''; ?>><?php echo $cl ?></option>
                                                 <?php } ?>
-                                        </select> 
+                                        </select>  -->
                                         <span class="helper-text"><?php echo form_error('order_city'); ?></span>   
                                     </div>
 
@@ -251,6 +280,11 @@
                                     <div class="form-group">
                                         <label>Contact Email</label>
                                         <input type="text" class="form-control" name="upd_order_borrower_email" placeholder="Enter Email" value="<?php echo $order_single->order_borrower_email ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Contact Email2</label>
+                                        <input type="text" class="form-control" name="upd_order_borrower_email2" placeholder="Enter Email 2" value="<?php echo $order_single->order_borrower_email ?>">
                                     </div>
 
 
@@ -398,7 +432,7 @@
                                     <div class="form-group">
                                         <label>Appointment Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="upd_order_appointmentdate" value="<?php echo $order_single->order_appointmentdate ?>">
+                                            <input type="text" class="form-control" name="upd_order_appointmentdate" value="<?php echo (  $order_single->order_appointmentdate  == "") ?  '' :  $order_single->order_appointmentdate; ?> ">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -409,6 +443,9 @@
                                 <label>Appointment Time</label>
                                 <div id="select-container">
                                         <select class="form-control select2-single"  id="select-test" data-width="100%" name="upd_order_appointment_time">
+                                        <!-- <optgroup label="--"> -->
+                                        <option value="--">--</option>
+                                        <!-- </optgroup> -->
                                         <optgroup label="9am-11pm">
                                         <option value="9:00am" <?php echo (  $order_single->order_appointment_time  == '9:00am') ?  'selected' :  ''; ?>>9:00 am</option>
                                             <option value="9:15am" <?php echo (  $order_single->order_appointment_time  == '9:15am') ?  'selected' :  ''; ?>>9:15 am</option>
@@ -581,6 +618,11 @@
                                         <!-- <label>Purchase Price</label> -->
                                         <input type="text" class="form-control" name="upd_old_file" value="<?php echo $order_single->order_file; ?>">
                                 </div>
+
+                                <div class="form-group" style="display:none">
+                                        <!-- <label>Purchase Price</label> -->
+                                        <input type="text" class="form-control" name="upd_old_delete_file">
+                                </div>
                                 
                                 <!-- Contract,pexels-fauxels-3182749.jpg|Contract,pexels-fauxels-3184434.jpg -->
                                 <div class="col-sm-12 mb-4">
@@ -730,15 +772,17 @@
                                         <span class="helper-text"><?php echo form_error('notes_subject'); ?></span>
                                     </div>
                                 </div>
+
+                                
                                 <!-- jQueryCheckbox -->
                                 <div class="col-12">
                                     <div class="form-group position-relative">
                                         <label>Visibility</label>
-                                        <div class="custom-control custom-checkbox">
+                                        <!-- <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1"
                                                 name="notes_hide_cl" >
                                             <label class="custom-control-label" for="customCheck1">Hidden from client</label>
-                                        </div>
+                                        </div> -->
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2"
                                                 name="notes_hide_app" >
@@ -853,14 +897,21 @@
                                                                         <input type="text" class="form-control" name="upd_notes_subject" value="<?php echo $n->subject; ?>" placeholder="Enter Notes Subject" >
                                                                     </div>
                                                                 </div>
+                                                                
+                                                                <div class="col-12" style="display:none;">
+                                                                    <div class="form-group">
+                                                                        <label>Order_id</label>
+                                                                        <input type="text" class="form-control" name="upd_notes_order" value="<?php echo $order_single->order_number; ?>" placeholder="Enter Order" >
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-12">
                                                                     <div class="form-group position-relative">
                                                                         <label>Visibility</label>
-                                                                        <div class="custom-control custom-checkbox">
+                                                                        <!-- <div class="custom-control custom-checkbox">
                                                                             <input type="checkbox" class="custom-control-input" id="customCheck3"
                                                                                 name="upd_notes_hide_cl"  <?php echo ( $n->hide_client == 'on' ) ?  'Checked' :  ''; ?>>
                                                                             <label class="custom-control-label" for="customCheck3">Hidden from client</label>
-                                                                        </div>
+                                                                        </div> -->
                                                                         <div class="custom-control custom-checkbox">
                                                                             <input type="checkbox" class="custom-control-input" id="customCheck4"
                                                                                 name="upd_notes_hide_app" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
@@ -878,7 +929,7 @@
 
                                                             </div>
                                                             
-                                                        <button type="submit" class="btn btn-primary mb-0">Edit</button>
+                                                        <button type="submit" class="btn btn-primary mb-0">Submit</button>
                                                         <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
                                                     </form>
                                                 </div>
@@ -979,6 +1030,23 @@
 function hitFile(para,para2){
     // console.log("File Hitted -> ", para);
     $("#"+ para2).hide();
+
+    // console.log(para)
+    // console.log(para2)
+
+    tmp = para.substr(para.indexOf(",")+1);
+    // console.log(tmp)
+    old = $("input[name=upd_old_delete_file]").val();
+    if(old == ""){
+        old = tmp;
+    }else{
+        old = old +  ","+tmp;
+    }
+
+    $("input[name=upd_old_delete_file]").val(old);
+    // str.replace(para+",", '');
+
+
     str = $("input[name=upd_old_file]").val();
 
     // console.log("Before -> ", str);
@@ -987,6 +1055,8 @@ function hitFile(para,para2){
         str = str.replace(para+"|", '');
     }else{
         str = str.replace(para, '');
+        
+
     }
 
 
@@ -1039,8 +1109,83 @@ function file_change(){
     else if(f == "Client Instructions"){$("#f_client").show();}
 
 }
- 
+lenderChange();
+
 function lenderChange(){
+    console.log("lenderChange");
+
+    amc_id = $("select[name=upd_order_client_id]").find(':selected').data('amc-id');
+    amc_name = $("select[name=upd_order_client_id]").find(':selected').data('amc-name');
+    website = $("select[name=upd_order_client_id]").find(':selected').data('website');
+    phone = $("select[name=upd_order_client_id]").find(':selected').data('phone');
+    email = $("select[name=upd_order_client_id]").find(':selected').data('email');
+    ins = $("select[name=upd_order_client_id]").find(':selected').data('ins');
+    
+
+
+    folder_name = $("select[name=upd_order_client_id]").find(':selected').data('folder-name');
+    file = $("select[name=upd_order_client_id]").find(':selected').data('file');
+
+
+    
+    // $("input[name=order_cl_ins]").val(ins);
+
+    var fileHtml = "";
+    if(file != '') {
+
+        str = file;
+        tmpArr = str.split(",");
+        attachCount = 0; 
+
+        a = window.location.href
+        a =a.substr(0,a.lastIndexOf("/"))
+        a =a.substr(0,a.lastIndexOf("/"))
+        a =a.substr(0,a.lastIndexOf("/"))
+
+        a= a + "/uploads/clients/" + folder_name + "/";
+
+        for(i=0; i < tmpArr.length; i++){
+            tmp = tmpArr[i].replaceAll(" ", "_");
+            fileHtml += `<span><u> <i class="simple-icon-paper-clip"></i> <a href="`+a+tmp+`" >`+tmp+`</a></u>  <br/></span> `;
+
+        }
+
+        }else{
+
+        }
+
+
+    
+
+    $("#lenderInfo").html(`
+    <p><b>AMC Name</b>: `+amc_name+`</p>
+    <p><b>Website</b>: <a href="`+website+`" target="_blank"> `+website+` </a> </p>
+    <p><b>Email</b>: `+email+`</p>
+    <p><b>Special Ins</b>: `+ins+`</p>
+
+    <p><b>Files</b>: `+fileHtml+`</p><br>
+    `);
+    
+
+
+
+
+
+
+
+
+
+// $("input[name=order_amc]").val(amc_name);
+// $("input[name=order_website]").val(website);
+// $("input[name=order_phone]").val(phone);
+// $("input[name=order_cl_email]").val(email);
+
+
+}
+
+
+ 
+function lenderChangeold(){
     amc_id = $("select[name=upd_order_client_id]").find(':selected').data('amc-id');
     amc_name = $("select[name=upd_order_client_id]").find(':selected').data('amc-name');
     website = $("select[name=upd_order_client_id]").find(':selected').data('website');
@@ -1142,6 +1287,34 @@ function appraiserChange(){
             $("#new_notes").show();
             $("#note_table").show();
         }
+
+
+        let optgroupState = {};
+
+$("body").on('click', '.select2-container--open .select2-results__group', function() {
+  $(this).siblings().toggle();
+  let id = $(this).closest('.select2-results__options').attr('id');
+  let index = $('.select2-results__group').index(this);
+  optgroupState[id][index] = !optgroupState[id][index];
+})
+
+$('#select-test').on('select2:open', function() {
+  $('.select2-dropdown--below').css('opacity', 0);
+  setTimeout(() => {
+    let groups = $('.select2-container--open .select2-results__group');
+    let id = $('.select2-results__options').attr('id');
+    if (!optgroupState[id]) {
+      optgroupState[id] = {};
+    }
+    $.each(groups, (index, v) => {
+      optgroupState[id][index] = optgroupState[id][index] || false;
+      optgroupState[id][index] ? $(v).siblings().show() : $(v).siblings().hide();
+    })
+    $('.select2-dropdown--below').css('opacity', 1);
+  }, 0);
+})
+       
+
 
     </script>
     

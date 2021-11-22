@@ -40,11 +40,13 @@ class Order_Model extends CI_Model {
         cl.cl_email2 AS cl_email2,
         cl.cl_contact AS cl_contact, 
         cl.cl_address AS cl_address, 
-        cl.cl_city AS cl_city, 
+        c2.city_name AS cl_city, 
+        city.city_name AS cl_order_city, 
         cl.cl_state AS cl_state, 
         cl.cl_zipcode AS cl_zipcode, 
         cl.cl_website AS cl_website, 
         a.amc_name AS amc_name,
+        l.loan_name AS loan_name,
         cl2.cl_id AS cl2_id, 
         cl2.cl_name AS cl2_name");
 
@@ -54,9 +56,11 @@ class Order_Model extends CI_Model {
         $this->db->join('assignment_types as at','at.at_id = order.order_assignment_id', 'left'); 
         $this->db->join('assignment_types as at2','at2.at_id = order.order_assignment_id2', 'left'); 
         $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');  
-             
-        // $this->db->join('city','city.city_id = order.order_city_id');
+        // c
+        $this->db->join('city','city.city_id = order.order_city', 'left');
         $this->db->join('client as cl','cl.cl_id = order.order_client_id', 'left');
+        $this->db->join('city as c2','c2.city_id = cl.cl_city', 'left'); 
+        $this->db->join('loan_types as l','l.loan_id = order.order_loan_type', 'left') ;
         $this->db->join('amc as a','a.amc_id = cl.cl_amc_id') ;
         $this->db->join('client as cl2','cl2.cl_id = order.order_client_id2', 'left');
         $this->db->join('order_types','order_types.order_id = order.order_type_id');
@@ -101,9 +105,9 @@ class Order_Model extends CI_Model {
 
     public function delete($data)
     {
-        $id = $data['cl_id'];
-        $this->db->where('cl_id', $id);
-        $this->db->delete('client'); 
+        $id = $data['order_number'];
+        $this->db->where('order_number', $id);
+        $this->db->delete('order'); 
         return $this->db->affected_rows();
     }
 

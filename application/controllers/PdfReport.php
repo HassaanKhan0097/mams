@@ -184,11 +184,7 @@
                               </tr>
                               <tr>
                                     <td width="80px">City: </td>
-                                    <td>'.$data->cl_city.'</td>
-                              </tr>
-                              <tr>
-                                    <td width="80px">State: </td>
-                                    <td>'.$data->cl_state.'</td>
+                                    <td>'.$data->city_name.'</td>
                               </tr>
                               <tr>
                                     <td width="80px">Zip Code: </td>
@@ -200,11 +196,11 @@
                               </tr>
                               <tr>
                                     <td width="80px">AMC Name: </td>
-                                    <td>'.$data->cl_amc_name.'</td>
+                                    <td>'.$data->amc_name.'</td>
                               </tr>
                               <tr>
                                     <td width="80px">AMC Website: </td>
-                                    <td>'.$data->cl_amc_website.'</td>
+                                    <td>'.$data->amc_website.'</td>
                               </tr>
                               <tr>
                                     <td width="30%">Special Ins: </td>
@@ -367,11 +363,24 @@
                   //                   <td class="leftTd">Appointment Time: </td>
                   //                   <td class="rightTd">'.$data->order_appointment_time.'</td>
                   //             </tr>
+            //       <tr>
+            //       <td class="leftTd">Client Zip Code: </td>
+            //       <td class="rightTd">'.$data->cl_zipcode.'</td>
+            // </tr>  , '.$data->cl_state.'
+            
+      //       <tr>
+      //       <td class="leftTd">Order Status: </td>
+      //       <td class="rightTd">'.$data->st_name.'</td>
+      // </tr> 
+      // <tr>
+      //                               <td class="leftTd">Entry Contact: </td>
+      //                               <td class="rightTd">'.$data->order_entry.'</td>
+      //                         </tr>   
 
                   $leftCol = '
                         <style>
-                              .leftTd { width: 30%; }
-                              .rightTd { width: 65%; }
+                              .leftTd { width: 35%; }
+                              .rightTd { width: 62%; }
                         </style>
                         <table border="0" style="font-size:9px;">
                               <tr>
@@ -382,10 +391,11 @@
                                     <td class="leftTd">Property Address: </td>
                                     <td class="rightTd">'.$data->order_address.'</td>
                               </tr>
-                               <tr>
-                                    <td class="leftTd">Entry Contact: </td>
-                                    <td class="rightTd">'.$data->order_entry.'</td>
-                              </tr>                              
+                              <tr>
+                                    <td class="leftTd">Property City, State: </td>
+                                    <td class="rightTd">'.$data->cl_order_city. ' , '.$data->order_zipcode.'</td>
+                              </tr>
+                                                          
                                <tr>
                                     <td class="leftTd">Client: </td>
                                     <td class="rightTd">'.$data->cl_name.'</td>
@@ -396,12 +406,8 @@
                               </tr>
                                <tr>
                                     <td class="leftTd">Client City, State: </td>
-                                    <td class="rightTd">'.$data->cl_city. ' , '.$data->cl_state.'</td>
-                              </tr>
-                               <tr>
-                                    <td class="leftTd">Client Zip Code: </td>
-                                    <td class="rightTd">'.$data->cl_zipcode.'</td>
-                              </tr>
+                                    <td class="rightTd">'.$data->cl_city. ' , '.$data->cl_zipcode.'</td>
+                              </tr>                              
                                <tr>
                                     <td class="leftTd">AMC Name: </td>
                                     <td class="rightTd">'.$data->amc_name.'</td>
@@ -440,13 +446,17 @@
                                     <td class="rightTd">'.$data->at_name.'</td>
                               </tr>
                                <tr>
+                                    <td class="leftTd">Assignment Add-on: </td>
+                                    <td class="rightTd">'.$data->order_assignment_addon .'</td>
+                              </tr> 
+                               <tr>
                                     <td class="leftTd">Order Type: </td>
                                     <td class="rightTd">'.$data->order_name.'</td>
                               </tr>
-                              <tr>
-                                    <td class="leftTd">Order Status: </td>
-                                    <td class="rightTd">'.$data->st_name.'</td>
-                              </tr>                              
+                               <tr>
+                                    <td class="leftTd">Loan Type: </td>
+                                    <td class="rightTd">'.$data->loan_name .'</td>
+                              </tr>                               
                                <tr>
                                     <td class="leftTd">Payment Method: </td>
                                     <td class="rightTd">'.$data->order_paymentmethod.'</td>

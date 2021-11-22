@@ -137,7 +137,22 @@ class Order extends CI_Controller {
             $data['order_co_borrower'] = $this->input->post('order_co_borrower');
             $data['order_duedate'] = date( "Y/m/d", strtotime($this->input->post('order_duedate')) );
             $data['order_entry'] = $this->input->post('order_entry');
-            $data['order_appointmentdate'] = date( "Y/m/d", strtotime($this->input->post('order_appointmentdate')) );
+            
+            $apt_date = $this->input->post('order_appointmentdate');
+            if($apt_date != ""){
+                $data['order_appointmentdate'] = date( "Y/m/d", strtotime($apt_date) );
+            }
+
+            $com_date = $this->input->post('order_completedate');
+            if($com_date != ""){
+                $data['order_completedate'] = date( "Y/m/d", strtotime($com_date) );
+            }
+
+            
+
+
+        
+            
             $data['order_appraiser_id'] = $this->input->post('order_appraiser_id');
             $data['order_appraiser_id2'] = $this->input->post('order_appraiser_id2');
             $data['order_appraiser_email'] = $this->input->post('order_appraiser_email');
@@ -146,7 +161,7 @@ class Order extends CI_Controller {
             $data['order_phone2'] = $this->input->post('order_phone2');
             $data['order_phone3'] = $this->input->post('order_phone3');
             $data['order_appointment_time'] = $this->input->post('order_appointment_time');
-            $data['order_completedate'] = date( "Y/m/d", strtotime($this->input->post('order_completedate')) );
+            
             $data['order_paymentmethod'] = $this->input->post('order_paymentmethod');
             $data['order_purchase'] = $this->input->post('order_purchase');
             $data['order_revenue'] = $this->input->post('order_revenue');
@@ -159,6 +174,8 @@ class Order extends CI_Controller {
             $data['order_borrower_phone2'] = $this->input->post('order_borrower_phone2');
             $data['order_borrower_phone3'] = $this->input->post('order_borrower_phone3');
             $data['order_borrower_email'] = $this->input->post('order_borrower_email');
+            $data['order_borrower_email2'] = $this->input->post('order_borrower_email2');
+            
             $data['order_sub_app_expense'] = $this->input->post('order_sub_app_expense');
             $data['order_instruction'] = $this->input->post('order_instruction');
 
@@ -301,9 +318,13 @@ class Order extends CI_Controller {
         $data['client_list'] = $this->Client_Model->get();
         $data['appraiser_list'] = $this->Appraiser_Model->get();
         $data['loan_types_list'] = $this->LoanTypes_Model->get();
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
 
 
         $data['ord_single'] = $this->Order_Model->getById($id);
+
+        // echo "<pre>";
+        // print_r( $data['ord_single'] );
         $data['order_single'] = $data['ord_single'][0];
 
 
@@ -316,8 +337,7 @@ class Order extends CI_Controller {
         $data['loggedUser'] = $this->session->userdata('loggedUser');
 
 
-        // echo "<pre>";
-        // print_r( $data['order_single'] );
+      
 
         $this->load->view('order-edit', $data);
     }
@@ -326,28 +346,32 @@ class Order extends CI_Controller {
 
     public function update_order($id) 
     {
+
+        // echo "Reached";
         $this->form_validation->set_rules('upd_order_number','order_number','required');
-        $this->form_validation->set_rules('upd_order_client_id','order_client_id','required');
-        $this->form_validation->set_rules('upd_order_appraiser_id','order_appraiser_id','required');
-        $this->form_validation->set_rules('upd_order_paymentmethod','order_paymentmethod','required');
-        $this->form_validation->set_rules('upd_order_address','order_address','required');
-        $this->form_validation->set_rules('upd_order_city','order_city','required');
-        $this->form_validation->set_rules('upd_order_zipcode','order_zipcode','required');
-        $this->form_validation->set_rules('upd_order_borrower','order_borrower','required');
-        $this->form_validation->set_rules('upd_order_entry','order_entry','required');
-        $this->form_validation->set_rules('upd_order_revenue','order_revenue','required');
-        $this->form_validation->set_rules('upd_order_type_id','order_type_id','required');
-        $this->form_validation->set_rules('upd_order_loan_type','order_loan_type','required');
-        $this->form_validation->set_rules('upd_order_assignment_id','order_assignment_id','required');
-        $this->form_validation->set_rules('upd_order_status_id','order_status_id','required');
-        $this->form_validation->set_rules('upd_order_date','order_date','required');
-        $this->form_validation->set_rules('upd_order_duedate','order_duedate','required');
+        // $this->form_validation->set_rules('upd_order_client_id','order_client_id','required');
+        // $this->form_validation->set_rules('upd_order_appraiser_id','order_appraiser_id','required');
+        // $this->form_validation->set_rules('upd_order_paymentmethod','order_paymentmethod','required');
+        // $this->form_validation->set_rules('upd_order_address','order_address','required');
+        // $this->form_validation->set_rules('upd_order_city','order_city','required');
+        // $this->form_validation->set_rules('upd_order_zipcode','order_zipcode','required');
+        // $this->form_validation->set_rules('upd_order_borrower','order_borrower','required');
+        // $this->form_validation->set_rules('upd_order_entry','order_entry','required');
+        // $this->form_validation->set_rules('upd_order_revenue','order_revenue','required');
+        // $this->form_validation->set_rules('upd_order_type_id','order_type_id','required');
+        // $this->form_validation->set_rules('upd_order_loan_type','order_loan_type','required');
+        // $this->form_validation->set_rules('upd_order_assignment_id','order_assignment_id','required');
+        // $this->form_validation->set_rules('upd_order_status_id','order_status_id','required');
+        // $this->form_validation->set_rules('upd_order_date','order_date','required');
+        // $this->form_validation->set_rules('upd_order_duedate','order_duedate','required');
 
 
       
 
         if ($this->form_validation->run() == TRUE) {
+            // echo "Reached inner<br>";
             $data['order_number'] = $this->uri->segment(3);
+
 
             $data['order_address'] = $this->input->post('upd_order_address');
             $data['order_type_id'] = $this->input->post('upd_order_type_id');
@@ -371,7 +395,20 @@ class Order extends CI_Controller {
             $data['order_co_borrower'] = $this->input->post('upd_order_co_borrower');
             $data['order_duedate'] = date( "Y/m/d", strtotime($this->input->post('upd_order_duedate')) );
             $data['order_entry'] = $this->input->post('upd_order_entry');
-            $data['order_appointmentdate'] = date( "Y/m/d", strtotime($this->input->post('upd_order_appointmentdate')) );
+
+            $apt_date = $this->input->post('upd_order_appointmentdate');
+            if($apt_date != ""){
+                $data['order_appointmentdate'] = date( "Y/m/d", strtotime($apt_date) );
+            }
+
+            $com_date = $this->input->post('upd_order_completedate');
+            if($com_date != ""){
+                $data['order_completedate'] = date( "Y/m/d", strtotime($com_date) );
+            }
+
+            // $data['order_completedate'] = date( "Y/m/d", strtotime($this->input->post('upd_order_completedate')) );
+
+            // $data['order_appointmentdate'] = date( "Y/m/d", strtotime($this->input->post('upd_order_appointmentdate')) );
             $data['order_appraiser_id'] = $this->input->post('upd_order_appraiser_id');
             $data['order_appraiser_id2'] = $this->input->post('upd_order_appraiser_id2');
             $data['order_appraiser_email'] = $this->input->post('upd_order_appraiser_email');
@@ -380,7 +417,6 @@ class Order extends CI_Controller {
             $data['order_phone2'] = $this->input->post('upd_order_phone2');
             $data['order_phone3'] = $this->input->post('upd_order_phone3');
             $data['order_appointment_time'] = $this->input->post('upd_order_appointment_time');
-            $data['order_completedate'] = date( "Y/m/d", strtotime($this->input->post('upd_order_completedate')) );
             $data['order_paymentmethod'] = $this->input->post('upd_order_paymentmethod');
             $data['order_purchase'] = $this->input->post('upd_order_purchase');
             $data['order_revenue'] = $this->input->post('upd_order_revenue');
@@ -397,6 +433,8 @@ class Order extends CI_Controller {
             $data['order_borrower_phone2'] = $this->input->post('upd_order_borrower_phone2');
             $data['order_borrower_phone3'] = $this->input->post('upd_order_borrower_phone3');
             $data['order_borrower_email'] = $this->input->post('upd_order_borrower_email');
+            $data['order_borrower_email2'] = $this->input->post('upd_order_borrower_email2');
+
             $data['order_sub_app_expense'] = $this->input->post('upd_order_sub_app_expense');
 
 
@@ -475,6 +513,8 @@ class Order extends CI_Controller {
             }
             // ForEach End
 
+            // echo "Reached Foreach end<br>";
+
 
 
             $tmpArr = array();
@@ -486,8 +526,58 @@ class Order extends CI_Controller {
            
             $data['order_file']  =    $result;
 
-            // echo "<pre>";
-            // print_r($data['order_file']);
+            echo "<br><pre>old ===========<br>";
+            echo "<pre>";
+            print_r($old);
+
+            echo "<br><pre>old ===========<br>";
+            echo "<pre>";
+            print_r($result);
+
+
+
+
+            $od = $this->input->post('upd_old_delete_file');
+            // echo "Reached od<br>";
+            // print_r($od);
+
+            if($od != ""){
+
+                define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
+                define('PUBPATH',str_replace(SELF,'',FCPATH)); // added
+
+                $path3= "uploads/orders/" . $this->uri->segment(3);
+                
+                if(strpos($od,",")){
+                    $tmparr[] = explode(",", $od);
+
+                    echo "<br><pre>tmparr ===========<br>" ;
+                    echo "<pre>";
+                    print_r($tmparr);
+                    echo "<br><br>";
+
+                    foreach($tmparr[0] as $t){                      
+                        $str = $t;
+
+                        $str= str_replace(" ","_",$str);
+                        $filestring = PUBPATH.$path3 . "/".  $str;
+
+
+                        // echo "<br><pre>if ===========<br>" ;
+                        // print_r($filestring);
+
+                        unlink($filestring);                        
+                    }
+                }else{
+                    $od = str_replace(" ","_",$od);
+                    $filestring = PUBPATH.$path3 . "/".  $od;
+                    // echo "<br><pre>else ===========<br>";
+                    //     print_r($filestring);
+                    unlink($filestring);    
+                }                
+            }
+
+           
 
             // echo "--------------------";
 
@@ -499,16 +589,38 @@ class Order extends CI_Controller {
             $result = $this->Order_Model->update($data);
 
             if($result > 0) {                
-                redirect("order");
+                redirect("order/update/". $this->uri->segment(3));
             } 
             else {                
                 $this->session->set_flashdata('update_message_error', 'Failed!');                
-                redirect("order");
+                redirect("order/update/". $this->uri->segment(3));
             }
             
         }else{
             $this->update($this->uri->segment(3));
         } 
+    }
+
+
+    public function delete()
+    {
+        
+        $data['order_number'] = $this->uri->segment(3);
+
+        $result = $this->Order_Model->delete($data);
+
+        if($result > 0) {
+
+             redirect("order");
+            // $this->index();
+        } 
+        else {
+            
+            $this->session->set_flashdata('delete_message_error', 'Failed!');
+            // $this->index();
+            redirect("order");
+        }
+
     }
 
 

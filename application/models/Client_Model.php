@@ -8,7 +8,7 @@ class Client_Model extends CI_Model {
         $this->db->select('*');
         $this->db->from('client');
         $this->db->join('amc','amc.amc_id = client.cl_amc_id', 'left');
-        // $this->db->join('city','city.city_id = client.cl_city_id', 'left');        
+        $this->db->join('city','city.city_id = client.cl_city', 'left');         
         $query = $this->db->get();
         return $query->result();
     }
@@ -19,7 +19,7 @@ class Client_Model extends CI_Model {
         $this->db->from('client');
         $this->db->join('amc','amc.amc_id = client.cl_amc_id', 'left');
         // $this->db->join('country','country.country_id = client.cl_country_id', 'left');
-        // $this->db->join('city','city.city_id = client.cl_city_id', 'left');  
+        $this->db->join('city','city.city_id = client.cl_city', 'left');  
         $this->db->where("cl_id =",$id);  
         $query = $this->db->get();
         return $query->result();  

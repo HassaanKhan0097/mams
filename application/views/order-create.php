@@ -140,7 +140,16 @@
                                             <?php
                                             foreach($client_list as $cl){
                                             ?>                                            
-                                            <option data-amc-id="<?php echo $cl->cl_amc_id ?>" data-amc-name="<?php echo $cl->amc_name ?>" data-website="<?php echo $cl->cl_website ?>" data-phone="<?php echo $cl->cl_phone ?>" data-email="<?php echo $cl->cl_email ?>" data-ins="<?php echo $cl->cl_ins ?>" value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
+                                            <option 
+                                            data-amc-id="<?php echo $cl->cl_amc_id ?>" 
+                                            data-amc-name="<?php echo $cl->amc_name ?>" 
+                                            data-folder-name="<?php echo $cl->cl_folder_name ?>"
+                                            data-website="<?php echo $cl->cl_website ?>" 
+                                            data-phone="<?php echo $cl->cl_phone ?>" 
+                                            data-email="<?php echo $cl->cl_email ?>" 
+                                            data-ins="<?php echo $cl->cl_ins ?>" 
+                                            data-file="<?php echo $cl->cl_file ?>" 
+                                            value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
                                             <?php } ?>
                                         </select>       
                                         <span class="helper-text"><?php echo form_error('order_client_id'); ?></span>                                   
@@ -151,8 +160,17 @@
                                         <input type="text" class="form-control" name="order_cl_ins" >
                                                                    
                                     </div>
+                                    <div class="form-group" id="lenderInfo">
 
-                                    <div class="form-group">
+                                    <p><b>AMC Name</b>: -- </p>
+                                    <p><b>Website</b>: -- </p>
+                                    <p><b>Email</b>: --</p>
+                                    <p><b>Special Ins</b>: -- </p>       
+                                    <p><b>Files</b>: --</p><br>                             
+                                    </div>
+                                    <!-- <p><b>Files</b>: <span id="file"></span> --</p><br> -->
+
+                                    <!-- <div class="form-group">
                                         <label>AMC</label>
                                         <input type="text" class="form-control" name="order_amc" placeholder="Enter AMC" readonly >
                                                                    
@@ -162,27 +180,11 @@
                                         <label>Web Portal</label>
                                         <input type="text" class="form-control" name="order_website" placeholder="Enter Website" readonly >
                                     </div> 
-                  
-                                   <!--  <div class="form-group">
-                                        <label>Lender Phone 1</label>
-                                        <input type="text" class="form-control" name="order_phone" placeholder="Enter Phone 1" readonly>
-                                    </div>
-                             
-                                    <div class="form-group">
-                                        <label>Lender Phone 2</label>
-                                        <input type="text" class="form-control" name="order_phone2" placeholder="Enter Phone" >
-                                    </div>
-                            
-                                    <div class="form-group">
-                                        <label>Lender Phone 3</label>
-                                        <input type="text" class="form-control" name="order_phone3" placeholder="Enter Phone" >
-                                    </div> -->
-
-
+                 
                                     <div class="form-group">
                                         <label>Lender Email</label>
                                         <input type="text" class="form-control" name="order_cl_email" placeholder="Enter Email" readonly >
-                                    </div>
+                                    </div> -->
                                
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
@@ -251,13 +253,21 @@
                                     <div class="form-group">
                                         <label>City, State*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_city" required>
-                                                <option value=""></option>
+
+                                        <option value=""></option>
+                                        <?php
+                                            foreach ($city_list as $city) { ?> 
+                                            <option value="<?php echo $city->city_id; ?>"><?php echo $city->city_name; ?></option>
+                                        <?php } ?>
+
+
+                                                <!-- <option value=""></option>
                                                 <?php
                                                 $cityNames = ["New York City, NY", "Los Angeles, CA", "Chicago, IL"];
                                                 foreach($cityNames as $cl){
                                                 ?>                                            
                                                 <option value="<?php echo $cl ?>"><?php echo $cl ?></option>
-                                                <?php } ?>
+                                                <?php } ?> -->
                                         </select> 
                                         <span class="helper-text"><?php echo form_error('order_city'); ?></span>   
                                     </div>
@@ -293,18 +303,22 @@
                              
                                     <div class="form-group">
                                         <label>Contact Phone 1</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone2" placeholder="Enter Phone 2" >
+                                        <input type="text" class="form-control" name="order_borrower_phone2" placeholder="Contact Phone 1" >
                                     </div>
                             
                                     <div class="form-group">
                                         <label>Contact Phone 2</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Enter Phone 3" >
+                                        <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Contact Phone 2" >
                                     </div>
 
 
                                     <div class="form-group">
                                         <label>Contact Email</label>
                                         <input type="text" class="form-control" name="order_borrower_email" placeholder="Enter Email" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact Email 2</label>
+                                        <input type="text" class="form-control" name="order_borrower_email2" placeholder="Enter Email 2" >
                                     </div>
 
                                     <div class="form-group">
@@ -459,6 +473,7 @@
                                 <label>Appointment Time</label>
                                     <div id="select-container">
                                         <select class="form-control select2-single"  id="select-test" data-width="100%" name="order_appointment_time">
+                                        <option value="--">--</option>
                                         <optgroup label="9am-11pm">
                                             <option value="9:00am">9:00 am</option>
                                             <option value="9:15am">9:15 am</option>
@@ -740,16 +755,6 @@
 $("#select-test").select2();
 
 function file_change(){
-    // <input type="file" name="of_contract[]" id="f_contract" multiple style="display:none;">
-    // <input type="file" name="of_option[]" id="f_option" multiple  style="display:none;">
-    // <input type="file" name="of_comparable[]" id="f_comparable" multiple style="display:none;">
-    // <input type="file" name="of_plat[]" id="" multiple style="display:none;">
-    // <input type="file" name="of_plan[]" id="" multiple style="display:none;">
-    // <input type="file" name="of_condo[]" id="" multiple style="display:none;">
-    // <input type="file" name="of_adu[]" id="" multiple style="display:none;">
-    // <input type="file" name="of_photo[]" id="f_photo" multiple style="display:none;">
-    // <input type="file" name="of_client[]" id="f_client" multiple style="display:none;">
-    // "","","","",""
 
     $("#f_contract").hide();
     $("#f_option").hide();
@@ -778,20 +783,65 @@ function file_change(){
 function lenderChange(){
     amc_id = $("select[name=order_client_id]").find(':selected').data('amc-id');
     amc_name = $("select[name=order_client_id]").find(':selected').data('amc-name');
+    folder_name = $("select[name=order_client_id]").find(':selected').data('folder-name');
     website = $("select[name=order_client_id]").find(':selected').data('website');
     phone = $("select[name=order_client_id]").find(':selected').data('phone');
     email = $("select[name=order_client_id]").find(':selected').data('email');
     ins = $("select[name=order_client_id]").find(':selected').data('ins');
-    
+    file = $("select[name=order_client_id]").find(':selected').data('file');
+
+
     
     $("input[name=order_cl_ins]").val(ins);
 
+    var fileHtml = "";
+    if(file != '') {
+
+        str = file;
+        tmpArr = str.split(",");
+        attachCount = 0; 
+
+        a = window.location.href
+        a =a.substr(0,a.lastIndexOf("/"))
+        a =a.substr(0,a.lastIndexOf("/"))
+
+        a= a + "/uploads/clients/" + folder_name + "/";
+
+        for(i=0; i < tmpArr.length; i++){
+            tmp = tmpArr[i].replaceAll(" ", "_");
+            fileHtml += `<span><u> <i class="simple-icon-paper-clip"></i> <a href="`+a+tmp+`" >`+tmp+`</a></u>  <br/></span> `;
+
+        }
+
+        }else{
+
+        }
+
+
     
 
-$("input[name=order_amc]").val(amc_name);
-$("input[name=order_website]").val(website);
-$("input[name=order_phone]").val(phone);
-$("input[name=order_cl_email]").val(email);
+    $("#lenderInfo").html(`
+    <p><b>AMC Name</b>: `+amc_name+`</p>
+    <p><b>Website</b>: <a href="`+website+`" target="_blank"> `+website+` </a> </p>
+    <p><b>Email</b>: `+email+`</p>
+    <p><b>Special Ins</b>: `+ins+`</p>
+
+    <p><b>Files</b>: `+fileHtml+`</p><br>
+    `);
+    
+
+
+
+
+
+
+
+
+
+// $("input[name=order_amc]").val(amc_name);
+// $("input[name=order_website]").val(website);
+// $("input[name=order_phone]").val(phone);
+// $("input[name=order_cl_email]").val(email);
 
 
 }

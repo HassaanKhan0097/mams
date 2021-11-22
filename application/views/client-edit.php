@@ -69,8 +69,16 @@
                         <div class="card-body">
                             <h5 class="mb-4">Edit Client</h5>
                             
-                            <form action="<?php echo base_url(); ?>Clients/update_client/<?php echo $client_single->cl_id; ?>" method="post">
+                            <form action="<?php echo base_url(); ?>Clients/update_client/<?php echo $client_single->cl_id; ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
+
+                                <div class="col-sm-6" style="display:none">
+                                    <div class="form-group">
+                                        <label>Folder Name</label>
+                                        <input type="text" class="form-control" name="upd_fl_name" value="<?php echo $client_single->cl_folder_name ?>">
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Client Name</label>
@@ -128,28 +136,36 @@
                                     </div>
                                 </div> -->
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <input type="text" class="form-control" name="upd_cl_city" value="<?php echo $client_single->cl_city;?>" >
+
+                                        <select class="form-control select2-single" data-width="100%" name="upd_cl_city">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($city_list as $city) { ?>                                             
+                                            <option value="<?php echo $city->city_id; ?>" <?php echo ( $client_single->cl_city ==  $city->city_id) ?  'Selected' :  ''; ?>><?php echo $city->city_name; ?></option>
+                                        <?php } ?>
+                                        </select>    
+                                        <!-- <input type="text" class="form-control" name="upd_cl_city" value="<?php echo $client_single->cl_city;?>" > -->
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>State</label>
                                         <input type="text" class="form-control" name="upd_cl_state" value="<?php echo $client_single->cl_state;?>" >
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Zip Code</label>
                                         <input type="number" class="form-control" name="upd_cl_zipcode" value="<?php echo $client_single->cl_zipcode;?>" >
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Phone Number</label>
                                         <input type="number" class="form-control" name="upd_cl_phone" value="<?php echo $client_single->cl_phone;?>" >
@@ -241,8 +257,15 @@
                                     </div>
                                 </div>
 
-
+                                <div class="form-group" style="display:none">
+                                        <!-- <label>Purchase Price</label> -->
+                                        <input type="text" class="form-control" name="upd_old_file" value="<?php echo $client_single->cl_file; ?>">
+                                </div>
                                 
+                                <div class="form-group" style="display:none">
+                                        <!-- <label>Purchase Price</label> -->
+                                        <input type="text" class="form-control" name="upd_old_delete_file">
+                                </div>
                                 
 
                                 <div class="col-12">
@@ -256,13 +279,30 @@
                                     <h5 class="mb-4">Attach File</h5>
                                     <?php 
                                         if($client_single->cl_file != '') {
-                                            $filesArray = unserialize($client_single->cl_file);
-                                            foreach ($filesArray as $file)
-                                            { ?>
-                                                <u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."clients/".$client_single->cl_name. "/".$file; ?>"><?php echo $file?></a></u><br/><br/>
-                                            <?php }
+
+                                            $str = $client_single->cl_file;
+                                            $tmpArr = explode(",",$str);
+                                            $attachCount = 0; 
+
+                                            foreach($tmpArr as $f){
+                                                $f= str_replace(" ","_",$f);
+                                                ?>
+
+<div id="attach<?php $attachCount++; echo $attachCount; ?>"><u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."clients/".$client_single->cl_folder_name. "/".$f; ?>"><?php echo $f ?></a></u> &nbsp;&nbsp;&nbsp;&nbsp; <span onclick="hitFile('<?php echo $f?>','attach<?php echo $attachCount ?>')" style="cursor: pointer;">x</span><br/><br/></div> 
+
+                                                <?php
+                                            }
+
+
+                                           
                                         } else { ?> No file(s) attached. <?php }
                                     ?>
+                                </div>
+
+
+                                <div class="col-sm-12 mb-4">
+                                    <h5 class="mb-4">Attach More Files</h5>
+                                    <input type="file" name="cl_file[]" id="inputGroupFile01" multiple>                            
                                 </div>
 
                                 <div class="col-sm-12 mb-4">
@@ -571,6 +611,39 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
     <script>
+
+function hitFile(para,para2){
+    
+
+    $("#"+ para2).hide();
+    str = $("input[name=upd_old_file]").val();
+
+    
+
+    old = $("input[name=upd_old_delete_file]").val();
+    if(old == ""){
+        old = para;
+    }else{
+        old = old +  ","+para;
+    }
+    $("input[name=upd_old_delete_file]").val(old);
+    // str.replace(para+",", '');
+    
+    // console.log(str)
+    console.log("para",para)
+    str = str.replaceAll(' ', '_');
+    if(str.indexOf(para+",") != -1){
+        str = str.replace(para+",", '');
+        console.log("if",str)
+    }else{
+        str = str.replace(para, '');
+        str = str.replace(/,\s*$/, "");
+        console.log("else",str)
+    }
+    console.log(str)
+    $("input[name=upd_old_file]").val(str);
+}
+
 amcChange()
 function amcChange(){        
         amc_web = $("select[name=upd_cl_amc_id]").find(':selected').data('web');       

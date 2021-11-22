@@ -41,13 +41,20 @@ class CitiesCountries_Model extends CI_Model {
 
     public function getCity()
     {
-        $this->db->select('city_id,city_country_id,country_name,city_name');
-        $this->db->from('city');
-        $this->db->join('country','country.country_id = city.city_country_id');
-        $query = $this->db->get();
+        // $this->db->select('city_id,city_country_id,country_name,city_name');
+        // $this->db->from('city');
+        // $this->db->join('country','country.country_id = city.city_country_id');
+        // $query = $this->db->get();
+        // return $query->result();
+
+        $query = $this->db->get('city');
         return $query->result();
     }
-    
+    public function getCityById($id)
+    {
+        $query = $this->db->where("city_id =",$id)->get("city");
+        return $query->row();
+    }
     public function createCity($data)
     {
        $this->db->insert("city", $data);

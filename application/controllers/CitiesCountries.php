@@ -110,7 +110,7 @@ class CitiesCountries extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
 
             $data['city_name'] = $this->input->post('city_name');
-            $data['city_country_id'] = $this->input->post('city_country_id');
+            // $data['city_country_id'] = $this->input->post('city_country_id');
 
             $result = $this->CitiesCountries_Model->createCity($data);
 
@@ -141,7 +141,7 @@ class CitiesCountries extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
 
             $data['city_id'] = $this->uri->segment(3);
-            $data['city_country_id'] = $this->input->post('upd_city_country_id');
+            // $data['city_country_id'] = $this->input->post('upd_city_country_id');
             $data['city_name'] = $this->input->post('upd_city_name');
 
             $result = $this->CitiesCountries_Model->updateCity($data);

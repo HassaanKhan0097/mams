@@ -22,7 +22,7 @@ class Clients extends CI_Controller {
     {
 
         $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
-        $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
+        // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
         $data['amc_list'] = $this->Amc_Model->get(); 
         $this->load->view('client-create', $data);
     }
@@ -38,12 +38,14 @@ class Clients extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
 
             $data['cl_name'] = $this->input->post('cl_name');
+            $data['cl_folder_name'] = $this->input->post('cl_name');
+            
             $data['cl_contact'] = $this->input->post('cl_contact');
             $data['cl_address'] = $this->input->post('cl_address');
             $data['cl_address2'] = $this->input->post('cl_address2');
             // $data['cl_country_id'] = $this->input->post('cl_country');
             $data['cl_city'] = $this->input->post('cl_city');
-            $data['cl_state'] = $this->input->post('cl_state');
+            // $data['cl_state'] = $this->input->post('cl_state');
             $data['cl_zipcode'] = $this->input->post('cl_zipcode');
             $data['cl_phone'] = $this->input->post('cl_phone');
             // $data['cl_amc'] = $this->input->post('cl_amc');
@@ -63,6 +65,7 @@ class Clients extends CI_Controller {
             }
 
             $filenames = [];
+            $fn = array ();
 
             // Count total files
             $countfiles = count($_FILES['cl_file']['name']);
@@ -88,8 +91,13 @@ class Clients extends CI_Controller {
                 $config['max_width']            = 6000; // 6000px you can set the value you want
                 $config['max_height']           = 6000; // 6000px
                 // $new_name = $data['cl_name'].$i;
+                
                 $new_name = $_FILES['cl_file']['name'][$i];
+                $new_name = str_replace(" ","_",$new_name);
+                // str_replace("world","Peter","Hello world!");
                 $config['file_name'] = $new_name;
+
+                array_push($fn,$new_name);
 
                 $this->load->library('upload', $config);
 
@@ -108,10 +116,10 @@ class Clients extends CI_Controller {
                         $uploadedData = array('upload_data' => $this->upload->data());
 
                         // Initialize array and save every entry to attachment db
-                        $filenames[] = $uploadedData['upload_data']['file_name'];
+                        // $filenames[] = $uploadedData['upload_data']['file_name'];
 
-                        echo "<pre>";
-                        print_r($filenames);
+                        // echo "<pre>";
+                        // print_r($filenames);
 
                 }
 
@@ -120,10 +128,13 @@ class Clients extends CI_Controller {
             }
 
 
-            $data['cl_file']  = serialize($filenames);
-
-            // echo "<pre>";
+            // $data['cl_file']  = serialize($filenames);
+            $data['cl_file'] =  implode(',',$fn);
+            // echo "<pre>-------------";
             // print_r($data['cl_file']);
+
+
+
 
             $result = $this->Client_Model->create($data);
 
@@ -165,7 +176,7 @@ class Clients extends CI_Controller {
     public function update($id)
     {
         $data['cl_single'] = $this->Client_Model->getById($id);
-        // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
         // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
 
         $data['client_single'] = $data['cl_single'][0];    
@@ -181,20 +192,20 @@ class Clients extends CI_Controller {
 
     public function update_client(){
         $this->form_validation->set_rules('upd_cl_name','upd_cl_name','required');
-        $this->form_validation->set_rules('upd_cl_contact','upd_cl_contact','required');
-        $this->form_validation->set_rules('upd_cl_address','upd_cl_address','required');
-        $this->form_validation->set_rules('upd_cl_phone','upd_cl_phone','required');
-
+        // $this->form_validation->set_rules('upd_cl_contact','upd_cl_contact','required');
+        // $this->form_validation->set_rules('upd_cl_address','upd_cl_address','required');
+        // $this->form_validation->set_rules('upd_cl_phone','upd_cl_phone','required');
+// echo "Reached";
         if ($this->form_validation->run() == TRUE) {
             $data['cl_id'] = $this->uri->segment(3);
-
+            // echo "Reached 2";
             $data['cl_name'] = $this->input->post('upd_cl_name');
             $data['cl_contact'] = $this->input->post('upd_cl_contact');
             $data['cl_address'] = $this->input->post('upd_cl_address');
             $data['cl_address2'] = $this->input->post('upd_cl_address2');
             // $data['cl_country_id'] = $this->input->post('upd_cl_country');
             $data['cl_city'] = $this->input->post('upd_cl_city');
-            $data['cl_state'] = $this->input->post('upd_cl_state');
+            // $data['cl_state'] = $this->input->post('upd_cl_state');
             $data['cl_zipcode'] = $this->input->post('upd_cl_zipcode');
             $data['cl_phone'] = $this->input->post('upd_cl_phone');
             // $data['cl_amc'] = $this->input->post('upd_cl_amc');
@@ -213,6 +224,118 @@ class Clients extends CI_Controller {
                 $data['cl_active'] = '';
             }
 
+            $old_file = $this->input->post('upd_old_file');
+
+            $filenames = [];
+            $fn = array ();
+
+            // Count total files 
+            $countfiles = count($_FILES['cl_file']['name']);
+            // $this->config->item()$this->config->item('foo');
+            $path2 = $this->config->item('base_url') . 'uploads/clients/' . $this->input->post('upd_fl_name');
+            $path =  './uploads/clients/' . $this->input->post('upd_fl_name');
+            echo "<br><br>";
+            echo $path;
+            // if(!is_dir($path)){
+            //     mkdir($path);
+            // }
+            // Looping all files
+            for($i=0;$i<$countfiles;$i++) {
+
+                // Define new $_FILES array - $_FILES['file']
+                $_FILES['file']['name'] = $_FILES['cl_file']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['cl_file']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['cl_file']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['cl_file']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['cl_file']['size'][$i];
+
+
+                $config['upload_path']          = $path ;
+                $config['allowed_types']        = '*';
+                $config['max_size']             = 10024; // 10mb you can set the value you want
+                $config['max_width']            = 6000; // 6000px you can set the value you want
+                $config['max_height']           = 6000; // 6000px
+                // $new_name = $data['cl_name'].$i;
+                
+                $new_name = $_FILES['cl_file']['name'][$i];
+                $config['file_name'] = $new_name;
+
+                array_push($fn,$_FILES['cl_file']['name'][$i]);
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('file'))
+                {
+                        $error = array('error' => $this->upload->display_errors());
+                        echo "<pre>error";
+                        print_r($error);
+                }
+                else
+                {
+                        $uploadedData = array('upload_data' => $this->upload->data());
+                        // echo "<pre>else";
+                        // print_r($uploadedData);
+                }
+
+                unset($this->upload);
+
+            }
+
+
+            // $data['cl_file']  = serialize($filenames);
+            // $tmp = "";
+            
+                $tmp = implode(',',$fn);
+            
+            
+            if($old_file != ""){
+                if($tmp != ""){
+                    $tmp = $old_file . "," . $tmp;
+                }else{
+                    $tmp = $old_file;
+                }
+               
+            }
+            
+            $data['cl_file'] =  $tmp;
+            echo "tmp ===<br>"; 
+            echo "<pre>";
+            print_r($tmp);
+            echo "<br><br>"; 
+            echo "<br><br>"; 
+            $od = $this->input->post('upd_old_delete_file');
+            echo "<br>od=== $od <br>";
+            if($od != ""){
+
+                define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
+                define('PUBPATH',str_replace(SELF,'',FCPATH)); // added
+
+                $path3= "uploads/clients/" . $this->input->post('upd_fl_name');
+                if(strpos($od,",")){
+                    $tmparr[] = explode(",", $od);
+                    echo "<br><br>"; 
+                    echo "<pre>";
+                    print_r($tmparr);
+                    echo "<br><br>"; 
+                    foreach($tmparr[0] as $t){                      
+                        $str = $t;
+
+ echo "<br>str=== $str <br>"; 
+                        $str= str_replace(" ","_",$str);
+                        $filestring = PUBPATH.$path3 . "/".  $str;
+
+                        unlink($filestring);   
+                        echo "<br>if=== $filestring <br>";                     
+                    }
+                }else{
+                    $od = str_replace(" ","_",$od);
+                    $filestring = PUBPATH.$path3 . "/".  $od;
+                    unlink($filestring);    
+
+
+                    echo "<br>else=== $filestring <br>";
+                }                
+            }
 
             $result = $this->Client_Model->update($data);
 

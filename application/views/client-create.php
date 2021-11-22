@@ -130,28 +130,36 @@
                                     </div>
                                 </div>  -->
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <input type="text" class="form-control" name="cl_city" placeholder="Enter City" >
+                                        <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
+                                        <option value=""></option>
+                                        <?php
+                                            foreach ($city_list as $city) { ?> 
+                                            <option value="<?php echo $city->city_id; ?>"><?php echo $city->city_name; ?></option>
+                                        <?php } ?>
+                                        </select>   
+                                        
+                                        <!-- <input type="text" class="form-control" name="cl_city" placeholder="Enter City" > -->
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>State</label>
                                         <input type="text" class="form-control" name="cl_state" placeholder="Enter State" >
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Zip Code</label>
                                         <input type="number" class="form-control" name="cl_zipcode" placeholder="Enter Zip Code" >
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Phone Number</label>
                                         <input type="number" class="form-control" name="cl_phone" placeholder="Enter Phone Number" >
@@ -166,29 +174,7 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Select Client Type</label>
-                                        <select class="form-control select2-single" data-width="100%" name="cl_type">
-                                            <option value=""></option>
-                                            <option value="Bank">Bank</option>
-                                            <option value="Broker">Broker</option>
-                                            <option value="Attorney">Attorney</option>
-                                            <option value="Property Owner">Property Owner</option>
-                                        </select>                                    
-                                    </div>
-                                </div> -->
-
-                                <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Select AMC</label>
-                                        <select class="form-control select2-single" data-width="100%" name="cl_amc">
-                                            <option value=""></option>
-                                            <option value="AMC">AMC</option>
-                                            <option value="No AMC">No AMC</option>                                            
-                                        </select>                                    
-                                    </div>
-                                </div> -->
+                           
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label>

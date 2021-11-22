@@ -27,7 +27,7 @@ class Notes extends CI_Controller {
 
 
 
-    public function create()
+    public function create($order_number)
     {
         $loggedUser = $this->session->userdata('loggedUser');
         $this->form_validation->set_rules('notes_txt','notes_txt','required');
@@ -42,9 +42,9 @@ class Notes extends CI_Controller {
             $data['date'] = date("Y/m/d") . " ".date("h:i:sa");
             $data['hide_client'] ="off";
             $data['hide_appraiser'] = "off";
-            if($this->input->post('notes_hide_cl') == "on"){
-                $data['hide_client'] = "on";
-            }
+            // if($this->input->post('notes_hide_cl') == "on"){
+            //     $data['hide_client'] = "on";
+            // }
             if($this->input->post('notes_hide_app') == "on"){
                 $data['hide_appraiser'] = "on";
             }
@@ -56,18 +56,18 @@ class Notes extends CI_Controller {
             if($result > 0) {
 
                 $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
-                redirect("order");
+                redirect("order/update/".$order_number);
 
             } 
             else {
                 
                 $this->session->set_flashdata('message_error', 'Failed!');
-                redirect("order");
+                redirect("order/update/".$order_number);
             }
             
         } 
         else {
-            redirect("order");
+            redirect("order/update/".$order_number);
         }
 
     }
@@ -89,9 +89,9 @@ class Notes extends CI_Controller {
             $data['date'] = date("Y/m/d") . " ".date("h:i:sa");
             $data['hide_client'] ="off";
             $data['hide_appraiser'] = "off";
-            if($this->input->post('upd_notes_hide_cl') == "on"){
-                $data['hide_client'] = "on";
-            }
+            // if($this->input->post('upd_notes_hide_cl') == "on"){
+            //     $data['hide_client'] = "on";
+            // }
             if($this->input->post('upd_notes_hide_app') == "on"){
                 $data['hide_appraiser'] = "on";
             }
@@ -102,13 +102,13 @@ class Notes extends CI_Controller {
 
             if($result > 0) {
 
-                $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
-                redirect("order");
+                $this->session->set_flashdata('message_success', 'Entry Updated Successfully!');
+                redirect("order/update/".$this->input->post('upd_notes_order'));
 
             } 
             else {
                 
-                redirect("order");
+                redirect("order/update/".$this->input->post('upd_notes_order'));
             }
             
             
