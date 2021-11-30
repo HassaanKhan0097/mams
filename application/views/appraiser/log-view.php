@@ -46,9 +46,9 @@
                 <div class="col-12">
                     <h1>Log Record</h1>
                     <div class="text-zero top-right-button-container">
-                            <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
-                                                data-target="#deleteModal">Delete</button>
-                        </div>
+                        <button type="button" class="btn btn-danger btn-lg top-right-button mr-1" data-toggle="modal"
+                            data-target="#deleteModal">Delete</button>
+                    </div>
                     <div class="separator mb-5"></div>
                 </div>
             </div>
@@ -56,369 +56,534 @@
             <div class="row">
                 <div class="col-12">
                     <div class="mb-4">
-                            <button class="btn btn-primary mb-1 mr-2" type="button" onclick="order_record_collapse();">
-                                Order Record
-                            </button>
-                            <button class="btn btn-primary mb-1" type="button" onclick="edit_loan_collapse();">
-                                Add/Edit Notes
-                            </button>
+                        <button class="btn btn-primary mb-1 mr-2" type="button" onclick="order_record_collapse();">
+                            Order Record
+                        </button>
+                        <button class="btn btn-primary mb-1" type="button" onclick="edit_loan_collapse();">
+                            Add/Edit Notes
+                        </button>
                     </div>
-                
+
+
+
 
                     <div class="card mb-4" id="order_record">
                         <div class="card-body">
                             <h5 class="mb-4">Order Record</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>appraiserpages/WorkInProgress/update/<?php echo $order_single->order_number; ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Order Number</label>
-                                        <h4><?php echo $order_single->order_number;?></h4>                             
+                                        <label>Order Number*</label>
+                                        <!-- <input type="text" class="form-control" name="upd_order_number" placeholder="Enter Order Numbers" value="<?php echo $order_single->order_number ?>" readonly required >  -->
+                                        <h4><?php echo $order_single->order_number;?></h4>
                                     </div>
-                                </div>
 
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Property Address</label>
-                                        <h4><?php echo $order_single->order_address;?></h4>    
-                                    
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Order Type</label>
-                                        <h4><?php echo $order_single->order_name;?></h4>                                 
-                                    </div>
-                                </div>
-
-                                <!-- Col 12 end 1-->
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Loan Number</label>
-                                        <h4><?php echo $order_single->order_loan_number;?></h4>                                    
+                                        <!-- <input type="number" class="form-control" name="upd_order_loan_number" placeholder="Enter Loan Number" value="<?php echo $order_single->order_loan_number ?>"> -->
+                                        <h4><?php echo $order_single->order_loan_number;?></h4>
                                     </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>City</label>
-                                        <h4><?php echo $order_single->city_name;?></h4>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Assignment Type</label>
-                                        <h4><?php echo $order_single->at_name;?></h4>                                  
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Assignment Type</label>
-                                        <h4><?php echo $order_single->at2_name;?></h4>                                  
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Assignment Type2</label>
-                                        <h4><?php echo $order_single->at3_name;?></h4>                                  
-                                    </div>
-                                </div>
-                                
-                                <!-- Col 12 end 2-->
-
-
-                                <div class="col-sm-4">
+                                    
                                     <div class="form-group">
                                         <label>FHA/VA Case #</label>
                                         <h4><?php echo $order_single->order_case_number;?></h4>
+                                        <!-- <input type="text" class="form-control" name="upd_order_case_number" placeholder="Enter FHA VA Case" value="<?php echo $order_single->order_case_number ?>"> -->
                                     </div>
-                                </div>
 
-                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>State</label>
-                                        <h4><?php echo $order_single->order_state;?></h4>                                   
+                                        <label>Lender Name*</label>
+                                        <h4><?php echo $order_single->cl_name;?></h4>
+                                        <div class="" style="display:none">
+                                        <select class="form-control select2-single" onchange="lenderChange()" data-width="100%" name="upd_order_client_id" required >
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($client_list as $cl){
+                                            ?>                                            
+                                            <option  
+                                            data-amc-id="<?php echo $cl->cl_amc_id ?>" 
+                                            data-amc-name="<?php echo $cl->amc_name ?>" 
+                                            data-folder-name="<?php echo $cl->cl_folder_name ?>"
+                                            data-website="<?php echo $cl->cl_website ?>" 
+                                            data-phone="<?php echo $cl->cl_phone ?>" 
+                                            data-email="<?php echo $cl->cl_email ?>" 
+                                            data-file="<?php echo $cl->cl_file ?>" 
+                                            data-ins="<?php echo $cl->cl_ins ?>" 
+                                            value="<?php echo $cl->cl_id ?>"  <?php echo ( $order_single->order_client_id ==  $cl->cl_id ) ?  'Selected' :  ''; ?> ><?php echo $cl->cl_name ?></option>
+                                            <?php } ?>
+                                        </select>    
+                                        </div>   
                                     </div>
-                                </div>
 
+                                    <div class="form-group" id="lenderInfo">
 
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Order Status</label>
-                                        <h4><?php echo $order_single->st_name;?></h4>                                    
+                                    <p><b>AMC Name</b>: -- </p>
+                                    <p><b>Website</b>: -- </p>
+                                    <p><b>Email</b>: --</p>
+                                    <p><b>Special Ins</b>: -- </p>       
+                                    <p><b>Files</b>: --</p><br>                             
                                     </div>
-                                </div>
-                                
-                                <!-- Col 12 end 3-->
 
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Client Name</label>
-                                        <h4><?php echo $order_single->cl_name;?></h4>                                    
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Client Name</label>
-                                        <h4><?php echo $order_single->cl2_name;?></h4>                                    
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>AMC</label>
-                                        <h4><?php echo $order_single->cl_amc;?></h4>                                    
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Website</label>
-                                        <h4><?php echo $order_single->cl_website;?></h4>                                    
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Zip Code</label>
-                                        <h4><?php echo $order_single->order_zipcode;?></h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Action Required</label>
-                                        <h4><?php echo $order_single->order_action;?></h4>
-                                        
-                                    </div>
-                                </div>
-
-
-                                <!-- Col 12 end 4-->
-
-                        
-
-
-                                <div class="col-sm-4">
-                                    <div class="form-group mb-1">
-                                        <label>Order Date</label>
-                                        <h4><?php echo $order_single->order_date;?></h4>
-                                    </div>
-                                </div>
-
-                                <!-- Col 12 end 5-->
-
-
+                                    
                                
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Borrower</label>
-                                        <h4><?php echo $order_single->order_borrower;?></h4>
+                                        <label>Appraiser Name* </label>
+
+                                        <h4><?php echo $order_single->app_name;?></h4>
+                                        <!-- <select class="form-control select2-single" data-width="100%" onchange="appraiserChange()" name="upd_order_appraiser_id" required>
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($appraiser_list as $app){
+                                            ?>                                            
+                                            <option data-email="<?php echo $app->app_email ?>" value="<?php echo $app->app_id ?>" <?php echo ( $order_single->order_appraiser_id ==  $app->app_id ) ?  'Selected' :  ''; ?> > <?php echo $app->app_name ?></option>
+                                            <?php } ?>
+                                            
+                                        </select>        
+                                        <span class="helper-text"><?php echo form_error('order_appraiser_id'); ?></span>-->
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
+
                                     <div class="form-group">
-                                        <label>Co Borrower</label>
-                                        <h4><?php echo $order_single->order_co_borrower;?></h4>
+                                        <label>Sub Appraiser Name</label>
+                                        <h4><?php echo $order_single->app2_name;?></h4>
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_appraiser_id2">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($appraiser_list as $app){
+                                            ?>                                            
+                                            <option value="<?php echo $app->app_id ?>" <?php echo ( $order_single->order_appraiser_id2 ==  $app->app_id ) ?  'Selected' :  ''; ?>><?php echo $app->app_name ?></option>
+                                            <?php } ?>
+                                        </select>                                     -->
                                     </div>
-                                </div>
 
-                                <div class="col-sm-4">
-                                    <div class="form-group mb-1">
-                                        <label>Due Date</label>
-                                        <h4><?php echo $order_single->order_duedate;?></h4>
-                                       
-                                    </div>
-                                </div>
-
-
-
-                                <!-- Col 12 end 6-->
-
-                                
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Entry Contact</label>
-                                        <h4><?php echo $order_single->order_entry;?></h4>
+                                        <label>Sub Appraiser Expense</label>
+                                        <h4><?php echo $order_single->order_sub_app_expense;?></h4>
+                                        <!-- <input type="text" class="form-control" name="upd_order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>"> -->
                                     </div>
-                                </div>
 
-                                <div class="col-sm-4">
-                                    <div class="form-group mb-1">
-                                        <label>Appointment Date</label>
-                                        <h4><?php echo $order_single->order_appointmentdate;?></h4>
-                                    </div>
-                                </div>
-
-                                <!-- Col 12 end 7-->
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Appraiser Name </label>
-                                        <h4><?php echo $order_single->app_name;?></h4>                                
+                                        <label>Revenue*</label>
+                                        <h4><?php echo $order_single->order_revenue;?></h4>
+                                        <!-- <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
+                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span> -->
                                     </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sup Appraiser Name </label>
-                                        <h4><?php echo $order_single->app2_name;?></h4>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Appraiser Email </label>
-                                        <h4><?php echo $order_single->order_appraiser_email;?></h4>                                
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Appraiser Email 2 </label>
-                                        <h4><?php echo $order_single->order_appraiser_email2;?></h4>                                
-                                    </div>
-                                </div>
 
 
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <h4><?php echo $order_single->order_phone;?></h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Phone2</label>
-                                        <h4><?php echo $order_single->order_phone2;?></h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Phone3</label>
-                                        <h4><?php echo $order_single->order_phone3;?></h4>
-                                    </div>
-                                </div>
-
-                                
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Appointment Time</label>
-                                        <h4><?php echo $order_single->order_appointment_time;?></h4>                                 
-                                    </div>
-                                </div>
-
-
-                                <!-- Col 12 end 8 Appraiser Name 	-->
-
-
-                               
-
-
-                                
-
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Complete Date</label>
                                         <h4><?php echo $order_single->order_completedate;?></h4>
+                                        <!-- <div class="input-group date">
+                                            <input type="text" class="form-control" name="upd_order_completedate" value="<?php echo $order_single->order_completedate ?>">
+                                            <span class="input-group-text input-group-append input-group-addon">
+                                                <i class="simple-icon-calendar"></i>
+                                            </span>
+                                        </div> -->
                                     </div>
-                                </div>
 
 
-                                <!-- Col 12 end 9 Sup Appraiser Name		-->
-
-
-
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Payment Method</label>
-                                        <h4><?php echo $order_single->order_paymentmethod;?></h4>                                
+                                        <label>Order Type*</label>
+
+
+                                        <h4><?php echo $order_single->order_name;?></h4>
+
+
+
+                                        <!--                                         
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_type_id"  required>
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($order_types_list as $ol){
+                                            ?>                                            
+                                            <option value="<?php echo $ol->order_id ?>" <?php echo ( $order_single->order_type_id ==  $ol->order_id ) ?  'Selected' :  ''; ?>><?php echo $ol->order_name ?></option>
+                                            <?php } ?>
+                                        </select>                 
+                                        <span class="helper-text"><?php echo form_error('order_type_id'); ?></span>                    -->
                                     </div>
+
+                                                                                 
+                                    
                                 </div>
-
-
-                              
+                                <!-- 1st Column ...... col-sm-4 -->
 
                                 <div class="col-sm-4">
+
+                                    <div class="form-group">
+                                        <label>Property Address*</label>
+                                        <h4><?php echo $order_single->order_address;?></h4>
+                                        <!-- <input type="text" class="form-control" name="upd_order_address" placeholder="Enter Property Address" value="<?php echo $order_single->order_address ?>" required >
+                                        <span class="helper-text"><?php echo form_error('order_address'); ?></span>  -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City, State*</label>
+                                        <h4><?php echo $order_single->city_name;?></h4>
+
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
+                                        <option value=""></option>
+                                        <?php
+                                            foreach ($city_list as $city) { ?> 
+                                            <option value="<?php echo $city->city_id; ?>" <?php echo ( $order_single->order_city ==  $city->city_id ) ?  'Selected' :  ''; ?>><?php echo $city->city_name; ?></option>
+                                        <?php } ?>
+                                        </select>    -->
+
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_city" required>
+                                                <option value=""></option>
+                                                <?php
+                                                $cityNames = ["New York City, NY", "Los Angeles, CA", "Chicago, IL"];
+                                                foreach($cityNames as $cl){
+                                                ?>                                            
+                                                <option value="<?php echo $cl ?>" <?php echo ( $order_single->order_city ==  $cl ) ?  'Selected' :  ''; ?>><?php echo $cl ?></option>
+                                                <?php } ?>
+                                        </select>  -->
+                                        <!-- <span class="helper-text"><?php echo form_error('order_city'); ?></span>    -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Zip Code*</label>
+                                        <h4><?php echo $order_single->order_zipcode;?></h4>
+                                        <!-- <input type="number" class="form-control" name="upd_order_zipcode" placeholder="Enter Zip Code" value="<?php echo $order_single->order_zipcode ?>" required >
+                                        <span class="helper-text"><?php echo form_error('order_zipcode'); ?></span>     -->
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label>Borrower*</label>
+                                        <h4><?php echo $order_single->order_borrower;?></h4>
+
+                                        <!-- <input type="text" class="form-control" name="upd_order_borrower" placeholder="Enter Borrower" value="<?php echo $order_single->order_borrower ?>" required>
+                                        <span class="helper-text"><?php echo form_error('order_borrower'); ?></span>  -->
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label>Co Borrower</label>
+                                        <h4><?php echo $order_single->order_co_borrower;?></h4>
+                                        <!-- <input type="text" class="form-control" name="upd_order_co_borrower" placeholder="Enter Co Borrower" value="<?php echo $order_single->order_co_borrower ?>"> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Entry Contact*</label>
+                                        <h4><?php echo $order_single->order_entry;?></h4>
+
+                                        <!-- <input type="text" class="form-control" name="upd_order_entry" placeholder="Enter Entry Contact" value="<?php echo $order_single->order_entry ?>" required>
+                                        <span class="helper-text"><?php echo form_error('order_entry'); ?></span> -->
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Borrower Phone</label>
+                                        <h4><?php echo $order_single->order_borrower_phone1;?></h4>
+
+                                        <!-- <input type="text" class="form-control" name="upd_order_borrower_phone1" placeholder="Enter Phone 1" value="<?php echo $order_single->order_borrower_phone1 ?>"> -->
+                                    </div>
+                             
+                                    <div class="form-group">
+                                        <label>Contact Phone 1</label>
+                                        <h4><?php echo $order_single->order_borrower_phone2;?></h4>
+
+                                        <!-- <input type="text" class="form-control" name="upd_order_borrower_phone2" placeholder="Enter Phone 2" value="<?php echo $order_single->order_borrower_phone2 ?>"> -->
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Contact Phone 2</label>
+                                        <h4><?php echo $order_single->order_borrower_phone3;?></h4>
+
+                                        <!-- <input type="text" class="form-control" name="upd_order_borrower_phone3" placeholder="Enter Phone 3" value="<?php echo $order_single->order_borrower_phone3 ?>"> -->
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Contact Email</label>
+                                        <h4><?php echo $order_single->order_borrower_email;?></h4>
+
+                                        <!-- <input type="text" class="form-control" name="upd_order_borrower_email" placeholder="Enter Email" value="<?php echo $order_single->order_borrower_email ?>"> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Contact Email2</label>
+                                        <h4><?php echo $order_single->order_borrower_email2;?></h4>
+                                        <!-- <input type="text" class="form-control" name="upd_order_borrower_email2" placeholder="Enter Email 2" value="<?php echo $order_single->order_borrower_email ?>"> -->
+                                    </div>
+
+
+                                    <div class="form-group">
+                                    <label>Payment Method*</label>
+                                    <h4><?php echo $order_single->order_paymentmethod;?></h4>
+
+                                    <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_paymentmethod">
+                                            <option value=""></option>
+                                            <option value="Bill Client" <?php echo ( $order_single->order_paymentmethod == 'Bill Client') ?  'Selected' :  ''; ?>>Bill Client</option>
+                                            <option value="Credit Card" <?php echo ( $order_single->order_paymentmethod == 'Credit Card') ?  'Selected' :  ''; ?>>Credit Card</option>
+                                            <option value="COD" <?php echo ( $order_single->order_paymentmethod == 'COD') ?  'Selected' :  ''; ?>>COD</option>
+                                        </select>                           
+                                    <span class="helper-text"><?php echo form_error('upd_order_paymentmethod'); ?></span>        -->
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Loan Type*</label>
+                                        <h4><?php echo $order_single->loan_name;?></h4>
+
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_loan_type" required>
+                                            <option value=""></option>
+
+                                            <?php
+                                            // $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
+                                            foreach($loan_types_list as $lt){
+                                            ?>                                            
+                                            <option data-desc="<?php echo $lt->loan_desc ?>" value="<?php echo $lt->loan_id . "|" . $lt->loan_name . "|" . $lt->loan_desc ?> " <?php echo ( $order_single->order_loan_type == $lt->loan_id ) ?  'Selected' :  ''; ?>><?php echo $lt->loan_name ?></option>
+                                            <?php } ?>
+
+
+                                          
+                                        </select>                  -->
+                                        <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
+                                    </div>
+
+                                </div>
+                                <!-- 2nd Column ...... col-sm-4 -->
+
+                                <div class="col-sm-4">
+
+
+                                    <div class="form-group">
+                                        <label>Order Status*</label>
+                                        <h4><?php echo $order_single->st_name;?></h4>
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="order_status_id" required>
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($status_info_list as $status){
+                                            ?>                                            
+                                            <option value="<?php echo $status->st_id ?>" <?php echo ( $order_single->order_status_id ==  $status->st_id ) ?  'Selected' :  ''; ?>><?php echo $status->st_name ?></option>
+                                            <?php } ?>
+                                        </select>  
+                                        <span class="helper-text"><?php echo form_error('order_status_id'); ?></span>                                   -->
+                                    </div>
+
+
+                                    <div class="form-group action_input">
+                                        <label>Action </label>
+                                        <h4><?php echo $order_single->order_action;?></h4>
+                                        <!-- <div class="custom-control custom-radio">
+                                            <input type="radio" id="customRadio1" name="order_action"
+                                                class="custom-control-input" value="No" <?php echo ( $order_single->order_action == "No" ) ?  'Checked' :  ''; ?>>
+                                            <label class="custom-control-label" for="customRadio1" >No</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="customRadio2" name="order_action"
+                                                class="custom-control-input" value="Yes"  <?php echo ( $order_single->order_action == "Yes" ) ?  'Checked' :  ''; ?>>
+                                            <label class="custom-control-label" for="customRadio2">Yes</label>
+                                        </div>                                         -->
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Order Date*</label>
+                                        <h4><?php echo $order_single->order_date;?></h4>
+                                        <!-- <div class="input-group date">
+                                            <input type="text" class="form-control" name="order_date" value="<?php echo $order_single->order_date ?>" required>
+                                            <span class="input-group-text input-group-append input-group-addon">
+                                                <i class="simple-icon-calendar"></i>
+                                            </span>
+                                            <span class="helper-text"><?php echo form_error('order_date'); ?></span>    
+                                        </div> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Due Date*</label>
+                                        <h4><?php echo $order_single->order_duedate;?></h4>
+                                        <!-- <div class="input-group date">
+                                            <input type="text" class="form-control" name="order_duedate" value="<?php echo $order_single->order_duedate ?>" required>
+                                            <span class="input-group-text input-group-append input-group-addon">
+                                                <i class="simple-icon-calendar"></i>
+                                            </span>
+                                            <span class="helper-text"><?php echo form_error('order_duedate'); ?></span>    
+                                        </div> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Appointment Date</label>
+                                        <h4><?php echo $order_single->order_appointmentdate;?></h4>
+                                        <!-- <div class="input-group date">
+                                            <input type="text" class="form-control" name="order_appointmentdate" value="<?php echo (  $order_single->order_appointmentdate  == "") ?  '' :  $order_single->order_appointmentdate; ?> ">
+                                            <span class="input-group-text input-group-append input-group-addon">
+                                                <i class="simple-icon-calendar"></i>
+                                            </span>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="form-group">
+                                    <label>Appointment Time</label>
+                                    <h4><?php echo $order_single->order_appointment_time;?></h4>
+                                    
+                                    </div>
+
+
+
                                     <div class="form-group">
                                         <label>Purchase Price</label>
                                         <h4><?php echo $order_single->order_purchase;?></h4>
-                                    </div>
-                                </div>
+                                        <!-- <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" value="<?php echo $order_single->order_purchase ?>"> -->
+                                    </div> 
 
 
-                                <!-- Col 12 end 10	Payment Method	-->
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Revenue</label>
-                                        <h4><?php echo $order_single->order_revenue;?></h4>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Expense</label>
                                         <h4><?php echo $order_single->order_expense;?></h4>
+                                        <!-- <input type="text" class="form-control" name="order_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_expense ?>"> -->
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label>Assignment Type*</label>
+                                        <h4><?php echo $order_single->at_name;?></h4>
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_id" required>
+                                            <option value=""></option>
+                                            <?php
+                                            foreach($assignment_types_list as $at){
+                                            ?>                                            
+                                            <option value="<?php echo $at->at_id ?>" <?php echo ( $order_single->order_assignment_id ==  $at->at_id ) ?  'Selected' :  ''; ?>><?php echo $at->at_name ?></option>
+                                            <?php } ?>
+                                            
+                                        </select>       
+                                        <span class="helper-text"><?php echo form_error('order_assignment_id'); ?></span>                              -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Assignment Add-Ons</label>
+                                        <h4><?php echo $order_single->order_assignment_addon;?></h4>
+
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_addon" >
+                                            <option value=""></option>
+                                            <?php
+                                            $assAdd = ["Rent Comparable Schedule", "Operating Income Statement", "REO Addendum", "ADU"];
+                                            foreach($assAdd as $aa){
+                                            ?>                                            
+                                            <option value="<?php echo $aa ?>" <?php echo ( $order_single->order_assignment_addon ==  $aa ) ?  'Selected' :  ''; ?>><?php echo $aa ?></option>
+                                            <?php } ?>
+                                        </select>                 
+                                        <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                    -->
+                                    </div>
+
+
+                                </div>
+                                <!-- 3rd Column ...... col-sm-4 -->
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Special instructions</label>
+                                        <textarea  class="form-control" name="order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50"><?php echo $order_single->order_instruction ?></textarea>                                    
                                     </div>
                                 </div>
 
+                                <div class="form-group" style="display:none">
+                                        <!-- <label>Purchase Price</label> -->
+                                        <input type="text" class="form-control" name="upd_old_file" value="<?php echo $order_single->order_file; ?>">
+                                </div>
+
+                                <div class="form-group" style="display:none">
+                                        <!-- <label>Purchase Price</label> -->
+                                        <input type="text" class="form-control" name="upd_old_delete_file">
+                                </div>
+                                
+                                <!-- Contract,pexels-fauxels-3182749.jpg|Contract,pexels-fauxels-3184434.jpg -->
+                                <div class="col-sm-12 mb-4">
+                                    <h5 class="mb-4">Attach Files</h5>
+                                    <?php 
+                                        if($order_single->order_file != '') {
+                                            $str = $order_single->order_file;
+                                            $tmpArr = explode("|",$str); 
+                                            $fn = array ();
+                                            foreach ($tmpArr as $sub) {
+                                            array_push($fn,explode(",",$sub));
+                                            }
+                                            $orderfile_input = ["of_contract","of_option","of_comparable","of_plat","of_plan","of_condo","of_adu","of_photo","of_client"];
+                                            $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
+
+                                           
+                                            $of_count = 0;$past_f= "";$attachCount = 0;
+                                            foreach($fn as $f){
+                                                $tmp = $orderfile_input[$of_count];
+                                                $tmp_head= $arr[$of_count];
+
+                                                do {
+                                                    if($f[0] == $tmp)
+                                                    {
+                                                        
+                                                         ?>
+                                                        <?php 
+                                                        if($past_f != $f[0])
+                                                        {
+                                                        echo "<h6><b>" .$tmp_head . "</b></h6>"; echo "<br>"; 
+                                                        }
+                                                        $past_f = $f[0];
+                                                        ?>
+                                                        
+                                                            <div id="attach<?php $attachCount++; echo $attachCount; ?>"><u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$order_single->order_number. "/".$f[1]; ?>"><?php echo $f[1] ?></a></u> &nbsp;&nbsp;&nbsp;&nbsp; <span onclick="hitFile('<?php echo $tmp . ',' . $f[1] ?>','attach<?php echo $attachCount ?>')" style="cursor: pointer;">x</span><br/><br/></div> 
+                                                        <?php 
+                                                        $continue   = false;
+                                                    }else{
+                                                        $of_count++;
+                                                        $tmp = $orderfile_input[$of_count];
+                                                        $tmp_head= $arr[$of_count];
+
+                                                        $continue = true;
+                                                    }
+                                                    
+                                                    
+                                                } while ($continue == true);
+
+                                                
+                                                
+                                            }
+                                            // $filesArray = unserialize($order_single->order_file);
+                                            // echo "<pre>";
+                                            // print_r($fn);
+                                           
+                                        } else { ?> No file(s) attached. <?php }
+
+                                    ?>
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>File</label>
-                                        <br>
-                                        <?php
-
-                                        if( $order_single->order_file == ''){
-                                            echo "No File";
-                                        }else{
-                                            ?>
-                                            
-                                             
-                                             <a href="<?php echo $this->config->item('upload_dir').$order_single->order_file;?>" target="_blank"><?php echo $order_single->order_file; ?></a>
-                                            
+                                    Select Category                                                     
+                                        <select class="form-control select2-single" data-width="100%" name="file_cat" onchange="file_change()" >
+                                            <option value=""></option>
                                             <?php
-                                        }
 
-                                        ?>
-
-
+                                            $arr = [ "Contract","Option Sheets","Comparable Info","Plat","Plans/Specs","Condo Questionnaire","ADU Letter","Photo","Client Instructions" ];
+                                    
+                                            foreach($arr as $a){
+                                            ?>                                            
+                                            <option value="<?php echo $a; ?>"><?php echo $a; ?></option>
+                                            <?php } ?>
+                                        </select>                                             
                                     </div>
                                 </div>
-                                
+                                <!-- of_contract -->
 
-                        
+                                <div id="f_contract" style="display:none;"> Contract:  <input type="file" name="of_contract[]"  multiple ></div>
+                                        <div id="f_option" style="display:none;">  Option Sheets: <input type="file" name="of_option[]"  multiple  ></div>
+                                        <div id="f_comparable" style="display:none;">  Comparable Info: <input type="file" name="of_comparable[]" multiple ></div>
+                                        <div  id="f_plat" style="display:none;">  Plat: <input type="file" name="of_plat[]" multiple ></div>
+                                        <div id="f_plan" style="display:none;">  Plans/Specs: <input type="file" name="of_plan[]" multiple ></div>
+                                        <div id="f_condo" style="display:none;">  Condo Questionnaire: <input type="file" name="of_condo[]"  multiple ></div>
+                                        <div id="f_adu" style="display:none;"> ADU  Letter: <input type="file" name="of_adu[]" multiple ></div>
+                                        <div id="f_photo" style="display:none;">  Photo: <input type="file" name="of_photo[]"  multiple ></div>
+                                        <div id="f_client" style="display:none;">  Client Instructions: <input type="file" name="of_client[]"  multiple ></div>
+
+                                </div>
+
 
 
                                 <!-- Col 12 end 11		-->
 
 
 
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Special instructions</label>
-                                        <textarea  class="form-control" name="file_ins" placeholder="Enter Special Instruction" rows="2" cols="50"><?php echo $order_single->order_instruction;?></textarea>                                    
-                                    </div>
-                                </div>
-
-
-                                
+                               
 
                                 <!-- Col 12 end 12		-->
 
@@ -438,56 +603,59 @@
                     </div><!-- card mb-4 End -->
 
 
-
                     <div class="card mb-4" id="new_notes">
                         <div class="card-body">
                             <h5 class="mb-4">Add/Edit Notes</h5>
-                            <form action="" method="post">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <p>Name:</p>
-                                        <label>08/18/2021  3:58:30 AM</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <p>Author:</p>
-                                        <label>office_user</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" class="form-control" name="notes_subject" placeholder="Enter Notes Subject" >
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group position-relative">
-                                        <label>Visibility</label>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                                name="jQueryCheckbox" required>
-                                            <label class="custom-control-label" for="customCheck1">Hidden from client</label>
+                            <form action="<?php echo base_url(); ?>Notes/create/<?php echo $order_single->order_number; ?>" method="post">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <p>Name:</p>
+                                            <label>08/18/2021 3:58:30 AM</label>
                                         </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2"
-                                                name="jQueryCheckbox" required>
-                                            <label class="custom-control-label" for="customCheck2">Hidden from appraiser</label>
-                                        </div>                                    
                                     </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Notes</label>
-                                        <textarea  class="form-control" name="notes_txt" placeholder="Enter Notes" rows="2" cols="50"></textarea>                                    
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <p>Author:</p>
+                                            <label><?php echo $loggedUser['user_username']?></label>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
-                               <!-- Row -->
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Subject</label>
+                                            <input type="text" class="form-control" name="notes_subject"
+                                                placeholder="Enter Notes Subject">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <label>Visibility</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                                    name="jQueryCheckbox" required>
+                                                <label class="custom-control-label" for="customCheck1">Hidden from
+                                                    client</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2"
+                                                    name="jQueryCheckbox" required>
+                                                <label class="custom-control-label" for="customCheck2">Hidden from
+                                                    appraiser</label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Notes</label>
+                                            <textarea class="form-control" name="notes_txt" placeholder="Enter Notes"
+                                                rows="2" cols="50"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- Row -->
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
                             </form>
                         </div>
@@ -522,23 +690,126 @@
                                         <th>Date Time</th>
                                         <th>Author</th>
                                         <th>Subject</th>
-                                        <th>Notes</th>                                        
+                                        <th>Notes</th>
                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                    foreach ($notes as $n) {
+                                        
+                                        ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>08/08/2003 | 4:23:29 AM</td>
-                                        <td>OfficeStaff</td>
-                                        <td>Original Order Notes</td>
-                                        <td>Instructions To Appraiser</td>                                                                               
+                                        <td><?php echo $n->notes_id; ?></td>
+                                        <td><?php echo $n->date; ?></td>
+                                        <td><?php echo $n->user_username; ?></td>
+                                        <td><?php echo $n->subject; ?></td>
+                                        <td><?php echo $n->notes; ?></td>
                                         <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
-                                                data-target="#editModal">Edit</button>&nbsp;<button type="button"
-                                                class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal">Delete</button> </td>
-                                    </tr>                                    
+                                                data-target="#editModalNotes<?php echo $n->notes_id; ?>">Edit</button>&nbsp;<button
+                                                type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#deleteModalNotes<?php echo $n->notes_id; ?>">Delete</button>
+                                        </td>
+
+
+
+                                        <div id="editModalNotes<?php echo $n->notes_id; ?>" class="modal fade"
+                                            role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Notes</h4>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form
+                                                            action="<?php echo base_url(); ?>Notes/update/<?php echo $n->notes_id; ?>"
+                                                            method="post">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <p>Name:</p>
+                                                                        <label><?php echo $n->date; ?></label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <p>Author:</p>
+                                                                        <label><?php echo $n->user_username; ?></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Subject</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="upd_notes_subject"
+                                                                            value="<?php echo $n->subject; ?>"
+                                                                            placeholder="Enter Notes Subject">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12" style="display:none;">
+                                                                    <div class="form-group">
+                                                                        <label>Order_id</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="upd_notes_order"
+                                                                            value="<?php echo $order_single->order_number; ?>"
+                                                                            placeholder="Enter Order">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Notes</label>
+                                                                        <textarea class="form-control"
+                                                                            name="upd_notes_txt"
+                                                                            placeholder="Enter Notes" rows="2"
+                                                                            cols="50"><?php echo $n->notes; ?></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <button type="submit"
+                                                                class="btn btn-primary mb-0">Submit</button>
+                                                            <button type="button" class="btn btn-grey"
+                                                                data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div id="deleteModalNotes<?php echo $n->notes_id; ?>" class="modal fade"
+                                            role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                        <form method="post"
+                                                            action="<?php echo base_url(); ?>Notes/delete/<?php echo $n->notes_id; ?>">
+                                                            <p>Are you Sure You want to Delete this item?</p>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="button" class="btn btn-grey"
+                                                                data-dismiss="modal">Cancel</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <?php } ?>
+                                   
                                 </tbody>
                             </table>
                         </div>
@@ -547,7 +818,7 @@
 
 
 
-                          
+
 
 
                 </div>
@@ -587,51 +858,55 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="post">
-                    <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <p>Name:</p>
-                                        <label>08/18/2021  3:58:30 AM</label>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <p>Name:</p>
+                                    <label>08/18/2021 3:58:30 AM</label>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <p>Author:</p>
-                                        <label>office_user</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" class="form-control" name="notes_subject" placeholder="Enter Notes Subject" >
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group position-relative">
-                                        <label>Visibility</label>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3"
-                                                name="jQueryCheckbox" required>
-                                            <label class="custom-control-label" for="customCheck3">Hidden from client</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4"
-                                                name="jQueryCheckbox" required>
-                                            <label class="custom-control-label" for="customCheck4">Hidden from appraiser</label>
-                                        </div>                                    
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Notes</label>
-                                        <textarea  class="form-control" name="notes_txt" placeholder="Enter Notes" rows="2" cols="50"></textarea>                                    
-                                    </div>
-                                </div>
-
                             </div>
-                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <p>Author:</p>
+                                    <label>office_user</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Subject</label>
+                                    <input type="text" class="form-control" name="notes_subject"
+                                        placeholder="Enter Notes Subject">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group position-relative">
+                                    <label>Visibility</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck3"
+                                            name="jQueryCheckbox" required>
+                                        <label class="custom-control-label" for="customCheck3">Hidden from
+                                            client</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck4"
+                                            name="jQueryCheckbox" required>
+                                        <label class="custom-control-label" for="customCheck4">Hidden from
+                                            appraiser</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Notes</label>
+                                    <textarea class="form-control" name="notes_txt" placeholder="Enter Notes" rows="2"
+                                        cols="50"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <button type="submit" class="btn btn-primary mb-0">Edit</button>
                         <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
                     </form>
@@ -691,7 +966,7 @@
                 { "data": "date_time" },
                 { "data": "author" },
                 { "data": "subject" },
-                { "data": "notes" },                
+                { "data": "notes" },
                 { "data": "action" }
             ],
             drawCallback: function () {
@@ -734,24 +1009,24 @@
 
 
 
-        
+
 
         $("#new_notes").hide();
-            $("#note_table").hide();
-        function order_record_collapse(){
+        $("#note_table").hide();
+        function order_record_collapse() {
             $("#order_record").show();
             $("#new_notes").hide();
             $("#note_table").hide();
         }
 
-        function edit_loan_collapse(){
+        function edit_loan_collapse() {
             $("#order_record").hide();
             $("#new_notes").show();
             $("#note_table").show();
         }
 
     </script>
-    
+
 </body>
 
 </html>

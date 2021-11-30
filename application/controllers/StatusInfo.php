@@ -83,21 +83,40 @@ class StatusInfo extends CI_Controller {
 
     public function delete()
     {
-        
+
         $data['st_id'] = $this->uri->segment(3);
-
-        $result = $this->StatusInfo_Model->delete($data);
-
-        if($result > 0) {
-
+        $countOrder = $this->StatusInfo_Model->countOrder($data['st_id']);
+              
+        // echo $countOrder;
+       if($countOrder == 0){
+            $result = $this->StatusInfo_Model->delete($data);
+            if($result > 0) {
+                redirect("statusinfo");
+            } 
+            else {            
+                $this->session->set_flashdata('message_error', 'Failed to delete!');
+                redirect("statusinfo");
+            }
+       }else{
+            $this->session->set_flashdata('message_error', 'This Status Info is Used in Order, Kindly delete that First!');        
             redirect("statusinfo");
+       }
 
-        } 
-        else {
+        
+        // $data['st_id'] = $this->uri->segment(3);
+
+        // $result = $this->StatusInfo_Model->delete($data);
+
+        // if($result > 0) {
+
+        //     redirect("statusinfo");
+
+        // } 
+        // else {
             
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            $this->index();
-        }
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');
+        //     $this->index();
+        // }
 
     }
 

@@ -78,21 +78,39 @@ class AssignmentTypes extends CI_Controller {
 
     public function delete()
     {
-        
         $data['at_id'] = $this->uri->segment(3);
-
-        $result = $this->AssTypes_Model->delete($data);
-
-        if($result > 0) {
-
+        $countOrder = $this->AssTypes_Model->countOrder($data['at_id']);
+              
+        // echo $countOrder;
+       if($countOrder == 0){
+            $result = $this->AssTypes_Model->delete($data);
+            if($result > 0) {
+                redirect("assignmenttypes");
+            } 
+            else {            
+                $this->session->set_flashdata('message_error', 'Failed to delete!');
+                redirect("assignmenttypes");
+            }
+       }else{
+            $this->session->set_flashdata('message_error', 'This Assignment Type is Used in Order, Kindly delete that First!');        
             redirect("assignmenttypes");
+       }
 
-        } 
-        else {
+
+        // $data['at_id'] = $this->uri->segment(3);
+
+        // $result = $this->AssTypes_Model->delete($data);
+
+        // if($result > 0) {
+
+        //     redirect("assignmenttypes");
+
+        // } 
+        // else {
             
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            $this->index();
-        }
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');
+        //     $this->index();
+        // }
 
     }
 

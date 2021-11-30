@@ -7,6 +7,7 @@ class Log extends CI_Controller {
         parent::__construct();
 
         $this->load->model('appraiser/Log_Model');
+        $this->load->model('Notes_Model');
 
     }
 
@@ -14,7 +15,7 @@ class Log extends CI_Controller {
     {
         $loggedUser = $this->session->userdata('loggedUser');
         
-        $data['order_list'] = $this->Log_Model->getLog($loggedUser['user_id']);       
+        $data['order_list'] = $this->Log_Model->getLog($loggedUser['user_app']);       
         
     //     echo "<pre>";
     //     print_r($data['order_list']);
@@ -29,6 +30,9 @@ class Log extends CI_Controller {
         $data['o_single'] = $this->Log_Model->getByOrderNumber($order_number);
         $data['order_single'] = $data['o_single'][0];    
         
+
+        $data['loggedUser'] = $this->session->userdata('loggedUser');
+        $data['notes'] = $this->Notes_Model->getById($order_number);
         // echo "<pre>";
         // print_r($data['order_single']);
         // print_r($data['cl_single']);

@@ -40,6 +40,12 @@ class Amc_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    public function countClient($id){
+        // $where = "order_appraiser_id='$id' OR order_appraiser_id2='$id'";
+        $this->db->where("cl_amc_id", $id); 
+        return $this->db->count_all_results('client');
+    }
+
     
 
 }

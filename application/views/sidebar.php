@@ -8,13 +8,13 @@
                         <i class="iconsminds-home"></i> Home
                     </a>
                 </li>
-
+<!-- 
                 <li>
                     <a href="<?php echo base_url(); ?>order">
                         <i class="iconsminds-magnifi-glass"></i>
                         <span>Search</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="#appraisers">
                         <i class="iconsminds-business-man"></i>
@@ -132,11 +132,11 @@
                         <i class="iconsminds-paper"></i> <span class="d-inline-block">Assignment Types</span>
                     </a>
                 </li> 
-                <li>
+                <!-- <li>
                     <a href="<?php echo base_url(); ?>messageofday">
                         <i class="iconsminds-mail-open"></i> <span class="d-inline-block">Messages of the Day</span>
                     </a>
-                </li> 
+                </li>  -->
                 <li>
                     <a href="<?php echo base_url(); ?>citiescountries">
                         <i class="iconsminds-city-hall"></i> <span class="d-inline-block">Cities / Counties</span>
@@ -157,11 +157,11 @@
                         <i class="iconsminds-management"></i> <span class="d-inline-block">Loan Types</span>
                     </a>
                 </li> 
-                <li>
+                <!-- <li>
                     <a href="<?php echo base_url(); ?>autoemail">
                         <i class="iconsminds-at-sign"></i> <span class="d-inline-block">Auto E-Mail</span>
                     </a>
-                </li> 
+                </li>  -->
                 <li>
                     <a href="<?php echo base_url(); ?>downloadareas">
                         <i class="iconsminds-download-1"></i> <span class="d-inline-block">Download Areas</span>

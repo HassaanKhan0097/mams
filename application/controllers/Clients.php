@@ -4,6 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Clients extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        
+        if(!$this->session->userdata('loggedUser')){
+            redirect('Mams');
+        }
 
         $this->load->model('Client_Model');
         $this->load->model('CitiesCountries_Model');
@@ -13,8 +17,7 @@ class Clients extends CI_Controller {
 
     public function index()
     {
-        $data['client_list'] = $this->Client_Model->get(); 
-       
+        $data['client_list'] = $this->Client_Model->get();
         $this->load->view('client-list', $data);
     }
 
@@ -360,20 +363,38 @@ class Clients extends CI_Controller {
     {
         
         $data['cl_id'] = $this->uri->segment(3);
+        $countOrder = $this->Client_Model->countOrder($data['cl_id']);
+              
+        // echo $countOrder;
+       if($countOrder == 0){
+            $result = $this->Client_Model->delete($data);
+            if($result > 0) {
+                redirect("clients");
+            } 
+            else {            
+                $this->session->set_flashdata('update_message_error', 'Failed to delete!');
+                redirect("clients/update/".$data['cl_id']);
+            }
+       }else{
+            $this->session->set_flashdata('update_message_error', 'This Client is Used in Order, Kindly delete that First!');        
+            redirect("clients/update/".$data['cl_id']);
+       }
 
-        $result = $this->Client_Model->delete($data);
 
-        if($result > 0) {
 
-             redirect("clients");
-            // $this->index();
-        } 
-        else {
-            
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            // $this->index();
-            redirect("clients");
-        }
+        // $data['cl_id'] = $this->uri->segment(3);
+        // $result = $this->Client_Model->delete($data);
+
+
+
+
+        // if($result > 0) {
+        //      redirect("clients");            
+        // } 
+        // else {            
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');            
+        //     redirect("clients");
+        // }
 
     }
 

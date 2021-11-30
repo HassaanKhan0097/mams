@@ -85,21 +85,37 @@ class Amc extends CI_Controller {
 
     public function delete($id)
     {
-        
+
         $data['amc_id'] = $this->uri->segment(3);
-
-        $result = $this->Amc_Model->delete($data);
-
-        if($result > 0) {
-
+        $countClient = $this->Amc_Model->countClient($data['amc_id']);
+              
+        // echo $countClient;
+       if($countClient == 0){
+            $result = $this->Amc_Model->delete($data);
+            if($result > 0) {
+                redirect("amc");
+            } 
+            else {            
+                $this->session->set_flashdata('message_error', 'Failed to delete!');
+                redirect("amc");
+            }
+       }else{
+            $this->session->set_flashdata('message_error', 'This AMC is Used in Client, Kindly delete that First!');        
             redirect("amc");
+       }
 
-        } 
-        else {
-            
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            $this->index();
-        }
+
+        
+        // $data['amc_id'] = $this->uri->segment(3);
+        // $result = $this->Amc_Model->delete($data);
+
+        // if($result > 0) {
+        //     redirect("amc");
+        // } 
+        // else {            
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');
+        //     redirect("amc");
+        // }
 
     }
 

@@ -82,21 +82,41 @@ class LoanType extends CI_Controller {
 
     public function delete()
     {
-        
+
         $data['loan_id'] = $this->uri->segment(3);
-
-        $result = $this->LoanTypes_Model->delete($data);
-
-        if($result > 0) {
-
+        $countOrder = $this->LoanTypes_Model->countOrder($data['loan_id']);
+              
+        // echo $countOrder;
+       if($countOrder == 0){
+            $result = $this->LoanTypes_Model->delete($data);
+            if($result > 0) {
+                redirect("loantype");
+            } 
+            else {            
+                $this->session->set_flashdata('message_error', 'Failed to delete!');
+                redirect("loantype");
+            }
+       }else{
+            $this->session->set_flashdata('message_error', 'This Loan Type is Used in Order, Kindly delete that First!');        
             redirect("loantype");
+       }
 
-        } 
-        else {
+
+        
+        // $data['loan_id'] = $this->uri->segment(3);
+
+        // $result = $this->LoanTypes_Model->delete($data);
+
+        // if($result > 0) {
+
+        //     redirect("loantype");
+
+        // } 
+        // else {
             
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            $this->index();
-        }
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');
+        //     $this->index();
+        // }
 
     }
 

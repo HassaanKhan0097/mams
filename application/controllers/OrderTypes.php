@@ -83,21 +83,42 @@ class OrderTypes extends CI_Controller {
 
     public function delete()
     {
-        
+
+
         $data['order_id'] = $this->uri->segment(3);
-
-        $result = $this->OrderTypes_Model->delete($data);
-
-        if($result > 0) {
-
+        $countOrder = $this->OrderTypes_Model->countOrder($data['order_id']);
+              
+        // echo $countOrder;
+       if($countOrder == 0){
+            $result = $this->OrderTypes_Model->delete($data);
+            if($result > 0) {
+                redirect("ordertypes");
+            } 
+            else {            
+                $this->session->set_flashdata('message_error', 'Failed to delete!');
+                redirect("ordertypes");
+            }
+       }else{
+            $this->session->set_flashdata('message_error', 'This Order Type is Used in Order, Kindly delete that First!');        
             redirect("ordertypes");
+       }
+        
 
-        } 
-        else {
+
+        // $data['order_id'] = $this->uri->segment(3);
+
+        // $result = $this->OrderTypes_Model->delete($data);
+
+        // if($result > 0) {
+
+        //     redirect("ordertypes");
+
+        // } 
+        // else {
             
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            $this->index();
-        }
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');
+        //     $this->index();
+        // }
 
     }
 

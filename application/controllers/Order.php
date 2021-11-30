@@ -31,6 +31,11 @@ class Order extends CI_Controller {
     {
          
         $data['order_list'] = $this->Order_Model->get(); 
+        $data['client_list'] = $this->Client_Model->get(); 
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        $data['appraiser_list'] = $this->Appraiser_Model->get(); 
+
+
 
         // echo "<pre>";
         // print_r($data['order_list']);
@@ -683,6 +688,34 @@ class Order extends CI_Controller {
         // var_dump($data['order_list']);
 
          $this->load->view('order-list', $data);
+    }
+
+    public function advanceFilter(){
+        // echo "reached";
+
+
+        $res['order_number'] = $this->input->post('file_number');
+        $res['order_address'] = $this->input->post('file_prop');
+        $res['order_client_id'] = $this->input->post('order_client');
+        $res['order_city'] = $this->input->post('order_city');
+        $res['order_borrower'] = $this->input->post('order_borrower');
+        $res['order_appraiser_id'] = $this->input->post('order_appraiser');
+        $res['order_zipcode'] = $this->input->post('order_zipcode');
+        $res['order_appointmentdate'] = $this->input->post('order_appointmentdate');
+        // $data['order_number'] = $this->input->post('order_number');
+
+        $data['order_list'] = $this->Order_Model->advanceSearch($res);
+        $data['client_list'] = $this->Client_Model->get(); 
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        $data['appraiser_list'] = $this->Appraiser_Model->get(); 
+
+        // echo "<pre>";
+        // print_r($res['order_appointmentdate']);
+
+
+
+        $this->load->view('order-list', $data);
+
     }
 
 }

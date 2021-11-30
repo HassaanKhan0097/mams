@@ -6,7 +6,10 @@ class Webuser_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function get()
     {
-        $query = $this->db->get('web_users');
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->join('appraiser as app','app.app_id = users.user_app','left');
+        $query = $this->db->get();
         return $query->result();
     }
 
@@ -18,25 +21,25 @@ class Webuser_Model extends CI_Model {
 
     public function create($data)
     {
-       $this->db->insert("web_users", $data);
+       $this->db->insert("users", $data);
        $result = $this->db->insert_id();
        return $result;
     } 
 
     public function update($data)
     {
-        $id = $data['web_id'];
-        $this->db->where('web_id', $id);
-        $this->db->update('web_users', $data);
+        $id = $data['user_id'];
+        $this->db->where('user_id', $id);
+        $this->db->update('users', $data);
         $result = $this->db->affected_rows();
         return $result;
     }
 
     public function delete($data)
     {
-        $id = $data['web_id'];
-        $this->db->where('web_id', $id);
-        $this->db->delete('web_users'); 
+        $id = $data['user_id'];
+        $this->db->where('user_id', $id);
+        $this->db->delete('users'); 
         return $this->db->affected_rows();
     }
 

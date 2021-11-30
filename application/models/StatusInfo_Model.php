@@ -39,6 +39,13 @@ class StatusInfo_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+
+    public function countOrder($id){
+        // $where = "order_appraiser_id='$id' OR order_appraiser_id2='$id'";
+        $this->db->where("order_status_id", $id); 
+        return $this->db->count_all_results('order');
+    }
+
     
 
 }

@@ -57,6 +57,20 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4">Edit Appraiser</h5>
+
+
+                            <?php
+                                if( $this->session->flashdata('update_message_error') ) { ?>
+
+                                    <div class="col-12 mt-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('update_message_error'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                <?php }
+                                ?>
+
                             <form action="<?php echo base_url(); ?>Appraisers/update_appraiser/<?php echo $appraiser_single->app_id; ?>" method="post">
                             <div class="row">
                                 <div class="col-sm-6">

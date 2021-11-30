@@ -117,22 +117,24 @@ class Appraisers extends CI_Controller {
 
     public function delete()
     {
-        
         $data['app_id'] = $this->uri->segment(3);
+        $countOrder = $this->Appraiser_Model->countOrder($data['app_id']);
+                
+       if($countOrder == 0){
+            $result = $this->Appraiser_Model->delete($data);
+            if($result > 0) {
+                redirect("appraisers");
+            } 
+            else {            
+                $this->session->set_flashdata('update_message_error', 'Failed to delete!');
+                redirect("appraisers/update/".$data['app_id']);
+            }
+       }else{
+            $this->session->set_flashdata('update_message_error', 'This Appraiser is Used in Order, Kindly delete that First!');        
+            redirect("appraisers/update/".$data['app_id']);
 
-        $result = $this->Appraiser_Model->delete($data);
-
-        if($result > 0) {
-
-             redirect("appraisers");
-            // $this->index();
-        } 
-        else {
-            
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            // $this->index();
-            redirect("appraisers");
-        }
+       }
+        
 
     }
 

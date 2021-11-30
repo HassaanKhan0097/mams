@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/datatables.responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.rtl.only.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/component-custom-switch.min.css" />
@@ -58,7 +61,7 @@
                     <div class="card mb-4" style="display: <?php echo $display; ?>;">
                         <div class="card-body">
                             <h5 class="mb-4">Search Order</h5>
-                            <form action="" method="post">
+                            <form action="<?php echo base_url(); ?>Order/advanceFilter" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -78,11 +81,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Client Name</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="order_client">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                            <?php
+                                            foreach($client_list as $cl){
+                                            ?>                                            
+                                            <option value="<?php echo $cl->cl_id ?>" > <?php echo $cl->cl_name ?></option>
+                                            <?php } ?>
                                         </select>                                    
                                     </div>
                                 </div>
@@ -90,11 +95,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="order_city">
                                             <option value=""></option>
-                                            <option value="1">Chicago</option>
-                                            <option value="2">New York</option>
-                                            <option value="3">Los Angeles</option>
+                                            <?php
+                                            foreach($city_list as $cl){
+                                            ?>                                            
+                                            <option value="<?php echo $cl->city_id ?>" > <?php echo $cl->city_name ?></option>
+                                            <?php } ?>
                                         </select>                                    
                                     </div>
                                 </div>
@@ -103,11 +110,11 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Borrower</label>
-                                        <input type="text" class="form-control" name="file_borrower" placeholder="Enter Borrower">
+                                        <input type="text" class="form-control" name="order_borrower" placeholder="Enter Borrower">
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>State</label>
                                         <select class="form-control select2-single" data-width="100%">
@@ -117,7 +124,7 @@
                                             <option value="3">Option 3</option>
                                         </select>                                    
                                     </div>
-                                </div>
+                                </div> -->
 
                                  <!-- Col 12 end 3-->
 
@@ -125,11 +132,13 @@
                                  <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Appraiser Name</label>
-                                        <select class="form-control select2-single" data-width="100%">
+                                        <select class="form-control select2-single" data-width="100%" name="order_appraiser">
                                             <option value=""></option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                            <?php
+                                            foreach($appraiser_list as $app){
+                                            ?>                                            
+                                            <option value="<?php echo $app->app_id ?>" > <?php echo $app->app_name ?></option>
+                                            <?php } ?>
                                         </select>                                    
                                     </div>
                                 </div>
@@ -137,13 +146,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Zip</label>
-                                        <input type="text" class="form-control" name="file_zip" placeholder="Enter Zip">
+                                        <input type="text" class="form-control" name="order_zipcode" placeholder="Enter Zip">
                                     </div>
                                 </div>
 
                                 <!-- Col 12 end 4-->
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Sort By</label><br>
                                         <select class="form-control select2-single" data-width="50%" style="width:50%; float:left;">
@@ -160,13 +169,13 @@
                                             <option value="3">Option 3</option>
                                         </select>  
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-6">
                                     <div class="form-group mb-1">
                                         <label>Appointment Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="order_appointmentdate">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -213,17 +222,17 @@
                                         <th>Order Number</th>
                                         <th>Property Address</th>
                                         <th>Order Types</th>
-                                        <th>Loan Number</th>
+                                        <!-- <th>Loan Number</th> -->
                                         <th>City</th>
                                         <th>Assignment Type</th>
-                                        <th>Sub Assignment Type 1</th>                                        
-                                        <th>Sub Assignment Type 2</th>
+                                        <!-- <th>Sub Assignment Type 1</th>                                         -->
+                                        <!-- <th>Sub Assignment Type 2</th> -->
                                         <th>FHA/VA Case #</th>
-                                        <th>State</th>
+                                        <!-- <th>State</th> -->
                                         <th>Order Status</th>
                                         <th>Client Name</th>
                                         <th>Website</th>
-                                        <th>Sub Client Name</th>
+                                        <!-- <th>Sub Client Name</th> -->
                                         <th>AMC</th>
                                         <th>Zipcode</th>
                                         <th>Action</th>
@@ -234,12 +243,12 @@
                                         <th>Entry Contact</th>
                                         <th>Appointment Date</th>
                                         <th>Appraiser Name</th>
-                                        <th>Sub Appraiser Name</th>
-                                        <th>Appraiser Email</th>
-                                        <th>Appraiser Email 2</th>
+                                        <!-- <th>Sub Appraiser Name</th> -->
+                                        <!-- <th>Appraiser Email</th> -->
+                                        <!-- <th>Appraiser Email 2</th> -->
                                         <th>Phone</th>
-                                        <th>Phone 2</th>
-                                        <th>Phone 3</th>
+                                        <!-- <th>Phone 2</th> -->
+                                        <!-- <th>Phone 3</th> -->
                                         <th>Appointment Time</th>
                                         <th>Complete Date</th>
                                         <th>Payment Method</th>
@@ -260,17 +269,17 @@
                                     <!-- <td class="table_id"><a><?php echo $ol->order_number; ?></a></td> -->
                                     <td><?php echo $ol->order_address; ?></td>
                                     <td><?php echo $ol->order_name; ?></td>
-                                    <td><?php echo $ol->order_loan_number; ?></td>
-                                    <td><?php echo $ol->order_city; ?></td>
+                                    <!-- <td><?php echo $ol->order_loan_number; ?></td> -->
+                                    <td><?php echo $ol->city_name; ?></td>
                                     <td><?php echo $ol->at_name; ?></td>
-                                    <td><?php echo $ol->at2_name; ?></td>
-                                    <td><?php echo $ol->at3_name; ?></td>
+                                    <!-- <td><?php echo $ol->at2_name; ?></td> -->
+                                    <!-- <td><?php echo $ol->at3_name; ?></td> -->
                                     <td><?php echo $ol->order_case_number; ?></td>
-                                    <td><?php echo $ol->order_state; ?></td>
+                                    <!-- <td><?php echo $ol->order_state; ?></td> -->
                                     <td><?php echo $ol->st_name; ?></td>
                                     <td><?php echo $ol->cl_name; ?></td>
                                     <td><?php echo $ol->order_website; ?></td>
-                                    <td><?php echo $ol->cl2_name; ?></td>
+                                    <!-- <td><?php echo $ol->cl2_name; ?></td> -->
                                     <td><?php echo $ol->order_amc; ?></td>
                                     <td><?php echo $ol->order_zipcode; ?></td>
                                     <td><?php echo $ol->order_action; ?></td>
@@ -281,12 +290,12 @@
                                     <td><?php echo $ol->order_entry; ?></td>
                                     <td><?php echo $ol->order_appointmentdate; ?></td>
                                     <td><?php echo $ol->app_name; ?></td>
-                                    <td><?php echo $ol->app_name; ?></td>
-                                    <td><?php echo $ol->order_appraiser_email; ?></td>
-                                    <td><?php echo $ol->order_appraiser_email2; ?></td>
+                                    <!-- <td><?php echo $ol->app_name; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_appraiser_email; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_appraiser_email2; ?></td> -->
                                     <td><?php echo $ol->order_phone; ?></td>
-                                    <td><?php echo $ol->order_phone2; ?></td>
-                                    <td><?php echo $ol->order_phone3; ?></td>
+                                    <!-- <td><?php echo $ol->order_phone2; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_phone3; ?></td> -->
                                     <td><?php echo $ol->order_appointment_time; ?></td>
                                     <td><?php echo $ol->order_completedate; ?></td>
                                     <td><?php echo $ol->order_paymentmethod; ?></td>
@@ -342,7 +351,9 @@
     <script src="<?php echo base_url(); ?>assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/datatables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap-datepicker.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
@@ -360,17 +371,17 @@
                 { "data": "order_number" },
                 { "data": "order_address" },
                 { "data": "order_type_id" },
-                { "data": "order_loan_number" },
+                // { "data": "order_loan_number" },
                 { "data": "order_city_id" },
                 { "data": "order_assignment_id" },
-                { "data": "order_assignment_id2" },
-                { "data": "order_assignment_id3" },
+                // { "data": "order_assignment_id2" },
+                // { "data": "order_assignment_id3" },
                 { "data": "order_case_number" },
-                { "data": "order_state" },
+                // { "data": "order_state" },
                 { "data": "order_status_id" },
                 { "data": "order_client_id" },
                 { "data": "order_website" },
-                { "data": "order_client_id2" },
+                // { "data": "order_client_id2" },
                 { "data": "order_amc" },
                 { "data": "order_zipcode" },
                 { "data": "order_action" },
@@ -381,12 +392,12 @@
                 { "data": "order_entry" },
                 { "data": "order_appointmentdate" },
                 { "data": "order_appraiser_id" },
-                { "data": "order_appraiser_id2" },
-                { "data": "order_appraiser_email" },
-                { "data": "order_appraiser_email2" },
+                // { "data": "order_appraiser_id2" },
+                // { "data": "order_appraiser_email" },
+                // { "data": "order_appraiser_email2" },
                 { "data": "order_phone" },
-                { "data": "order_phone2" },
-                { "data": "order_phone3" },
+                // { "data": "order_phone2" },
+                // { "data": "order_phone3" },
                 { "data": "order_appointment_time" },
                 { "data": "order_completedate" },
                 { "data": "order_paymentmethod" },

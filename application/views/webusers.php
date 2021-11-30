@@ -81,29 +81,45 @@
                             <form action="<?php echo base_url(); ?>Webusers/create" method="post">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" name="web_username" placeholder="Enter Username">
-                                    <span class="helper-text"><?php echo form_error('web_username'); ?></span>
+                                    <input type="text" class="form-control" name="user_username" placeholder="Enter Username" required>
+                                    
                                 </div>
                                 <div class="form-group">
-                                    <label>Login</label>
-                                    <input type="text" class="form-control" name="web_login" placeholder="Enter Login">
-                                    <span class="helper-text"><?php echo form_error('web_login'); ?></span>
+                                    <label>User Email</label>
+                                    <input type="email" class="form-control" name="user_email" placeholder="Enter Email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" name="web_password" placeholder="Enter Password">
-                                    <span class="helper-text"><?php echo form_error('web_password'); ?></span>
+                                    <input type="password" class="form-control" name="user_password" placeholder="Enter Password" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Sec Level</label>
-                                    <input type="number" class="form-control" name="web_seclevel" placeholder="Enter Sec Level">
-                                    <span class="helper-text"><?php echo form_error('web_seclevel'); ?></span>
+                                    <label>User Role</label>
+                                    <select class="form-control" data-width="100%" name="user_role" onchange="roleChange()" required>
+                                        <option value=""></option>
+                                        <option value="appraiser">Appraiser</option>
+                                        <option value="manager">Manager</option>
+                                    </select>
+                                    <!-- <input type="number" class="form-control" name="web_seclevel" placeholder="Enter Sec Level"> -->
+                                    <!-- <span class="helper-text"><?php echo form_error('web_seclevel'); ?></span> -->
                                 </div>
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea  class="form-control" name="web_desc" placeholder="Enter Description" rows="2" cols="50"></textarea>  
-                                                                    
+
+
+                                <div class="form-group" id="appraiserSelect" style="display:none">
+                                    <label>Select Appraiser</label>
+                                    <select class="form-control" data-width="100%" name="user_app"  >
+                                        <option value=""></option>
+                                        <?php
+                                            foreach($appraiser_list as $app){
+                                        ?>                                            
+                                        <option value="<?php echo $app->app_id ?>" > <?php echo $app->app_name ?></option>
+                                        <?php } ?>
+                                    </select>
+
+                                    <!-- <?php echo ( $order_single->order_appraiser_id ==  $app->app_id ) ?  'Selected' :  ''; ?>  -->
+                                    <!-- <input type="number" class="form-control" name="web_seclevel" placeholder="Enter Sec Level"> -->
+                                    <!-- <span class="helper-text"><?php echo form_error('web_seclevel'); ?></span> -->
                                 </div>
+                                
                                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
 
                                 <?php
@@ -160,13 +176,14 @@
                                     <tr>
                                         <th>User Id</th>
                                         <th>Username</th>
-                                        <th>Login</th>
-                                        <th>Password</th>
-                                        <th>Sec Level</th>
-                                        <th>Description</th>
-                                        <th>Last Login</th>
+                                        <th>User Email</th>
+                                        <!-- <th>Password</th> -->
+                                        <th>User Role</th>
+                                        <th>User Appraiser</th>
+                                        <!--  <th>Description</th>
+                                       <th>Last Login</th>
                                         <th>Last Login Date</th>
-                                        <th>Active</th>
+                                        <th>Active</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -176,28 +193,28 @@
                                     foreach ($webuser_list as $web) { ?>           
 
                                         <tr>
-                                            <td><?php echo $web->web_id; ?></td>
-                                            <td><?php echo $web->web_username; ?></td>
-                                            <td><?php echo $web->web_login; ?></td>
-                                            <td><?php echo $web->web_password; ?></td>
-                                            <td><?php echo $web->web_seclevel; ?></td>
-                                            <td><?php echo $web->web_description; ?></td>
-                                            <td><?php echo $web->web_lastloginip; ?></td>
-                                            <td><?php echo $web->web_lastlogindate; ?></td>
-                                            <td><label
+                                            <td><?php echo $web->user_id; ?></td>
+                                            <td><?php echo $web->user_username; ?></td>
+                                            <td><?php echo $web->user_email; ?></td>
+                                            <!-- <td><?php echo $web->user_pass; ?></td> -->
+                                            <td><?php echo $web->user_role; ?></td>
+                                            <td><?php echo $web->app_name; ?></td>
+                                            <!-- <td><?php echo $web->web_lastloginip; ?></td>
+                                            <td><?php echo $web->web_lastlogindate; ?></td> -->
+                                            <!-- <td><label
                                         class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
                                         <input type="checkbox" class="custom-control-input" <?php echo $web->web_active; ?>>
-                                        <span class="custom-control-label">&nbsp;</span></label></td> 
-                                            <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $web->web_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $web->web_id; ?>">Delete</button> </td>
+                                        <span class="custom-control-label">&nbsp;</span></label></td>  -->
+                                            <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $web->user_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $web->user_id; ?>">Delete</button> </td>
                                         </tr>
 
 
-                                        <div id="deleteModal<?php echo $web->web_id; ?>" class="modal fade" role="dialog">
+                                        <div id="deleteModal<?php echo $web->user_id; ?>" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
-                                                    <form method="post" action="<?php echo base_url(); ?>Webusers/delete/<?php echo $web->web_id; ?>">
+                                                    <form method="post" action="<?php echo base_url(); ?>Webusers/delete/<?php echo $web->user_id; ?>">
                                                             <p>Are you Sure You want to Delete this item?</p>
                                                             <button type="submit" class="btn btn-danger">Delete</button>
                                                             <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
@@ -209,7 +226,7 @@
 
 
 
-                                        <div id="editModal<?php echo $web->web_id; ?>" class="modal fade" role="dialog">
+                                        <div id="editModal<?php echo $web->user_id; ?>" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
 
                                                 <!-- Modal content-->
@@ -220,20 +237,64 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         
-                                                        <form action="<?php echo base_url(); ?>Webusers/update/<?php echo $web->web_id; ?>" method="post">
+                                                        <form action="<?php echo base_url(); ?>Webusers/update/<?php echo $web->user_id; ?>" method="post">
+                                                
+
+
                                                 <div class="form-group">
-                                                                <label>Username</label>
-                                                                <input type="text" class="form-control" name="upd_web_username" placeholder="Enter Username" value="<?php echo $web->web_username; ?>">
-                                                                <span class="helper-text"><?php echo form_error('upd_web_username'); ?></span>
-                                                            </div>
-                                                            <div class="form-group">
+                                                    <label>Username</label>
+                                                    <input type="text" class="form-control" name="upd_user_username" placeholder="Enter Username" value="<?php echo $web->user_username; ?>" required>
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>User Email</label>
+                                                    <input type="email" class="form-control" name="upd_user_email"  value="<?php echo $web->user_email; ?>" placeholder="Enter Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="text" class="form-control" name="upd_user_password" placeholder="Enter Password"  value="<?php echo $web->user_pass; ?>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>User Role</label>
+                                                    <select class="form-control" data-width="100%" name="upd_user_role" onchange="roleChangeEdit('<?php echo $web->user_id; ?>')">
+                                                        <option value=""></option>
+                                                        <option value="appraiser"  <?php echo ( $web->user_role ==  "appraiser") ?  'Selected' :  ''; ?>>Appraiser</option>
+                                                        <option value="manager"<?php echo ( $web->user_role ==  "manager") ?  'Selected' :  ''; ?> >Manager</option>
+                                                    </select>
+                                                </div>
+
+
+
+                                                <div class="form-group" id="appraiserSelect<?php echo $web->user_id; ?>">
+                                                    <label>Select Appraiser</label>
+                                                    <select class="form-control" data-width="100%" name="upd_user_app">
+                                                        <option value=""></option>
+                                                        <?php
+                                                            foreach($appraiser_list as $app){
+                                                        ?>        
+                                                        ;                                    
+                                                        <option 
+                                                        value="<?php echo $app->app_id ?>" 
+                                                        <?php $user_id = (int) $web->user_app; echo ( $user_id ==  $app->app_id) ?  'Selected' :  ''; ?>
+                                                        > <?php echo $app->app_name ?></option>                                                       
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+
+
+
+                                                                <!-- <label>Username</label>
+                                                                <input type="text" class="form-control" name="upd_web_username" placeholder="Enter Username" value="<?php echo $web->user_username; ?>">
+                                                                <span class="helper-text"><?php echo form_error('upd_web_username'); ?></span> -->
+                                                            
+                                                            <!-- <div class="form-group">
                                                                 <label>Login</label>
-                                                                <input type="text" class="form-control" name="upd_web_login" placeholder="Enter Login" value="<?php echo $web->web_login; ?>">
+                                                                <input type="text" class="form-control" name="upd_web_login" placeholder="Enter Login" value="<?php echo $web->user_login; ?>">
                                                                 <span class="helper-text"><?php echo form_error('upd_web_login'); ?></span>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Password</label>
-                                                                <input type="text" class="form-control" name="upd_web_password" placeholder="Enter Password" value="<?php echo $web->web_password; ?>">
+                                                                <input type="text" class="form-control" name="upd_web_password" placeholder="Enter Password" value="<?php echo $web->web_pass; ?>">
                                                                 <span class="helper-text"><?php echo form_error('upd_web_password'); ?></span>
                                                             </div>
                                                             <div class="form-group">
@@ -252,7 +313,7 @@
                                                                 class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
                                                                 <input type="checkbox" name="upd_web_active" class="custom-control-input" <?php echo $web->web_active; ?>>
                                                                 <span class="custom-control-label">&nbsp;</span></label>
-                                                            </div>
+                                                            </div> -->
                                                     <button type="submit" class="btn btn-primary mb-0">Edit</button>
                                                     <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
                                                 </form>
@@ -428,6 +489,31 @@
 
 
     <script>
+
+
+        function roleChange(){
+            role_id = $("select[name=user_role]").find(':selected').val();
+
+            if(role_id == 'appraiser'){
+                $("#appraiserSelect").show();
+            }
+        }
+
+        
+        function roleChangeEdit(id){
+            console.log("roleChangeEdit")
+            role_id = $("select[name=upd_user_role]").find(':selected').val();
+
+            if(role_id == 'appraiser'){
+
+                $("#appraiserSelect"+id).show();
+            }else{
+                $("#appraiserSelect"+id).hide();
+            }
+        }
+
+
+
         var $Table_webuser = $("#Table_webuser").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [

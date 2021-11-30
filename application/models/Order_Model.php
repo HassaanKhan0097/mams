@@ -12,6 +12,7 @@ class Order_Model extends CI_Model {
         $this->db->join('assignment_types as at2','at2.at_id = order.order_assignment_id2', 'left'); 
         $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');        
         // $this->db->join('city','city.city_id = order.order_city_id');
+        $this->db->join('city','city.city_id = order.order_city', 'left');
         $this->db->join('client as cl','cl.cl_id = order.order_client_id', 'left');
         $this->db->join('amc as a','a.amc_id = cl.cl_amc_id');
         $this->db->join('client as cl2','cl2.cl_id = order.order_client_id2', 'left');
@@ -55,7 +56,8 @@ class Order_Model extends CI_Model {
         $this->db->join('appraiser','appraiser.app_id = order.order_appraiser_id', 'left');
         $this->db->join('assignment_types as at','at.at_id = order.order_assignment_id', 'left'); 
         $this->db->join('assignment_types as at2','at2.at_id = order.order_assignment_id2', 'left'); 
-        $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');  
+        $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');
+        $this->db->join('appraiser as app2','app2.app_id = order.order_appraiser_id2', 'left');
         // c
         $this->db->join('city','city.city_id = order.order_city', 'left');
         $this->db->join('client as cl','cl.cl_id = order.order_client_id', 'left');
@@ -149,6 +151,49 @@ class Order_Model extends CI_Model {
         $this->db->where($filter['key']." =",$filter['value']);
 
         $query = $this->db->get();
+        return $query->result();  
+    }
+
+    public function advanceSearch($data){
+
+        // echo "Reached";
+        // SELECT * FROM `order` WHERE order_city like '%3%' AND order_client_id like '%%'
+        $this->db->select('*, at.at_id as at_id, at.at_name AS at_name, at2.at_id as at2_id, at2.at_name AS at2_name, at3.at_id AS at3_id, at3.at_name AS at3_name, cl.cl_id AS cl_id, cl.cl_name AS cl_name, cl2.cl_id AS cl2_id, cl2.cl_name AS cl2_name');
+        $this->db->from('order');
+        // $this->db->where('order_number',  "12348");
+        $this->db->join('appraiser','appraiser.app_id = order.order_appraiser_id', 'left');
+        $this->db->join('assignment_types as at','at.at_id = order.order_assignment_id', 'left'); 
+        $this->db->join('assignment_types as at2','at2.at_id = order.order_assignment_id2', 'left'); 
+        $this->db->join('assignment_types as at3','at3.at_id = order.order_assignment_id3', 'left');        
+        // $this->db->join('city','city.city_id = order.order_city_id');
+        $this->db->join('city','city.city_id = order.order_city', 'left');
+        $this->db->join('client as cl','cl.cl_id = order.order_client_id', 'left');
+        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id');
+        $this->db->join('client as cl2','cl2.cl_id = order.order_client_id2', 'left');
+        $this->db->join('order_types','order_types.order_id = order.order_type_id');
+        $this->db->join('status_info','status_info.st_id = order.order_status_id');
+
+        // $order_number = $data['order_number'];
+        // $order_number =  "12348";
+        // $this->db->like('order_number',  "12348");
+
+        // $this->db->where("order_number =",$id);
+
+        // $array = ['order_number' => $order_number];
+        
+        $this->db->like('order_number', $data['order_number']);
+        $this->db->like('order_address', $data['order_address']);
+        $this->db->like('order_client_id', $data['order_client_id']);
+        $this->db->like('order_city', $data['order_city']);
+        $this->db->like('order_borrower', $data['order_borrower']);
+        $this->db->like('order_appraiser_id', $data['order_appraiser_id']);
+        $this->db->like('order_zipcode', $data['order_zipcode']);
+        $this->db->like('order_appointmentdate', $data['order_appointmentdate']);
+
+        // $builder->like($array);
+
+
+        $query = $this->db->get();  
         return $query->result();  
     }
 

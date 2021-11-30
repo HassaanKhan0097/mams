@@ -168,21 +168,48 @@ class CitiesCountries extends CI_Controller {
 
     public function deleteCity()
     {
-        
+
         $data['city_id'] = $this->uri->segment(3);
-
-        $result = $this->CitiesCountries_Model->deleteCity($data);
-
-        if($result > 0) {
-
-            redirect("citiescountries");
-
-        } 
-        else {
+        $countOrder = $this->CitiesCountries_Model->countOrder($data['city_id']);
+              
+        // echo $countOrder;
+       if($countOrder == 0){
+            $countClient = $this->CitiesCountries_Model->countCity($data['city_id']);
+            if($countClient == 0){
+                $result = $this->CitiesCountries_Model->delete($data);
+                if($result > 0) {
+                    redirect("citiescountries");
+                } 
+                else {            
+                    $this->session->set_flashdata('delete_message_error', 'Failed to delete!');
+                    redirect("citiescountries");
+                }
+            }else{
+                $this->session->set_flashdata('delete_message_error', 'This City is Used in Client, Kindly delete that First!');        
+                redirect("citiescountries");
+            }
             
-            $this->session->set_flashdata('delete_message_error', 'Failed!');
-            $this->index();
-        }
+       }else{
+            $this->session->set_flashdata('delete_message_error', 'This City is Used in Order, Kindly delete that First!');        
+            redirect("citiescountries");
+       }
+
+
+        
+        // $data['city_id'] = $this->uri->segment(3);
+
+        // $result = $this->CitiesCountries_Model->deleteCity($data);
+
+        // if($result > 0) {
+
+        //     redirect("citiescountries");
+
+        // } 
+        // else {
+            
+        //     $this->session->set_flashdata('delete_message_error', 'Failed!');
+        //     $this->index();
+        // }
 
     }
 

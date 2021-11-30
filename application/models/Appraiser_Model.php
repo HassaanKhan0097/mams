@@ -39,6 +39,13 @@ class Appraiser_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    public function countOrder($id){
+
+        $where = "order_appraiser_id='$id' OR order_appraiser_id2='$id'";
+        $this->db->where($where); 
+        return $this->db->count_all_results('order');
+    }
+
     
 
 }
