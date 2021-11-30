@@ -32,12 +32,14 @@ class Notes extends CI_Controller {
         $loggedUser = $this->session->userdata('loggedUser');
         $this->form_validation->set_rules('notes_txt','notes_txt','required');
         $this->form_validation->set_rules('notes_subject','notes_subject','required');
-
+        $notes_location ="";
+        $notes_location = $this->input->post('notes_location'); 
         if ($this->form_validation->run() == TRUE) {
 
             $data['order_id'] = $this->uri->segment(3);
             $data['user_id'] = $loggedUser['user_id'];        
             $data['subject'] = $this->input->post('notes_subject');
+                       
             $data['notes'] = $this->input->post('notes_txt');
             $data['date'] = date("Y/m/d") . " ".date("h:i:sa");
             $data['hide_client'] ="off";
@@ -56,18 +58,21 @@ class Notes extends CI_Controller {
             if($result > 0) {
 
                 $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
-                redirect("order/update/".$order_number);
+                // redirect("order/update/".$order_number);
+                redirect($notes_location);
 
             } 
             else {
                 
                 $this->session->set_flashdata('message_error', 'Failed!');
-                redirect("order/update/".$order_number);
+                // redirect("order/update/".$order_number);
+                redirect($notes_location);
             }
             
         } 
         else {
-            redirect("order/update/".$order_number);
+            // redirect("order/update/".$order_number);
+            redirect($notes_location);
         }
 
     }
@@ -79,6 +84,7 @@ class Notes extends CI_Controller {
         $this->form_validation->set_rules('upd_notes_txt','upd_notes_txt','required');
         $this->form_validation->set_rules('upd_notes_subject','upd_notes_subject','required');
 
+        $notes_location = $this->input->post('upd_notes_location'); 
         if ($this->form_validation->run() == TRUE) {
 
             $data['notes_id'] = $this->uri->segment(3);
@@ -103,18 +109,19 @@ class Notes extends CI_Controller {
             if($result > 0) {
 
                 $this->session->set_flashdata('message_success', 'Entry Updated Successfully!');
-                redirect("order/update/".$this->input->post('upd_notes_order'));
+                redirect($notes_location);
+                // redirect("order/update/".$this->input->post('upd_notes_order'));
 
             } 
             else {
-                
-                redirect("order/update/".$this->input->post('upd_notes_order'));
+                redirect($notes_location);
+                // redirect("order/update/".$this->input->post('upd_notes_order'));
             }
             
             
         }else {
-                
-            redirect("order");
+            redirect($notes_location);
+            // redirect("order");
         } 
 
     }
@@ -125,18 +132,20 @@ class Notes extends CI_Controller {
     {
         
         $data['notes_id'] = $this->uri->segment(3);
-
+        $notes_location = $this->input->post('del_notes_location'); 
         $result = $this->Notes_Model->delete($data);
 
         if($result > 0) {
 
-            redirect("order");
+            redirect($notes_location);
+            // redirect("order");
 
         } 
         else {
             
             $this->session->set_flashdata('delete_message_error', 'Failed!');
-            redirect("order");
+            redirect($notes_location);
+            // redirect("order");
         }
 
     }

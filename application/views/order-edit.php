@@ -773,6 +773,12 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12" style="display:none;">
+                                        <div class="form group">
+                                                <input type="text" name="notes_location" >
+                                        </div>
+                                    </div>
+
                                 
                                 <!-- jQueryCheckbox -->
                                 <div class="col-12">
@@ -897,6 +903,12 @@
                                                                         <input type="text" class="form-control" name="upd_notes_subject" value="<?php echo $n->subject; ?>" placeholder="Enter Notes Subject" >
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="col-12" style="display:none;">
+                                                                    <div class="form group">
+                                                                            <input type="text" name="upd_notes_location" >
+                                                                    </div>
+                                                                </div>
                                                                 
                                                                 <div class="col-12" style="display:none;">
                                                                     <div class="form-group">
@@ -945,7 +957,12 @@
                                                 <div class="modal-content">
                                                     <div class="modal-body text-center">
                                                     <form method="post" action="<?php echo base_url(); ?>Notes/delete/<?php echo $n->notes_id; ?>">
-                                                            <p>Are you Sure You want to Delete this item?</p>
+                                                    <div class="col-12" style="display:none;">
+                                                                <div class="form group">
+                                                                        <input type="text" name="del_notes_location" >
+                                                                </div>
+                                                            </div>
+                                                    <p>Are you Sure You want to Delete this item?</p>
                                                             <button type="submit" class="btn btn-danger">Delete</button>
                                                             <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
                                                         </form>
@@ -1025,6 +1042,18 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
 
     <script>
+
+
+        $( document ).ready(function() {
+            href = window.location.href;
+           $("input[name=notes_location]").val(href);
+           $("input[name=upd_notes_location]").val(href);
+           
+           href= href.substr(0,href.lastIndexOf("/"))
+           href= href.substr(0,href.lastIndexOf("/"))
+
+           $("input[name=del_notes_location]").val(href);
+        });
 
 
 function hitFile(para,para2){
