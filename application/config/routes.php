@@ -127,12 +127,21 @@ $route['appraiser/log'] = 'appraiserpages/Log';
 
 // workinprogress
 
+$route['accounting'] = "Accounting";
+$route['accounting/client_detail/(:num)'] = 'Accounting/client_detail/$1';
+$route['accounting/voucher/(:any)/(:num)'] = 'Accounting/get_single_voucher/$1/$2';
 
 
 
 
 
+$route['accounting/payable'] = "Accounting/payable";
+$route['accounting/app_detail/(:num)'] = 'Accounting/app_detail/$1';
+$route['accounting/voucher_app/(:any)/(:num)'] = 'Accounting/get_single_voucher_app/$1/$2';
 
+
+$route['report/pipeline'] = "Report/pipeline";
+$route['report/legacy'] = "Report/legacy";
 
 // !!------------- Owner Routes  ----------------------!!
 $route['ownerpages'] = 'ownerpages/Index'; //here ownerpages is folder -> Index is controller

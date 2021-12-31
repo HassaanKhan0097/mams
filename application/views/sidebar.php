@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Accounting">
+                    <a href="#accounting">
                         <i class="iconsminds-dollar-sign-2"></i>
                         <span>Accounting</span>
                     </a>
@@ -157,11 +157,7 @@
                         <i class="iconsminds-management"></i> <span class="d-inline-block">Loan Types</span>
                     </a>
                 </li> 
-                <!-- <li>
-                    <a href="<?php echo base_url(); ?>autoemail">
-                        <i class="iconsminds-at-sign"></i> <span class="d-inline-block">Auto E-Mail</span>
-                    </a>
-                </li>  -->
+               
                 <li>
                     <a href="<?php echo base_url(); ?>downloadareas">
                         <i class="iconsminds-download-1"></i> <span class="d-inline-block">Download Areas</span>
@@ -206,26 +202,45 @@
                 </li>                          
             </ul>
             <ul class="list-unstyled" data-link="reports">
-                <li>
+                <!-- <li>
                     <a href="Webusers">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Client Status Reports</span>
                     </a>
-                </li> 
+                </li>  -->
                 <li>
-                    <a href="Webusers">
+                    <a href="<?php echo base_url(); ?>report/pipeline">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Pipe Line Reports</span>
                     </a>
                 </li>     
-                <li>
+                <!-- <li>
                     <a href="Webusers">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Service Reports</span>
                     </a>
-                </li> 
+                </li>  -->
                 <li>
-                    <a href="Webusers">
+                    <a href="<?php echo base_url(); ?>report/legacy">
                         <i class="simple-icon-rocket"></i> <span class="d-inline-block">Legacy Pipline Reports</span>
                     </a>
                 </li>                      
+            </ul>
+
+
+            <ul class="list-unstyled" data-link="accounting">
+                <li>
+                    <a href="<?php echo base_url(); ?>Accounting">
+                        <i class="iconsminds-add-user"></i> <span class="d-inline-block">Accounts Receivable</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="<?php echo base_url(); ?>Accounting/payable">
+                        <i class="iconsminds-add-user"></i> <span class="d-inline-block">Accounts Payable</span>
+                    </a>
+                </li> 
+                <!-- <li>
+                    <a href="<?php echo base_url(); ?>clients">
+                        <i class="simple-icon-list"></i> <span class="d-inline-block">List of Clients</span>
+                    </a>
+                </li>                           -->
             </ul>
 
 

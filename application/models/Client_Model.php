@@ -53,7 +53,7 @@ class Client_Model extends CI_Model {
 
         // $where = "order_appraiser_id='$id' OR order_appraiser_id2='$id'";
         $this->db->where("order_client_id", $id); 
-        return $this->db->count_all_results('order');
+        return $this->db->count_all_results('orders');
     }
 
 

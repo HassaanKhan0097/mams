@@ -116,3 +116,45 @@ body.show-spinner::after {
     padding: 10px;
     background: #f2f2f2;
 }
+
+
+.table_total{
+  min-width: 300px;
+  margin-top: 10px;
+  
+}
+
+.table_total thead{
+  background: #00365a;
+  color: #fff;
+}
+
+.table_total thead tr th{
+  padding: 6px 0 0 10px;
+}
+.table_total tbody tr td{
+  border: 1px solid #00365a;
+  padding: 4px;
+}
+.bootstrap-tagsinput, .form-control{
+  height: calc(1.2em + 0.8rem);
+}
+.select2-container--bootstrap .select2-selection--single {
+  height: calc(1.2em + 0.8rem);
+  padding: 0.2rem 0.75rem;
+}
+.form-group {
+  margin-bottom: 0.3rem;
+}
+label {
+  margin-bottom: 0;
+}
+input, .select2-container--bootstrap {
+  /* border: 1px solid #888 !important; */
+}
+
+.card .card-body {
+  background: #F9F9F9;
+  border: 2px solid #00365a;
+  border-radius: 10px;
+}

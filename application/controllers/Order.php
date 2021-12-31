@@ -328,11 +328,31 @@ class Order extends CI_Controller {
 
         $data['ord_single'] = $this->Order_Model->getById($id);
 
-        // echo "<pre>";
-        // print_r( $data['ord_single'] );
+        
         $data['order_single'] = $data['ord_single'][0];
 
 
+
+
+        // echo $data['order_single']->order_v_client;
+        // echo $data['order_single']->order_v_appraiser;
+
+        $data['app_voucher'] = $this->Order_Model->getAppraiserVoucher($data['order_single']->order_v_appraiser);        
+        $data['cl_voucher'] = $this->Order_Model->getClientVoucher($data['order_single']->order_v_client);
+    
+
+        // echo "<pre>";
+        // print_r( $data['app_voucher'] );
+
+        
+
+        // echo "<br><br>  <pre>";
+        // print_r( $data['cl_voucher'] );
+
+        // echo "<br><br>  <br>";
+        // echo count($data['app_voucher']);
+        // echo "<br><br>  <br>";
+        // echo count($data['cl_voucher']);
 
         // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
         // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 

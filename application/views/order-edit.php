@@ -120,37 +120,7 @@
                                     <p><b>Files</b>: --</p><br>                             
                                     </div>
 
-                                    <!-- <div class="form-group">
-                                        <label>AMC</label>
-                                        <input type="text" class="form-control" name="upd_order_amc" placeholder="Enter AMC" value="<?php echo $order_single->amc_name ?>" readonly >
-                                                                   
-                                    </div>
-                                    
-                                     <div class="form-group">
-                                        <label>Web Portal</label>
-                                        <input type="text" class="form-control" name="upd_order_website" placeholder="Enter Website" value="<?php echo $order_single->cl_website ?>" readonly >
-                                    </div> -->
-                  
-                                   <!-- <div class="form-group">
-                                        <label>Lender Phone 1</label>
-                                        <input type="text" class="form-control" name="upd_order_phone" placeholder="Enter Phone 1" value="<?php echo $order_single->cl_phone ?>" readonly>
-                                    </div>
-                             
-                                    <div class="form-group">
-                                        <label>Lender Phone 2</label>
-                                        <input type="text" class="form-control" name="upd_order_phone2" placeholder="Enter Phone" value="<?php echo $order_single->order_phone2 ?>">
-                                    </div>
-                            
-                                    <div class="form-group">
-                                        <label>Lender Phone 3</label>
-                                        <input type="text" class="form-control" name="upd_order_phone3" placeholder="Enter Phone" value="<?php echo $order_single->order_phone3 ?>">
-                                    </div> -->
-
-
-                                    <!-- <div class="form-group">
-                                        <label>Lender Email</label>
-                                        <input type="text" class="form-control" name="upd_order_cl_email" placeholder="Enter Email" value="<?php echo $order_single->cl_email ?>" readonly >
-                                    </div> -->
+                                 
                                
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
@@ -177,6 +147,21 @@
                                     </div>
 
                                     <div class="form-group">
+                                    <?php 
+                                        
+                                        if(count($app_voucher) >0 ){                                            
+                                            echo '<p><b>Appraiser Status</b>: Paid <br>
+                                            <b>Expense Voucher #</b>: '.$app_voucher->v_number.' <br>
+                                            <b>Expense Description</b>: '.$app_voucher->v_desc.' </p>';
+                                        }else{
+                                            echo '<p><b>Appraiser Status</b>: Unpaid </p>';
+                                        }
+                                    ?>
+                                    </div>
+
+
+
+                                    <div class="form-group">
                                         <label>Sub Appraiser Name</label>
                                         <select class="form-control select2-single" data-width="100%" name="upd_order_appraiser_id2">
                                             <option value=""></option>
@@ -193,12 +178,7 @@
                                         <input type="text" class="form-control" name="upd_order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Revenue*</label>
-                                        <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
-                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
-                                    </div>
-
+                                    
                                                                                  
                                     
                                 </div>
@@ -303,6 +283,27 @@
                                         <label>Purchase Price</label>
                                         <input type="text" class="form-control" name="upd_order_purchase" placeholder="Enter Purchase Price" value="<?php echo $order_single->order_purchase ?>">
                                     </div>   
+
+
+
+                                    <div class="form-group">
+                                        <label>Revenue*</label>
+                                        <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
+                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                    <?php 
+                                        
+                                        if(count($cl_voucher) >0 ){                                            
+                                            echo '<p><b>Office Status</b>: Paid <br>
+                                            <b>Revenue Voucher #</b>: '.$cl_voucher->v_number.' <br>
+                                            <b>Revenue Description</b>: '.$cl_voucher->v_desc.' </p>';
+                                        }else{
+                                            echo '<p><b>Office Status</b>: Unpaid </p>';
+                                        }
+                                    ?>
+                                    </div>
 
                                     
                                
