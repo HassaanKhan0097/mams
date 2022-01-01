@@ -102,11 +102,12 @@
 
 
             <div class="row">
-                <div class="col-xl-6 col-lg-6 mb-4">
+            <!-- col-xl-6 col-lg-6  -->
+                <div class="mb-4 home_card" style="width: 19%">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Appraiser</h5>
-                            <table class="data-table data-table-standard responsive nowrap"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -134,12 +135,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-6 col-lg-6 mb-4">
+                <!-- col-xl-6 col-lg-6  -->
+                <div class="mb-4 home_card"  style="width: 28%">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Client</h5>
-                            <table class="data-table data-table-standard responsive nowrap"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -166,12 +167,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-4 col-lg-4 mb-4">
+                <!-- col-xl-4 col-lg-4 -->
+                <div class=" mb-4 home_card" >
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Status</h5>
-                            <table class="data-table data-table-standard responsive nowrap"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -198,12 +199,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-4 col-lg-4 mb-4">
+                <!-- col-xl-4 col-lg-4  -->
+                <div class="mb-4 home_card">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Due Date</h5>
-                            <table class="data-table data-table-standard responsive nowrap"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -233,12 +234,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-4 col-lg-4 mb-4">
+                <!-- col-xl-4 col-lg-4  -->
+                <div class="mb-4 home_card">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Action Required</h5>
-                            <table class="data-table data-table-standard responsive nowrap"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>

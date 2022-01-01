@@ -68,7 +68,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_appraiser" class="dt-responsive">
+                            <table id="Table_appraiser" class="dt-responsive table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Appraiser Id</th>

@@ -689,7 +689,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_notes" class="responsive">
+                            <table id="Table_notes" class="responsive table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Notes Id</th>

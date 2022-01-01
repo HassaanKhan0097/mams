@@ -138,7 +138,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_assignment">
+                            <table id="Table_assignment" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Assignment Types Id</th>

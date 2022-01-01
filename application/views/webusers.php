@@ -171,7 +171,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_webuser">
+                            <table id="Table_webuser" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>User Id</th>

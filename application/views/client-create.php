@@ -401,7 +401,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_officer" class="responsive">
+                            <table id="Table_officer" class="responsive table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Loan Officer Id</th>

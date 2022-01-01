@@ -139,7 +139,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_status">
+                            <table id="Table_status" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Status Id</th>

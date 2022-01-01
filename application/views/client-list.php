@@ -69,7 +69,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_client">
+                            <table id="Table_client" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Client Id</th>

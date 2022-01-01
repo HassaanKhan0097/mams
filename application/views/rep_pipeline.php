@@ -55,7 +55,7 @@
                           
 
                             <!-- data-table Table_status -->
-                            <table id="Table_payment">
+                            <table id="Table_payment" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Method</th>
@@ -90,7 +90,7 @@
                           
 
                             <!-- data-table Table_status -->
-                            <table id="Table_cod">
+                            <table id="Table_cod" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Status COD</th>
@@ -122,7 +122,7 @@
                           
 
                             <!-- data-table Table_status -->
-                            <table id="Table_status">
+                            <table id="Table_status" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Status</th>
@@ -158,7 +158,7 @@
                           
 
                             <!-- data-table Table_status -->
-                            <table id="Table_appraiser">
+                            <table id="Table_appraiser" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Appraiser</th>
@@ -192,7 +192,7 @@
                           
 
                             <!-- data-table Table_status -->
-                            <table id="Table_client">
+                            <table id="Table_client" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Client</th>

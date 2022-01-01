@@ -143,7 +143,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_city">
+                            <table id="Table_city" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Id</th>

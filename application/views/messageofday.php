@@ -52,7 +52,7 @@
                         <div class="card-body">
                             <h5 class="mb-4" style="display: inline;">Messages</h5>
                             <!-- data-table Table_status -->
-                            <table id="Table_message">
+                            <table id="Table_message" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Login Message</th>

@@ -138,7 +138,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_voucher">
+                            <table id="Table_voucher" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Voucher Number</th>

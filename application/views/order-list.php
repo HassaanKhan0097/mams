@@ -216,7 +216,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_files">
+                            <table id="Table_files" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Order Number</th>

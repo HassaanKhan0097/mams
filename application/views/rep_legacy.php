@@ -79,7 +79,7 @@
                             <button type="button" class="btn btn-outline-primary" onclick="range('Week')">Week</button>
                             <button type="button" class="btn btn-outline-primary" onclick="range('Day')">Day</button>
                             <br><br>
-                                <table id="Table_office">
+                                <table id="Table_office" class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th id="office_label"><?php echo $range; ?></th>
@@ -133,7 +133,7 @@
                                 </table>
 
                                 <br><br>
-                                <table class="table_total mt-2" style="width:100%">
+                                <table class="table_total mt-2 " style="width:100%">
                                     <thead>
                                     <tr>
                                         <th colspan="4"><h3>Total</h3></th>
@@ -191,7 +191,7 @@
                                 
 
 
-                                <table id="Table_office">
+                                <table id="Table_office" class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th id="office_label"><?php echo $range; ?></th>
@@ -305,7 +305,7 @@
                                 
 
 
-                                <table id="Table_office">
+                                <table id="Table_office" class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th id="office_label"><?php echo $range; ?></th>

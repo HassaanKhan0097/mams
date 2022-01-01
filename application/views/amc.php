@@ -144,7 +144,7 @@
                             <br><br><br><br>
 
                             <!-- data-table Table_status -->
-                            <table id="Table_Order">
+                            <table id="Table_Order" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>AMC Id</th>

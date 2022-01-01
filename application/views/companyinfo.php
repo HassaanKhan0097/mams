@@ -70,7 +70,7 @@
                             
 
                             <!-- data-table Table_status -->
-                            <table id="Table_company">
+                            <table id="Table_company" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Company Name</th>
