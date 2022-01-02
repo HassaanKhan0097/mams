@@ -14,13 +14,7 @@
                         <i class="iconsminds-magnifi-glass"></i>
                         <span>Work in Progress</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="iconsminds-dollar-sign-2"></i>
-                        <span>Accounting</span>
-                    </a>
-                </li>
+                </li>               
                 <li>
                     <a href="#">
                         <i class="iconsminds-management"></i>
@@ -38,13 +32,7 @@
                         <i class="iconsminds-project"></i>
                         <span>Search</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="iconsminds-dollar-sign-2"></i>
-                        <span>Reports</span>
-                    </a>
-                </li>              
+                </li>                          
                 <li>
                     <a href="#">
                         <i class="simple-icon-settings"></i>
