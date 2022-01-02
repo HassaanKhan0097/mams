@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Accounting extends CI_Controller {
+class App_Accounting extends CI_Controller {
     public function __construct() {
         parent::__construct();
         
@@ -16,11 +16,46 @@ class Accounting extends CI_Controller {
         
     }
 
+
+    
     public function index()
     {
-        $data['acc_client_list'] = $this->Accounting_Model->getAccClient();   
-        $this->load->view('accounting-client', $data);
+        $loggedUser = $this->session->userdata('loggedUser');
+        $data['appraiser_single'] = $this->Appraiser_Model->getById($loggedUser['user_app']);
+        $data['acc_app'] = $this->Accounting_Model->getAccAppById($loggedUser['user_app']);
+        $data['voucher_list'] = $this->Accounting_Model->getVoucherAppById($loggedUser['user_app']); 
+        $this->load->view('appraiser/accounting', $data);
     }
+
+    public function get_single_voucher_app($id,$app_id){
+        $data['appraiser_single'] = $this->Appraiser_Model->getById($app_id);
+        $data['voucher_single'] = $this->Accounting_Model->getSingleVoucher($id);
+        $data['order_list'] = $this->Accounting_Model->getSingleVoucherAppDetail($id);
+        $this->load->view('appraiser/accounting_voucher', $data);
+    }
+
+
+    public function app_detail($id){
+
+
+        $loggedUser = $this->session->userdata('loggedUser');
+        $loggedUser['user_app'];
+        // $data['cl_id'] = $this->Client_Model->getById($id);
+        // $data['cl_single'] = $data['cl_id'][0];
+        $data['appraiser_single'] = $this->Appraiser_Model->getById($id);
+        $data['acc_app'] = $this->Accounting_Model->getAccAppById($id);
+
+        $data['voucher_list'] = $this->Accounting_Model->getVoucherAppById($id); 
+
+        // echo "<pre>";
+        // print_r($data['appraiser_single'] );
+
+        // echo "<br><br><pre>";
+        // print_r($data['acc_app'] );
+        $this->load->view('accounting-detail-app', $data);
+    }
+
+
     public function client_detail($id){
 
         $data['cl_id'] = $this->Client_Model->getById($id);
@@ -122,22 +157,7 @@ class Accounting extends CI_Controller {
         $data['acc_app_list'] = $this->Accounting_Model->getAccAppraiser();   
         $this->load->view('accounting-app', $data);
     }
-    public function app_detail($id){
-
-        // $data['cl_id'] = $this->Client_Model->getById($id);
-        // $data['cl_single'] = $data['cl_id'][0];
-        $data['appraiser_single'] = $this->Appraiser_Model->getById($id);
-        $data['acc_app'] = $this->Accounting_Model->getAccAppById($id);
-
-        $data['voucher_list'] = $this->Accounting_Model->getVoucherAppById($id); 
-
-        // echo "<pre>";
-        // print_r($data['appraiser_single'] );
-
-        // echo "<br><br><pre>";
-        // print_r($data['acc_app'] );
-        $this->load->view('accounting-detail-app', $data);
-    }
+    
 
 
     public function create_app_voucher($id){
@@ -175,16 +195,7 @@ class Accounting extends CI_Controller {
     }
 
 
-    public function get_single_voucher_app($id,$app_id){
-        $data['appraiser_single'] = $this->Appraiser_Model->getById($app_id);
-        $data['voucher_single'] = $this->Accounting_Model->getSingleVoucher($id);
-        $data['order_list'] = $this->Accounting_Model->getSingleVoucherAppDetail($id);
-
-        // echo "<pre>";
-        // print_r($data['order_list'] );
-
-        $this->load->view('accounting-app-voucher', $data);
-    }
+    
     public function unpayApp($v_number){
         $this->Accounting_Model->deleteVoucher($v_number);
         $result = $this->Accounting_Model->resetOrderApp($v_number);

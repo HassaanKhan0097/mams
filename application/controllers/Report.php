@@ -28,32 +28,39 @@ class Report extends CI_Controller {
 
     public function pipeline()
     {
-
-
-        
         $data['payment'] = $this->Report_Model->pipelineByPaymentMethod(); 
         $data['status'] = $this->Report_Model->pipelineByStatus(); 
         $data['cod_status'] = $this->Report_Model->pipelineByCODStatus();         
         $data['app'] = $this->Report_Model->pipelineByAppraiser(); 
         $data['cl'] = $this->Report_Model->pipelineByClient(); 
-
-        // echo "<pre>";
-        // print_r($data['cl']);
-
-        // $data['st_name'] = $this->input->post('st_name');
-        // $result = $this->StatusInfo_Model->create($data);
-
-        // if($result > 0) {
-        //     $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
-        //     redirect("statusinfo");
-        // } 
-        // else {
-        //     $this->session->set_flashdata('message_error', 'Failed!');
-        //     redirect("statusinfo");
-        // }
         $this->load->view('rep_pipeline.php', $data);
+    }
+
+    public function pipeline_detail(){
+        $r = $this->input->post('r');
+        $t = $this->input->post('t');
+
+        $where = "";
+        if($t == "payment"){
+            $where = "o.order_paymentmethod = '" . $r . "' AND order_status_id NOT IN (10,15,16)";
+        }else if($t == "cod"){
+            $where = "o.order_status_id = '" . $r . "' ";
+        }else if($t == "status"){
+            $where = "o.order_status_id = '" . $r . "' ";
+        }else if ($t == "appraiser"){
+            $where = "o.order_appraiser_id = '" . $r . "' AND order_status_id NOT IN (10,15,16)";
+        }else if ($t == "client"){
+            $where = "o.order_client_id = '" . $r . "' AND order_status_id NOT IN (10,15,16)";
+        }
+
+
+        $data['order_list'] = $this->Report_Model->legacyDetOffice($where);
+
+
+        $this->load->view('rep_legacy_detail', $data);
 
     }
+
 
     public function legacy(){
         $data['legacy'] = $this->Report_Model->legacyByOffice();
@@ -131,6 +138,79 @@ class Report extends CI_Controller {
 
     }
 
+    public function legacy_detail(){
+
+        
+        $res['ld'] = $this->input->post('legacyDetail');
+        $res['dd'] = $this->input->post('dateDetail');
+        
+        $res['rd'] = $this->input->post('rangeDetail');
+        $res['ad'] = $this->input->post('appraiserDetail');
+        $res['cd'] = $this->input->post('clientDetail');
+
+
+        $where = "";
+        if($res['ld'] == "Office"){
+            if($res['rd'] == "Day"){
+                $where = "o.order_date = '" . $res['dd'] . "'";
+            }else if($res['rd'] == "Week"){               
+                $f = substr($res['dd'], 0, 10);
+                $l = substr($res['dd'] ,  11);
+                $where = "o.order_date  BETWEEN  '$f' AND '$l'";     
+            }else if($res['rd'] == "Month"){ 
+                $where = "o.order_date LIKE '" . $res['dd'] . "%'";
+            }else if($res['rd'] == "Quarter"){ 
+                $f = substr($res['dd'], 0, 10);
+                $l = substr($res['dd'] ,  11);
+                $where = "o.order_date  BETWEEN  '$f' AND '$l'";   
+            }else if($res['rd'] == "Year"){ 
+                $where = "o.order_date LIKE '" . $res['dd'] . "%'";
+            }
+            $data['order_list'] = $this->Report_Model->legacyDetOffice($where);            
+        }else if($res['ld'] == "Appraiser"){
+            if($res['rd'] == "Day"){
+                $where = "o.order_date = '" . $res['dd'] . "' AND o.order_appraiser_id = '".$res['ad']."'";
+            }else if($res['rd'] == "Week"){               
+                $f = substr($res['dd'], 0, 10);
+                $l = substr($res['dd'] ,  11);
+                $where = "o.order_date  BETWEEN  '$f' AND '$l' AND o.order_appraiser_id = '".$res['ad']."'";     
+            }else if($res['rd'] == "Month"){ 
+                $where = "o.order_date LIKE '" . $res['dd'] . "%' AND o.order_appraiser_id = '".$res['ad']."'";
+            }else if($res['rd'] == "Quarter"){ 
+                $f = substr($res['dd'], 0, 10);
+                $l = substr($res['dd'] ,  11);
+                $where = "o.order_date  BETWEEN  '$f' AND '$l' AND o.order_appraiser_id = '".$res['ad']."'";   
+            }else if($res['rd'] == "Year"){ 
+                $where = "o.order_date LIKE '" . $res['dd'] . "%' AND o.order_appraiser_id = '".$res['ad']."'";
+            }
+            $data['order_list'] = $this->Report_Model->legacyDetOffice($where);
+
+        }else if($res['ld'] == "Client"){
+            if($res['rd'] == "Day"){
+                $where = "o.order_date = '" . $res['dd'] . "' AND o.order_client_id = '".$res['cd']."'";
+            }else if($res['rd'] == "Week"){               
+                $f = substr($res['dd'], 0, 10);
+                $l = substr($res['dd'] ,  11);
+                $where = "o.order_date  BETWEEN  '$f' AND '$l' AND o.order_client_id = '".$res['cd']."'";     
+            }else if($res['rd'] == "Month"){ 
+                $where = "o.order_date LIKE '" . $res['dd'] . "%' AND o.order_client_id = '".$res['cd']."'";
+            }else if($res['rd'] == "Quarter"){ 
+                $f = substr($res['dd'], 0, 10);
+                $l = substr($res['dd'] ,  11);
+                $where = "o.order_date  BETWEEN  '$f' AND '$l' AND o.order_client_id = '".$res['cd']."'";   
+            }else if($res['rd'] == "Year"){ 
+                $where = "o.order_date LIKE '" . $res['dd'] . "%' AND o.order_client_id = '".$res['cd']."'";
+            }
+            $data['order_list'] = $this->Report_Model->legacyDetOffice($where);
+
+        }
+
+        // echo $res['ld'];
+        // echo "<br><pre>";
+        // print_r($data['order_list']);
+
+        $this->load->view('rep_legacy_detail', $data);
+    }
     public function update()
     {
         $this->form_validation->set_rules('update_status_name','Status Name','required');

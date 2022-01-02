@@ -113,13 +113,13 @@
 
                                 <?php foreach($order_list as $a){?>
                                     <tr>
-                                        <td><?php echo $a->order_number; ?></td>
+                                        <td class="table_id"><a href="<?php echo base_url();?>order/update/<?php echo $a->order_number; ?>"><?php echo $a->order_number; ?><a></td>
                                         <td><?php echo $a->cl_name; ?></td>
                                         <td><?php echo $a->order_address; ?></td>
                                         <td><?php echo $a->city_name; ?></td>
                                         <td><?php echo $a->order_borrower; ?></td>
                                         <td><?php echo $a->st_name; ?></td>
-                                        <td><?php echo $a->order_expense; ?></td>
+                                        <td>$<?php echo $a->order_expense; ?></td>
                                     </tr>
 
 
@@ -145,7 +145,7 @@
 
                                     <tr>
                                         <td><?php echo $voucher_single->v_number; ?></td>
-                                        <td><?php echo $voucher_single->v_total; ?></td>
+                                        <td>$<?php echo $voucher_single->v_total; ?></td>
                                     </tr>
 
                                    

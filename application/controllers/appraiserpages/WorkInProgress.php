@@ -29,42 +29,18 @@ class WorkInProgress extends CI_Controller {
     }
     public function view($order_number){
 
-        //  echo "<pre>";
-        // print_r($order_number);
-
         $data['o_single'] = $this->Log_Model->getByOrderNumber($order_number);
         $data['order_single'] = $data['o_single'][0];    
-
-        // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
-        // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
-        // $data['appraiser_list'] = $this->Appraiser_Model->get(); 
-        // $data['client_list'] = $this->Client_Model->get(); 
-        // $data['order_types_list'] = $this->OrderTypes_Model->get(); 
         $data['status_info_list'] = $this->StatusInfo_Model->get(); 
         $data['client_list'] = $this->Client_Model->get();
-        // $data['assignment_types_list'] = $this->AssTypes_Model->get();
-        // $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
-        
-        // echo "<pre>";
-        // print_r($data['order_single']);
-        // print_r($data['cl_single']);
-        // print_r($data['city_list']);
-        // print_r($data['country_list']);
         $data['loggedUser'] = $this->session->userdata('loggedUser');
         $data['notes'] = $this->Notes_Model->getById($order_number);
-        // echo "Start<br>";
-        
-        //         echo $data['loggedUser'];
-                
 
         $this->load->view('appraiser/workinprogress-view', $data);
 
     }
 
     public function update($order_number){
-        // echo "Reached";
-        //  echo "<pre>";
-        // print_r($order_number);
         $data['order_number'] =  $order_number;
         $data['order_status_id'] = $this->input->post('order_status_id');
         $data['order_action'] = $this->input->post('order_action');

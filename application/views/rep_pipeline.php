@@ -67,7 +67,7 @@
                                     <?php
                                     foreach($payment as $p ){ ?>
                                         <tr>   
-                                            <td><?php echo $p->order_paymentmethod;?></td>
+                                            <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $p->order_paymentmethod;?>','payment')"> <?php echo $p->order_paymentmethod;?></a></td>
                                             <td><?php echo $p->files;?></td>
                                             <td>$<?php echo $p->amount;?></td>
                                         </tr>
@@ -102,7 +102,8 @@
                                     <?php
                                     foreach($cod_status as $s ){ ?>
                                         <tr>   
-                                            <td><?php echo $s->st_name;?></td>
+                                        <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $s->st_id;?>','cod')"> <?php echo $s->st_name;?></a></td>
+                                            <!-- <td><?php echo $s->st_name;?></td> -->
                                             <td><?php echo $s->files;?></td>
                                             <td>$<?php echo $s->amount;?></td>
                                         </tr>
@@ -134,7 +135,9 @@
                                     <?php
                                     foreach($status as $s ){ ?>
                                         <tr>   
-                                            <td><?php echo $s->st_name;?></td>
+                                            <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $s->st_id;?>','status')"> <?php echo $s->st_name;?></a></td>
+
+                                            <!-- <td><?php echo $s->st_name;?></td> -->
                                             <td><?php echo $s->files;?></td>
                                             <td>$<?php echo $s->amount;?></td>
                                         </tr>
@@ -170,7 +173,9 @@
                                     <?php
                                     foreach($app as $a ){ ?>
                                         <tr>   
-                                            <td><?php echo $a->app_name;?></td>
+                                            <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $a->app_id;?>','appraiser')"> <?php echo $a->app_name;?></a></td>
+
+                                            <!-- <td><?php echo $a->app_name;?></td> -->
                                             <td><?php echo $a->files;?></td>
                                             <td>$<?php echo $a->amount;?></td>
                                         </tr>
@@ -204,7 +209,9 @@
                                     <?php
                                     foreach($cl as $c ){ ?>
                                         <tr>   
-                                            <td><?php echo $c->cl_name;?></td>
+                                            <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $c->cl_id;?>','client')"> <?php echo $c->cl_name;?></a></td>
+
+                                            <!-- <td><?php echo $c->cl_name;?></td> -->
                                             <td><?php echo $c->files;?></td>
                                             <td>$<?php echo $c->amount;?></td>
                                         </tr>
@@ -222,6 +229,15 @@
         </div>
     </main>
 
+
+    <form action="<?php echo base_url();?>Report/pipeline_detail" method="post" style="display:none">
+                                        
+
+        <input type="text" name="r" >
+        <input type="text" name="t" >
+
+        <button type="submit" id="s">Submit</button>
+    </form>
 
 
     <!-- Modal End -->
@@ -249,6 +265,18 @@
     <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
     <script>
+
+
+
+    function pipeline_detail(r,t){
+
+        $("input[name=r]").val(r);
+        $("input[name=t]").val(t);
+
+        $("#s").click();
+    }
+
+
          $("#Table_payment").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [

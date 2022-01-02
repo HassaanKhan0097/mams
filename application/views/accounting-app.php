@@ -87,6 +87,7 @@
                                 <thead >
                                     <tr>
                                         <th width="25%">Appraiser</th>
+                                        <th>Total Orders</th>
                                         <th>Total Owed</th>
                                         
                                     </tr>
@@ -103,7 +104,10 @@
                                     
                                     <tr>
                                         <td class="table_id"><a href="<?php echo base_url(); ?>accounting/app_detail/<?php echo $a->order_appraiser_id; ?>"><?php echo $a->app_name ?></a></td>
+                                        <td><?php echo $a->total_orders ?></td>
                                         <td>$<?php echo $a->total_owed ?></td>
+                                        
+                                        
                                     </tr>
                                 
                                 <?php } ?>
@@ -158,12 +162,8 @@
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             "columns": [
                 { "data": "Client" },
+                { "data": "Total Orders" },
                 { "data": "Total Owed" },
-                { "data": "Count" },
-                { "data": "Age0-29" },
-                { "data": "Age30-59" },
-                { "data": "Age60-89" },
-                { "data": "Age90+" },
                 // { "data": "Unpaid" }
             ],
             drawCallback: function () {

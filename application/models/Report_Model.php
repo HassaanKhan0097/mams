@@ -149,6 +149,17 @@ class Report_Model extends CI_Model {
         return $query->result(); 
     }
     
+    public function legacyDetOffice($where){
+        // $where = "o.order_date = '" . $res['dd'] . "'";
+
+        $q = "SELECT  o.order_number, o.order_address, o.order_city, c.city_name, o.order_appointmentdate, o.order_appraiser_id, a.app_name, o.order_borrower, o.order_client_id, cl.cl_name, o.order_status_id, st.st_name, o.order_duedate from `orders` o LEFT JOIN `client` cl on o.order_client_id = cl.cl_id LEFT JOIN `appraiser` a on o.order_appraiser_id = a.app_id LEFT JOIN `city` c on o.order_city = c.city_id LEFT JOIN `status_info` st on o.order_status_id = st.st_id where " . $where ;
+
+        // echo $q;
+
+        $query = $this->db->query($q);
+        return $query->result(); 
+    }
+  
 
 
     public function get()

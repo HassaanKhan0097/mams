@@ -63,8 +63,9 @@ class Accounting_Model extends CI_Model {
     }
 
     public function getSingleVoucherDetail($v_number){
-        $where = "o.order_v_client = '" . $v_number . "'";
-        $this->db->select("o.order_number , o.order_client_id, c.cl_name, o.order_address, o.order_city, ci.city_name, o.order_borrower, o.order_status_id, s.st_name, o.order_revenue")->from('orders as o')->join('client as c','c.cl_id = o.order_client_id')->join('city as ci','ci.city_id = o.order_city')->join('status_info as s','s.st_id = o.order_status_id')->where($where);
+        // $where = "o.order_v_client = '" . $v_number . "'";
+        $where = "o.order_v_client = 'QWE-1235'";
+        $this->db->select("o.order_number , o.order_client_id, c.cl_name, o.order_address, o.order_city, ci.city_name, o.order_borrower, o.order_status_id, s.st_name, o.order_revenue")->from('orders as o')->join('client as c','c.cl_id = o.order_client_id')->join('city as ci','ci.city_id = o.order_city','left')->join('status_info as s','s.st_id = o.order_status_id')->where($where);
         $query = $this->db->get();
         return $query->result();  
     }
@@ -91,7 +92,7 @@ class Accounting_Model extends CI_Model {
     public function getAccAppraiser()
     {
         $where = 'o.order_v_appraiser = "" OR o.order_v_appraiser is null';
-        $this->db->select('o.order_appraiser_id, sum(o.order_expense) as total_owed, a.app_name')->from('orders as o')->join('appraiser as a','a.app_id = o.order_appraiser_id')->where($where)->order_by('o.order_appraiser_id', 'ASC')->group_by('o.order_appraiser_id');
+        $this->db->select('o.order_appraiser_id, sum(o.order_expense) as total_owed, count(*) as total_orders,a.app_name')->from('orders as o')->join('appraiser as a','a.app_id = o.order_appraiser_id')->where($where)->order_by('o.order_appraiser_id', 'ASC')->group_by('o.order_appraiser_id');
         $query = $this->db->get();
         return $query->result();  
     }

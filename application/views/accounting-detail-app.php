@@ -90,13 +90,16 @@
                           
                             <!-- <form action="<?php echo base_url(); ?>Order/advanceFilter" method="post"> -->
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
+                                        <button type="button" class="btn btn-outline-primary mt-2" id="checkAll" onclick="selectAllCheckbox();">Check All</button>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Check No:</label>
                                             <input type="text" class="form-control" name="checkNo" placeholder="Enter Check Number">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Payment Description:</label>
                                             <input type="text" class="form-control" name="paymentDesc" placeholder="Enter Payment Description">
@@ -156,7 +159,8 @@
                                         <input type="checkbox" id="check<?php echo $i; $i++;?>" class="custom-control-input">
                                         <span class="custom-control-label">&nbsp;</span>
                                         </label></td>
-                                        <td><?php echo $a->order_number; ?></td>
+                                        <td class="table_id"><a href="<?php echo base_url();?>order/update/<?php echo $a->order_number; ?>"><?php echo $a->order_number; ?><a></td>
+
                                         <td><?php echo $paid; ?></td>
                                         <td><?php echo $a->cl_name; ?></td>
                                         <td><?php echo $a->order_address; ?></td>                                        
@@ -194,7 +198,7 @@
                                         <tr>
                                             <td class="table_id"><a href="<?php echo base_url();?>accounting/voucher_app/<?php echo $v->v_number; ?>/<?php echo $appraiser_single->app_id; ?>"><?php echo $v->v_number; ?></a> </td>
                                             <td><?php echo $v->v_date; ?></td>
-                                            <td><?php echo $v->v_total; ?></td>
+                                            <td>$<?php echo $v->v_total; ?></td>
                                         </tr>
                                     <?php } ?>
                                     
@@ -317,13 +321,24 @@
     <script>
 
 
-    function selectAllCheckbox(){
+     function selectAllCheckbox(){
 
-        for(i=0; i < $("#table_accounting_detail tbody tr").length ; i++){
-            $("#check"+i).prop('checked', true);
+        ch = $("#checkAll").html()
+        if( ch == "Check All"){
+            for(i=0; i < $("#table_accounting_detail tbody tr").length ; i++){
+                $("#check"+i).prop('checked', true);
+            }
+            $("#checkAll").html("Uncheck All")
+        }else{
+            for(i=0; i < $("#table_accounting_detail tbody tr").length ; i++){
+                $("#check"+i).prop('checked', false);
+            }
+            $("#checkAll").html("Check All")
         }
         
+        
     }
+
 
     function selectedPaid(){
         // var currentRow=$(this).closest("tr");
@@ -332,6 +347,7 @@
         //  var col3=currentRow.find("td:eq(2)").text();
         total = 0;
         totalOrder = "";
+        allowMarked = false;
 
         if($("input[name=checkNo]").val() == ""){
             alert("Kindly Enter Check Number");
@@ -348,24 +364,29 @@
                     
                     total+= parseFloat(rev);
                     totalOrder += o + "<br>";
+                    allowMarked = true;
 
                     
                 }
             }
+            if(allowMarked){
             console.log("total-> ", total);
-            totalOrder = totalOrder.substring(0,totalOrder.length-4);
-            $("#totalAmount").html(total);
-            $("#orderNumbers").html(totalOrder);
+                totalOrder = totalOrder.substring(0,totalOrder.length-4);
+                $("#totalAmount").html("$"+total);
+                $("#orderNumbers").html(totalOrder);
 
-            $("input[name=inputtotalAmount]").val(total);
-            $("input[name=inputorderNumbers]").val(totalOrder);
+                $("input[name=inputtotalAmount]").val(total);
+                $("input[name=inputorderNumbers]").val(totalOrder);
 
-            $("input[name=modalcheckNo]").val($("input[name=checkNo]").val());
-            $("input[name=modalpaymentDesc]").val($("input[name=paymentDesc]").val());
-            $("input[name=modalpaymentDate]").val($("input[name=paymentDate]").val());
+                $("input[name=modalcheckNo]").val($("input[name=checkNo]").val());
+                $("input[name=modalpaymentDesc]").val($("input[name=paymentDesc]").val());
+                $("input[name=modalpaymentDate]").val($("input[name=paymentDate]").val());
 
-            
-            $("#modalProceed").modal('show');
+                
+                $("#modalProceed").modal('show');
+            }else{
+                alert("Kindly Select any order")
+            }
         }
     }
 

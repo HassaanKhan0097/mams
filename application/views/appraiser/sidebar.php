@@ -14,7 +14,14 @@
                         <i class="iconsminds-magnifi-glass"></i>
                         <span>Work in Progress</span>
                     </a>
-                </li>               
+                </li>   
+                <li>
+                    <a href="<?php echo base_url(); ?>appraiser/accounting">
+                        <i class="iconsminds-dollar-sign-2"></i>
+                        <span>Accounting</span>
+                    </a>
+                </li>   
+                           
                 <li>
                     <a href="#">
                         <i class="iconsminds-management"></i>

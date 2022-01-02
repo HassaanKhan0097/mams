@@ -162,12 +162,10 @@
                                         <!-- <input type="text" class="form-control" name="upd_order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>"> -->
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Revenue*</label>
                                         <h4><?php echo $order_single->order_revenue;?></h4>
-                                        <!-- <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
-                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span> -->
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="form-group">

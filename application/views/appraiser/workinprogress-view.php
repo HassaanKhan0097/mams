@@ -172,12 +172,10 @@
                                             <!-- <input type="text" class="form-control" name="upd_order_sub_app_expense" placeholder="Enter Expense" value="<?php echo $order_single->order_sub_app_expense ?>"> -->
                                         </div>
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label>Revenue*</label>
                                             <h4><?php echo $order_single->order_revenue;?></h4>
-                                            <!-- <input type="text" class="form-control" name="upd_order_revenue" placeholder="Enter Revenue" value="<?php echo $order_single->order_revenue ?>" required>
-                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span> -->
-                                        </div>
+                                        </div> -->
 
 
                                         <div class="form-group">
@@ -397,19 +395,22 @@
 
                                         <div class="form-group">
                                             <label>Order Date*</label>
-                                            <div class="input-group date">
+                                            <h4><?php echo $order_single->order_date;?></h4>
+                                            <!-- <div class="input-group date">
                                                 <input type="text" class="form-control" name="order_date"
                                                     value="<?php echo $order_single->order_date ?>" required>
                                                 <span class="input-group-text input-group-append input-group-addon">
                                                     <i class="simple-icon-calendar"></i>
                                                 </span>
                                                 <span class="helper-text"><?php echo form_error('order_date'); ?></span>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="form-group">
                                             <label>Due Date*</label>
-                                            <div class="input-group date">
+                                            <h4><?php echo $order_single->order_duedate;?></h4>
+
+                                            <!-- <div class="input-group date">
                                                 <input type="text" class="form-control" name="order_duedate"
                                                     value="<?php echo $order_single->order_duedate ?>" required>
                                                 <span class="input-group-text input-group-append input-group-addon">
@@ -417,7 +418,7 @@
                                                 </span>
                                                 <span
                                                     class="helper-text"><?php echo form_error('order_duedate'); ?></span>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="form-group">

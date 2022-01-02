@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Accounting Client Detail</title>
+    <title>Accounting Voucher</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
@@ -49,48 +49,32 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="mb-4" style="display: inline;">Voucher Detail</h5>
-                            <div class="top-right-button-container">
-                                <div class="btn-group">
-                                    <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        EXPORT
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="dataTablesExcel" href="#">Excel</a>
-                                        <a class="dropdown-item" id="dataTablesCsv" href="#">Csv</a>
-                                        <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
-                                    </div>
-                                </div>
-                            </div>
-
+                            
                             
                             <table class="table_total" style="width:100%">
                                 <thead>
                                 <tr>
-                                    <th colspan="4"><h3>Current Payment</h3></th>
+                                    <th colspan="5"><h3>Expense</h3></th>
                                 </tr>
                                 <tr>
-                                    <th width="20%">Client Name </th>
+                                    <th width="20%">Appraiser Name </th>
                                     <th>Payment Date </th>
                                     <th>Description </th>
                                     <th>Paid</th>
-
+                                    <th>Voucher Number</th>
                                 </tr>
                                 </thead>
                                 <tr>
-                                    <td id="totalClient"><?php  echo $cl_single->cl_name; ?> </td>
+                                    <td id="totalClient"><?php  echo $appraiser_single->app_name; ?> </td>
                                     <td><?php echo $voucher_single->v_date; ?></td>
                                     <td><?php echo $voucher_single->v_desc; ?></td>
                                     <td>PAID</td>
+                                    <td><?php echo $voucher_single->v_number; ?></td>
                                 </tr>
                             </table>
 
                             <br><br>
-                          <div class="row">
-                              <div class="col-md-12">
-                              <button type="button" class="btn btn-danger btn-sm float-right " onclick="unpay();">Unpay Voucher</button>
-                              </div>
-                          </div>
+                          
 
                             <hr>
                             <table id="table_detail" class="table table-bordered">
@@ -112,14 +96,13 @@
 
                                 <?php foreach($order_list as $a){?>
                                     <tr>
-                                        <!-- <td><?php echo $a->order_number; ?></td> -->
-                                        <td class="table_id"><a href="<?php echo base_url();?>order/update/<?php echo $a->order_number; ?>"><?php echo $a->order_number; ?><a></td>
+                                        <td class="table_id"><a href="<?php echo base_url();?>appraiserpages/Log/logView/<?php echo $a->order_number; ?>"><?php echo $a->order_number; ?><a></td>
                                         <td><?php echo $a->cl_name; ?></td>
                                         <td><?php echo $a->order_address; ?></td>
                                         <td><?php echo $a->city_name; ?></td>
                                         <td><?php echo $a->order_borrower; ?></td>
                                         <td><?php echo $a->st_name; ?></td>
-                                        <td class="table_id"><a href="<?php echo base_url();?>PdfReport/singleInvoice/<?php echo $a->order_number; ?>"> $<?php echo $a->order_revenue;?></a></td>
+                                        <td>$<?php echo $a->order_expense; ?></td>
                                     </tr>
 
 
@@ -167,26 +150,6 @@
 
 
 
-    <!-- Modal -->
-
-    <div id="modalProceed" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <form action="<?php echo base_url()?>Accounting/unpayClient/<?php echo $voucher_single->v_number; ?>" method="post">
-                        
-                                    
-                        <p>Are you Sure You want to Unpay this Voucher?</p>
-                        <button type="submit" class="btn btn-primary" >Unpay</button>
-                        <button type="button" class="btn btn-grey" data-dismiss="modal">Cancel</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal End -->
 
     <!-- Footer -->
 
@@ -216,10 +179,7 @@
    </script>
     <script>
 
-    function unpay(){                            
-            $("#modalProceed").modal('show');
-        
-    }
+  
 
         var $table_detail = $("#table_detail").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
@@ -333,9 +293,7 @@
         });
 
 
-        function edit_file(id){
-            window.location.href= "<?php echo base_url(); ?>file/edit/"+id;
-        }
+ 
     </script>
 </body>
 

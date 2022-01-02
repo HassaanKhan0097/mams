@@ -83,13 +83,16 @@
                           
                             <!-- <form action="<?php echo base_url(); ?>Order/advanceFilter" method="post"> -->
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
+                                        <button type="button" class="btn btn-outline-primary mt-2" id="checkAll" onclick="selectAllCheckbox();">Check All</button>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Check No:</label>
                                             <input type="text" class="form-control" name="checkNo" placeholder="Enter Check Number">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Payment Description:</label>
                                             <input type="text" class="form-control" name="paymentDesc" placeholder="Enter Payment Description">
@@ -298,9 +301,19 @@
 
     function selectAllCheckbox(){
 
-        for(i=0; i < $("#table_accounting_detail tbody tr").length ; i++){
-            $("#check"+i).prop('checked', true);
+        ch = $("#checkAll").html()
+        if( ch == "Check All"){
+            for(i=0; i < $("#table_accounting_detail tbody tr").length ; i++){
+                $("#check"+i).prop('checked', true);
+            }
+            $("#checkAll").html("Uncheck All")
+        }else{
+            for(i=0; i < $("#table_accounting_detail tbody tr").length ; i++){
+                $("#check"+i).prop('checked', false);
+            }
+            $("#checkAll").html("Check All")
         }
+        
         
     }
 
@@ -311,6 +324,7 @@
         //  var col3=currentRow.find("td:eq(2)").text();
         total = 0;
         totalOrder = "";
+        allowMarked = false;
 
         if($("input[name=checkNo]").val() == ""){
             alert("Kindly Enter Check Number");
@@ -320,31 +334,35 @@
                     cr = $("#check"+i).closest("tr");
                     o = cr.find("td:eq(1)").text();
                     rev = cr.find("td:eq(2)").text();
-                    rev = rev.substring(1);
+                    rev = rev.substring(2);
 
 
 
                     console.log("rev-> ", rev);
                     total+= parseFloat(rev);
                     totalOrder += o + "<br>";
-
+                    allowMarked = true;
                     
                 }
             }
-            console.log("total-> ", total);
-            totalOrder = totalOrder.substring(0,totalOrder.length-4);
-            $("#totalAmount").html(total);
-            $("#orderNumbers").html(totalOrder);
+            if(allowMarked){
+                console.log("total-> ", total);
+                totalOrder = totalOrder.substring(0,totalOrder.length-4);
+                $("#totalAmount").html("$"+total);
+                $("#orderNumbers").html(totalOrder);
 
-            $("input[name=inputtotalAmount]").val(total);
-            $("input[name=inputorderNumbers]").val(totalOrder);
+                $("input[name=inputtotalAmount]").val(total);
+                $("input[name=inputorderNumbers]").val(totalOrder);
 
-            $("input[name=modalcheckNo]").val($("input[name=checkNo]").val());
-            $("input[name=modalpaymentDesc]").val($("input[name=paymentDesc]").val());
-            $("input[name=modalpaymentDate]").val($("input[name=paymentDate]").val());
+                $("input[name=modalcheckNo]").val($("input[name=checkNo]").val());
+                $("input[name=modalpaymentDesc]").val($("input[name=paymentDesc]").val());
+                $("input[name=modalpaymentDate]").val($("input[name=paymentDate]").val());
 
-            
-            $("#modalProceed").modal('show');
+                
+                $("#modalProceed").modal('show');
+            }else{
+                alert("Kindly Select any order")
+            }
         }
     }
 

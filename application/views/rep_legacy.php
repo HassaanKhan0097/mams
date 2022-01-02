@@ -95,16 +95,18 @@
                                         foreach($legacy as $l ){ ?>
                                             <tr>   
                                                 
-                                                <td><?php 
+                                                <td  class="table_id"><?php 
+                                                $d = "";
+                                                $r = "";
                                                 if($range == 'Day') {
                                                     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('l, F jS, Y');
+                                                    $d = $date->format('l, F jS, Y');
                                                 } else if($range == 'Week') {
                                                     $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
-                                                    echo "Week of: " . $date->format('Y/m/d');
+                                                    $d = "Week of: " . $date->format('Y/m/d');
                                                 } else if($range == 'Month') {
                                                     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('F, Y');
+                                                    $d =  $date->format('F, Y');
                                                 } else if($range == 'Quarter') {
                                                     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
                                                     $d =  $date->format('n');
@@ -112,12 +114,17 @@
                                                     //Calculate the year quarter.
                                                     $yearQuarter = ceil($month / 3);
                                                     //Print it out
-                                                    echo $date->format('Y') .", " . "Quarter $yearQuarter ";
+                                                    $d =  $date->format('Y') .", " . "Quarter $yearQuarter ";
                                                     
                                                 } else if($range == 'Year') {
                                                     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('Y');
+                                                    $d =  $date->format('Y');
                                                 }
+                                                // echo $d ; 
+                                                $legacy = "legacy_detail('".$l->order_date."','".$range."')";
+                                                echo '<a href="javascript:void(0)" onclick="'.$legacy.'">'.$d.'</a>';
+                                                
+                                                // $this->config->item('base_url')
                                                 
                                                 ?></td>
                                                 <td><?php $to+= floatval($l->total); echo $l->total;?></td>
@@ -207,29 +214,62 @@
                                         foreach($legacy as $l ){ ?>
                                             <tr>   
                                                 
-                                                <td><?php 
-                                                if($range == 'Day') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('l, F jS, Y');
-                                                } else if($range == 'Week') {
-                                                    $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
-                                                    echo "Week of: " . $date->format('Y/m/d');
-                                                } else if($range == 'Month') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('F, Y');
-                                                } else if($range == 'Quarter') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    $d =  $date->format('n');
-                                                    $month = date($d);
-                                                    //Calculate the year quarter.
-                                                    $yearQuarter = ceil($month / 3);
-                                                    //Print it out
-                                                    echo $date->format('Y') .", " . "Quarter $yearQuarter ";
+                                                <!-- <td><?php 
+                                                // if($range == 'Day') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     echo $date->format('l, F jS, Y');
+                                                // } else if($range == 'Week') {
+                                                //     $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
+                                                //     echo "Week of: " . $date->format('Y/m/d');
+                                                // } else if($range == 'Month') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     echo $date->format('F, Y');
+                                                // } else if($range == 'Quarter') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     $d =  $date->format('n');
+                                                //     $month = date($d);
                                                     
-                                                } else if($range == 'Year') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('Y');
-                                                }
+                                                //     $yearQuarter = ceil($month / 3);
+                                                    
+                                                //     echo $date->format('Y') .", " . "Quarter $yearQuarter ";
+                                                    
+                                                // } else if($range == 'Year') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     echo $date->format('Y');
+                                                // }
+                                                
+                                                ?></td> -->
+
+                                                <td  class="table_id"><?php 
+                                                    $d = "";
+                                                    $r = "";
+                                                    if($range == 'Day') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d = $date->format('l, F jS, Y');
+                                                    } else if($range == 'Week') {
+                                                        $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
+                                                        $d = "Week of: " . $date->format('Y/m/d');
+                                                    } else if($range == 'Month') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d =  $date->format('F, Y');
+                                                    } else if($range == 'Quarter') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d =  $date->format('n');
+                                                        $month = date($d);
+                                                        //Calculate the year quarter.
+                                                        $yearQuarter = ceil($month / 3);
+                                                        //Print it out
+                                                        $d =  $date->format('Y') .", " . "Quarter $yearQuarter ";
+                                                        
+                                                    } else if($range == 'Year') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d =  $date->format('Y');
+                                                    }
+                                                    // echo $d ; 
+                                                    $legacy = "legacy_detail('".$l->order_date."','".$range."')";
+                                                    echo '<a href="javascript:void(0)" onclick="'.$legacy.'">'.$d.'</a>';
+                                                    
+                                                    // $this->config->item('base_url')
                                                 
                                                 ?></td>
                                                 <td><?php $to+= floatval($l->total); echo $l->total;?></td>
@@ -321,29 +361,62 @@
                                         foreach($legacy as $l ){ ?>
                                             <tr>   
                                                 
-                                                <td><?php 
-                                                if($range == 'Day') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('l, F jS, Y');
-                                                } else if($range == 'Week') {
-                                                    $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
-                                                    echo "Week of: " . $date->format('Y/m/d');
-                                                } else if($range == 'Month') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('F, Y');
-                                                } else if($range == 'Quarter') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    $d =  $date->format('n');
-                                                    $month = date($d);
-                                                    //Calculate the year quarter.
-                                                    $yearQuarter = ceil($month / 3);
-                                                    //Print it out
-                                                    echo $date->format('Y') .", " . "Quarter $yearQuarter ";
+                                                <!-- <td><?php 
+                                                // if($range == 'Day') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     echo $date->format('l, F jS, Y');
+                                                // } else if($range == 'Week') {
+                                                //     $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
+                                                //     echo "Week of: " . $date->format('Y/m/d');
+                                                // } else if($range == 'Month') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     echo $date->format('F, Y');
+                                                // } else if($range == 'Quarter') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     $d =  $date->format('n');
+                                                //     $month = date($d);
+                                                //     //Calculate the year quarter.
+                                                //     $yearQuarter = ceil($month / 3);
+                                                //     //Print it out
+                                                //     echo $date->format('Y') .", " . "Quarter $yearQuarter ";
                                                     
-                                                } else if($range == 'Year') {
-                                                    $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                    echo $date->format('Y');
-                                                }
+                                                // } else if($range == 'Year') {
+                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                //     echo $date->format('Y');
+                                                // }
+                                                
+                                                ?></td> -->
+
+                                                <td  class="table_id"><?php 
+                                                    $d = "";
+                                                    $r = "";
+                                                    if($range == 'Day') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d = $date->format('l, F jS, Y');
+                                                    } else if($range == 'Week') {
+                                                        $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
+                                                        $d = "Week of: " . $date->format('Y/m/d');
+                                                    } else if($range == 'Month') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d =  $date->format('F, Y');
+                                                    } else if($range == 'Quarter') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d =  $date->format('n');
+                                                        $month = date($d);
+                                                        //Calculate the year quarter.
+                                                        $yearQuarter = ceil($month / 3);
+                                                        //Print it out
+                                                        $d =  $date->format('Y') .", " . "Quarter $yearQuarter ";
+                                                        
+                                                    } else if($range == 'Year') {
+                                                        $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
+                                                        $d =  $date->format('Y');
+                                                    }
+                                                    // echo $d ; 
+                                                    $legacy = "legacy_detail('".$l->order_date."','".$range."')";
+                                                    echo '<a href="javascript:void(0)" onclick="'.$legacy.'">'.$d.'</a>';
+                                                    
+                                                    // $this->config->item('base_url')
                                                 
                                                 ?></td>
                                                 <td><?php $to+= floatval($l->total); echo $l->total;?></td>
@@ -413,6 +486,19 @@
 
         <button type="submit" id="formLegacy">submit</button>
         <input type="submit" >
+    </form>
+
+
+
+    <form action="<?php echo base_url()?>Report/legacy_detail" method="post" style="display:none">
+        <input type="text" name="legacyDetail" >
+        <input type="text" name="dateDetail" >
+        <input type="text" name="rangeDetail" value="Day">
+        <input type="text" name="appraiserDetail" value="<?php echo $app_id;?>">
+        <input type="text" name="clientDetail" value="<?php echo $cl_id;?>">
+
+        <button type="submit" id="formLegacyDetail">submit</button>
+
     </form>
     <!-- Modal End -->
 
@@ -486,6 +572,83 @@
         $('input[name=legacy').val($('select[name=legacyPipeline]').val())
         $("#formLegacy").click();
         
+    }
+
+
+    function legacy_detail(dat,r){
+        
+        $('input[name=dateDetail').val(dat);
+        $('input[name=rangeDetail').val(r);
+        $('input[name=legacyDetail').val($('select[name=legacyPipeline]').val());
+
+
+        if(r == "Week"){
+            curr = new Date(dat);
+            var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+            var last = first + 6; // last day is the first day + 6
+
+            var firstday = new Date(curr.setDate(first)).toUTCString();
+            var lastday = new Date(curr.setDate(last)).toUTCString();
+
+            d = new Date(firstday);
+            gd = d.getDate();
+            if(gd <10){gd = "0" + gd;}
+            gm = d.getMonth();
+            gm+=1;
+            if(gm <10){gm = "0" + gm;}
+            gy = d.getFullYear();
+            firstday = gy + "/" + gm + "/" + gd ;
+
+            d = new Date(lastday);
+            gd = d.getDate();
+            if(gd <10){gd = "0" + gd;}
+            gm = d.getMonth();
+            gm+=1;
+            if(gm <10){gm = "0" + gm;}
+            gy = d.getFullYear();
+            lastday = gy + "/" + gm + "/" + gd ;
+
+            $('input[name=dateDetail').val(firstday + "," + lastday);
+        }else if(r == "Month"){
+
+            d = new Date(dat);
+            gm = d.getMonth();
+            gm+=1;
+            if(gm <10){gm = "0" + gm;}
+            gy = d.getFullYear();
+
+            // console.log(gy + "/" + gm);
+
+            $('input[name=dateDetail').val(gy + "/" + gm);
+        }else if (r == "Quarter"){
+            d = new Date(dat);
+            gm = d.getMonth();
+            
+            fm = "", lm = "";
+            if(gm>=0 && gm<=2){ fm="01"; lm="03"; }
+            else if(gm>=3 && gm<=5){ fm="04"; lm="06"; }
+            else if(gm>=6 && gm<=8){ fm="07"; lm="09"; }
+            else if(gm>=9 && gm<=11){ fm="10"; lm="12"; }
+
+            gy = d.getFullYear();
+            $('input[name=dateDetail').val(gy+"/"+fm + "/"+"01" +"," + gy+"/"+lm + "/"+"31" );
+
+        }else if (r == "Year"){
+            d = new Date(dat);
+            $('input[name=dateDetail').val(d.getFullYear());
+        }
+
+
+        if($('select[name=legacyPipeline]').val() == "Appraiser"){
+            $('input[name=appraiserDetail').val($('select[name=app_list]').val());
+        }else if($('select[name=legacyPipeline]').val() == "Client"){            
+            $('input[name=clientDetail').val($('select[name=cl_list]').val());
+        }
+        
+        
+
+        $("#formLegacyDetail").click();
+
     }
 
     

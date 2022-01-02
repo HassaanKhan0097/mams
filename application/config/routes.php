@@ -111,22 +111,6 @@ $route['autoemail'] = 'AutoEmail';
 $route['downloadareas'] = 'DownloadAreas';
 
 
-// !!------------- Appraiser Routes  ----------------------!!
-$route['appraiserpages'] = 'appraiserpages/Index'; //here appraiserpages is folder -> Index is controller
-$route['appraiserpages/file'] = 'appraiserpages/File';
-$route['appraiserpages/logout'] = 'appraiserpages/Index/logout';
-
-$route['appraiser/workinprogress'] = 'appraiserpages/WorkInProgress';
-
-$route['appraiser/setup'] = 'appraiserpages/Setup';
-
-$route['appraiser/log'] = 'appraiserpages/Log';
-
-
-
-
-// workinprogress
-
 $route['accounting'] = "Accounting";
 $route['accounting/client_detail/(:num)'] = 'Accounting/client_detail/$1';
 $route['accounting/voucher/(:any)/(:num)'] = 'Accounting/get_single_voucher/$1/$2';
@@ -142,6 +126,25 @@ $route['accounting/voucher_app/(:any)/(:num)'] = 'Accounting/get_single_voucher_
 
 $route['report/pipeline'] = "Report/pipeline";
 $route['report/legacy'] = "Report/legacy";
+
+// !!------------- Appraiser Routes  ----------------------!!
+$route['appraiserpages'] = 'appraiserpages/Index'; //here appraiserpages is folder -> Index is controller
+$route['appraiserpages/file'] = 'appraiserpages/File';
+$route['appraiserpages/logout'] = 'appraiserpages/Index/logout';
+
+$route['appraiser/workinprogress'] = 'appraiserpages/WorkInProgress';
+
+$route['appraiser/setup'] = 'appraiserpages/Setup';
+
+$route['appraiser/log'] = 'appraiserpages/Log';
+
+$route['appraiser/accounting'] = 'appraiserpages/App_Accounting';
+$route['appraiser/voucher/(:any)/(:num)'] = 'appraiserpages/App_Accounting/get_single_voucher_app/$1/$2';
+
+
+
+// workinprogress
+
 
 // !!------------- Owner Routes  ----------------------!!
 $route['ownerpages'] = 'ownerpages/Index'; //here ownerpages is folder -> Index is controller
