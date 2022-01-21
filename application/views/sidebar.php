@@ -39,12 +39,14 @@
                         <span>Reports</span>
                     </a>
                 </li>
+                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                 <li>
                     <a href="#accounting">
                         <i class="iconsminds-dollar-sign-2"></i>
                         <span>Accounting</span>
                     </a>
                 </li>
+                <?php } ?>
                <!-- <li>
                     <a href="#layouts">
                         <i class="iconsminds-digital-drawing"></i> Pages

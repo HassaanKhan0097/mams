@@ -60,7 +60,9 @@
                                     <tr>
                                         <th>Method</th>
                                         <th>#</th>
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                         <th>Revenue</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,7 +71,9 @@
                                         <tr>   
                                             <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $p->order_paymentmethod;?>','payment')"> <?php echo $p->order_paymentmethod;?></a></td>
                                             <td><?php echo $p->files;?></td>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <td>$<?php echo $p->amount;?></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php }?> 
                                     
@@ -95,7 +99,9 @@
                                     <tr>
                                         <th>Status COD</th>
                                         <th>#</th>
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                         <th>Revenue</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -105,7 +111,9 @@
                                         <td class="table_id"><a href="javascript:void(0)" onclick="pipeline_detail('<?php echo $s->st_id;?>','cod')"> <?php echo $s->st_name;?></a></td>
                                             <!-- <td><?php echo $s->st_name;?></td> -->
                                             <td><?php echo $s->files;?></td>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <td>$<?php echo $s->amount;?></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php }?>                                    
                                     
@@ -128,7 +136,9 @@
                                     <tr>
                                         <th>Status</th>
                                         <th>#</th>
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                         <th>Revenue</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -139,7 +149,9 @@
 
                                             <!-- <td><?php echo $s->st_name;?></td> -->
                                             <td><?php echo $s->files;?></td>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <td>$<?php echo $s->amount;?></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php }?>                                    
                                     
@@ -166,7 +178,9 @@
                                     <tr>
                                         <th>Appraiser</th>
                                         <th>#</th>
-                                        <th>Revenue</th>
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
+                                            <th>Revenue</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -177,7 +191,9 @@
 
                                             <!-- <td><?php echo $a->app_name;?></td> -->
                                             <td><?php echo $a->files;?></td>
-                                            <td>$<?php echo $a->amount;?></td>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
+                                                <td>$<?php echo $a->amount;?></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php }?>                                     
                                     
@@ -202,7 +218,9 @@
                                     <tr>
                                         <th>Client</th>
                                         <th>#</th>
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                         <th>Revenue</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -213,7 +231,9 @@
 
                                             <!-- <td><?php echo $c->cl_name;?></td> -->
                                             <td><?php echo $c->files;?></td>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <td>$<?php echo $c->amount;?></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php }?>                                    
                                     

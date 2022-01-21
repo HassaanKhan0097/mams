@@ -84,9 +84,11 @@
                                         <tr>
                                             <th id="office_label"><?php echo $range; ?></th>
                                             <th>Total Orders</th>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?>
                                             <th>Total Revenue</th>
                                             <th>Total Expense</th>
                                             <th>Net Profit</th>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,10 +130,11 @@
                                                 
                                                 ?></td>
                                                 <td><?php $to+= floatval($l->total); echo $l->total;?></td>
+                                                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?>
                                                 <td>$<?php $tr+= floatval($l->revenue); echo $l->revenue;?></td>
                                                 <td>$<?php $te+= floatval($l->expense); echo $l->expense;?></td>
                                                 <td>$<?php $tn+= floatval(floatval($l->revenue) - floatval($l->expense)); echo floatval($l->revenue) - floatval($l->expense); ?></td>
-
+                                                <?php } ?>
                                             </tr>
                                         <?php }?> 
                                         
@@ -140,6 +143,7 @@
                                 </table>
 
                                 <br><br>
+                                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                 <table class="table_total mt-2 " style="width:100%">
                                     <thead>
                                     <tr>
@@ -160,6 +164,7 @@
                                         <td>$<?php echo $tn; ?></td>
                                     </tr>
                                 </table>
+                                <?php } ?> 
                             <?php } ?>    
 
                             <?php if($leg == "Appraiser"){ ?>
@@ -181,7 +186,7 @@
                                     </div>
                                     <div class="col-md-4 mt-1">
                                         <div class="form-group">          
-                                        <!-- <label>Select Appraiser to show all orders assigned</label>                       -->
+                                      
                                         <select class="form-control select2-single"  name="app_list" >
                                         <option value="">Select Appraiser to show all orders assigned</option>
                                             <?php foreach($app_list as $app){ ?>  
@@ -203,9 +208,11 @@
                                         <tr>
                                             <th id="office_label"><?php echo $range; ?></th>
                                             <th>Total Orders</th>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <th>Total Revenue</th>
                                             <th>Total Expense</th>
                                             <th>Net Profit</th>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -214,31 +221,8 @@
                                         foreach($legacy as $l ){ ?>
                                             <tr>   
                                                 
-                                                <!-- <td><?php 
-                                                // if($range == 'Day') {
-                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                //     echo $date->format('l, F jS, Y');
-                                                // } else if($range == 'Week') {
-                                                //     $date = DateTime::createFromFormat('Y-m-d',$l->order_date);
-                                                //     echo "Week of: " . $date->format('Y/m/d');
-                                                // } else if($range == 'Month') {
-                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                //     echo $date->format('F, Y');
-                                                // } else if($range == 'Quarter') {
-                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                //     $d =  $date->format('n');
-                                                //     $month = date($d);
-                                                    
-                                                //     $yearQuarter = ceil($month / 3);
-                                                    
-                                                //     echo $date->format('Y') .", " . "Quarter $yearQuarter ";
-                                                    
-                                                // } else if($range == 'Year') {
-                                                //     $date = DateTime::createFromFormat('Y/m/d',$l->order_date);
-                                                //     echo $date->format('Y');
-                                                // }
+                                            
                                                 
-                                                ?></td> -->
 
                                                 <td  class="table_id"><?php 
                                                     $d = "";
@@ -273,10 +257,11 @@
                                                 
                                                 ?></td>
                                                 <td><?php $to+= floatval($l->total); echo $l->total;?></td>
-                                                <td>$<?php $tr+= floatval($l->revenue); echo $l->revenue;?></td>
-                                                <td>$<?php $te+= floatval($l->expense); echo $l->expense;?></td>
-                                                <td>$<?php $tn+= floatval(floatval($l->revenue) - floatval($l->expense)); echo floatval($l->revenue) - floatval($l->expense); ?></td>
-
+                                                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
+                                                    <td>$<?php $tr+= floatval($l->revenue); echo $l->revenue;?></td>
+                                                    <td>$<?php $te+= floatval($l->expense); echo $l->expense;?></td>
+                                                    <td>$<?php $tn+= floatval(floatval($l->revenue) - floatval($l->expense)); echo floatval($l->revenue) - floatval($l->expense); ?></td>
+                                                <?php }?> 
                                             </tr>
                                         <?php }?> 
                                         
@@ -285,6 +270,7 @@
                                 </table>
 
                                 <br><br>
+                                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                 <table class="table_total mt-2" style="width:100%">
                                     <thead>
                                     <tr>
@@ -305,6 +291,7 @@
                                         <td>$<?php echo $tn; ?></td>
                                     </tr>
                                 </table>
+                                <?php }?> 
 
 
                             <?php }?>
@@ -350,9 +337,11 @@
                                         <tr>
                                             <th id="office_label"><?php echo $range; ?></th>
                                             <th>Total Orders</th>
+                                            <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <th>Total Revenue</th>
                                             <th>Total Expense</th>
                                             <th>Net Profit</th>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -420,10 +409,12 @@
                                                 
                                                 ?></td>
                                                 <td><?php $to+= floatval($l->total); echo $l->total;?></td>
+
+                                                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                                 <td>$<?php $tr+= floatval($l->revenue); echo $l->revenue;?></td>
                                                 <td>$<?php $te+= floatval($l->expense); echo $l->expense;?></td>
                                                 <td>$<?php $tn+= floatval(floatval($l->revenue) - floatval($l->expense)); echo floatval($l->revenue) - floatval($l->expense); ?></td>
-
+                                                <?php } ?>
                                             </tr>
                                         <?php }?> 
                                         
@@ -432,6 +423,7 @@
                                 </table>
 
                                 <br><br>
+                                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                 <table class="table_total mt-2" style="width:100%">
                                     <thead>
                                     <tr>
@@ -452,7 +444,7 @@
                                         <td>$<?php echo $tn; ?></td>
                                     </tr>
                                 </table>
-
+                                <?php }?>
 
                             <?php }?>
 
@@ -657,9 +649,11 @@
             "columns": [
                 { "data": "day" },
                 { "data": "total" },
+                <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                 { "data": "revenue" },
                 { "data": "expense" },
                 { "data": "net" }
+                <?php } ?>
             ],
             "order": [],
             "columnDefs": [

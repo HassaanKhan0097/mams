@@ -30,7 +30,8 @@ class Mams extends CI_Controller {
     			redirect("appraiserpages");
     		}
     		else if($role == 'owner') {
-    			redirect("ownerpages");
+                redirect("home");
+    			// redirect("ownerpages");
     		}
 		}
 

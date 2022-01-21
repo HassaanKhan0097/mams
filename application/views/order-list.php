@@ -227,35 +227,35 @@
                                         <th>Assignment Type</th>
                                         <!-- <th>Sub Assignment Type 1</th>                                         -->
                                         <!-- <th>Sub Assignment Type 2</th> -->
-                                        <th>FHA/VA Case #</th>
+                                        <!-- <th>FHA/VA Case #</th> -->
                                         <!-- <th>State</th> -->
                                         <th>Order Status</th>
                                         <th>Client Name</th>
-                                        <th>Website</th>
+                                        <!-- <th>Website</th> -->
                                         <!-- <th>Sub Client Name</th> -->
-                                        <th>AMC</th>
-                                        <th>Zipcode</th>
-                                        <th>Action</th>
+                                        <!-- <th>AMC</th> -->
+                                        <!-- <th>Zipcode</th> -->
+                                        <!-- <th>Action</th> -->
                                         <th>Order Date</th>
                                         <th>Borrower</th>
-                                        <th>Co Borrower</th>
+                                        <!-- <th>Co Borrower</th> -->
                                         <th>Due Date</th>
-                                        <th>Entry Contact</th>
+                                        <!-- <th>Entry Contact</th> -->
                                         <th>Appointment Date</th>
                                         <th>Appraiser Name</th>
                                         <!-- <th>Sub Appraiser Name</th> -->
                                         <!-- <th>Appraiser Email</th> -->
                                         <!-- <th>Appraiser Email 2</th> -->
-                                        <th>Phone</th>
+                                        <!-- <th>Phone</th> -->
                                         <!-- <th>Phone 2</th> -->
                                         <!-- <th>Phone 3</th> -->
                                         <th>Appointment Time</th>
                                         <th>Complete Date</th>
-                                        <th>Payment Method</th>
-                                        <th>Purchase Price</th>
-                                        <th>Revenue</th>
-                                        <th>Expense</th>
-                                        <th>Special Instruction</th>
+                                        <!-- <th>Payment Method</th> -->
+                                        <!-- <th>Purchase Price</th> -->
+                                        <!-- <th>Revenue</th> -->
+                                        <!-- <th>Expense</th> -->
+                                        <!-- <th>Special Instruction</th> -->
                                         <!-- <th>Attach File</th> -->
                                         
                                         <!-- <th class="table-background">&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
@@ -274,35 +274,35 @@
                                     <td><?php echo $ol->at_name; ?></td>
                                     <!-- <td><?php echo $ol->at2_name; ?></td> -->
                                     <!-- <td><?php echo $ol->at3_name; ?></td> -->
-                                    <td><?php echo $ol->order_case_number; ?></td>
+                                    <!-- <td><?php echo $ol->order_case_number; ?></td> -->
                                     <!-- <td><?php echo $ol->order_state; ?></td> -->
                                     <td><?php echo $ol->st_name; ?></td>
                                     <td><?php echo $ol->cl_name; ?></td>
-                                    <td><?php echo $ol->order_website; ?></td>
+                                    <!-- <td><?php echo $ol->order_website; ?></td> -->
                                     <!-- <td><?php echo $ol->cl2_name; ?></td> -->
-                                    <td><?php echo $ol->order_amc; ?></td>
-                                    <td><?php echo $ol->order_zipcode; ?></td>
-                                    <td><?php echo $ol->order_action; ?></td>
+                                    <!-- <td><?php echo $ol->order_amc; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_zipcode; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_action; ?></td> -->
                                     <td><?php echo $ol->order_date; ?></td>
                                     <td><?php echo $ol->order_borrower; ?></td>
-                                    <td><?php echo $ol->order_co_borrower; ?></td>
+                                    <!-- <td><?php echo $ol->order_co_borrower; ?></td> -->
                                     <td><?php echo $ol->order_duedate; ?></td>
-                                    <td><?php echo $ol->order_entry; ?></td>
+                                    <!-- <td><?php echo $ol->order_entry; ?></td> -->
                                     <td><?php echo $ol->order_appointmentdate; ?></td>
                                     <td><?php echo $ol->app_name; ?></td>
                                     <!-- <td><?php echo $ol->app_name; ?></td> -->
                                     <!-- <td><?php echo $ol->order_appraiser_email; ?></td> -->
                                     <!-- <td><?php echo $ol->order_appraiser_email2; ?></td> -->
-                                    <td><?php echo $ol->order_phone; ?></td>
+                                    <!-- <td><?php echo $ol->order_phone; ?></td> -->
                                     <!-- <td><?php echo $ol->order_phone2; ?></td> -->
                                     <!-- <td><?php echo $ol->order_phone3; ?></td> -->
                                     <td><?php echo $ol->order_appointment_time; ?></td>
                                     <td><?php echo $ol->order_completedate; ?></td>
-                                    <td><?php echo $ol->order_paymentmethod; ?></td>
-                                    <td><?php echo $ol->order_purchase; ?></td>
-                                    <td><?php echo $ol->order_revenue; ?></td>
-                                    <td><?php echo $ol->order_expense; ?></td>
-                                    <td><?php echo $ol->order_instruction; ?></td>
+                                    <!-- <td><?php echo $ol->order_paymentmethod; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_purchase; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_revenue; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_expense; ?></td> -->
+                                    <!-- <td><?php echo $ol->order_instruction; ?></td> -->
                                     <!-- <td class="table_id"> <a href="<?php echo $this->config->item('upload_dir').$ol->order_file; ?>">File</a> </td> -->
                                     
                                     </tr>
@@ -376,35 +376,35 @@
                 { "data": "order_assignment_id" },
                 // { "data": "order_assignment_id2" },
                 // { "data": "order_assignment_id3" },
-                { "data": "order_case_number" },
+                // { "data": "order_case_number" },
                 // { "data": "order_state" },
                 { "data": "order_status_id" },
                 { "data": "order_client_id" },
-                { "data": "order_website" },
+                // { "data": "order_website" },
                 // { "data": "order_client_id2" },
-                { "data": "order_amc" },
-                { "data": "order_zipcode" },
-                { "data": "order_action" },
+                // { "data": "order_amc" },
+                // { "data": "order_zipcode" },
+                // { "data": "order_action" },
                 { "data": "order_date" },
                 { "data": "order_borrower" },
-                { "data": "order_co_borrower" },
+                // { "data": "order_co_borrower" },
                 { "data": "order_duedate" },
-                { "data": "order_entry" },
+                // { "data": "order_entry" },
                 { "data": "order_appointmentdate" },
                 { "data": "order_appraiser_id" },
                 // { "data": "order_appraiser_id2" },
                 // { "data": "order_appraiser_email" },
                 // { "data": "order_appraiser_email2" },
-                { "data": "order_phone" },
+                // { "data": "order_phone" },
                 // { "data": "order_phone2" },
                 // { "data": "order_phone3" },
                 { "data": "order_appointment_time" },
                 { "data": "order_completedate" },
-                { "data": "order_paymentmethod" },
-                { "data": "order_purchase" },
-                { "data": "order_revenue" },
-                { "data": "order_expense" },
-                { "data": "order_instruction" }
+                // { "data": "order_paymentmethod" },
+                // { "data": "order_purchase" },
+                // { "data": "order_revenue" },
+                // { "data": "order_expense" },
+                // { "data": "order_instruction" }
                 // { "data": "order_file" }
                   
                 // { "data": "action"}

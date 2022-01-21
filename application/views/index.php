@@ -52,6 +52,7 @@
                         </ol>
                     </nav> -->
                     <div class="separator mb-5"></div>
+                    <!-- <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ echo "Yes";}else{echo "No";} ?> -->
                 </div>
 
 
