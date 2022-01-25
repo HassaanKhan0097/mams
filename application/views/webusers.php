@@ -97,7 +97,11 @@
                                     <select class="form-control" data-width="100%" name="user_role" onchange="roleChange()" required>
                                         <option value=""></option>
                                         <option value="appraiser">Appraiser</option>
-                                        <option value="manager">Manager</option>
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
+                                            <option value="manager">Manager</option>
+                                            <option value="owner">Admin</option>
+                                        <?php }?>
+                                        
                                     </select>
                                     <!-- <input type="number" class="form-control" name="web_seclevel" placeholder="Enter Sec Level"> -->
                                     <!-- <span class="helper-text"><?php echo form_error('web_seclevel'); ?></span> -->
@@ -259,7 +263,12 @@
                                                     <select class="form-control" data-width="100%" name="upd_user_role" onchange="roleChangeEdit('<?php echo $web->user_id; ?>')">
                                                         <option value=""></option>
                                                         <option value="appraiser"  <?php echo ( $web->user_role ==  "appraiser") ?  'Selected' :  ''; ?>>Appraiser</option>
+                                                        
+                                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                                         <option value="manager"<?php echo ( $web->user_role ==  "manager") ?  'Selected' :  ''; ?> >Manager</option>
+                                                        <option value="owner"<?php echo ( $web->user_role ==  "owner") ?  'Selected' :  ''; ?> >Admin</option>
+
+                                                        <?php }?>
                                                     </select>
                                                 </div>
 

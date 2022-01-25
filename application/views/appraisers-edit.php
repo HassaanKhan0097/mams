@@ -145,7 +145,7 @@
                                    
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                            name="jQueryCheckbox" <?php echo $appraiser_single->app_active?>>
+                                            name="upd_app_active" <?php echo $appraiser_single->app_active?>>
                                         <label class="custom-control-label" for="customCheck1">Active</label>
                                     </div>                                  
                                     

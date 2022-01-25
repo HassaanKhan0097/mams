@@ -99,7 +99,7 @@ class Order_Model extends CI_Model {
         // echo "Create";
         // print_r($data);
 
-       $this->db->insert("order", $data);
+       $this->db->insert("orders", $data);
        $result = $this->db->insert_id();
 
         //This working is because primary key is our own, not auto incremented

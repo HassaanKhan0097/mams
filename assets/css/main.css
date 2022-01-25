@@ -190,3 +190,9 @@ table thead {
   background: #00365a;
   color: #fff;
 }
+.datepicker-days table thead tr th {
+  color: #fff !important;
+}
+span.input-group-text.input-group-append.input-group-addon {
+  padding: 0.05rem 0.75rem 0.05rem 0.75rem !important;
+}

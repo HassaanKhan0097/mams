@@ -97,6 +97,12 @@ class Appraisers extends CI_Controller {
             // $data['app_number'] = '';
             $data['app_active'] = $this->input->post('upd_app_active');
 
+            if( $data['app_active'] == 'on'){
+                $data['app_active'] = 'checked';
+            }else{
+                $data['app_active'] = '';
+            }
+
 
             $result = $this->Appraiser_Model->update($data);
 
