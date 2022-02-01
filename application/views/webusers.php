@@ -184,6 +184,8 @@
                                         <!-- <th>Password</th> -->
                                         <th>User Role</th>
                                         <th>User Appraiser</th>
+                                        <th>Last Login Ip</th>
+                                        <th>Last Login</th>
                                         <!--  <th>Description</th>
                                        <th>Last Login</th>
                                         <th>Last Login Date</th>
@@ -194,23 +196,37 @@
                                 <tbody>
 
                                 <?php
-                                    foreach ($webuser_list as $web) { ?>           
+                                    foreach ($webuser_list as $web) { ?>  
 
-                                        <tr>
-                                            <td><?php echo $web->user_id; ?></td>
-                                            <td><?php echo $web->user_username; ?></td>
-                                            <td><?php echo $web->user_email; ?></td>
-                                            <!-- <td><?php echo $web->user_pass; ?></td> -->
-                                            <td><?php echo $web->user_role; ?></td>
-                                            <td><?php echo $web->app_name; ?></td>
-                                            <!-- <td><?php echo $web->web_lastloginip; ?></td>
-                                            <td><?php echo $web->web_lastlogindate; ?></td> -->
-                                            <!-- <td><label
-                                        class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
-                                        <input type="checkbox" class="custom-control-input" <?php echo $web->web_active; ?>>
-                                        <span class="custom-control-label">&nbsp;</span></label></td>  -->
-                                            <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $web->user_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $web->user_id; ?>">Delete</button> </td>
-                                        </tr>
+
+                                        <?php if($this->session->userdata['loggedUser']['user_role'] == "manager" && $web->user_role == 'appraiser'){ ?> 
+                                            <tr>
+                                                <td><?php echo $web->user_id; ?></td>
+                                                <td><?php echo $web->user_username; ?></td>
+                                                <td><?php echo $web->user_email; ?></td>
+                                                <td><?php echo $web->user_role; ?></td>
+                                                <td><?php echo $web->app_name; ?></td>
+                                                <td><?php echo $web->user_lastlogin; ?></td>
+                                                <td><?php echo $web->user_logintime; ?></td>                                           
+                                                <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $web->user_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $web->user_id; ?>">Delete</button> </td>
+                                            </tr>
+                                        <?php } else if($this->session->userdata['loggedUser']['user_role'] == "owner"){  ?>
+                                            <tr>
+                                                <td><?php echo $web->user_id; ?></td>
+                                                <td><?php echo $web->user_username; ?></td>
+                                                <td><?php echo $web->user_email; ?></td>
+                                                <td><?php echo $web->user_role; ?></td>
+                                                <td><?php echo $web->app_name; ?></td>
+                                                <td><?php echo $web->user_lastlogin; ?></td>
+                                                <td><?php echo $web->user_logintime; ?></td>                                           
+                                                <td> <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal<?php echo $web->user_id; ?>">Edit</button>&nbsp;<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $web->user_id; ?>">Delete</button> </td>
+                                            </tr>
+
+
+
+                                        <?php } ?>
+
+                                        
 
 
                                         <div id="deleteModal<?php echo $web->user_id; ?>" class="modal fade" role="dialog">

@@ -25,10 +25,10 @@ class Appraisers extends CI_Controller {
     public function create_appraiser()
     {
         $this->form_validation->set_rules('app_name','app_name','required');
-        $this->form_validation->set_rules('app_email','app_email','required');
-        $this->form_validation->set_rules('app_title','app_title','required');
-        $this->form_validation->set_rules('app_license','app_license','required');
-        $this->form_validation->set_rules('app_phone','app_phone','required');
+        // $this->form_validation->set_rules('app_email','app_email','required');
+        // $this->form_validation->set_rules('app_title','app_title','required');
+        // $this->form_validation->set_rules('app_license','app_license','required');
+        // $this->form_validation->set_rules('app_phone','app_phone','required');
    
 
         if ($this->form_validation->run() == TRUE) {

@@ -56,14 +56,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="app_name" placeholder="Enter Appraiser Name">
+                                        <input type="text" class="form-control" name="app_name" placeholder="Enter Appraiser Name" required>
                                         <span class="helper-text"><?php echo form_error('app_name'); ?></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="app_email" placeholder="Enter Appraiser Email">
+                                        <input type="email" class="form-control" name="app_email" placeholder="Enter Appraiser Email" required>
                                         <span class="helper-text"><?php echo form_error('app_email'); ?></span>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <select class="form-control select2-single" data-width="100%" name="app_title">
+                                        <select class="form-control select2-single" data-width="100%" name="app_title" required>
                                             <option value=""></option>
                                             <option value="Appraiser">Appraiser</option>
                                             <option value="Senior Appraiser">Senior Appraiser</option>
@@ -85,7 +85,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>License Number</label>
-                                        <input type="number" class="form-control" name="app_license" placeholder="Enter License Number" >
+                                        <input type="number" class="form-control" name="app_license" placeholder="Enter License Number" required>
 
                                         <span class="helper-text"><?php echo form_error('app_license'); ?></span>
                                     </div>

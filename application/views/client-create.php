@@ -88,7 +88,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input type="text" class="form-control" name="cl_address" placeholder="Enter Address" required>
+                                        <input type="text" class="form-control" name="cl_address" placeholder="Enter Address" >
 
                                         <span class="helper-text"><?php echo form_error('cl_address'); ?></span>
                                     </div>
@@ -309,7 +309,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="loan_name" placeholder="Enter Name">
+                                        <input type="text" class="form-control" name="loan_name" placeholder="Enter Name" >
                                     </div>
                                 </div>
                                 <div class="col-sm-8">

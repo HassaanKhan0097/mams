@@ -8,13 +8,13 @@
                         <i class="iconsminds-home"></i> Home
                     </a>
                 </li>
-<!-- 
+
                 <li>
-                    <a href="<?php echo base_url(); ?>order">
+                    <a href="<?php echo base_url(); ?>search">
                         <i class="iconsminds-magnifi-glass"></i>
                         <span>Search</span>
                     </a>
-                </li> -->
+                </li>
                 <li>
                     <a href="#appraisers">
                         <i class="iconsminds-business-man"></i>

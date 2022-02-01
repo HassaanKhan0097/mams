@@ -50,8 +50,10 @@ class Order_Model extends CI_Model {
         l.loan_name AS loan_name,
         cl2.cl_id AS cl2_id, 
         cl2.cl_name AS cl2_name,
-        
-        
+        appraiser.app_id AS app_id,
+        appraiser.app_name AS app_name,
+        appraiser.app_email AS app_email
+
         ");
 
         // cl.cl_amc_id AS cl_amc_id, 
@@ -160,6 +162,9 @@ class Order_Model extends CI_Model {
         $this->db->join('order_types','order_types.order_id = orders.order_type_id');
         $this->db->join('status_info','status_info.st_id = orders.order_status_id');
         $this->db->where($filter['key']." =",$filter['value']);
+        if($filter['key'] == 'order_appraiser_id' || $filter['key'] == 'order_client_id'){
+            $this->db->where("order_status_id NOT IN (10,15,16)");
+        }
 
         $query = $this->db->get();
         return $query->result();  

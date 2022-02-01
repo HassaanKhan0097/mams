@@ -200,10 +200,10 @@
                                         <span class="helper-text"><?php echo form_error('order_appraiser_id'); ?></span>                                
                                     </div>
 
-                                    <!-- <div class="form-group">
+                                    <div class="form-group" style="display:none;">
                                         <label>Appraiser Email</label>
                                         <input type="text" class="form-control" name="order_appraiser_email" placeholder="Enter Email" readonly >
-                                    </div> -->
+                                    </div>
 
                                     <div class="form-group">
                                         <label>Expense</label>

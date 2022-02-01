@@ -49,6 +49,15 @@ class Users_Model extends CI_Model {
         }
     }
 
+    public function updateLogin($data)
+    {
+        // $id = $data['notes_id'];
+        $this->db->where('user_id ', $data['user_id']);
+        $this->db->update('users', $data);
+        $result = $this->db->affected_rows();
+        return $result;
+    }
+
     
 
 }

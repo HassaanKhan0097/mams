@@ -3,13 +3,13 @@
         <div class="scroll">
             <ul class="list-unstyled">
 
-                <li class="active">
+                <!-- <li>
                     <a href="<?php echo base_url(); ?>appraiserpages">
                         <i class="iconsminds-home"></i> Home
                     </a>
-                </li>
+                </li> -->
 
-                <li>
+                <li  class="active">
                     <a href="<?php echo base_url(); ?>appraiser/workinprogress">
                         <i class="iconsminds-magnifi-glass"></i>
                         <span>Work in Progress</span>

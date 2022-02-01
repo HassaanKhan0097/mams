@@ -39,9 +39,11 @@ class Notes extends CI_Controller {
             $data['order_id'] = $this->uri->segment(3);
             $data['user_id'] = $loggedUser['user_id'];        
             $data['subject'] = $this->input->post('notes_subject');
-                       
+            $email = $this->input->post('notes_email');
             $data['notes'] = $this->input->post('notes_txt');
-            $data['date'] = date("Y/m/d") . " ".date("h:i:sa");
+            date_default_timezone_set("America/Rio_Branco");
+
+            $data['date'] = date("m/d/Y") . " ".date("h:i:sa");
             $data['hide_client'] ="off";
             $data['hide_appraiser'] = "off";
             // if($this->input->post('notes_hide_cl') == "on"){
@@ -54,6 +56,8 @@ class Notes extends CI_Controller {
             // echo "<pre>";
             // print_r($data);
             $result = $this->Notes_Model->create($data);
+
+            $this->email_notes($data,$email);
 
             if($result > 0) {
 
@@ -149,6 +153,39 @@ class Notes extends CI_Controller {
         }
 
     }
+
+
+    public function email_notes($data, $email){
+
+
+		$this->load->library("Phpmailer_library");
+        $mail = $this->phpmailer_library->load();
+		try {
+            //Recipients
+
+            // $app = $this->Appraiser_Model->getById($data['order_appraiser_id']);
+
+
+            $to =  $this->config->item('from_email');
+            // echo "<br><br> =========== ". $to;
+			$mail->setFrom($to, 'Mams');
+			$mail->addAddress($email, 'Mams');     //Add a recipient
+		
+			//Content
+			$mail->isHTML(true);                                  //Set email format to HTML
+			$mail->Subject = 'New Note is added in Order ' . $data['order_id'] . '';
+			$mail->Body    = 'This is to inform you that new note is added in Order ' . $data['order_id'] ;
+		
+			if(!$mail->send()){
+				echo 'Mail could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			}else{
+				echo 'Mail has been sent';
+			}
+		} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+	}
 
 }
 

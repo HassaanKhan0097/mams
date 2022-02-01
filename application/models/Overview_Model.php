@@ -5,13 +5,13 @@ class Overview_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function getByAppraiser()
     {
-        $query = $this->db->query("SELECT app.app_id, app.app_name, COUNT(*) as files from `orders` ord LEFT JOIN `appraiser` app on ord.order_appraiser_id = app.app_id GROUP BY ord.order_appraiser_id");
+        $query = $this->db->query("SELECT app.app_id, app.app_name, COUNT(*) as files from `orders` ord LEFT JOIN `appraiser` app on ord.order_appraiser_id = app.app_id where ord.order_status_id not in (10,15,16) GROUP BY ord.order_appraiser_id");
         return $query->result();
     }
 
     public function getByClient()
     {
-        $query = $this->db->query("SELECT cl.cl_id, cl.cl_name, COUNT(*) as files from `orders` ord LEFT JOIN `client` cl on ord.order_client_id = cl.cl_id GROUP BY ord.order_client_id");
+        $query = $this->db->query("SELECT cl.cl_id, cl.cl_name, COUNT(*) as files from `orders` ord LEFT JOIN `client` cl on ord.order_client_id = cl.cl_id where ord.order_status_id not in (10,15,16) GROUP BY ord.order_client_id");
         return $query->result();
     }
 

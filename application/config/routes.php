@@ -74,6 +74,8 @@ $route['order'] = 'Order'; //here Order is controller
 $route['order/create'] = 'Order/create';
 $route['order/delete/(:num)'] = 'Order/delete';
 $route['order/update/(:num)'] = 'Order/update/$1';
+$route['search'] = 'Order/search';
+
 
 $route['clients'] = 'Clients'; //here Clients is controller
 $route['clients/create'] = 'Clients/create';
@@ -85,7 +87,7 @@ $route['appraisers/create'] = 'Appraisers/create';
 $route['appraisers/delete/(:num)'] = 'Appraisers/delete';
 $route['appraisers/update/(:num)'] = 'Appraisers/update/$1';
 
-$route['search'] = 'Search';
+// $route['search'] = 'Search';
 
 
 $route['webusers'] = 'Webusers';

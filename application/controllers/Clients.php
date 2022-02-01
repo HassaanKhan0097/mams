@@ -34,7 +34,7 @@ class Clients extends CI_Controller {
     {
         $this->form_validation->set_rules('cl_name','cl_name','required');
         // $this->form_validation->set_rules('cl_contact','cl_contact','required');
-        $this->form_validation->set_rules('cl_address','cl_address','required');
+        // $this->form_validation->set_rules('cl_address','cl_address','required');
         // $this->form_validation->set_rules('cl_phone','cl_phone','required');
    
 

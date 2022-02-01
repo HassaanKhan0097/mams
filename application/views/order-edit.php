@@ -57,14 +57,14 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                             <button class="btn btn-primary mb-1 mr-2" type="button" onclick="edit_file_collapse();">
                                 Complete File Record
                             </button>
                             <button class="btn btn-primary mb-1" type="button" onclick="edit_loan_collapse();">
                                 Add/Edit Notes
                             </button>
-                    </div>
+                    </div> -->
                 
 
                     <div class="card mb-4" id="edit_file">
@@ -135,11 +135,11 @@
                                         </select>        
                                         <span class="helper-text"><?php echo form_error('order_appraiser_id'); ?></span>                                
                                     </div>
-
-                                    <!-- <div class="form-group">
+                                    <!-- style="display:none;" -->
+                                    <div class="form-group" style="display:none;">
                                         <label>Appraiser Email</label>
-                                        <input type="text" class="form-control" name="upd_order_appraiser_email" placeholder="Enter Email" value="<?php echo $order_single->app_email ?>" readonly >
-                                    </div> -->
+                                        <input type="text" class="form-control" name="upd_order_appraiser_email" placeholder="Enter Email" value="<?php echo $order_single->app_email ?>" >
+                                    </div>
 
                                     <div class="form-group">
                                         <label>Expense</label>
@@ -149,7 +149,10 @@
                                     <div class="form-group">
                                     <?php 
                                         
-                                        if(count($app_voucher) >0 ){                                            
+                                        // if(count($app_voucher) >0 ){
+                                        // if(count(array($app_voucher)) > 0){  
+                                            
+                                            if($app_voucher != '' ){ 
                                             echo '<p><b>Appraiser Status</b>: Paid <br>
                                             <b>Expense Voucher #</b>: '.$app_voucher->v_number.' <br>
                                             <b>Expense Description</b>: '.$app_voucher->v_desc.' </p>';
@@ -196,7 +199,7 @@
                                         <label>City, State*</label>
 
 
-                                        <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
+                                        <select class="form-control select2-single" data-width="100%" name="upd_order_city" id="cl_city">
                                         <option value=""></option>
                                         <?php
                                             foreach ($city_list as $city) { ?> 
@@ -294,8 +297,15 @@
 
                                     <div class="form-group">
                                     <?php 
-                                        
-                                        if(count($cl_voucher) >0 ){                                            
+                                        // echo count($cl_voucher);
+                                        // echo '<br>';
+                                        // echo '<br>';
+                                        // echo '<br>';
+                                        // echo '==>'.$cl_voucher;
+                                        // if(count($cl_voucher) >0 ){   
+                                            if($cl_voucher != '' ){  
+                                            // if(count(array($cl_voucher)) > 0){      
+                                                                                     
                                             echo '<p><b>Office Status</b>: Paid <br>
                                             <b>Revenue Voucher #</b>: '.$cl_voucher->v_number.' <br>
                                             <b>Revenue Description</b>: '.$cl_voucher->v_desc.' </p>';
@@ -756,13 +766,20 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <p>Name:</p>
-                                        <label><?php echo date("Y/m/d") . " ".date("h:i:sa");?></label>
+                                        <label><?php echo date("m/d/Y") . " ".date("h:i:sa");?></label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <p>Author:</p>
                                         <label><?php echo $loggedUser['user_username']?></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6" style="display:none;">
+                                    <div class="form-group">
+                                        <p>Email:</p>
+                                        <input type="text" class="form-control" name="notes_email" placeholder="Enter Appraiser Email" value="<?php echo $order_single->app_email ?>">
                                     </div>
                                 </div>
 
@@ -784,12 +801,7 @@
                                 <!-- jQueryCheckbox -->
                                 <div class="col-12">
                                     <div class="form-group position-relative">
-                                        <label>Visibility</label>
-                                        <!-- <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                                name="notes_hide_cl" >
-                                            <label class="custom-control-label" for="customCheck1">Hidden from client</label>
-                                        </div> -->
+                                        <label>Visibility</label>                                        
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2"
                                                 name="notes_hide_app" >
@@ -925,13 +937,30 @@
                                                                                 name="upd_notes_hide_cl"  <?php echo ( $n->hide_client == 'on' ) ?  'Checked' :  ''; ?>>
                                                                             <label class="custom-control-label" for="customCheck3">Hidden from client</label>
                                                                         </div> -->
-                                                                        <div class="custom-control custom-checkbox">
+                                                                        <!-- <div class="custom-control custom-checkbox">
                                                                             <input type="checkbox" class="custom-control-input" id="customCheck4"
                                                                                 name="upd_notes_hide_app" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
                                                                             <label class="custom-control-label" for="customCheck4">Hidden from appraiser</label>
-                                                                        </div>                                    
+                                                                        </div> -->
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                                                                name="upd_notes_hide_app" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
+                                                                            <label class="custom-control-label" for="customCheck1">Hidden from appraiser</label>
+                                                                        </div>                                     
                                                                     </div>
                                                                 </div>
+
+                                                                <!-- <div class="col-12">
+                                                                    <div class="form-group position-relative">
+                                                                        <label>Visibility</label>
+                                                                       
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="customCheck2"
+                                                                                name="notes_hide_app" >
+                                                                            <label class="custom-control-label" for="customCheck2">Hidden from appraiser</label>
+                                                                        </div>                                    
+                                                                    </div>
+                                                                </div> -->
 
                                                                 <div class="col-12">
                                                                     <div class="form-group">
@@ -1249,6 +1278,7 @@ function loantypeChange(){
 function appraiserChange(){
     email = $("select[name=upd_order_appraiser_id]").find(':selected').data('email');
     $("input[name=upd_order_appraiser_email]").val(email);
+    $("input[name=notes_email]").val(email);
 }
 
         var $Table_notes = $("#Table_notes").DataTable({
@@ -1304,8 +1334,8 @@ function appraiserChange(){
 
         
 
-        $("#new_notes").hide();
-            $("#note_table").hide();
+        // $("#new_notes").hide();
+            // $("#note_table").hide();
         function edit_file_collapse(){
             $("#edit_file").show();
             $("#new_notes").hide();

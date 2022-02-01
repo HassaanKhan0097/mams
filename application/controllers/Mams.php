@@ -21,7 +21,16 @@ class Mams extends CI_Controller {
 			$this->signin();
 		} 
 		else {
-    		$role = $loggedUser['user_role'];
+            $role = $loggedUser['user_role'];
+            date_default_timezone_set("America/Rio_Branco");
+            $loggedUser['user_lastlogin'] = $_SERVER['REMOTE_ADDR'];
+            // $loggedUser['user_logintime'] = $_SERVER['REMOTE_HOST'];
+
+            // $loggedUser['user_lastlogin'] = '10.20.30.40';
+            $loggedUser['user_logintime'] = date("m/d/Y") . " ".date("h:i:sa");
+            
+            
+            $result = $this->Users_Model->updateLogin($loggedUser);
     
     		if($role == 'manager') {
     			redirect("home");

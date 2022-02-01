@@ -28,6 +28,8 @@ $config['base_url'] = 'http://localhost/MAMS/';
 
 $config['upload_dir']= $config['base_url']."/uploads/";
 
+$config['from_email'] = "info@softmaticsolution.com";
+
 /*
 |--------------------------------------------------------------------------
 | Index File

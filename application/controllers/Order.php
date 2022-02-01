@@ -98,21 +98,21 @@ class Order extends CI_Controller {
             else {                
     
         $this->form_validation->set_rules('order_number','order_number','required');
-        $this->form_validation->set_rules('order_client_id','order_client_id','required');
-        $this->form_validation->set_rules('order_appraiser_id','order_appraiser_id','required');
-        $this->form_validation->set_rules('order_paymentmethod','order_paymentmethod','required');
-        $this->form_validation->set_rules('order_address','order_address','required');
-        $this->form_validation->set_rules('order_city','order_city','required');
-        $this->form_validation->set_rules('order_zipcode','order_zipcode','required');
-        $this->form_validation->set_rules('order_borrower','order_borrower','required');
-        $this->form_validation->set_rules('order_entry','order_entry','required');
-        $this->form_validation->set_rules('order_revenue','order_revenue','required');
-        $this->form_validation->set_rules('order_type_id','order_type_id','required');
-        $this->form_validation->set_rules('order_loan_type','order_loan_type','required');
-        $this->form_validation->set_rules('order_assignment_id','order_assignment_id','required');
-        $this->form_validation->set_rules('order_status_id','order_status_id','required');
-        $this->form_validation->set_rules('order_date','order_date','required');
-        $this->form_validation->set_rules('order_duedate','order_duedate','required');
+        // $this->form_validation->set_rules('order_client_id','order_client_id','required');
+        // $this->form_validation->set_rules('order_appraiser_id','order_appraiser_id','required');
+        // $this->form_validation->set_rules('order_paymentmethod','order_paymentmethod','required');
+        // $this->form_validation->set_rules('order_address','order_address','required');
+        // $this->form_validation->set_rules('order_city','order_city','required');
+        // $this->form_validation->set_rules('order_zipcode','order_zipcode','required');
+        // $this->form_validation->set_rules('order_borrower','order_borrower','required');
+        // $this->form_validation->set_rules('order_entry','order_entry','required');
+        // $this->form_validation->set_rules('order_revenue','order_revenue','required');
+        // $this->form_validation->set_rules('order_type_id','order_type_id','required');
+        // $this->form_validation->set_rules('order_loan_type','order_loan_type','required');
+        // $this->form_validation->set_rules('order_assignment_id','order_assignment_id','required');
+        // $this->form_validation->set_rules('order_status_id','order_status_id','required');
+        // $this->form_validation->set_rules('order_date','order_date','required');
+        // $this->form_validation->set_rules('order_duedate','order_duedate','required');
         
         if ($this->form_validation->run() == TRUE) {
             // $order_number = substr($this->input->post('order_number'),4);
@@ -275,7 +275,7 @@ class Order extends CI_Controller {
 
             
             
-            $this->Notes_Model->loanCreate($dataNote);
+            // $this->Notes_Model->loanCreate($dataNote);
             // Loan Type Added in Notes Model
 
             $dataNote2['order_id'] = $dataNote['order_id'];
@@ -292,6 +292,9 @@ class Order extends CI_Controller {
 
             $result = $this->Order_Model->create($data);
             // Order Added
+
+
+            $this->email_create_order($data);
 
             if($result > 0) {
 
@@ -342,27 +345,15 @@ class Order extends CI_Controller {
     
 
         // echo "<pre>";
-        // print_r( $data['app_voucher'] );
-
-        
-
-        // echo "<br><br>  <pre>";
-        // print_r( $data['cl_voucher'] );
-
-        // echo "<br><br>  <br>";
-        // echo count($data['app_voucher']);
-        // echo "<br><br>  <br>";
-        // echo count($data['cl_voucher']);
-
-        // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
-        // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
+        // print_r( $data['order_single']['order_status_id']);
+        // echo $data['order_single']->order_status_id;
  
+
+        $this->session->set_userdata('status_id', $data['order_single']->order_status_id);
+
         $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
         $data['notes'] = $this->Notes_Model->getById($id);
         $data['loggedUser'] = $this->session->userdata('loggedUser');
-
-
-      
 
         $this->load->view('order-edit', $data);
     }
@@ -516,8 +507,6 @@ class Order extends CI_Controller {
 
                     $config['file_name'] = $new_name;
                     array_push($fn,array($of_input , $_FILES[$of_input]['name'][$i]  ) );
-
-                    
                     
                     
                     $this->load->library('upload', $config);
@@ -538,10 +527,6 @@ class Order extends CI_Controller {
             }
             // ForEach End
 
-            // echo "Reached Foreach end<br>";
-
-
-
             $tmpArr = array();
    
             foreach ($fn as $sub) {
@@ -551,13 +536,13 @@ class Order extends CI_Controller {
            
             $data['order_file']  =    $result;
 
-            echo "<br><pre>old ===========<br>";
-            echo "<pre>";
-            print_r($old);
+            // echo "<br><pre>old ===========<br>";
+            // echo "<pre>";
+            // print_r($old);
 
-            echo "<br><pre>old ===========<br>";
-            echo "<pre>";
-            print_r($result);
+            // echo "<br><pre>old ===========<br>";
+            // echo "<pre>";
+            // print_r($result);
 
 
 
@@ -576,10 +561,10 @@ class Order extends CI_Controller {
                 if(strpos($od,",")){
                     $tmparr[] = explode(",", $od);
 
-                    echo "<br><pre>tmparr ===========<br>" ;
-                    echo "<pre>";
-                    print_r($tmparr);
-                    echo "<br><br>";
+                    // echo "<br><pre>tmparr ===========<br>" ;
+                    // echo "<pre>";
+                    // print_r($tmparr);
+                    // echo "<br><br>";
 
                     foreach($tmparr[0] as $t){                      
                         $str = $t;
@@ -602,14 +587,12 @@ class Order extends CI_Controller {
                 }                
             }
 
-           
+            
 
-            // echo "--------------------";
-
-            // echo "<br>";
-            // print_r($fn);
-
-
+            if($this->session->userdata('status_id') == $data['order_status_id']){
+                $this->email_status($data);
+            }
+            
 
             $result = $this->Order_Model->update($data);
 
@@ -737,6 +720,87 @@ class Order extends CI_Controller {
         $this->load->view('order-list', $data);
 
     }
+
+    public function search(){
+
+        // echo "Test";
+        $data['order_list'] = $this->Order_Model->get(); 
+        $data['client_list'] = $this->Client_Model->get(); 
+        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        $data['appraiser_list'] = $this->Appraiser_Model->get(); 
+        $this->load->view('search', $data);
+
+
+        // $this->load->view('search');
+    }
+
+
+    public function email_status($data){
+
+
+		$this->load->library("Phpmailer_library");
+        $mail = $this->phpmailer_library->load();
+		try {
+            //Recipients
+
+            $st = $this->StatusInfo_Model->getById($data['order_status_id']);
+            $app = $this->Appraiser_Model->getById($data['order_appraiser_id']);
+
+
+
+            $to =  $this->config->item('from_email');
+            // echo "<br><br> =========== ". $to;
+			$mail->setFrom($to, 'Mams');
+			$mail->addAddress($data['order_appraiser_email'], 'Mams');     //Add a recipient
+		
+			//Content
+			$mail->isHTML(true);                                  //Set email format to HTML
+			$mail->Subject = 'Order ' . $data['order_number'] . ' status is updated';
+			$mail->Body    = 'Hello' . $app->app_name . '.<br>This is to inform you that the status of Order ' . $data['order_number'] . ' is updated to ' . $st->st_name;
+		
+			if(!$mail->send()){
+				echo 'Mail could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			}else{
+				echo 'Mail has been sent';
+			}
+		} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+    }
+    
+    public function email_create_order($data){
+
+
+		$this->load->library("Phpmailer_library");
+        $mail = $this->phpmailer_library->load();
+		try {
+            //Recipients
+
+            $app = $this->Appraiser_Model->getById($data['order_appraiser_id']);
+
+
+            $to =  $this->config->item('from_email');
+            // echo "<br><br> =========== ". $to;
+			$mail->setFrom($to, 'Mams');
+			$mail->addAddress($data['order_appraiser_email'], 'Mams');     //Add a recipient
+		
+			//Content
+			$mail->isHTML(true);                                  //Set email format to HTML
+			$mail->Subject = 'Order ' . $data['order_number'] . ' has been assigned to you';
+			$mail->Body    = 'Hello' . $app->app_name . '.<br>This is to inform you that the Order ' . $data['order_number'] . ' is assigned to you ';
+		
+			if(!$mail->send()){
+				echo 'Mail could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			}else{
+				echo 'Mail has been sent';
+			}
+		} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+	}
+
 
 }
 
