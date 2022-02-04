@@ -133,13 +133,16 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
+                                        <!-- <select class="form-control select2-single" data-width="100%" name="cl_city" id="cl_city">
                                         <option value=""></option>
                                         <?php
                                             foreach ($city_list as $city) { ?> 
                                             <option value="<?php echo $city->city_id; ?>"><?php echo $city->city_name; ?></option>
                                         <?php } ?>
-                                        </select>   
+                                        </select>    -->
+                                        <input type="text" class="form-control" name="cl_city" placeholder="Enter City Name" >
+
+
                                         
                                         <!-- <input type="text" class="form-control" name="cl_city" placeholder="Enter City" > -->
                                     </div>

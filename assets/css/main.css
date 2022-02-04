@@ -196,3 +196,22 @@ table thead {
 span.input-group-text.input-group-append.input-group-addon {
   padding: 0.05rem 0.75rem 0.05rem 0.75rem !important;
 }
+
+
+@media (max-width: 576px){
+  .custom_col_4{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.33333%;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+    margin-right: 0%;
+  }
+  .custom_col_6{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-right: 0%;
+  }
+
+}

@@ -8,12 +8,14 @@
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/simple-line-icons/css/simple-line-icons.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" />
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap-datepicker3.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/dropzone.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/bootstrap.rtl.only.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" />
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/component-custom-switch.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/vendor/perfect-scrollbar.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css" />
@@ -119,23 +121,23 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Order Number*</label>
-                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers"  required> 
+                                        <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers"  value="<?php if(isset($order_number)) echo $order_number;?>" required> 
                                         <span class="helper-text"><?php echo form_error('order_number'); ?></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Loan Number</label>
-                                        <input type="number" class="form-control" name="order_loan_number" placeholder="Enter Loan Number" >
+                                        <input type="number" class="form-control" name="order_loan_number" placeholder="Enter Loan Number" value="<?php if(isset($order_loan_number)) echo $order_loan_number;?>">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>FHA/VA Case #</label>
-                                        <input type="text" class="form-control" name="order_case_number" placeholder="Enter FHA VA Case" >
+                                        <input type="text" class="form-control" name="order_case_number" placeholder="Enter FHA VA Case" value="<?php if(isset($order_case_number)) echo $order_case_number;?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Lender Name*</label>
-                                        <select class="form-control select2-single" onchange="lenderChange()" data-width="100%" name="order_client_id" required>
+                                        <select class="form-control select2-single" onchange="lenderChange()" data-width="100%" name="order_client_id"  required>
                                             <option value=""></option>
                                             <?php
                                             foreach($client_list as $cl){
@@ -149,7 +151,9 @@
                                             data-email="<?php echo $cl->cl_email ?>" 
                                             data-ins="<?php echo $cl->cl_ins ?>" 
                                             data-file="<?php echo $cl->cl_file ?>" 
-                                            value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
+                                            value="<?php echo $cl->cl_id ?>"
+                                            <?php if(isset($order_client_id)) {echo ( intval($order_client_id)  == intval($cl->cl_id)) ?  'Selected' :  '';}?>
+                                            ><?php echo $cl->cl_name ?></option>
                                             <?php } ?>
                                         </select>       
                                         <span class="helper-text"><?php echo form_error('order_client_id'); ?></span>                                   
@@ -157,7 +161,7 @@
                                     
                                     <div class="form-group" style="display:none;">
                                         
-                                        <input type="text" class="form-control" name="order_cl_ins" >
+                                        <input type="text" class="form-control" name="order_cl_ins" value="<?php if(isset($order_cl_ins)) echo $order_cl_ins;?>">
                                                                    
                                     </div>
                                     <div class="form-group" id="lenderInfo">
@@ -169,23 +173,7 @@
                                     <p><b>Files</b>: --</p><br>                             
                                     </div>
                                     <!-- <p><b>Files</b>: <span id="file"></span> --</p><br> -->
-
-                                    <!-- <div class="form-group">
-                                        <label>AMC</label>
-                                        <input type="text" class="form-control" name="order_amc" placeholder="Enter AMC" readonly >
-                                                                   
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Web Portal</label>
-                                        <input type="text" class="form-control" name="order_website" placeholder="Enter Website" readonly >
-                                    </div> 
-                 
-                                    <div class="form-group">
-                                        <label>Lender Email</label>
-                                        <input type="text" class="form-control" name="order_cl_email" placeholder="Enter Email" readonly >
-                                    </div> -->
-                               
+                                    <!-- <?php echo ( $app->app_name  == 'Unassigned') ?  'Selected' :  ''; ?> -->
                                     <div class="form-group">
                                         <label>Appraiser Name* </label>
                                         <select class="form-control select2-single" data-width="100%" onchange="appraiserChange()" name="order_appraiser_id" required>
@@ -193,7 +181,7 @@
                                             <?php
                                             foreach($appraiser_list as $app){
                                             ?>                                            
-                                            <option data-email="<?php echo $app->app_email ?>" value="<?php echo $app->app_id ?>"  <?php echo ( $app->app_name  == 'Unassigned') ?  'Selected' :  ''; ?>><?php echo $app->app_name ?></option>
+                                            <option data-email="<?php echo $app->app_email ?>" value="<?php echo $app->app_id ?>"  <?php if(isset($order_appraiser_id)) {if ( intval($order_appraiser_id)  == intval($app->app_id)){  echo 'Selected' ;} else if( $app->app_name  == 'Unassigned') {  echo 'Selected';}}?> ><?php echo $app->app_name ?></option>
                                             <?php } ?>
                                             
                                         </select>        
@@ -207,7 +195,7 @@
 
                                     <div class="form-group">
                                         <label>Expense</label>
-                                        <input type="text" class="form-control" name="order_expense" placeholder="Enter Expense" >
+                                        <input type="text" class="form-control" name="order_expense" placeholder="Enter Expense" value="<?php if(isset($order_expense)) echo $order_expense;?>">
                                     </div>
 
                                     <div class="form-group">
@@ -217,19 +205,19 @@
                                             <?php
                                             foreach($appraiser_list as $app){
                                             ?>                                            
-                                            <option value="<?php echo $app->app_id ?>"><?php echo $app->app_name ?></option>
+                                            <option value="<?php echo $app->app_id ?>" <?php if(isset($order_appraiser_id2)) {echo ( intval($order_appraiser_id2)  == intval($app->app_id)) ?  'Selected' :  '';}?>><?php echo $app->app_name ?></option>
                                             <?php } ?>
                                         </select>                                    
                                     </div>
 
                                     <div class="form-group">
                                         <label>Sub Appraiser Expense</label>
-                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" >
+                                        <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" value="<?php if(isset($order_sub_app_expense)) echo $order_sub_app_expense;?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Revenue*</label>
-                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" required>
+                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php if(isset($order_revenue)) echo $order_revenue;?>" required>
                                         <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
                                     </div>
 
@@ -246,7 +234,7 @@
 
                                     <div class="form-group">
                                         <label>Property Address*</label>
-                                        <input type="text" class="form-control" name="order_address" placeholder="Enter Property Address" required >
+                                        <input type="text" class="form-control" name="order_address" placeholder="Enter Property Address" value="<?php if(isset($order_address)) echo $order_address;?>" required >
                                         <span class="helper-text"><?php echo form_error('order_address'); ?></span> 
                                     </div>
 
@@ -257,83 +245,74 @@
                                         <option value=""></option>
                                         <?php
                                             foreach ($city_list as $city) { ?> 
-                                            <option value="<?php echo $city->city_id; ?>"><?php echo $city->city_name; ?></option>
+                                            <option value="<?php echo $city->city_id; ?>" <?php if(isset($order_city)) {echo ( intval($order_city)  == intval($city->city_id)) ?  'Selected' :  '';}?>><?php echo $city->city_name; ?></option>
                                         <?php } ?>
-
-
-                                                <!-- <option value=""></option>
-                                                <?php
-                                                $cityNames = ["New York City, NY", "Los Angeles, CA", "Chicago, IL"];
-                                                foreach($cityNames as $cl){
-                                                ?>                                            
-                                                <option value="<?php echo $cl ?>"><?php echo $cl ?></option>
-                                                <?php } ?> -->
                                         </select> 
                                         <span class="helper-text"><?php echo form_error('order_city'); ?></span>   
                                     </div>
 
                                     <div class="form-group">
                                         <label>Zip Code*</label>
-                                        <input type="number" class="form-control" name="order_zipcode" placeholder="Enter Zip Code" required >
+                                        <input type="number" class="form-control" name="order_zipcode" placeholder="Enter Zip Code" value="<?php if(isset($order_zipcode)) echo $order_zipcode;?>" required >
                                         <span class="helper-text"><?php echo form_error('order_zipcode'); ?></span>    
                                     </div>
                                 
                                     <div class="form-group">
                                         <label>Borrower*</label>
-                                        <input type="text" class="form-control" name="order_borrower" placeholder="Enter Borrower" required>
+                                        <input type="text" class="form-control" name="order_borrower" placeholder="Enter Borrower" value="<?php if(isset($order_borrower)) echo $order_borrower;?>" required>
                                         <span class="helper-text"><?php echo form_error('order_borrower'); ?></span> 
                                     </div>
                                 
                                     <div class="form-group">
                                         <label>Co Borrower</label>
-                                        <input type="text" class="form-control" name="order_co_borrower" placeholder="Enter Co Borrower" >
+                                        <input type="text" class="form-control" name="order_co_borrower" placeholder="Enter Co Borrower" value="<?php if(isset($order_co_borrower)) echo $order_co_borrower;?>">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Entry Contact*</label>
-                                        <input type="text" class="form-control" name="order_entry" placeholder="Enter Entry Contact" required>
+                                        <input type="text" class="form-control" name="order_entry" placeholder="Enter Entry Contact" value="<?php if(isset($order_entry)) echo $order_entry;?>" required>
                                         <span class="helper-text"><?php echo form_error('order_entry'); ?></span>
                                     </div>
 
 
                                     <div class="form-group">
                                         <label>Borrower Phone</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone1" placeholder="Enter Phone 1" >
+                                        <input type="text" class="form-control" name="order_borrower_phone1" placeholder="Enter Phone 1" value="<?php if(isset($order_borrower_phone1)) echo $order_borrower_phone1;?>">
                                     </div>
                              
                                     <div class="form-group">
                                         <label>Contact Phone 1</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone2" placeholder="Contact Phone 1" >
+                                        <input type="text" class="form-control" name="order_borrower_phone2" placeholder="Contact Phone 1" value="<?php if(isset($order_borrower_phone2)) echo $order_borrower_phone2;?>">
                                     </div>
                             
                                     <div class="form-group">
                                         <label>Contact Phone 2</label>
-                                        <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Contact Phone 2" >
+                                        <input type="text" class="form-control" name="order_borrower_phone3" placeholder="Contact Phone 2" value="<?php if(isset($order_borrower_phone3)) echo $order_borrower_phone3;?>">
                                     </div>
 
 
                                     <div class="form-group">
                                         <label>Contact Email</label>
-                                        <input type="text" class="form-control" name="order_borrower_email" placeholder="Enter Email" >
+                                        <input type="text" class="form-control" name="order_borrower_email" placeholder="Enter Email" value="<?php if(isset($order_borrower_email)) echo $order_borrower_email;?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Contact Email 2</label>
-                                        <input type="text" class="form-control" name="order_borrower_email2" placeholder="Enter Email 2" >
+                                        <input type="text" class="form-control" name="order_borrower_email2" placeholder="Enter Email 2" value="<?php if(isset($order_borrower_email2)) echo $order_borrower_email2;?>">
                                     </div>
 
                                     <div class="form-group">
                                     <label>Payment Method*</label>
                                     <select class="form-control select2-single" data-width="100%" name="order_paymentmethod" required>
                                         <option value=""></option>
-                                        <option value="Bill Client">Bill Client</option>
-                                        <option value="Credit Card">Credit Card</option>
-                                        <option value="COD">COD</option>
+                                        <option value="Bill Client" <?php if(isset($order_paymentmethod)) {echo ( $order_paymentmethod  == "Bill Client") ?  'Selected' :  '';}?>>Bill Client</option>
+                                        <option value="Credit Card" <?php if(isset($order_paymentmethod)) {echo ( $order_paymentmethod  == "Credit Card") ?  'Selected' :  '';}?>>Credit Card</option>
+                                        <option value="COD" <?php if(isset($order_paymentmethod)) {echo ( $order_paymentmethod  == "COD") ?  'Selected' :  '';}?>>COD</option>
                                     </select>                       
                                     <span class="helper-text"><?php echo form_error('order_paymentmethod'); ?></span>       
                                 </div>
                                 <div class="form-group">
                                         <label>Purchase Price</label>
-                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" >
+                                        <input type="text" class="form-control" name="order_purchase" placeholder="Enter Purchase Price" value="<?php if(isset($order_purchase)) echo $order_purchase;?>">
                                     </div>
 
                                     
@@ -361,7 +340,7 @@
                                             <?php
                                             foreach($order_types_list as $ol){
                                             ?>                                            
-                                            <option value="<?php echo $ol->order_id ?>"><?php echo $ol->order_name ?></option>
+                                            <option value="<?php echo $ol->order_id ?>" <?php if(isset($order_type_id)) {echo ( intval($order_type_id)  == intval($ol->order_id)) ?  'Selected' :  '';}?>><?php echo $ol->order_name ?></option>
                                             <?php } ?>
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_type_id'); ?></span>                   
@@ -373,10 +352,9 @@
                                         <select class="form-control select2-single" data-width="100%" name="order_loan_type" required>
                                             <option value=""></option>
                                             <?php
-                                            // onchange="loantypeChange()"  $loanType = ["FHA", "Conventional", "VHDA-FHA", "VHDA-Conventional", "USDA", "VA", "FHA-203K"];
                                             foreach($loan_types_list as $lt){
                                             ?>                                            
-                                            <option data-desc="<?php echo $lt->loan_desc ?>" value="<?php echo $lt->loan_id . "|" . $lt->loan_name . "|" . $lt->loan_desc ?> "><?php echo $lt->loan_name ?></option>
+                                            <option data-desc="<?php echo $lt->loan_desc ?>" value="<?php echo $lt->loan_id . "|" . $lt->loan_name . "|" . $lt->loan_desc ?> " <?php if(isset($order_loan_type)) {echo ( intval($order_loan_type)  == intval($lt->loan_id)) ?  'Selected' :  '';}?>><?php echo $lt->loan_name ?></option>
                                             <?php } ?>
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
@@ -389,7 +367,7 @@
                                             <?php
                                             foreach($assignment_types_list as $at){
                                             ?>                                            
-                                            <option value="<?php echo $at->at_id ?>"><?php echo $at->at_name ?></option>
+                                            <option value="<?php echo $at->at_id ?>" <?php if(isset($order_assignment_id)) {echo ( intval($order_assignment_id)  == intval($at->at_id)) ?  'Selected' :  '';}?>><?php echo $at->at_name ?></option>
                                             <?php } ?>
                                             
                                         </select>       
@@ -404,7 +382,7 @@
                                             $assAdd = ["Rent Comparable Schedule", "Operating Income Statement", "REO Addendum", "ADU"];
                                             foreach($assAdd as $aa){
                                             ?>                                            
-                                            <option value="<?php echo $aa ?>"><?php echo $aa ?></option>
+                                            <option value="<?php echo $aa ?>" <?php if(isset($order_assignment_addon)) {echo ( intval($order_assignment_addon)  == intval($aa)) ?  'Selected' :  '';}?>><?php echo $aa ?></option>
                                             <?php } ?>
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
@@ -423,7 +401,7 @@
                                             <label class="custom-control-label" for="customRadio2">Yes</label>
                                         </div>                                        
                                     </div>
-
+                                    <!-- <?php echo ( $status->st_name  == 'Assigned') ?  'selected' :  ''; ?> -->
                                     <div class="form-group">
                                         <label>Order Status*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_status_id" required>
@@ -431,16 +409,16 @@
                                             <?php
                                             foreach($status_info_list as $status){
                                             ?>                                            
-                                            <option value="<?php echo $status->st_id ?>" <?php echo ( $status->st_name  == 'Assigned') ?  'selected' :  ''; ?>><?php echo $status->st_name ?></option>
+                                            <option value="<?php echo $status->st_id ?>" <?php if(isset($order_status_id)) {if ( intval($order_status_id)  == intval($status->st_id)){  echo 'Selected' ;} else if( $status->st_name  == 'Assigned') {  echo 'Selected';}}?>><?php echo $status->st_name ?></option>
                                             <?php } ?>
                                         </select>  
                                         <span class="helper-text"><?php echo form_error('order_status_id'); ?></span>                                  
                                     </div>
-
+                                  
                                     <div class="form-group">
                                         <label>Order Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_date"  value="<?php echo date( "m/d/Y"); ?>" required>
+                                            <input type="text" class="form-control" name="order_date"  value="<?php if(isset($order_date)){ echo $order_date;} else {echo date( "m/d/Y"); }?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -451,7 +429,7 @@
                                     <div class="form-group">
                                         <label>Due Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_duedate" required>
+                                            <input type="text" class="form-control" name="order_duedate" value="<?php if(isset($order_duedate)){ echo $order_duedate;}?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -462,7 +440,7 @@
                                     <div class="form-group">
                                         <label>Appointment Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_appointmentdate">
+                                            <input type="text" class="form-control" name="order_appointmentdate"  value="<?php if(isset($order_appointmentdate)){ echo $order_appointmentdate;}?>">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -533,7 +511,7 @@
                                 <div class="form-group">
                                     <label>Complete Date</label>
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" name="order_completedate">
+                                        <input type="text" class="form-control" name="order_completedate" value="<?php if(isset($order_completedate)){ echo $order_completedate;}?>">
                                         <span class="input-group-text input-group-append input-group-addon">
                                             <i class="simple-icon-calendar"></i>
                                         </span>
@@ -557,86 +535,13 @@
                                 
                                
 
-                                <!-- <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Assignment Type</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id2">
-                                            <option value=""></option>
-                                            <?php
-                                            foreach($assignment_types_list as $at){
-                                            ?>                                            
-                                            <option value="<?php echo $at->at_id ?>"><?php echo $at->at_name ?></option>
-                                            <?php } ?>
-                                        </select>                                    
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Assignment Type 2</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_assignment_id3">
-                                            <option value=""></option>
-                                            <?php
-                                            foreach($assignment_types_list as $at){
-                                            ?>                                            
-                                            <option value="<?php echo $at->at_id ?>"><?php echo $at->at_name ?></option>
-                                            <?php } ?>
-                                        </select>                                    
-                                    </div>
-                                </div> -->
-                                
-                              
-                                <!-- <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>State</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_state" >
-                                            <option value=""></option>
-                                            <option value="Virginia">Virginia</option>
-                                            <option value="Maryland">Maryland</option>
-                                            <option value="District of Columbia">District of Columbia</option>
-                                            <option value="West Virginia">West Virginia</option>
-                                            <option value="Michigan">Michigan</option>
-                                        </select>   
-                                        <span class="helper-text"><?php echo form_error('order_state'); ?></span>                                 
-                                    </div>
-                                </div> -->
-
-
-                               
-                                <!-- <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Sub Client Name</label>
-                                        <select class="form-control select2-single" data-width="100%" name="order_client_id2">
-                                            <option value=""></option>
-                                            <?php
-                                            foreach($client_list as $cl){
-                                            ?>                                            
-                                            <option value="<?php echo $cl->cl_id ?>"><?php echo $cl->cl_name ?></option>
-                                            <?php } ?>
-                                        </select>                                             </div>
-                                </div> -->
-
-                                <!-- <div class="col-sm-4">
-                                   
-                                </div> -->
-
-                                
-
-                                <!-- <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Appraiser Email 2</label>
-                                        <input type="text" class="form-control" name="order_appraiser_email2" placeholder="Enter Email 2" >
-                                    </div>
-                                </div> -->
-
-
-                                
+                           
 
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Special instructions</label>
-                                        <textarea  class="form-control" name="order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50"></textarea>                                    
+                                        <textarea  class="form-control" name="order_instruction" placeholder="Enter Special Instruction" rows="2" cols="50"><?php if(isset($order_instruction)){ echo $order_instruction;}?></textarea>                                    
                                     </div>
                                 </div>
 
@@ -737,22 +642,38 @@
 
 
     <script src="<?php echo base_url(); ?>assets/js/vendor/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap-datepicker.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/dropzone.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
+   
 
+    <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/perfect-scrollbar.min.js"></script>
+    
+    <script src="<?php echo base_url(); ?>assets/js/vendor/select2.full.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/bootstrap-datepicker.js"></script>
+
+    <script src="<?php echo base_url(); ?>assets/js/vendor/mousetrap.min.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/js/vendor/dropzone.min.js"></script> -->
+
+
+    <!-- <script src="<?php echo base_url(); ?>assets/js/dore-plugins/select.from.library.js"></script> -->
+    <script src="<?php echo base_url(); ?>assets/js/dore.script.js"></script>   
+    <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
+    
     <script>
     // lenOrder = $(".dropdown-menu .dropdown-item").length-1;
     
     lastOrder = $(".dropdown-menu .dropdown-item")[1].text;
     currentOrder = parseInt(lastOrder.substr(4)) + 1 ;
     $("input[name=order_number]").val("MRQ-"+ currentOrder);
-$("#select-test").select2();
+    // $("#select-test").select2();
+    // setTimeout(() => {
+    //     $("#select-test").select2();
+    //     console.log("test");
+    // }, 1000);
+    // setTimeout(() => {
+    //     $("#select-test").select2();
+    //     console.log("test2");
+    // }, 2000);
+
 
 function file_change(){
 
@@ -796,29 +717,18 @@ function lenderChange(){
 
     var fileHtml = "";
     if(file != '') {
-
         str = file;
         tmpArr = str.split(",");
         attachCount = 0; 
-
         a = window.location.href
         a =a.substr(0,a.lastIndexOf("/"))
         a =a.substr(0,a.lastIndexOf("/"))
-
         a= a + "/uploads/clients/" + folder_name + "/";
-
-        for(i=0; i < tmpArr.length; i++){
-            tmp = tmpArr[i].replaceAll(" ", "_");
-            fileHtml += `<span><u> <i class="simple-icon-paper-clip"></i> <a href="`+a+tmp+`" >`+tmp+`</a></u>  <br/></span> `;
-
+            for(i=0; i < tmpArr.length; i++){
+                tmp = tmpArr[i].replaceAll(" ", "_");
+                fileHtml += `<span><u> <i class="simple-icon-paper-clip"></i> <a href="`+a+tmp+`" >`+tmp+`</a></u>  <br/></span> `;
+            }
         }
-
-        }else{
-
-        }
-
-
-    
 
     $("#lenderInfo").html(`
     <p><b>AMC Name</b>: `+amc_name+`</p>
@@ -830,18 +740,6 @@ function lenderChange(){
     `);
     
 
-
-
-
-
-
-
-
-
-// $("input[name=order_amc]").val(amc_name);
-// $("input[name=order_website]").val(website);
-// $("input[name=order_phone]").val(phone);
-// $("input[name=order_cl_email]").val(email);
 
 
 }

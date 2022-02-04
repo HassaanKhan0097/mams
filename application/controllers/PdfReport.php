@@ -787,11 +787,12 @@
                   
 
                   $d = $this->Report_Model->singleInvoice($id);
+
                   $data = $d[0];
 
-                  echo "<pre>";
-                  print_r($data);
-                  echo $id;
+                  // echo "<pre>";
+                  // print_r($d);
+                  // echo $id;
 
                   // $data = $this->Report_Model->accountingStatement($id); 
                   $cl = $this->Client_Model->getById($id);
@@ -934,7 +935,7 @@
                                     <td>'.$data->cl_address.'</td>                                    
                                     </tr>
                                     <tr>
-                                    <td>'.$data->city_name.', '.$data->cl_zipcode.'</td>                                    
+                                    <td>'.$data->cl_city.', '.$data->cl_zipcode.'</td>                                    
                                     </tr>
                               
                               </table>

@@ -1228,18 +1228,6 @@ function lenderChange(){
 
 
 
-
-
-
-
-
-
-// $("input[name=order_amc]").val(amc_name);
-// $("input[name=order_website]").val(website);
-// $("input[name=order_phone]").val(phone);
-// $("input[name=order_cl_email]").val(email);
-
-
 }
 
 

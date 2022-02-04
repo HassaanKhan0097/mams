@@ -143,24 +143,16 @@
                                     </div>
                                 </div> -->
 
-                                    <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Select City</label>
-                                        <select class="form-control select2-single" data-width="100%" name="upd_cl_city">
-                                            <option value=""></option>
-                                            <?php
-                                            foreach ($city_list as $city) { ?>                                             
-                                            <option value="<?php echo $city->city_id; ?>" <?php echo ( $client_single->cl_city_id ==  $city->city_id) ?  'Selected' :  ''; ?>><?php echo $city->city_name; ?></option>
-                                        <?php } ?>
-                                        </select>                                    
-                                    </div>
-                                </div> -->
+                                
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>City</label>
 
-                                            <select class="form-control select2-single" data-width="100%"
+                                            <input type="text" class="form-control" name="upd_cl_city" placeholder="Enter City Name" value="<?php echo $client_single->cl_city?>">
+
+
+                                            <!-- <select class="form-control select2-single" data-width="100%"
                                                 name="upd_cl_city">
                                                 <option value=""></option>
                                                 <?php
@@ -169,7 +161,7 @@
                                                     <?php echo ( $client_single->cl_city ==  $city->city_id) ?  'Selected' :  ''; ?>>
                                                     <?php echo $city->city_name; ?></option>
                                                 <?php } ?>
-                                            </select>
+                                            </select> -->
                                             <!-- <input type="text" class="form-control" name="upd_cl_city" value="<?php echo $client_single->cl_city;?>" > -->
                                         </div>
                                     </div>

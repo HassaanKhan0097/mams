@@ -24,7 +24,7 @@ class Clients extends CI_Controller {
     public function create()
     {
 
-        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
         // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
         $data['amc_list'] = $this->Amc_Model->get(); 
         $this->load->view('client-create', $data);
@@ -179,7 +179,7 @@ class Clients extends CI_Controller {
     public function update($id)
     {
         $data['cl_single'] = $this->Client_Model->getById($id);
-        $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
+        // $data['city_list'] = $this->CitiesCountries_Model->getCity(); 
         // $data['country_list'] = $this->CitiesCountries_Model->getCountry(); 
 
         $data['client_single'] = $data['cl_single'][0];    

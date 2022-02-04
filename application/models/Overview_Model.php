@@ -17,7 +17,7 @@ class Overview_Model extends CI_Model {
 
     public function getByStatus()
     {
-        $query = $this->db->query("SELECT st.st_id, st.st_name, COUNT(*) as files from `orders` ord LEFT JOIN `status_info` st on ord.order_status_id = st.st_id GROUP BY ord.order_status_id");
+        $query = $this->db->query("SELECT st.st_id, st.st_name, COUNT(*) as files from `orders` ord LEFT JOIN `status_info` st on ord.order_status_id = st.st_id GROUP BY ord.order_status_id order by st.st_id");
         return $query->result();
     }
     

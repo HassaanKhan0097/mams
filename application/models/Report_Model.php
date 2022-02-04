@@ -21,8 +21,8 @@ class Report_Model extends CI_Model {
     public function singleInvoice($id){
 
 
-        // $where = 'o.order_number = ' . $id;
-        $this->db->select('o.order_number, o.order_address, o.order_borrower, o.order_assignment_id, ass.at_name , o.order_type_id, ot.order_name , o.order_paymentmethod,o.order_appointmentdate, o.order_appointment_time , o.order_completedate, o.order_status_id, st.st_name, o.order_v_client, o.order_city, c.cl_name, c.cl_address,c.cl_city,c.cl_zipcode, ci.city_name,  o.order_revenue, o.order_appraiser_id, a.app_name')->from('orders as o')->join('assignment_types as ass','ass.at_id = o.order_assignment_id')->join('order_types as ot','ot.order_id = o.order_type_id')->join('status_info as st','st.st_id = o.order_status_id')->join('client as c','c.cl_id = o.order_client_id')->join('city as ci','ci.city_id = c.cl_city')->join('appraiser as a','a.app_id = o.order_appraiser_id')->where('o.order_number', $id);
+        // $where = 'o.order_number = ' . $id; ->join('city as ci','ci.city_id = c.cl_city')  ci.city_name,
+        $this->db->select('o.order_number, o.order_address, o.order_borrower, o.order_assignment_id, ass.at_name , o.order_type_id, ot.order_name , o.order_paymentmethod,o.order_appointmentdate, o.order_appointment_time , o.order_completedate, o.order_status_id, st.st_name, o.order_v_client, o.order_city, c.cl_name,c.cl_city, c.cl_address,c.cl_city,c.cl_zipcode,  o.order_revenue, o.order_appraiser_id, a.app_name')->from('orders as o')->join('assignment_types as ass','ass.at_id = o.order_assignment_id')->join('order_types as ot','ot.order_id = o.order_type_id')->join('status_info as st','st.st_id = o.order_status_id')->join('client as c','c.cl_id = o.order_client_id')->join('appraiser as a','a.app_id = o.order_appraiser_id')->where('o.order_number', $id);
         $query = $this->db->get();
         return $query->result();
 

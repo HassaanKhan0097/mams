@@ -103,8 +103,52 @@
 
 
             <div class="row">
+                <!-- col-xl-4 col-lg-4 -->
+                <div class=" mb-4 home_card custom_col_4" >
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">By Status</h5>
+                            <table class="-standard responsive nowrap table table-bordered"
+                                >
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Total Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- data-order="[[ 1, &quot;desc&quot; ]]"
+                                    data-table data-table
+                                 -->
+                                    
+                                <?php
+                                // echo "<pre>";
+                                // print_r($by_status);
+                                    foreach($by_status as $bs){
+                                        
+                                        
+
+
+                                        ?>
+                                    
+
+                                        <tr>
+                                            <td>
+                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/bystatus/<?php echo $bs->st_id; ?>"> <u><?php echo $bs->st_name; ?></u> </a></p>
+                                            </td>
+                                            <td>
+                                                <p class="text-muted"><?php echo $bs->files; ?></p>
+                                            </td>
+                                        </tr>
+                                <?php }?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             <!-- col-xl-6 col-lg-6  -->
-                <div class="mb-4 home_card" style="width: 19%">
+                <div class="mb-4 home_card custom_col_4" style="width: 19%">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Appraiser</h5>
@@ -112,7 +156,7 @@
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
-                                        <th>WIP By Appraiser</th>
+                                        <th id="by_appraiser_th">By Appraiser</th>
                                         <th>Total Files</th>
                                     </tr>
                                 </thead>
@@ -137,7 +181,7 @@
                     </div>
                 </div>
                 <!-- col-xl-6 col-lg-6  -->
-                <div class="mb-4 home_card"  style="width: 28%">
+                <div class="mb-4 home_card custom_col_4"  style="width: 28%">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Client</h5>
@@ -145,7 +189,7 @@
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
-                                        <th>Client</th>
+                                        <th id="by_client_th">Client</th>
                                         <th>Total Files</th>
                                     </tr>
                                 </thead>
@@ -168,40 +212,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- col-xl-4 col-lg-4 -->
-                <div class=" mb-4 home_card" >
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">By Status</h5>
-                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
-                                data-order="[[ 1, &quot;desc&quot; ]]">
-                                <thead>
-                                    <tr>
-                                        <th>Status</th>
-                                        <th>Total Files</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                <?php
-                                    foreach($by_status as $bs){?>
-                                        <tr>
-                                            <td>
-                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/bystatus/<?php echo $bs->st_id; ?>"> <u><?php echo $bs->st_name; ?></u> </a></p>
-                                            </td>
-                                            <td>
-                                                <p class="text-muted"><?php echo $bs->files; ?></p>
-                                            </td>
-                                        </tr>
-                                <?php }?>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- col-xl-4 col-lg-4  -->
-                <div class="mb-4 home_card">
+                <div class="mb-4 home_card custom_col_6">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Due Date</h5>
@@ -236,7 +249,7 @@
                     </div>
                 </div>
                 <!-- col-xl-4 col-lg-4  -->
-                <div class="mb-4 home_card">
+                <div class="mb-4 home_card custom_col_6">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Action Required</h5>
@@ -320,6 +333,18 @@
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/Chart.bundle.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/vendor/chartjs-plugin-datalabels.js"></script>
+
+    <script>
+   
+   setTimeout(function(){
+ 	// alert("Sup!"); 
+     $("#by_appraiser_th").click();
+     $("#by_client_th").click();
+
+}, 700);//wait 2 seconds
+        // $(window).on('load', function() {
+        // });
+    </script>
 </body>
 
 </html>

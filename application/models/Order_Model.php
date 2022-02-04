@@ -14,7 +14,7 @@ class Order_Model extends CI_Model {
         // $this->db->join('city','city.city_id = order.order_city_id');
         $this->db->join('city','city.city_id = orders.order_city', 'left');
         $this->db->join('client as cl','cl.cl_id = orders.order_client_id', 'left');
-        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id');
+        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id','left');
         $this->db->join('client as cl2','cl2.cl_id = orders.order_client_id2', 'left');
         $this->db->join('order_types','order_types.order_id = orders.order_type_id');
         $this->db->join('status_info','status_info.st_id = orders.order_status_id');
@@ -69,7 +69,7 @@ class Order_Model extends CI_Model {
         $this->db->join('client as cl','cl.cl_id = orders.order_client_id', 'left');
         $this->db->join('city as c2','c2.city_id = cl.cl_city', 'left'); 
         $this->db->join('loan_types as l','l.loan_id = orders.order_loan_type', 'left') ;
-        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id') ;
+        $this->db->join('amc as a','a.amc_id = cl.cl_amc_id','left') ;
         $this->db->join('client as cl2','cl2.cl_id = orders.order_client_id2', 'left');
         $this->db->join('order_types','order_types.order_id = orders.order_type_id');
         $this->db->join('status_info','status_info.st_id = orders.order_status_id');
