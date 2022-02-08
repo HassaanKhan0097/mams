@@ -120,7 +120,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Order Number*</label>
+                                        <label class="req_field">Order Number*</label>
                                         <input type="text" class="form-control" name="order_number" placeholder="Enter Order Numbers"  value="<?php if(isset($order_number)) echo $order_number;?>" required> 
                                         <span class="helper-text"><?php echo form_error('order_number'); ?></span>
                                     </div>
@@ -136,7 +136,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Lender Name*</label>
+                                        <label class="req_field">Lender Name*</label>
                                         <select class="form-control select2-single" onchange="lenderChange()" data-width="100%" name="order_client_id"  required>
                                             <option value=""></option>
                                             <?php
@@ -175,7 +175,7 @@
                                     <!-- <p><b>Files</b>: <span id="file"></span> --</p><br> -->
                                     <!-- <?php echo ( $app->app_name  == 'Unassigned') ?  'Selected' :  ''; ?> -->
                                     <div class="form-group">
-                                        <label>Appraiser Name* </label>
+                                        <label class="req_field">Appraiser Name* </label>
                                         <select class="form-control select2-single" data-width="100%" onchange="appraiserChange()" name="order_appraiser_id" required>
                                             <option value=""></option>
                                             <?php
@@ -216,7 +216,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Revenue*</label>
+                                        <label class="req_field">Revenue*</label>
                                         <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php if(isset($order_revenue)) echo $order_revenue;?>" required>
                                         <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
                                     </div>
@@ -233,13 +233,13 @@
                                 <div class="col-sm-4">
 
                                     <div class="form-group">
-                                        <label>Property Address*</label>
+                                        <label class="req_field">Property Address*</label>
                                         <input type="text" class="form-control" name="order_address" placeholder="Enter Property Address" value="<?php if(isset($order_address)) echo $order_address;?>" required >
                                         <span class="helper-text"><?php echo form_error('order_address'); ?></span> 
                                     </div>
 
                                     <div class="form-group">
-                                        <label>City, State*</label>
+                                        <label class="req_field">City, State*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_city" required>
 
                                         <option value=""></option>
@@ -252,13 +252,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Zip Code*</label>
+                                        <label class="req_field">Zip Code*</label>
                                         <input type="number" class="form-control" name="order_zipcode" placeholder="Enter Zip Code" value="<?php if(isset($order_zipcode)) echo $order_zipcode;?>" required >
                                         <span class="helper-text"><?php echo form_error('order_zipcode'); ?></span>    
                                     </div>
                                 
                                     <div class="form-group">
-                                        <label>Borrower*</label>
+                                        <label class="req_field">Borrower*</label>
                                         <input type="text" class="form-control" name="order_borrower" placeholder="Enter Borrower" value="<?php if(isset($order_borrower)) echo $order_borrower;?>" required>
                                         <span class="helper-text"><?php echo form_error('order_borrower'); ?></span> 
                                     </div>
@@ -269,7 +269,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Entry Contact*</label>
+                                        <label class="req_field">Entry Contact*</label>
                                         <input type="text" class="form-control" name="order_entry" placeholder="Enter Entry Contact" value="<?php if(isset($order_entry)) echo $order_entry;?>" required>
                                         <span class="helper-text"><?php echo form_error('order_entry'); ?></span>
                                     </div>
@@ -301,7 +301,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                    <label>Payment Method*</label>
+                                    <label class="req_field">Payment Method*</label>
                                     <select class="form-control select2-single" data-width="100%" name="order_paymentmethod" required>
                                         <option value=""></option>
                                         <option value="Bill Client" <?php if(isset($order_paymentmethod)) {echo ( $order_paymentmethod  == "Bill Client") ?  'Selected' :  '';}?>>Bill Client</option>
@@ -334,7 +334,7 @@
                                 <div class="col-sm-4">
 
                                     <div class="form-group">
-                                        <label>Order Type*</label>
+                                        <label class="req_field">Order Type*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_type_id" required>
                                             <option value=""></option>
                                             <?php
@@ -348,7 +348,7 @@
 
 
                                     <div class="form-group">
-                                        <label>Loan Type*</label>
+                                        <label class="req_field">Loan Type*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_loan_type" required>
                                             <option value=""></option>
                                             <?php
@@ -361,7 +361,7 @@
                                     </div>
                                    
                                     <div class="form-group">
-                                        <label>Assignment Type*</label>
+                                        <label class="req_field">Assignment Type*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_assignment_id" required>
                                             <option value=""></option>
                                             <?php
@@ -403,20 +403,20 @@
                                     </div>
                                     <!-- <?php echo ( $status->st_name  == 'Assigned') ?  'selected' :  ''; ?> -->
                                     <div class="form-group">
-                                        <label>Order Status*</label>
+                                        <label class="req_field">Order Status*</label>
                                         <select class="form-control select2-single" data-width="100%" name="order_status_id" required>
                                             <option value=""></option>
                                             <?php
                                             foreach($status_info_list as $status){
                                             ?>                                            
-                                            <option value="<?php echo $status->st_id ?>" <?php if(isset($order_status_id)) {if ( intval($order_status_id)  == intval($status->st_id)){  echo 'Selected' ;} else if( $status->st_name  == 'Assigned') {  echo 'Selected';}}?>><?php echo $status->st_name ?></option>
+                                            <option value="<?php echo $status->st_id ?>" <?php if(isset($order_status_id)) {if ( intval($order_status_id)  == intval($status->st_id)){  echo 'Selected' ;} } else if( $status->st_name  == 'Assigned') {  echo 'Selected';}?>><?php echo $status->st_name ?></option>
                                             <?php } ?>
                                         </select>  
                                         <span class="helper-text"><?php echo form_error('order_status_id'); ?></span>                                  
                                     </div>
                                   
                                     <div class="form-group">
-                                        <label>Order Date*</label>
+                                        <label class="req_field">Order Date*</label>
                                         <div class="input-group date">
                                             <input type="text" class="form-control" name="order_date"  value="<?php if(isset($order_date)){ echo $order_date;} else {echo date( "m/d/Y"); }?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">
@@ -427,7 +427,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Due Date*</label>
+                                        <label class="req_field">Due Date*</label>
                                         <div class="input-group date">
                                             <input type="text" class="form-control" name="order_duedate" value="<?php if(isset($order_duedate)){ echo $order_duedate;}?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">

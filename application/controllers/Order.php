@@ -116,21 +116,21 @@ class Order extends CI_Controller {
             $data['order_website'] = $this->input->post('order_website');
             $data['order_zipcode'] = $this->input->post('order_zipcode');
             $data['order_action'] = $this->input->post('order_action');
-            $data['order_date'] = date( "d/m/Y", strtotime($this->input->post('order_date')) );
+            $data['order_date'] = date( "Y/m/d", strtotime($this->input->post('order_date')) );
 
             $data['order_borrower'] = $this->input->post('order_borrower');
             $data['order_co_borrower'] = $this->input->post('order_co_borrower');
-            $data['order_duedate'] = date( "d/m/Y", strtotime($this->input->post('order_duedate')) );
+            $data['order_duedate'] = date( "m/d/Y", strtotime($this->input->post('order_duedate')) );
             $data['order_entry'] = $this->input->post('order_entry');
             
             $apt_date = $this->input->post('order_appointmentdate');
             if($apt_date != ""){
-                $data['order_appointmentdate'] = date( "d/m/Y", strtotime($apt_date) );
+                $data['order_appointmentdate'] = date( "m/d/Y", strtotime($apt_date) );
             }
 
             $com_date = $this->input->post('order_completedate');
             if($com_date != ""){
-                $data['order_completedate'] = date( "d/m/Y", strtotime($com_date) );
+                $data['order_completedate'] = date( "m/d/Y", strtotime($com_date) );
             }
             
             $data['order_appraiser_id'] = $this->input->post('order_appraiser_id');
@@ -205,21 +205,21 @@ class Order extends CI_Controller {
             $data['order_website'] = $this->input->post('order_website');
             $data['order_zipcode'] = $this->input->post('order_zipcode');
             $data['order_action'] = $this->input->post('order_action');
-            $data['order_date'] = date( "d/m/Y", strtotime($this->input->post('order_date')) );
+            $data['order_date'] = date( "Y/m/d", strtotime($this->input->post('order_date')) );
 
             $data['order_borrower'] = $this->input->post('order_borrower');
             $data['order_co_borrower'] = $this->input->post('order_co_borrower');
-            $data['order_duedate'] = date( "d/m/Y", strtotime($this->input->post('order_duedate')) );
+            $data['order_duedate'] = date( "m/d/Y", strtotime($this->input->post('order_duedate')) );
             $data['order_entry'] = $this->input->post('order_entry');
             
             $apt_date = $this->input->post('order_appointmentdate');
             if($apt_date != ""){
-                $data['order_appointmentdate'] = date( "d/m/Y", strtotime($apt_date) );
+                $data['order_appointmentdate'] = date( "m/d/Y", strtotime($apt_date) );
             }
 
             $com_date = $this->input->post('order_completedate');
             if($com_date != ""){
-                $data['order_completedate'] = date( "d/m/Y", strtotime($com_date) );
+                $data['order_completedate'] = date( "m/d/Y", strtotime($com_date) );
             }
             
             $data['order_appraiser_id'] = $this->input->post('order_appraiser_id');
@@ -332,7 +332,7 @@ class Order extends CI_Controller {
 
             $dataNote['subject'] = $subject;
             $dataNote['notes'] = $desc;
-            $dataNote['date'] = date("d/m/Y") . " ".date("h:i:sa");
+            $dataNote['date'] = date("m/d/Y") . " ".date("h:i:sa");
             $dataNote['hide_client'] ="off";
             $dataNote['hide_appraiser'] = "off";
 
@@ -409,7 +409,7 @@ class Order extends CI_Controller {
     
 
         // echo "<pre>";
-        // print_r( $data['order_single']['order_status_id']);
+        // print_r( $data['order_single']);
         // echo $data['order_single']->order_status_id;
  
 
@@ -469,26 +469,26 @@ class Order extends CI_Controller {
             $data['order_website'] = $this->input->post('upd_order_website');
             $data['order_zipcode'] = $this->input->post('upd_order_zipcode');
             $data['order_action'] = $this->input->post('upd_order_action');
-            $data['order_date'] = date( "d/m/Y", strtotime($this->input->post('upd_order_date')) );
+            $data['order_date'] = date( "Y/m/d", strtotime($this->input->post('upd_order_date')) );
 
             $data['order_borrower'] = $this->input->post('upd_order_borrower');
             $data['order_co_borrower'] = $this->input->post('upd_order_co_borrower');
-            $data['order_duedate'] = date( "d/m/Y", strtotime($this->input->post('upd_order_duedate')) );
+            $data['order_duedate'] = date( "m/d/Y", strtotime($this->input->post('upd_order_duedate')) );
             $data['order_entry'] = $this->input->post('upd_order_entry');
 
             $apt_date = $this->input->post('upd_order_appointmentdate');
             if($apt_date != ""){
-                $data['order_appointmentdate'] = date( "d/m/Y", strtotime($apt_date) );
+                $data['order_appointmentdate'] = date( "m/d/Y", strtotime($apt_date) );
             }
 
             $com_date = $this->input->post('upd_order_completedate');
             if($com_date != ""){
-                $data['order_completedate'] = date( "d/m/Y", strtotime($com_date) );
+                $data['order_completedate'] = date( "m/d/Y", strtotime($com_date) );
             }
 
-            // $data['order_completedate'] = date( "d/m/Y", strtotime($this->input->post('upd_order_completedate')) );
+            // $data['order_completedate'] = date( "m/d/Y", strtotime($this->input->post('upd_order_completedate')) );
 
-            // $data['order_appointmentdate'] = date( "d/m/Y", strtotime($this->input->post('upd_order_appointmentdate')) );
+            // $data['order_appointmentdate'] = date( "m/d/Y", strtotime($this->input->post('upd_order_appointmentdate')) );
             $data['order_appraiser_id'] = $this->input->post('upd_order_appraiser_id');
             $data['order_appraiser_id2'] = $this->input->post('upd_order_appraiser_id2');
             $data['order_appraiser_email'] = $this->input->post('upd_order_appraiser_email');
@@ -658,6 +658,10 @@ class Order extends CI_Controller {
             }
             
 
+            // echo "<br>data ===========<br>";
+            // echo "<pre>";
+            //             print_r($data);
+
             $result = $this->Order_Model->update($data);
 
             if($result > 0) {                
@@ -736,7 +740,9 @@ class Order extends CI_Controller {
     public function byduedate($value)
     {
         $filter['key'] = 'order_duedate';
-        $filter['value'] =  $date = date("d/m/Y", $value);
+        $filter['value'] =  date("m/d/Y", $value);
+
+        // echo $filter['value'];
 
         $data['order_list'] = $this->Order_Model->getByFilter($filter);
         // echo "<pre>";

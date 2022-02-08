@@ -63,14 +63,14 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <button class="btn btn-primary mb-1 mr-2" type="button" onclick="order_record_collapse();">
                             Order Record
                         </button>
                         <button class="btn btn-primary mb-1" type="button" onclick="edit_loan_collapse();">
                             Add/Edit Notes
                         </button>
-                    </div>
+                    </div> -->
 
 
                     <div class="card mb-4" id="order_record">
@@ -365,11 +365,13 @@
                                                 <option value=""></option>
                                                 <?php
                                             foreach($status_info_list as $status){
+                                                if($status->st_id != 10 || $status->st_id != 15  || $status->st_id != 16 ){
                                             ?>
+                                                
                                                 <option value="<?php echo $status->st_id ?>"
                                                     <?php echo ( $order_single->order_status_id ==  $status->st_id ) ?  'Selected' :  ''; ?>>
                                                     <?php echo $status->st_name ?></option>
-                                                <?php } ?>
+                                                <?php }} ?>
                                             </select>
                                             <span
                                                 class="helper-text"><?php echo form_error('order_status_id'); ?></span>
@@ -865,14 +867,14 @@
                                         <th>Author</th>
                                         <th>Subject</th>
                                         <th>Notes</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
                                     foreach ($notes as $n) {
-                                        
+                                        if($n->hide_appraiser != 'on'){
                                         ?>
                                     <tr>
                                         <td><?php echo $n->notes_id; ?></td>
@@ -880,11 +882,11 @@
                                         <td><?php echo $n->user_username; ?></td>
                                         <td><?php echo $n->subject; ?></td>
                                         <td><?php echo $n->notes; ?></td>
-                                        <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
+                                        <!-- <td><button type="button" class="btn btn-primary mr-2" data-toggle="modal"
                                                 data-target="#editModalNotes<?php echo $n->notes_id; ?>">Edit</button>&nbsp;<button
                                                 type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#deleteModalNotes<?php echo $n->notes_id; ?>">Delete</button>
-                                        </td>
+                                        </td> -->
 
 
 
@@ -995,7 +997,7 @@
                                             </div>
                                         </div>
 
-                                        <?php } ?>
+                                        <?php }} ?>
                                    
                                 </tbody>
                             </table>
@@ -1218,8 +1220,8 @@
 
 
 
-        $("#new_notes").hide();
-        $("#note_table").hide();
+        // $("#new_notes").hide();
+        // $("#note_table").hide();
         function order_record_collapse() {
             $("#order_record").show();
             $("#new_notes").hide();

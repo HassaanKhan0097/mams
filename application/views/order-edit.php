@@ -421,7 +421,7 @@
                                     <div class="form-group">
                                         <label>Order Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="upd_order_date" value="<?php echo $order_single->order_date ?>" required>
+                                            <input type="text" class="form-control" name="upd_order_date" value="<?php echo date("m/d/Y", strtotime($order_single->order_date));   ?>" required>
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -930,26 +930,19 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">
-                                                                    <div class="form-group position-relative">
+                                                                    <div class="form-group position-relative" id="cc_checkbox">
                                                                         <label>Visibility</label>
-                                                                        <!-- <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck3"
-                                                                                name="upd_notes_hide_cl"  <?php echo ( $n->hide_client == 'on' ) ?  'Checked' :  ''; ?>>
-                                                                            <label class="custom-control-label" for="customCheck3">Hidden from client</label>
-                                                                        </div> -->
-                                                                        <!-- <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck4"
-                                                                                name="upd_notes_hide_app" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
-                                                                            <label class="custom-control-label" for="customCheck4">Hidden from appraiser</label>
-                                                                        </div> -->
+                                                                       
                                                                         <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                                                            <input type="checkbox" class="custom-control-input" id="customCheck<?php echo $n->notes_id; ?>"
                                                                                 name="upd_notes_hide_app" <?php echo ( $n->hide_appraiser == 'on' ) ?  'Checked' :  ''; ?>>
-                                                                            <label class="custom-control-label" for="customCheck1">Hidden from appraiser</label>
+                                                                            <label class="custom-control-label" for="customCheck<?php echo $n->notes_id; ?>">Hidden from appraiser</label>
                                                                         </div>                                     
                                                                     </div>
                                                                 </div>
 
+                                                                <script>
+                                                                </script>
                                                                 <!-- <div class="col-12">
                                                                     <div class="form-group position-relative">
                                                                         <label>Visibility</label>

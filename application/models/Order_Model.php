@@ -25,10 +25,12 @@ class Order_Model extends CI_Model {
 
     public function getById($id)
     {
-        $this->db->select("*, DATE_FORMAT(order_duedate,'%m/%d/%Y') as order_duedate, 
-        DATE_FORMAT(order_date,'%m/%d/%Y') as order_date, 
-        DATE_FORMAT(order_appointmentdate,'%m/%d/%Y') as order_appointmentdate, 
-        DATE_FORMAT(order_completedate,'%m/%d/%Y') as order_completedate, 
+        // DATE_FORMAT(orders.order_duedate,'%m/%d/%Y') as order_duedate
+        // orders.order_duedate, 
+        // DATE_FORMAT(orders.order_date,'%m/%d/%Y') as order_date, 
+        // DATE_FORMAT(orders.order_appointmentdate,'%m/%d/%Y') as order_appointmentdate, 
+        // DATE_FORMAT(orders.order_completedate,'%m/%d/%Y') as order_completedate, 
+        $this->db->select("*, 
         at.at_id as at_id, 
         at.at_name AS at_name, 
         at2.at_id as at2_id, 
@@ -150,7 +152,8 @@ class Order_Model extends CI_Model {
 
     public function getByFilter($filter)
     {
-        $this->db->select("*, DATE_FORMAT(order_duedate,'%m/%d/%Y') as order_duedate, DATE_FORMAT(order_date,'%m/%d/%Y') as order_date, DATE_FORMAT(order_appointmentdate,'%m/%d/%Y') as order_appointmentdate, DATE_FORMAT(order_completedate,'%m/%d/%Y') as order_completedate, at.at_id as at_id, at.at_name AS at_name, at2.at_id as at2_id, at2.at_name AS at2_name, at3.at_id AS at3_id, at3.at_name AS at3_name, cl.cl_id AS cl_id, cl.cl_name AS cl_name, cl2.cl_id AS cl2_id, cl2.cl_name AS cl2_name, city.city_name as city_name");
+        // $this->db->select("*, DATE_FORMAT(order_duedate,'%m/%d/%Y') as order_duedate, DATE_FORMAT(order_date,'%m/%d/%Y') as order_date, DATE_FORMAT(order_appointmentdate,'%m/%d/%Y') as order_appointmentdate, DATE_FORMAT(order_completedate,'%m/%d/%Y') as order_completedate, at.at_id as at_id, at.at_name AS at_name, at2.at_id as at2_id, at2.at_name AS at2_name, at3.at_id AS at3_id, at3.at_name AS at3_name, cl.cl_id AS cl_id, cl.cl_name AS cl_name, cl2.cl_id AS cl2_id, cl2.cl_name AS cl2_name, city.city_name as city_name");
+        $this->db->select("*,  order_duedate, order_date, order_appointmentdate, order_completedate, at.at_id as at_id, at.at_name AS at_name, at2.at_id as at2_id, at2.at_name AS at2_name, at3.at_id AS at3_id, at3.at_name AS at3_name, cl.cl_id AS cl_id, cl.cl_name AS cl_name, cl2.cl_id AS cl2_id, cl2.cl_name AS cl2_name, city.city_name as city_name");
         $this->db->from('orders');
         $this->db->join('appraiser','appraiser.app_id = orders.order_appraiser_id', 'left');
         $this->db->join('assignment_types as at','at.at_id = orders.order_assignment_id', 'left'); 
@@ -162,7 +165,8 @@ class Order_Model extends CI_Model {
         $this->db->join('order_types','order_types.order_id = orders.order_type_id');
         $this->db->join('status_info','status_info.st_id = orders.order_status_id');
         $this->db->where($filter['key']." =",$filter['value']);
-        if($filter['key'] == 'order_appraiser_id' || $filter['key'] == 'order_client_id'){
+        // if($filter['key'] == 'order_appraiser_id' || $filter['key'] == 'order_client_id'){
+            if($filter['key'] != 'order_status_id'){
             $this->db->where("order_status_id NOT IN (10,15,16)");
         }
 

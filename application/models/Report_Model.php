@@ -70,6 +70,10 @@ class Report_Model extends CI_Model {
 
     public function legacyByOfficeByWeek(){        
         // YEARWEEK(ord.order_date) as week
+
+        // $query = $this->db->query("SELECT SUM(ord.order_revenue) as revenue, SUM(ord.order_expense) as expense,str_to_date(concat(yearweek(ord.order_date,2),'1'), '%X%V%w') as order_date,  COUNT(ord.order_date) as total from `orders` ord where ord.order_status_id !=16 GROUP BY YEARWEEK(ord.order_date) ORDER BY YEARWEEK(ord.order_date) DESC");
+
+
         $query = $this->db->query("SELECT SUM(ord.order_revenue) as revenue, SUM(ord.order_expense) as expense,str_to_date(concat(yearweek(ord.order_date,2),'1'), '%X%V%w') as order_date,  COUNT(ord.order_date) as total from `orders` ord where ord.order_status_id !=16 GROUP BY YEARWEEK(ord.order_date) ORDER BY YEARWEEK(ord.order_date) DESC");
         return $query->result(); 
     }

@@ -70,7 +70,7 @@ class Report extends CI_Controller {
 
         
         // echo "<pre>";
-        // print_r($data['range']);
+        // print_r($data);
 
         $this->load->view('rep_legacy.php', $data);
     }
@@ -133,7 +133,7 @@ class Report extends CI_Controller {
 
         
         // echo "<pre>";
-        // print_r($data['legacy'] );
+        // print_r($data );
         $this->load->view('rep_legacy.php', $data);
 
     }

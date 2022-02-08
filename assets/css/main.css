@@ -196,7 +196,11 @@ table thead {
 span.input-group-text.input-group-append.input-group-addon {
   padding: 0.05rem 0.75rem 0.05rem 0.75rem !important;
 }
-
+.req_field{
+  background: #001e31;
+  color: white;
+  padding: 0 10px;
+}
 
 @media (max-width: 576px){
   .custom_col_4{
@@ -215,3 +219,4 @@ span.input-group-text.input-group-append.input-group-addon {
   }
 
 }
+

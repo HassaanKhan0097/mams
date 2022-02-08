@@ -108,8 +108,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Status</h5>
-                            <table class="-standard responsive nowrap table table-bordered"
-                                >
+                            <table class="-standard responsive nowrap table table-bordered byStatus">
                                 <thead>
                                     <tr>
                                         <th>Status</th>
@@ -152,7 +151,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Appraiser</h5>
-                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered byAppraiser"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -185,7 +184,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Client</h5>
-                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered byClient"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -213,12 +212,38 @@
                     </div>
                 </div>
                 
+                <!-- <tr>
+                                            <td>
+                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/byduedate/<?php echo strtotime($bdd->order_duedate); ?>"> <u><?php echo $bdd->order_duedate; ?></u> </a></p>
+                                                
+                                            </td>
+                                            <td>
+                                                <p class="text-muted"><?php echo $bdd->files; ?></p>
+                                            </td>
+                                        </tr> -->
+
+                                             <!-- <input type="text" id="st" value="<?php echo $bdd->order_status_id; ?>" style="display:none;">
+                                        <input type="text" id="app" value="<?php echo $bdd->order_appraiser_id; ?>" style="display:none;">
+                                        <input type="text" id="cl" value="<?php echo $bdd->order_client_id; ?>" style="display:none;"> -->
+
+                                <!-- <script>                                       
+                                        duedate = <?php echo $bdd->order_duedate; ?>
+                                        status = <?php echo $bdd->order_status_id; ?>
+                                        appraiser = <?php echo $bdd->order_appraiser_id; ?>
+                                        client = <?php echo $bdd->order_client_id; ?>
+
+
+
+                                </script> -->
+
+
                 <!-- col-xl-4 col-lg-4  -->
+                <!-- data-table data-table-standard -->
                 <div class="mb-4 home_card custom_col_6">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Due Date</h5>
-                            <table class="data-table data-table-standard responsive nowrap table table-bordered"
+                            <table class=" responsive nowrap table table-bordered byDuedate"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
@@ -228,20 +253,41 @@
                                 </thead>
                                 <tbody>
 
+
                                 
+                                <script>
+                                var duedate = status = appraiser = client = [];
+                                </script>
+
+                                    
 
                                 <?php
-                                    foreach($by_due_date as $bdd){?>
-                                        <tr>
-                                            <td>
-                                                <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/byduedate/<?php echo strtotime($bdd->order_duedate); ?>"> <u><?php echo $bdd->order_duedate; ?></u> </a></p>
-                                                
-                                            </td>
-                                            <td>
-                                                <p class="text-muted"><?php echo $bdd->files; ?></p>
-                                            </td>
-                                        </tr>
-                                <?php }?>
+                                    $dd = $st = $app = $cl = "";
+                                    foreach($by_due_date as $bdd){ ?>
+
+
+
+                                        <?php
+                                        
+
+                                        $dd .=  "," . $bdd->order_duedate;
+                                        $st .=  "," . $bdd->order_status_id;
+                                        $app .=  "," . $bdd->order_appraiser_id;
+                                        $cl .=  "," . $bdd->order_client_id;
+
+                               
+                                    }?>
+
+
+                                <input type="text" id="dd" value="<?php echo $dd; ?>" style="display:none">
+                                <input type="text" id="st" value="<?php echo $st; ?>"  style="display:none">
+                                <input type="text" id="app" value="<?php echo $app; ?>"  style="display:none">
+                                <input type="text" id="cl" value="<?php echo $cl; ?>" style="display:none">
+                                <input type="text" id="base_url" value="<?php echo base_url(); ?>" style="display:none">
+                                
+
+                                
+
                                     
                                 </tbody>
                             </table>
@@ -258,7 +304,7 @@
                                 <thead>
                                     <tr>
                                         <th>Action Required</th>
-                                        <th>Action</th>
+                                        <th class="d-none">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -270,7 +316,7 @@
                                                 <p class="list-item-heading"><a href="<?php echo base_url(); ?>order/update/<?php echo $bar->order_number; ?>"> <u><?php echo $bar->order_number; ?></u> </a></p>
                                                 
                                             </td>
-                                            <td>
+                                            <td class="d-none"">
                                                 <p class="text-muted">View</p>
                                             </td>
                                         </tr>
@@ -344,7 +390,273 @@
 }, 700);//wait 2 seconds
         // $(window).on('load', function() {
         // });
-    </script>
+
+                                duedate = $("#dd").val();
+                                status = $("#st").val();
+                                appraiser = $("#app").val();
+                                client = $("#cl").val();
+
+                                duedate = duedate.substring(1).split(",");
+                                sta = status.substring(1).split(",");
+                                appraiser = appraiser.substring(1).split(",");
+                                client = client.substring(1).split(",");
+
+                                const d = new Date();
+                                var m = d.getMonth()+1; m = m.toString();
+                                if(m.length == 1){m= "0"+m;}
+                                var dt = d.getDate(); dt = dt.toString();
+                                if(dt.length == 1){dt= "0"+dt;}
+                                var y = d.getFullYear();
+                                currDate = m + "/" + dt + "/" + y;
+
+                                orange = [];
+                                red = [];
+
+                                duedate.forEach((item, index)=>{
+
+                                    if(item == currDate){
+                                        orange.push(index);
+                                    }
+                                    if(sta[index] == '13'){
+                                        orange.push(index);
+                                    }
+                                    var selectedDate = new Date(item);                                   
+                                    d.setHours(0,0,0,0);
+                                    if (selectedDate < d) {
+                                        red.push(index);
+                                    }
+                                                                              
+
+                                })
+
+                              /*
+                                ====================================== 
+                                STATUS STARTING
+                                ======================================
+                              */
+                                temp_st = [];
+                                temp_st_red = [];
+                                orange.forEach((item, index)=>{
+                                    temp_st.push(sta[item]);
+                                })
+                                red.forEach((item,index)=>{
+                                    temp_st_red.push(sta[item]);
+                                })
+                             
+                                $(".byStatus tbody tr td p.list-item-heading a u").each(function() {                                                                         
+                                    st = $(this).closest('a')[0].href.split("/");
+                                    st = st[st.length -1]; 
+                                    
+                                    if(temp_st.includes(st)){ $(this).css("color","#F6931D"); } 
+                                    if(temp_st_red.includes(st)){ $(this).css("color","red"); } 
+                                });
+                                /*
+                                ====================================== 
+                                STATUS ENDING
+                                ======================================
+                              */
+
+
+
+                              /*
+                                ====================================== 
+                                APPRAISER STARTING
+                                ======================================
+                              */       
+
+                              temp_app = [];
+                                temp_app_red = [];
+                                orange.forEach((item, index)=>{
+                                    temp_app.push(appraiser[item]);
+                                })
+                                red.forEach((item,index)=>{
+                                    temp_app_red.push(appraiser[item]);
+                                })
+
+                                $(".byAppraiser tbody tr td p.list-item-heading a u").each(function() { 
+                                    app = $(this).closest('a')[0].href.split("/");
+                                    app = app[app.length -1];  
+                                   
+                                    if(temp_app.includes(app)){
+                                        $(this).css("color","#F6931D");
+                                    } 
+                                    if(temp_app_red.includes(app)){
+                                        $(this).css("color","red");
+                                    } 
+                                });
+                                /*
+                                ====================================== 
+                                APPRAISER ENDING
+                                ======================================
+                              */
+
+
+                              /*
+                                ====================================== 
+                                CLIENT STARTING
+                                ======================================
+                              */
+                              temp_cl = [];
+                                temp_cl_red = [];
+                                orange.forEach((item, index)=>{
+
+                                    temp_cl.push(client[item]);
+                                })
+                                red.forEach((item,index)=>{
+                                    temp_cl_red.push(client[item]);
+                                })
+
+                                $(".byClient tbody tr td p.list-item-heading a u").each(function() { 
+
+                                   
+                                    // console.log($(this).closest("a")[0].href.split("/"));
+                                    cl = $(this).closest('a')[0].href.split("/");
+                                    
+                                    cl = cl[cl.length -1];  
+                                   
+                                    if(temp_cl.includes(cl)){
+                                        // console.log("app==> ", app)
+                                        $(this).css("color","#F6931D");
+                                    } 
+                                    if(temp_cl_red.includes(cl)){
+                                        $(this).css("color","red");
+                                    } 
+                                });
+                                /*
+                                ====================================== 
+                                CLIENT ENDING
+                                ======================================
+                              */
+
+
+                                /*
+                                ====================================== 
+                                DUE DATE STARTING
+                                ======================================
+                              */
+
+                              temp_dd = [];
+                                temp_dd_red = [];
+                                orange.forEach((item, index)=>{
+
+                                    temp_dd.push(duedate[item]);
+                                })
+                                red.forEach((item,index)=>{
+                                    temp_dd_red.push(duedate[item]);
+                                })
+
+
+                              var dd_count = {};
+                              duedate.forEach(function(x) { dd_count[x] = (dd_count[x] || 0)+1; });
+
+                              for (var element in dd_count) {
+                                console.log(element + ' = ' + dd_count[element]);
+
+                                style = "";
+
+                                if(temp_dd.includes(element)){
+                                    style="color:#F6931D";
+                                } 
+                                if(temp_dd_red.includes(element)){
+                                    style="color:red";
+                                } 
+
+
+
+                                // if(element == currDate){
+                                //     style="color:#F6931D";
+                                //     }
+                                    
+                                //     var selectedDate = new Date(element);                                   
+                                //     d.setHours(0,0,0,0);
+                                //     if (selectedDate < d) {
+                                //         style="color:red";
+                                //     }style="`+style+`"
+                                var str = element + " GMT"
+                                // var strtotime =new Date(element).getTime();
+                                strtotime =  Date.parse(str) / 1000;
+
+                                var base_url = $("#base_url").val();
+                                // document.write(d.getTime() + " milliseconds since 1970/01/01");
+
+                                $(".byDuedate tbody").append(`
+                                <tr>
+                                    <td>
+                                        <p class="list-item-heading"><a href="`+base_url+`order/byduedate/`+strtotime+`"> <u style="`+style+`">`+element+`</u> </a></p>
+                                        
+                                    </td>
+                                    <td>
+                                        <p class="text-muted">`+dd_count[element]+`</p>
+                                    </td>
+                                </tr>
+                                `);
+
+                                } 
+
+                                $(".byDuedate").DataTable({
+                                    bLengthChange: false,
+                                    searching: false,
+                                    destroy: true,
+                                    info: false,
+                                    sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+                                    pageLength: 6,
+                                    language: {
+                                    paginate: {
+                                        previous: "<i class='simple-icon-arrow-left'></i>",
+                                        next: "<i class='simple-icon-arrow-right'></i>"
+                                    }
+                                    },
+                                    drawCallback: function () {
+                                    $($(".dataTables_wrapper .pagination li:first-of-type"))
+                                        .find("a")
+                                        .addClass("prev");
+                                    $($(".dataTables_wrapper .pagination li:last-of-type"))
+                                        .find("a")
+                                        .addClass("next");
+
+                                    $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+                                    }
+                                });
+
+
+
+                                
+
+                                $(".byDuedate tbody tr td p.list-item-heading a u").each(function() { 
+
+                                   // $(".byDuedate tbody tr td p.list-item-heading a u").each(function() { console.log( $(this)[0].innerHTML) });
+
+                                    dd_style = $(this)[0].innerHTML;
+
+                                    
+                                    
+                                // console.log($(this).closest("a")[0].href.split("/"));
+                                // dd = $(this).closest('a')[0].href.split("/");
+
+                                // dd = dd[dd.length -1];  
+
+                                // if(temp_dd.includes(dd)){
+                                //     // console.log("app==> ", app)
+                                //     $(this).css("color","#F6931D");
+                                // } 
+                                // if(temp_dd_red.includes(dd)){
+                                //     $(this).css("color","red");
+                                // } 
+                                });
+
+
+                              
+
+
+
+
+                               /*
+                                ====================================== 
+                                DUE DATE ENDING
+                                ======================================
+                              */
+                                
+                                </script>
 </body>
 
 </html>

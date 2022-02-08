@@ -23,7 +23,14 @@ class Overview_Model extends CI_Model {
     
     public function getByDueDate()
     {
-        $query = $this->db->query("SELECT order_duedate, COUNT(*) as files FROM `orders` WHERE DATE(order_duedate) >= DATE(NOW()) GROUP By order_duedate");
+        // $query = $this->db->query("SELECT order_duedate, COUNT(*) as files FROM `orders` WHERE DATE(order_duedate) >= DATE(NOW()) GROUP By order_duedate");
+
+        // $query = $this->db->query("SELECT COUNT(*) as files, order_duedate FROM orders where order_status_id not in (10,15,16)GROUP BY order_duedate");
+
+        $query = $this->db->query("SELECT order_duedate, order_status_id, order_client_id, order_appraiser_id FROM orders where order_status_id not in (10,15,16) ");
+
+
+       
         return $query->result();
     }
 

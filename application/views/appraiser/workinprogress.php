@@ -95,7 +95,7 @@
                                     <td><?php echo $ol->cl_name; ?></td>
                                     <td><?php echo $ol->order_expense; ?></td>
                                     <td><?php echo $ol->order_address; ?></td>
-                                    <td><?php echo $ol->order_city; ?></td>
+                                    <td><?php echo $ol->cl_order_city; ?></td>
                                     <td><?php echo $ol->order_borrower; ?></td>
                                     <td><?php echo $ol->st_name; ?></td>
                                     <td><?php echo $ol->order_duedate; ?></td> 

@@ -91,14 +91,15 @@ class Accounting_Model extends CI_Model {
 
     public function getAccAppraiser()
     {
-        $where = 'o.order_v_appraiser = "" OR o.order_v_appraiser is null';
+        // $where = 'o.order_v_appraiser = "" OR o.order_v_appraiser is null ';
+        $where = '(o.order_v_appraiser = "" OR o.order_v_appraiser is null) AND o.order_status_id in (14,15)';
         $this->db->select('o.order_appraiser_id, sum(o.order_expense) as total_owed, count(*) as total_orders,a.app_name')->from('orders as o')->join('appraiser as a','a.app_id = o.order_appraiser_id')->where($where)->order_by('o.order_appraiser_id', 'ASC')->group_by('o.order_appraiser_id');
         $query = $this->db->get();
         return $query->result();  
     }
 
     public function getAccAppById($id){
-        $where = '(o.order_v_appraiser = "" OR o.order_v_appraiser is null) AND o.order_appraiser_id = ' . $id;
+        $where = '(o.order_v_appraiser = "" OR o.order_v_appraiser is null) AND o.order_status_id in (14,15) AND o.order_appraiser_id = ' . $id ;
         //$this->db->select('o.order_number, o.order_revenue, o.order_expense, o.order_address, o.order_city, ci.city_name, o.order_borrower, o.order_appraiser_id, a.app_name, o.order_v_client, o.order_client_id, c.cl_name')->from('orders as o')->join('client as c','c.cl_id = o.order_client_id')->join('city as ci','ci.city_id = o.order_city')->join('appraiser as a','a.app_id = o.order_appraiser_id')->where($where);
 
 

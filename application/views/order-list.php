@@ -283,7 +283,7 @@
                                     <!-- <td><?php echo $ol->order_amc; ?></td> -->
                                     <!-- <td><?php echo $ol->order_zipcode; ?></td> -->
                                     <!-- <td><?php echo $ol->order_action; ?></td> -->
-                                    <td><?php echo $ol->order_date; ?></td>
+                                    <td><?php echo date("m/d/Y", strtotime($ol->order_date)); ?></td>
                                     <td><?php echo $ol->order_borrower; ?></td>
                                     <!-- <td><?php echo $ol->order_co_borrower; ?></td> -->
                                     <td><?php echo $ol->order_duedate; ?></td>
