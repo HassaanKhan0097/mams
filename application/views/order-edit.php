@@ -80,8 +80,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Loan Number</label>
-                                        <input type="number" class="form-control" name="upd_order_loan_number" placeholder="Enter Loan Number" value="<?php echo $order_single->order_loan_number ?>">
+                                        <label>Loan # / Client File # *</label>
+                                        <input type="number" class="form-control" name="upd_order_loan_number" placeholder="Enter Loan # / Client File #" value="<?php echo $order_single->order_loan_number ?>" required>
                                     </div>
                                     
                                     <div class="form-group">
@@ -379,13 +379,14 @@
 
                                     <div class="form-group">
                                         <label>Assignment Add-Ons</label>
+                                        <!-- $data['assignment_addon_list'] = $this->AssAddon_Model->get(); -->
                                         <select class="form-control select2-single" data-width="100%" name="upd_order_assignment_addon" >
                                             <option value=""></option>
                                             <?php
-                                            $assAdd = ["Rent Comparable Schedule", "Operating Income Statement", "REO Addendum", "ADU"];
-                                            foreach($assAdd as $aa){
+                                            // $assAdd = ["ADU", "Operating Income Statement", "REO Addendum", "Rent Comparable Schedule"];
+                                            foreach($assignment_addon_list as $aa){
                                             ?>                                            
-                                            <option value="<?php echo $aa ?>" <?php echo ( $order_single->order_assignment_addon ==  $aa ) ?  'Selected' :  ''; ?>><?php echo $aa ?></option>
+                                            <option value="<?php echo $aa->ao_id ?>" <?php echo ( $order_single->order_assignment_addon ==  $aa->ao_id ) ?  'Selected' :  ''; ?>><?php echo $aa->ao_name ?></option>
                                             <?php } ?>
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
@@ -443,7 +444,7 @@
                                     <div class="form-group">
                                         <label>Appointment Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="upd_order_appointmentdate" value="<?php echo (  $order_single->order_appointmentdate  == "") ?  '' :  $order_single->order_appointmentdate; ?> ">
+                                            <input type="text" class="form-control" name="upd_order_appointmentdate" value="<?php echo $order_single->order_appointmentdate; ?> ">
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>
@@ -668,7 +669,7 @@
                                                         $past_f = $f[0];
                                                         ?>
                                                         
-                                                            <div id="attach<?php $attachCount++; echo $attachCount; ?>"><u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$order_single->order_number. "/".$f[1]; ?>"><?php echo $f[1] ?></a></u> &nbsp;&nbsp;&nbsp;&nbsp; <span onclick="hitFile('<?php echo $tmp . ',' . $f[1] ?>','attach<?php echo $attachCount ?>')" style="cursor: pointer;">x</span><br/><br/></div> 
+                                                            <div id="attach<?php $attachCount++; echo $attachCount; ?>"><u> <i class="simple-icon-paper-clip"></i> <a href="<?php echo $this->config->item('upload_dir')."orders/".$order_single->order_number. "/".$f[1]; ?>" target="_blank"><?php echo $f[1] ?></a></u> &nbsp;&nbsp;&nbsp;&nbsp; <span onclick="hitFile('<?php echo $tmp . ',' . $f[1] ?>','attach<?php echo $attachCount ?>')" style="cursor: pointer;">x</span><br/><br/></div> 
                                                         <?php 
                                                         $continue   = false;
                                                     }else{

@@ -126,8 +126,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Loan Number</label>
-                                        <input type="number" class="form-control" name="order_loan_number" placeholder="Enter Loan Number" value="<?php if(isset($order_loan_number)) echo $order_loan_number;?>">
+                                        <label class="req_field">Loan # / Client File # *</label>
+                                        <input type="number" class="form-control" name="order_loan_number" placeholder="Enter Loan # / Client File #" value="<?php if(isset($order_loan_number)) echo $order_loan_number;?>" required>
                                     </div>
                                     
                                     <div class="form-group">
@@ -174,6 +174,14 @@
                                     </div>
                                     <!-- <p><b>Files</b>: <span id="file"></span> --</p><br> -->
                                     <!-- <?php echo ( $app->app_name  == 'Unassigned') ?  'Selected' :  ''; ?> -->
+
+                                    <div class="form-group">
+                                        <label class="req_field">Revenue*</label>
+                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php if(isset($order_revenue)) echo $order_revenue;?>" required>
+                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
+                                    </div>
+
+                                    
                                     <div class="form-group">
                                         <label class="req_field">Appraiser Name* </label>
                                         <select class="form-control select2-single" data-width="100%" onchange="appraiserChange()" name="order_appraiser_id" required>
@@ -215,11 +223,7 @@
                                         <input type="text" class="form-control" name="order_sub_app_expense" placeholder="Enter Expense" value="<?php if(isset($order_sub_app_expense)) echo $order_sub_app_expense;?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="req_field">Revenue*</label>
-                                        <input type="text" class="form-control" name="order_revenue" placeholder="Enter Revenue" value="<?php if(isset($order_revenue)) echo $order_revenue;?>" required>
-                                        <span class="helper-text"><?php echo form_error('order_revenue'); ?></span>
-                                    </div>
+                                   
 
                                     
                                     
@@ -379,10 +383,10 @@
                                         <select class="form-control select2-single" data-width="100%" name="order_assignment_addon" >
                                             <option value=""></option>
                                             <?php
-                                            $assAdd = ["Rent Comparable Schedule", "Operating Income Statement", "REO Addendum", "ADU"];
-                                            foreach($assAdd as $aa){
+                                            // $assAdd = ["ADU", "Operating Income Statement", "REO Addendum", "Rent Comparable Schedule"];
+                                            foreach($assignment_addon_list as $aa){
                                             ?>                                            
-                                            <option value="<?php echo $aa ?>" <?php if(isset($order_assignment_addon)) {echo ( intval($order_assignment_addon)  == intval($aa)) ?  'Selected' :  '';}?>><?php echo $aa ?></option>
+                                            <option value="<?php echo $aa->ao_id ?>" <?php if(isset($order_assignment_addon)) {echo ( intval($order_assignment_addon)  == intval($aa->ao_id)) ?  'Selected' :  '';}?>><?php echo $aa->ao_name ?></option>
                                             <?php } ?>
                                         </select>                 
                                         <span class="helper-text"><?php echo form_error('order_loan_type'); ?></span>                   
@@ -418,7 +422,7 @@
                                     <div class="form-group">
                                         <label class="req_field">Order Date*</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" name="order_date"  value="<?php if(isset($order_date)){ echo $order_date;} else {echo date( "m/d/Y"); }?>" required>
+                                            <input type="text" class="form-control" name="order_date"  value="<?php if(isset($order_date)){ echo $order_date;} else {echo date( "m/d/Y"); }?>"  required>
                                             <span class="input-group-text input-group-append input-group-addon">
                                                 <i class="simple-icon-calendar"></i>
                                             </span>

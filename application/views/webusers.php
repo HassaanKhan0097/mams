@@ -99,7 +99,7 @@
                                         <option value="appraiser">Appraiser</option>
                                         <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                             <option value="manager">Manager</option>
-                                            <option value="owner">Admin</option>
+                                            <option value="owner">Owner</option>
                                         <?php }?>
                                         
                                     </select>
@@ -282,7 +282,7 @@
                                                         
                                                         <?php if($this->session->userdata['loggedUser']['user_role'] == "owner"){ ?> 
                                                         <option value="manager"<?php echo ( $web->user_role ==  "manager") ?  'Selected' :  ''; ?> >Manager</option>
-                                                        <option value="owner"<?php echo ( $web->user_role ==  "owner") ?  'Selected' :  ''; ?> >Admin</option>
+                                                        <option value="owner"<?php echo ( $web->user_role ==  "owner") ?  'Selected' :  ''; ?> >Owner</option>
 
                                                         <?php }?>
                                                     </select>

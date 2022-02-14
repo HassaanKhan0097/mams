@@ -6,7 +6,7 @@ class LoanTypes_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function get()
     {
-        $query = $this->db->get('loan_types');
+        $query = $this->db->order_by('loan_name', 'ASC')->get('loan_types');
         return $query->result();
     }
 

@@ -5,7 +5,7 @@ class Appraiser_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function get()
     {
-        $query = $this->db->get('appraiser');
+        $query = $this->db->order_by('app_name', 'ASC')->get('appraiser');
         return $query->result();
     }
 

@@ -134,6 +134,11 @@
                         <i class="iconsminds-paper"></i> <span class="d-inline-block">Assignment Types</span>
                     </a>
                 </li> 
+                <li>
+                    <a href="<?php echo base_url(); ?>assignmentaddon">
+                        <i class="iconsminds-paper"></i> <span class="d-inline-block">Assignment Addon</span>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="<?php echo base_url(); ?>messageofday">
                         <i class="iconsminds-mail-open"></i> <span class="d-inline-block">Messages of the Day</span>
@@ -211,7 +216,7 @@
                 </li>  -->
                 <li>
                     <a href="<?php echo base_url(); ?>report/pipeline">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Pipe Line Reports</span>
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">PipeLine Reports</span>
                     </a>
                 </li>     
                 <!-- <li>
@@ -221,7 +226,7 @@
                 </li>  -->
                 <li>
                     <a href="<?php echo base_url(); ?>report/legacy">
-                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Legacy Pipline Reports</span>
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">Legacy Pipeline Reports</span>
                     </a>
                 </li>                      
             </ul>

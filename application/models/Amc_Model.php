@@ -6,7 +6,7 @@ class Amc_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function get()
     {
-        $query = $this->db->get('amc');
+        $query = $this->db->order_by('amc_name', 'ASC')->get('amc');
         return $query->result();
     }
 

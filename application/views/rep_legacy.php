@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pipeline Report</title>
+    <title>Pipeline Reports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font/iconsmind-s/css/iconsminds.css" />
@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>Pipeline Report</h1>
+                    <h1>Legacy Pipeline Reports</h1>
                     
                     <div class="separator mb-5"></div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="col-12">                    
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="mb-4" style="display: inline;"> Legacy Pipe Line Reports Menu</h5> 
+                            <h5 class="mb-4" style="display: inline;"> Legacy Pipeline Reports Menu</h5> 
                             <br>                          
                           
                             

@@ -6,7 +6,7 @@ class OrderTypes_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function get()
     {
-        $query = $this->db->get('order_types');
+        $query = $this->db->order_by('order_name', 'ASC')->get('order_types');
         return $query->result();
     }
 

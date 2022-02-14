@@ -5,7 +5,7 @@ class StatusInfo_Model extends CI_Model {
     // !!--------------- General Functions --------------!!
     public function get()
     {
-        $query = $this->db->get('status_info');
+        $query = $this->db->order_by('st_name', 'ASC')->get('status_info');
         return $query->result();
     }
 

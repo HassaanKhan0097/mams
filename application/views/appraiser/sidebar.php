@@ -107,6 +107,11 @@
                     </a>
                 </li> 
                 <li>
+                    <a href="<?php echo base_url(); ?>assignmentaddon">
+                        <i class="iconsminds-paper"></i> <span class="d-inline-block">Assignment Addon</span>
+                    </a>
+                </li>
+                <li>
                     <a href="<?php echo base_url(); ?>messageofday">
                         <i class="iconsminds-mail-open"></i> <span class="d-inline-block">Messages of the Day</span>
                     </a>

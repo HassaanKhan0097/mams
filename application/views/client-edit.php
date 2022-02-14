@@ -147,7 +147,7 @@
 
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label>City</label>
+                                            <label>City, State</label>
 
                                             <input type="text" class="form-control" name="upd_cl_city" placeholder="Enter City Name" value="<?php echo $client_single->cl_city?>">
 
@@ -320,7 +320,7 @@
 
                                         <div id="attach<?php $attachCount++; echo $attachCount; ?>"><u> <i
                                                     class="simple-icon-paper-clip"></i> <a
-                                                    href="<?php echo $this->config->item('upload_dir')."clients/".$client_single->cl_folder_name. "/".$f; ?>"><?php echo $f ?></a></u>
+                                                    href="<?php echo $this->config->item('upload_dir')."clients/".$client_single->cl_folder_name. "/".$f; ?>" target="_blank"><?php echo $f ?></a></u>
                                             &nbsp;&nbsp;&nbsp;&nbsp; <span
                                                 onclick="hitFile('<?php echo $f?>','attach<?php echo $attachCount ?>')"
                                                 style="cursor: pointer;">x</span><br /><br /></div>

@@ -19,6 +19,7 @@ class Order extends CI_Controller {
         $this->load->model('OrderTypes_Model');
         $this->load->model('StatusInfo_Model');
         $this->load->model('AssTypes_Model');
+        $this->load->model('AssAddon_Model');
         $this->load->model('LoanTypes_Model');
         $this->load->model('Notes_Model');
         
@@ -53,6 +54,7 @@ class Order extends CI_Controller {
         $data['order_types_list'] = $this->OrderTypes_Model->get(); 
         $data['status_info_list'] = $this->StatusInfo_Model->get(); 
         $data['assignment_types_list'] = $this->AssTypes_Model->get();
+        $data['assignment_addon_list'] = $this->AssAddon_Model->get();
         $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
         $data['loan_types_list'] = $this->LoanTypes_Model->get();
     
@@ -92,6 +94,7 @@ class Order extends CI_Controller {
         $data['order_types_list'] = $this->OrderTypes_Model->get(); 
         $data['status_info_list'] = $this->StatusInfo_Model->get(); 
         $data['assignment_types_list'] = $this->AssTypes_Model->get();
+        $data['assignment_addon_list'] = $this->AssAddon_Model->get();
         $data['previous_order_numbers'] = $this->Order_Model->getOrderNumbers();
         $data['loan_types_list'] = $this->LoanTypes_Model->get();
 
@@ -363,7 +366,8 @@ class Order extends CI_Controller {
             if($result > 0) {
 
                 $this->session->set_flashdata('message_success', 'Entry Created Successfully!');
-                redirect("order/create");
+                // redirect("order/create");
+                redirect("home");
             } 
             else {                
                 $this->session->set_flashdata('message_error', 'Failed!');
@@ -386,6 +390,7 @@ class Order extends CI_Controller {
     {
         $data['order_types_list'] = $this->OrderTypes_Model->get();
         $data['assignment_types_list'] = $this->AssTypes_Model->get();
+        $data['assignment_addon_list'] = $this->AssAddon_Model->get();
         $data['status_info_list'] = $this->StatusInfo_Model->get();
         $data['client_list'] = $this->Client_Model->get();
         $data['appraiser_list'] = $this->Appraiser_Model->get();
@@ -477,7 +482,7 @@ class Order extends CI_Controller {
             $data['order_entry'] = $this->input->post('upd_order_entry');
 
             $apt_date = $this->input->post('upd_order_appointmentdate');
-            if($apt_date != ""){
+            if(strlen($apt_date) > 1){
                 $data['order_appointmentdate'] = date( "m/d/Y", strtotime($apt_date) );
             }
 
@@ -525,6 +530,7 @@ class Order extends CI_Controller {
             $fileStr = [11,9,13,7,7,8,5,8,9];
             $fCount = 0;
             $old = $this->input->post('upd_old_file');
+            $new_file_status = "false";
              // ForEach Start
             foreach($orderfile_input as $of_input)
             {        
@@ -581,7 +587,8 @@ class Order extends CI_Controller {
                     }
                     else
                     {
-                            $uploadedData = array('upload_data' => $this->upload->data());                           
+                            $uploadedData = array('upload_data' => $this->upload->data()); 
+                            $new_file_status = "true" ;                          
                     }
                     unset($this->upload);
                 }//for loop
@@ -651,21 +658,31 @@ class Order extends CI_Controller {
                 }                
             }
 
-            
-
-            if($this->session->userdata('status_id') == $data['order_status_id']){
+            // if($this->session->userdata('status_id') != $data['order_status_id']){
+            if($data['order_status_id'] == '10' || $data['order_status_id'] == '16' ){
                 $this->email_status($data);
             }
-            
 
+            
+            if($new_file_status == "true"){
+                $this->email_attach($data);
+            }
             // echo "<br>data ===========<br>";
             // echo "<pre>";
             //             print_r($data);
 
             $result = $this->Order_Model->update($data);
 
-            if($result > 0) {                
-                redirect("order/update/". $this->uri->segment(3));
+            if($result > 0) { 
+                
+                redirect('home');
+
+
+                // if($data['order_status_id'] == '15'){
+                //     redirect('home');
+                // } else{
+                //     redirect("order/update/". $this->uri->segment(3));
+                // }             
             } 
             else {                
                 $this->session->set_flashdata('update_message_error', 'Failed!');                
@@ -826,8 +843,40 @@ class Order extends CI_Controller {
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Order ' . $data['order_number'] . ' status is updated';
-			$mail->Body    = 'Hello' . $app->app_name . '.<br>This is to inform you that the status of Order ' . $data['order_number'] . ' is updated to ' . $st->st_name;
+			$mail->Body    = 'Hello ' . $app->app_name . '.<br>This is to inform you that the status of Order ' . $data['order_number'] . ' is updated to ' . $st->st_name;
 		
+			if(!$mail->send()){
+				echo 'Mail could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			}else{
+				echo 'Mail has been sent';
+			}
+		} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+    }
+
+    public function email_attach($data){
+
+
+		$this->load->library("Phpmailer_library");
+        $mail = $this->phpmailer_library->load();
+		try {
+            //Recipients
+            $app = $this->Appraiser_Model->getById($data['order_appraiser_id']);
+
+
+
+            $to =  $this->config->item('from_email');
+            // echo "<br><br> =========== ". $to;
+			$mail->setFrom($to, 'Mams');
+			$mail->addAddress($data['order_appraiser_email'], 'Mams');     //Add a recipient
+		
+			//Content
+			$mail->isHTML(true);                                  //Set email format to HTML
+			$mail->Subject = 'New Attachment is added in Order ' . $data['order_number'] ;
+            $mail->Body    = 'Hello ' . $app->app_name . '.<br>This is to inform you that a new attachment is added in ' . $data['order_number'];
+            		
 			if(!$mail->send()){
 				echo 'Mail could not be sent.';
 				echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -847,7 +896,7 @@ class Order extends CI_Controller {
 		try {
             //Recipients
 
-            $app = $this->Appraiser_Model->getById($data['order_appraiser_id']);
+                $app = $this->Appraiser_Model->getById($data['order_appraiser_id']);
 
 
             $to =  $this->config->item('from_email');
@@ -858,7 +907,7 @@ class Order extends CI_Controller {
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Order ' . $data['order_number'] . ' has been assigned to you';
-			$mail->Body    = 'Hello' . $app->app_name . '.<br>This is to inform you that the Order ' . $data['order_number'] . ' is assigned to you ';
+			$mail->Body    = 'Hello ' . $app->app_name . '.<br>This is to inform you that the Order ' . $data['order_number'] . ' is assigned to you <br>Please acknowledge the order ASAP by changing the status to "Setting Appt". Please provide a status update within the next 24 hours.';
 		
 			if(!$mail->send()){
 				echo 'Mail could not be sent.';

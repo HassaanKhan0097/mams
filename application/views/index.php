@@ -243,11 +243,11 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">By Due Date</h5>
-                            <table class=" responsive nowrap table table-bordered byDuedate"
+                            <table class="data-table data-table-standard responsive nowrap table table-bordered byDuedate"
                                 data-order="[[ 1, &quot;desc&quot; ]]">
                                 <thead>
                                     <tr>
-                                        <th>Date Due</th>
+                                        <th id="byduedateid">Date Due</th>
                                         <th>Total Files</th>
                                     </tr>
                                 </thead>
@@ -645,7 +645,7 @@
                                 });
 
 
-                              
+                              $("#byduedateid").click();
 
 
 

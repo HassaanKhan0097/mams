@@ -427,7 +427,7 @@
                   ';
 
                   
-
+                  
                   $rightCol = '
                         <table border="0" style="font-size:9px;">
                              
@@ -449,7 +449,7 @@
                               </tr>
                                <tr>
                                     <td class="leftTd">Assignment Add-on: </td>
-                                    <td class="rightTd">'.$data->order_assignment_addon .'</td>
+                                    <td class="rightTd">'.$data->ao_name .'</td>
                               </tr> 
                                <tr>
                                     <td class="leftTd">Order Type: </td>
@@ -469,7 +469,7 @@
                               </tr>                              
                               <tr>
                                     <td class="leftTd">Orde Date: </td>
-                                    <td class="rightTd">'.$data->order_date.'</td>
+                                    <td class="rightTd">'.date("m/d/Y",strtotime($data->order_date)).'</td>
                               </tr>
                                <tr>
                                     <td class="leftTd">Due Date: </td>
@@ -579,7 +579,7 @@
 
 
                         echo "Order_number: " . $d->order_number . "<br>";
-                        echo "Order Date: " . $d->order_date . "<br>";
+                        echo "Order Date: " . date('m/d/Y',strtotime($d->order_date))  . "<br>";
                         echo "Billed Date: " . $d->order_duedate . "<br>";
                         echo "Property address: " . $d->order_address . "<br>";
                         echo "City: " . $d->city_name . "<br>";
@@ -676,7 +676,7 @@
 
                               $tableMain .= '<tr>
                                     <td>'. $d->order_number .'</td>
-                                    <td>'. $d->order_date .'</td>
+                                    <td>'. date('m/d/Y',strtotime($d->order_date)) .'</td>
                                     <td>'. $d->order_duedate .'</td>
                                     <td>'. $d->order_address .'</td>
                                     <td>'. $d->city_name .'</td>

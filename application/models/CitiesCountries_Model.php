@@ -47,12 +47,12 @@ class CitiesCountries_Model extends CI_Model {
         // $query = $this->db->get();
         // return $query->result();
 
-        $query = $this->db->get('city');
+        $query = $this->db->order_by('city_name', 'ASC')->get('city');
         return $query->result();
     }
     public function getCityById($id)
     {
-        $query = $this->db->where("city_id =",$id)->get("city");
+        $query = $this->db->where("city_id =",$id)->get("city");    
         return $query->row();
     }
     public function createCity($data)

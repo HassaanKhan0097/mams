@@ -65,9 +65,6 @@ $route['signin_submit'] = 'Mams/signin_submit';
 $route['signout'] = 'Mams/signout';
 
 
-
-
-
 // !!------------- Manager Routes (Default)  ----------------------!!
 $route['home'] = 'Index'; //here Index is chk from home
 $route['order'] = 'Order'; //here Order is controller
@@ -97,6 +94,8 @@ $route['statusinfo'] = 'StatusInfo';
 $route['companyinfo'] = 'CompanyInfo';
 
 $route['assignmenttypes'] = 'AssignmentTypes';
+
+$route['assignmentaddon'] = 'AssignmentAddon';
 
 $route['messageofday'] = 'MessageofDay';
 

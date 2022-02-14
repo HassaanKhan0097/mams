@@ -57,7 +57,10 @@ class Notes extends CI_Controller {
             // print_r($data);
             $result = $this->Notes_Model->create($data);
 
-            $this->email_notes($data,$email);
+            if($data['hide_appraiser'] != "on"){
+                $this->email_notes($data,$email);
+            }
+            
 
             if($result > 0) {
 
@@ -174,7 +177,7 @@ class Notes extends CI_Controller {
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'New Note is added in Order ' . $data['order_id'] . '';
-			$mail->Body    = 'This is to inform you that new note is added in Order ' . $data['order_id'] ;
+			$mail->Body    = 'This is to inform you that a new note is added in Order ' . $data['order_id'] ;
 		
 			if(!$mail->send()){
 				echo 'Mail could not be sent.';

@@ -2891,24 +2891,27 @@ $.dore = function (element, options) {
         searching: false,
         destroy: true,
         info: false,
+        paging:   false,
+        ordering: false,
+        info:     false,
         sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 6,
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          }
-        },
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
+        pageLength: 500
+        // language: {
+        //   paginate: {
+        //     previous: "<i class='simple-icon-arrow-left'></i>",
+        //     next: "<i class='simple-icon-arrow-right'></i>"
+        //   }
+        
+        // drawCallback: function () {
+        //   $($(".dataTables_wrapper .pagination li:first-of-type"))
+        //     .find("a")
+        //     .addClass("prev");
+        //   $($(".dataTables_wrapper .pagination li:last-of-type"))
+        //     .find("a")
+        //     .addClass("next");
 
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        }
+        //   $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        // }
       });
 
       $(".data-tables-pagination").DataTable({
